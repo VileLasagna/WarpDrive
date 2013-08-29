@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8F3D2FF7-906A-461F-AB46-1BB53CD15ABD}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Users\jehferson.mello\Documents\Visual Studio 2012\Projects\WarpDrive\include\SDL;C:\Users\jehferson.mello\Documents\Visual Studio 2012\Projects\WarpDrive\include;C:\Users\jehferson.mello\Documents\Visual Studio 2012\Projects\WarpDrive\include\GL;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Billboard.cpp" />
+    <ClCompile Include="BoundingBox.cpp" />
+    <ClCompile Include="Brick.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Capsule.cpp" />
+    <ClCompile Include="ClipLineSegBox.cpp" />
+    <ClCompile Include="ConfigLoader.cpp" />
+    <ClCompile Include="DemoState.cpp" />
+    <ClCompile Include="DisplayManager.cpp" />
+    <ClCompile Include="Err.cpp" />
+    <ClCompile Include="EventHandler.cpp" />
+    <ClCompile Include="FileManager.cpp" />
+    <ClCompile Include="Frustrum.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="glColorEvent.cpp" />
+    <ClCompile Include="glm.c" />
+    <ClCompile Include="GLMesh.cpp" />
+    <ClCompile Include="glmimg.c" />
+    <ClCompile Include="glmimg_sdl.c" />
+    <ClCompile Include="glm_util.c" />
+    <ClCompile Include="GOScreen.cpp" />
+    <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="LineSeg.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainGS.cpp" />
+    <ClCompile Include="ManagedFile.cpp" />
+    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="Matrix44.cpp" />
+    <ClCompile Include="Memory.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="PanAndTiltEvent.cpp" />
+    <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="Quaternion.cpp" />
+    <ClCompile Include="Score.cpp" />
+    <ClCompile Include="SDLImage.cpp" />
+    <ClCompile Include="SDLRGBColour.cpp" />
+    <ClCompile Include="SDLTTF.cpp" />
+    <ClCompile Include="SoundFX.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="Splash.cpp" />
+    <ClCompile Include="StringProc.cpp" />
+    <ClCompile Include="TeapotLoaderState.cpp" />
+    <ClCompile Include="Tetrad.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TimedMoveEvent.cpp" />
+    <ClCompile Include="TimedRemoveEvent.cpp" />
+    <ClCompile Include="Timeline.cpp" />
+    <ClCompile Include="TKGridCommand.cpp" />
+    <ClCompile Include="TKMoveObject.cpp" />
+    <ClCompile Include="TKUseObject.cpp" />
+    <ClCompile Include="TTFManager.cpp" />
+    <ClCompile Include="Vertex.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Billboard.h" />
+    <ClInclude Include="BoundingBox.h" />
+    <ClInclude Include="Brick.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Capsule.h" />
+    <ClInclude Include="ClipLineSegBox.h" />
+    <ClInclude Include="CollisionSystem.h" />
+    <ClInclude Include="Colour.h" />
+    <ClInclude Include="ConfigLoader.h" />
+    <ClInclude Include="DemoState.h" />
+    <ClInclude Include="DisplayManager.h" />
+    <ClInclude Include="Err.h" />
+    <ClInclude Include="EventHandler.h" />
+    <ClInclude Include="Factory.h" />
+    <ClInclude Include="FileManager.h" />
+    <ClInclude Include="Frustrum.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="glColorEvent.h" />
+    <ClInclude Include="glm.h" />
+    <ClInclude Include="GLMesh.h" />
+    <ClInclude Include="glmint.h" />
+    <ClInclude Include="GOScreen.h" />
+    <ClInclude Include="Grid.h" />
+    <ClInclude Include="LineSeg.h" />
+    <ClInclude Include="MainGS.h" />
+    <ClInclude Include="ManagedFile.h" />
+    <ClInclude Include="Material.h" />
+    <ClInclude Include="Matrix44.h" />
+    <ClInclude Include="Memory.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelLoader.h" />
+    <ClInclude Include="ObjectEvent.h" />
+    <ClInclude Include="OBJLoader.h" />
+    <ClInclude Include="Octree.h" />
+    <ClInclude Include="PanAndTiltEvent.h" />
+    <ClInclude Include="Plane.h" />
+    <ClInclude Include="Quaternion.h" />
+    <ClInclude Include="Rect.h" />
+    <ClInclude Include="Score.h" />
+    <ClInclude Include="SDLImage.h" />
+    <ClInclude Include="SDLRGBAColour.h" />
+    <ClInclude Include="SDLRGBColour.h" />
+    <ClInclude Include="SDLTTF.h" />
+    <ClInclude Include="SoundFX.h" />
+    <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="Sphere.h" />
+    <ClInclude Include="Splash.h" />
+    <ClInclude Include="StringProc.h" />
+    <ClInclude Include="Teapot.h" />
+    <ClInclude Include="TeapotLoaderState.h" />
+    <ClInclude Include="Tetrad.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="TimedMoveEvent.h" />
+    <ClInclude Include="TimedRemoveEvent.h" />
+    <ClInclude Include="Timeline.h" />
+    <ClInclude Include="TimelineKey.h" />
+    <ClInclude Include="TKAddEvent.h" />
+    <ClInclude Include="TKDrawTeapot.h" />
+    <ClInclude Include="TKGridCommand.h" />
+    <ClInclude Include="TKMoveObject.h" />
+    <ClInclude Include="TKPlayMusic.h" />
+    <ClInclude Include="TKUseObject.h" />
+    <ClInclude Include="Tri.h" />
+    <ClInclude Include="TTFManager.h" />
+    <ClInclude Include="Vec2.h" />
+    <ClInclude Include="Vec3.h" />
+    <ClInclude Include="Vec4.h" />
+    <ClInclude Include="Vertex.h" />
+    <ClInclude Include="Viewport.h" />
+    <ClInclude Include="VoxelGrid.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
