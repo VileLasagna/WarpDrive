@@ -37,6 +37,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir)include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -154,6 +156,73 @@
     <ClInclude Include="glmint.h" />
     <ClInclude Include="GOScreen.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="include\GL\glut.h" />
+    <ClInclude Include="include\SDL\begin_code.h" />
+    <ClInclude Include="include\SDL\close_code.h" />
+    <ClInclude Include="include\SDL\SDL.h" />
+    <ClInclude Include="include\SDL\SDL_assert.h" />
+    <ClInclude Include="include\SDL\SDL_atomic.h" />
+    <ClInclude Include="include\SDL\SDL_audio.h" />
+    <ClInclude Include="include\SDL\SDL_bits.h" />
+    <ClInclude Include="include\SDL\SDL_blendmode.h" />
+    <ClInclude Include="include\SDL\SDL_clipboard.h" />
+    <ClInclude Include="include\SDL\SDL_config.h" />
+    <ClInclude Include="include\SDL\SDL_cpuinfo.h" />
+    <ClInclude Include="include\SDL\SDL_endian.h" />
+    <ClInclude Include="include\SDL\SDL_error.h" />
+    <ClInclude Include="include\SDL\SDL_events.h" />
+    <ClInclude Include="include\SDL\SDL_gamecontroller.h" />
+    <ClInclude Include="include\SDL\SDL_gesture.h" />
+    <ClInclude Include="include\SDL\SDL_haptic.h" />
+    <ClInclude Include="include\SDL\SDL_hints.h" />
+    <ClInclude Include="include\SDL\SDL_image.h" />
+    <ClInclude Include="include\SDL\SDL_joystick.h" />
+    <ClInclude Include="include\SDL\SDL_keyboard.h" />
+    <ClInclude Include="include\SDL\SDL_keycode.h" />
+    <ClInclude Include="include\SDL\SDL_loadso.h" />
+    <ClInclude Include="include\SDL\SDL_log.h" />
+    <ClInclude Include="include\SDL\SDL_main.h" />
+    <ClInclude Include="include\SDL\SDL_messagebox.h" />
+    <ClInclude Include="include\SDL\SDL_mixer.h" />
+    <ClInclude Include="include\SDL\SDL_mouse.h" />
+    <ClInclude Include="include\SDL\SDL_mutex.h" />
+    <ClInclude Include="include\SDL\SDL_name.h" />
+    <ClInclude Include="include\SDL\SDL_opengl.h" />
+    <ClInclude Include="include\SDL\SDL_opengles.h" />
+    <ClInclude Include="include\SDL\SDL_opengles2.h" />
+    <ClInclude Include="include\SDL\SDL_pixels.h" />
+    <ClInclude Include="include\SDL\SDL_platform.h" />
+    <ClInclude Include="include\SDL\SDL_power.h" />
+    <ClInclude Include="include\SDL\SDL_quit.h" />
+    <ClInclude Include="include\SDL\SDL_rect.h" />
+    <ClInclude Include="include\SDL\SDL_render.h" />
+    <ClInclude Include="include\SDL\SDL_revision.h" />
+    <ClInclude Include="include\SDL\SDL_rwops.h" />
+    <ClInclude Include="include\SDL\SDL_scancode.h" />
+    <ClInclude Include="include\SDL\SDL_shape.h" />
+    <ClInclude Include="include\SDL\SDL_stdinc.h" />
+    <ClInclude Include="include\SDL\SDL_surface.h" />
+    <ClInclude Include="include\SDL\SDL_system.h" />
+    <ClInclude Include="include\SDL\SDL_syswm.h" />
+    <ClInclude Include="include\SDL\SDL_test.h" />
+    <ClInclude Include="include\SDL\SDL_test_assert.h" />
+    <ClInclude Include="include\SDL\SDL_test_common.h" />
+    <ClInclude Include="include\SDL\SDL_test_compare.h" />
+    <ClInclude Include="include\SDL\SDL_test_crc32.h" />
+    <ClInclude Include="include\SDL\SDL_test_font.h" />
+    <ClInclude Include="include\SDL\SDL_test_fuzzer.h" />
+    <ClInclude Include="include\SDL\SDL_test_harness.h" />
+    <ClInclude Include="include\SDL\SDL_test_images.h" />
+    <ClInclude Include="include\SDL\SDL_test_log.h" />
+    <ClInclude Include="include\SDL\SDL_test_md5.h" />
+    <ClInclude Include="include\SDL\SDL_test_random.h" />
+    <ClInclude Include="include\SDL\SDL_thread.h" />
+    <ClInclude Include="include\SDL\SDL_timer.h" />
+    <ClInclude Include="include\SDL\SDL_touch.h" />
+    <ClInclude Include="include\SDL\SDL_ttf.h" />
+    <ClInclude Include="include\SDL\SDL_types.h" />
+    <ClInclude Include="include\SDL\SDL_version.h" />
+    <ClInclude Include="include\SDL\SDL_video.h" />
     <ClInclude Include="LineSeg.h" />
     <ClInclude Include="MainGS.h" />
     <ClInclude Include="ManagedFile.h" />
@@ -201,6 +270,89 @@
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Viewport.h" />
     <ClInclude Include="VoxelGrid.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib\glut32.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+    </None>
+    <None Include="lib\libFLAC-8.dll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </None>
+    <None Include="lib\libfreetype-6.dll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </None>
+    <None Include="lib\libjpeg-9.dll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </None>
+    <None Include="lib\libmikmod-2.dll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </None>
+    <None Include="lib\libmodplug-1.dll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </None>
+    <None Include="lib\libogg-0.dll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </None>
+    <None Include="lib\libpng16-16.dll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </None>
+    <None Include="lib\libtiff-5.dll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </None>
+    <None Include="lib\libvorbis-0.dll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </None>
+    <None Include="lib\libvorbisfile-3.dll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </None>
+    <None Include="lib\libwebp-4.dll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </None>
+    <None Include="lib\SDL2.dll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </None>
+    <None Include="lib\SDL2_image.dll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </None>
+    <None Include="lib\SDL2_mixer.dll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </None>
+    <None Include="lib\SDL2_ttf.dll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </None>
+    <None Include="lib\smpeg2.dll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </None>
+    <None Include="lib\zlib1.dll">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\glut32.lib" />
+    <Library Include="lib\SDL2.lib" />
+    <Library Include="lib\SDL2main.lib" />
+    <Library Include="lib\SDL2test.lib" />
+    <Library Include="lib\SDL2_image.lib" />
+    <Library Include="lib\SDL2_mixer.lib" />
+    <Library Include="lib\SDL2_ttf.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,387 +13,727 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
+    <Filter Include="Lib">
+      <UniqueIdentifier>{d181bfed-451c-4598-8e0f-a2a746b30e1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include">
+      <UniqueIdentifier>{7d77145a-db67-4da0-981b-f6c1e4d6c90e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\GL">
+      <UniqueIdentifier>{51923cc7-4e5f-4648-ad89-aeb15f31338e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Include\SDL">
+      <UniqueIdentifier>{d30446ea-1632-424a-a0ef-495e3dc920f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Base Maths">
+      <UniqueIdentifier>{b5e8a7a7-5ee0-4752-92bd-52a197c1d7d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Bloxtris">
+      <UniqueIdentifier>{eb4c5ea6-e5c1-43fd-9481-76ae510cfe28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3D Specific">
+      <UniqueIdentifier>{3be6eb6d-00ce-4e29-bd32-6d58893d4d53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Physics">
+      <UniqueIdentifier>{7adab3cd-b83e-4665-b96b-5d266cf1c451}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Display">
+      <UniqueIdentifier>{87f630c6-e8a7-46ed-839d-85ed9f2743ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Sound">
+      <UniqueIdentifier>{6772c541-4589-4682-8f8b-9e290d8f4f45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Timeline and Events">
+      <UniqueIdentifier>{d1a4113f-7503-4ed8-b007-ff5b09341a3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Base System">
+      <UniqueIdentifier>{c562f2d9-8d49-4b20-bac3-8c2091f899fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Base maths">
+      <UniqueIdentifier>{18e65dad-f3e3-4e05-9e74-28150d091cfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Bloxtris">
+      <UniqueIdentifier>{312eaf63-28e2-4201-9413-136cb48c9e05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3D Specific">
+      <UniqueIdentifier>{21941f05-e115-40d2-b31b-125d31d36647}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Display">
+      <UniqueIdentifier>{fe343343-0c0b-4b27-b61c-c91f0f88e39d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Base System">
+      <UniqueIdentifier>{d834a819-34a1-40d7-84e7-60608a2e3819}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Timeline and Events">
+      <UniqueIdentifier>{945081a0-f423-4c32-95db-da68bb13d1fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Sound">
+      <UniqueIdentifier>{e8650536-1e7d-4d2f-8239-75d36805dff6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Physics">
+      <UniqueIdentifier>{293d423a-93ea-483c-8df1-83fcc5ec164d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Billboard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BoundingBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Brick.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Capsule.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ClipLineSegBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ConfigLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DemoState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DisplayManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Err.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EventHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FileManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Frustrum.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="glColorEvent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GLMesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GOScreen.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Grid.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LineSeg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MainGS.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Capsule.cpp">
+      <Filter>Source Files\Base maths</Filter>
     </ClCompile>
-    <ClCompile Include="ManagedFile.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="ClipLineSegBox.cpp">
+      <Filter>Source Files\Base maths</Filter>
     </ClCompile>
-    <ClCompile Include="Material.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Frustrum.cpp">
+      <Filter>Source Files\Base maths</Filter>
     </ClCompile>
-    <ClCompile Include="Matrix44.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Memory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PanAndTiltEvent.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="LineSeg.cpp">
+      <Filter>Source Files\Base maths</Filter>
     </ClCompile>
     <ClCompile Include="Plane.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Base maths</Filter>
     </ClCompile>
     <ClCompile Include="Quaternion.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Score.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SDLImage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SDLRGBColour.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SDLTTF.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundFX.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Base maths</Filter>
     </ClCompile>
     <ClCompile Include="Sphere.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Base maths</Filter>
+    </ClCompile>
+    <ClCompile Include="Brick.cpp">
+      <Filter>Source Files\Bloxtris</Filter>
+    </ClCompile>
+    <ClCompile Include="DemoState.cpp">
+      <Filter>Source Files\Bloxtris</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Source Files\Bloxtris</Filter>
+    </ClCompile>
+    <ClCompile Include="MainGS.cpp">
+      <Filter>Source Files\Bloxtris</Filter>
     </ClCompile>
     <ClCompile Include="Splash.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StringProc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TeapotLoaderState.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Bloxtris</Filter>
     </ClCompile>
     <ClCompile Include="Tetrad.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TimedMoveEvent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TimedRemoveEvent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Timeline.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Bloxtris</Filter>
     </ClCompile>
     <ClCompile Include="TKGridCommand.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Bloxtris</Filter>
     </ClCompile>
-    <ClCompile Include="TKMoveObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TKUseObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TTFManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Vertex.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Billboard.cpp">
+      <Filter>Source Files\3D Specific</Filter>
     </ClCompile>
     <ClCompile Include="glm.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\3D Specific</Filter>
     </ClCompile>
-    <ClCompile Include="glmimg.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="glmimg_sdl.c">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GLMesh.cpp">
+      <Filter>Source Files\3D Specific</Filter>
     </ClCompile>
     <ClCompile Include="glm_util.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\3D Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="glmimg.c">
+      <Filter>Source Files\3D Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="glmimg_sdl.c">
+      <Filter>Source Files\3D Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Source Files\3D Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files\3D Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Vertex.cpp">
+      <Filter>Source Files\3D Specific</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLImage.cpp">
+      <Filter>Source Files\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLRGBColour.cpp">
+      <Filter>Source Files\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLTTF.cpp">
+      <Filter>Source Files\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\Display</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigLoader.cpp">
+      <Filter>Source Files\Base System</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayManager.cpp">
+      <Filter>Source Files\Base System</Filter>
+    </ClCompile>
+    <ClCompile Include="Err.cpp">
+      <Filter>Source Files\Base System</Filter>
+    </ClCompile>
+    <ClCompile Include="EventHandler.cpp">
+      <Filter>Source Files\Base System</Filter>
+    </ClCompile>
+    <ClCompile Include="FileManager.cpp">
+      <Filter>Source Files\Base System</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Base System</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files\Base System</Filter>
+    </ClCompile>
+    <ClCompile Include="ManagedFile.cpp">
+      <Filter>Source Files\Base System</Filter>
+    </ClCompile>
+    <ClCompile Include="Memory.cpp">
+      <Filter>Source Files\Base System</Filter>
+    </ClCompile>
+    <ClCompile Include="Score.cpp">
+      <Filter>Source Files\Base System</Filter>
+    </ClCompile>
+    <ClCompile Include="StringProc.cpp">
+      <Filter>Source Files\Base System</Filter>
+    </ClCompile>
+    <ClCompile Include="TeapotLoaderState.cpp">
+      <Filter>Source Files\Base System</Filter>
+    </ClCompile>
+    <ClCompile Include="TTFManager.cpp">
+      <Filter>Source Files\Base System</Filter>
+    </ClCompile>
+    <ClCompile Include="TimedMoveEvent.cpp">
+      <Filter>Source Files\Timeline and Events</Filter>
+    </ClCompile>
+    <ClCompile Include="TimedRemoveEvent.cpp">
+      <Filter>Source Files\Timeline and Events</Filter>
+    </ClCompile>
+    <ClCompile Include="PanAndTiltEvent.cpp">
+      <Filter>Source Files\Timeline and Events</Filter>
+    </ClCompile>
+    <ClCompile Include="glColorEvent.cpp">
+      <Filter>Source Files\Timeline and Events</Filter>
+    </ClCompile>
+    <ClCompile Include="TKMoveObject.cpp">
+      <Filter>Source Files\Timeline and Events</Filter>
+    </ClCompile>
+    <ClCompile Include="TKUseObject.cpp">
+      <Filter>Source Files\Timeline and Events</Filter>
+    </ClCompile>
+    <ClCompile Include="Timeline.cpp">
+      <Filter>Source Files\Timeline and Events</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundFX.cpp">
+      <Filter>Source Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>Source Files\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix44.cpp">
+      <Filter>Source Files\Base maths</Filter>
+    </ClCompile>
+    <ClCompile Include="GOScreen.cpp">
+      <Filter>Source Files\Bloxtris</Filter>
+    </ClCompile>
+    <ClCompile Include="BoundingBox.cpp">
+      <Filter>Source Files\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Billboard.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\GL\glut.h">
+      <Filter>Include\GL</Filter>
     </ClInclude>
-    <ClInclude Include="BoundingBox.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\SDL\begin_code.h">
+      <Filter>Include\SDL</Filter>
     </ClInclude>
-    <ClInclude Include="Brick.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\SDL\close_code.h">
+      <Filter>Include\SDL</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="include\SDL\SDL.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_assert.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_atomic.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_audio.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_bits.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_blendmode.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_clipboard.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_config.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_cpuinfo.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_endian.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_error.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_events.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_gamecontroller.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_gesture.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_haptic.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_hints.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_image.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_joystick.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_keyboard.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_keycode.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_loadso.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_log.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_main.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_messagebox.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_mixer.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_mouse.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_mutex.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_name.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_opengl.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_opengles.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_opengles2.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_pixels.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_platform.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_power.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_quit.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_rect.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_render.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_revision.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_rwops.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_scancode.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_shape.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_stdinc.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_surface.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_system.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_syswm.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_test.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_test_assert.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_test_common.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_test_compare.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_test_crc32.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_test_font.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_test_fuzzer.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_test_harness.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_test_images.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_test_log.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_test_md5.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_test_random.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_thread.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_timer.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_touch.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_ttf.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_types.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_version.h">
+      <Filter>Include\SDL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SDL\SDL_video.h">
+      <Filter>Include\SDL</Filter>
     </ClInclude>
     <ClInclude Include="Capsule.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Base Maths</Filter>
     </ClInclude>
     <ClInclude Include="ClipLineSegBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Colour.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ConfigLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DemoState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DisplayManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Err.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EventHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Factory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FileManager.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Base Maths</Filter>
     </ClInclude>
     <ClInclude Include="Frustrum.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="glColorEvent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="glm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GLMesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="glmint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GOScreen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Grid.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Base Maths</Filter>
     </ClInclude>
     <ClInclude Include="LineSeg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MainGS.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ManagedFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Material.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Base Maths</Filter>
     </ClInclude>
     <ClInclude Include="Matrix44.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Memory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ModelLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectEvent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OBJLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Octree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PanAndTiltEvent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Base Maths</Filter>
     </ClInclude>
     <ClInclude Include="Plane.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Base Maths</Filter>
     </ClInclude>
     <ClInclude Include="Quaternion.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Base Maths</Filter>
     </ClInclude>
     <ClInclude Include="Rect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Score.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SDLImage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SDLRGBAColour.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SDLRGBColour.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SDLTTF.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundFX.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundManager.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Base Maths</Filter>
     </ClInclude>
     <ClInclude Include="Sphere.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Splash.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StringProc.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Teapot.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TeapotLoaderState.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tetrad.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TimedMoveEvent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TimedRemoveEvent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Timeline.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TimelineKey.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TKAddEvent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TKDrawTeapot.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TKGridCommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TKMoveObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TKPlayMusic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TKUseObject.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Base Maths</Filter>
     </ClInclude>
     <ClInclude Include="Tri.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TTFManager.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Base Maths</Filter>
     </ClInclude>
     <ClInclude Include="Vec2.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Base Maths</Filter>
     </ClInclude>
     <ClInclude Include="Vec3.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Base Maths</Filter>
     </ClInclude>
     <ClInclude Include="Vec4.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Base Maths</Filter>
+    </ClInclude>
+    <ClInclude Include="Brick.h">
+      <Filter>Header Files\Bloxtris</Filter>
+    </ClInclude>
+    <ClInclude Include="DemoState.h">
+      <Filter>Header Files\Bloxtris</Filter>
+    </ClInclude>
+    <ClInclude Include="GOScreen.h">
+      <Filter>Header Files\Bloxtris</Filter>
+    </ClInclude>
+    <ClInclude Include="MainGS.h">
+      <Filter>Header Files\Bloxtris</Filter>
+    </ClInclude>
+    <ClInclude Include="Splash.h">
+      <Filter>Header Files\Bloxtris</Filter>
+    </ClInclude>
+    <ClInclude Include="Tetrad.h">
+      <Filter>Header Files\Bloxtris</Filter>
+    </ClInclude>
+    <ClInclude Include="TKGridCommand.h">
+      <Filter>Header Files\Bloxtris</Filter>
+    </ClInclude>
+    <ClInclude Include="Billboard.h">
+      <Filter>Header Files\3D Specific</Filter>
+    </ClInclude>
+    <ClInclude Include="glm.h">
+      <Filter>Header Files\3D Specific</Filter>
+    </ClInclude>
+    <ClInclude Include="GLMesh.h">
+      <Filter>Header Files\3D Specific</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files\3D Specific</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelLoader.h">
+      <Filter>Header Files\3D Specific</Filter>
+    </ClInclude>
+    <ClInclude Include="Teapot.h">
+      <Filter>Header Files\3D Specific</Filter>
     </ClInclude>
     <ClInclude Include="Vertex.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\3D Specific</Filter>
     </ClInclude>
     <ClInclude Include="Viewport.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\3D Specific</Filter>
+    </ClInclude>
+    <ClInclude Include="BoundingBox.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionSystem.h">
+      <Filter>Header Files\Physics</Filter>
     </ClInclude>
     <ClInclude Include="VoxelGrid.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Physics</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="Colour.h">
+      <Filter>Header Files\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLRGBAColour.h">
+      <Filter>Header Files\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLImage.h">
+      <Filter>Header Files\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLRGBColour.h">
+      <Filter>Header Files\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLTTF.h">
+      <Filter>Header Files\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Header Files\Bloxtris</Filter>
+    </ClInclude>
+    <ClInclude Include="glmint.h">
+      <Filter>Header Files\3D Specific</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Header Files\3D Specific</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Header Files\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundFX.h">
+      <Filter>Header Files\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="TimelineKey.h">
+      <Filter>Header Files\Timeline and Events</Filter>
+    </ClInclude>
+    <ClInclude Include="TKAddEvent.h">
+      <Filter>Header Files\Timeline and Events</Filter>
+    </ClInclude>
+    <ClInclude Include="TKDrawTeapot.h">
+      <Filter>Header Files\Timeline and Events</Filter>
+    </ClInclude>
+    <ClInclude Include="TKMoveObject.h">
+      <Filter>Header Files\Timeline and Events</Filter>
+    </ClInclude>
+    <ClInclude Include="TKPlayMusic.h">
+      <Filter>Header Files\Timeline and Events</Filter>
+    </ClInclude>
+    <ClInclude Include="TKUseObject.h">
+      <Filter>Header Files\Timeline and Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Timeline.h">
+      <Filter>Header Files\Timeline and Events</Filter>
+    </ClInclude>
+    <ClInclude Include="glColorEvent.h">
+      <Filter>Header Files\Timeline and Events</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectEvent.h">
+      <Filter>Header Files\Timeline and Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files\Display</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigLoader.h">
+      <Filter>Header Files\Base System</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayManager.h">
+      <Filter>Header Files\Base System</Filter>
+    </ClInclude>
+    <ClInclude Include="Err.h">
+      <Filter>Header Files\Base System</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler.h">
+      <Filter>Header Files\Base System</Filter>
+    </ClInclude>
+    <ClInclude Include="Factory.h">
+      <Filter>Header Files\Base System</Filter>
+    </ClInclude>
+    <ClInclude Include="FileManager.h">
+      <Filter>Header Files\Base System</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\Base System</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\Base System</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Header Files\Base System</Filter>
+    </ClInclude>
+    <ClInclude Include="ManagedFile.h">
+      <Filter>Header Files\Base System</Filter>
+    </ClInclude>
+    <ClInclude Include="Memory.h">
+      <Filter>Header Files\Base System</Filter>
+    </ClInclude>
+    <ClInclude Include="OBJLoader.h">
+      <Filter>Header Files\Base System</Filter>
+    </ClInclude>
+    <ClInclude Include="Score.h">
+      <Filter>Header Files\Base System</Filter>
+    </ClInclude>
+    <ClInclude Include="StringProc.h">
+      <Filter>Header Files\Base System</Filter>
+    </ClInclude>
+    <ClInclude Include="TeapotLoaderState.h">
+      <Filter>Header Files\Base System</Filter>
+    </ClInclude>
+    <ClInclude Include="TTFManager.h">
+      <Filter>Header Files\Base System</Filter>
+    </ClInclude>
+    <ClInclude Include="TimedMoveEvent.h">
+      <Filter>Header Files\Timeline and Events</Filter>
+    </ClInclude>
+    <ClInclude Include="TimedRemoveEvent.h">
+      <Filter>Header Files\Timeline and Events</Filter>
+    </ClInclude>
+    <ClInclude Include="PanAndTiltEvent.h">
+      <Filter>Header Files\Timeline and Events</Filter>
+    </ClInclude>
+    <ClInclude Include="Octree.h">
+      <Filter>Header Files\Physics</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="lib\glut32.dll">
+      <Filter>Lib</Filter>
+    </None>
+    <None Include="lib\libFLAC-8.dll">
+      <Filter>Lib</Filter>
+    </None>
+    <None Include="lib\libfreetype-6.dll">
+      <Filter>Lib</Filter>
+    </None>
+    <None Include="lib\libjpeg-9.dll">
+      <Filter>Lib</Filter>
+    </None>
+    <None Include="lib\libmikmod-2.dll">
+      <Filter>Lib</Filter>
+    </None>
+    <None Include="lib\libmodplug-1.dll">
+      <Filter>Lib</Filter>
+    </None>
+    <None Include="lib\libogg-0.dll">
+      <Filter>Lib</Filter>
+    </None>
+    <None Include="lib\libpng16-16.dll">
+      <Filter>Lib</Filter>
+    </None>
+    <None Include="lib\libtiff-5.dll">
+      <Filter>Lib</Filter>
+    </None>
+    <None Include="lib\libvorbis-0.dll">
+      <Filter>Lib</Filter>
+    </None>
+    <None Include="lib\libvorbisfile-3.dll">
+      <Filter>Lib</Filter>
+    </None>
+    <None Include="lib\libwebp-4.dll">
+      <Filter>Lib</Filter>
+    </None>
+    <None Include="lib\SDL2.dll">
+      <Filter>Lib</Filter>
+    </None>
+    <None Include="lib\SDL2_image.dll">
+      <Filter>Lib</Filter>
+    </None>
+    <None Include="lib\SDL2_mixer.dll">
+      <Filter>Lib</Filter>
+    </None>
+    <None Include="lib\SDL2_ttf.dll">
+      <Filter>Lib</Filter>
+    </None>
+    <None Include="lib\smpeg2.dll">
+      <Filter>Lib</Filter>
+    </None>
+    <None Include="lib\zlib1.dll">
+      <Filter>Lib</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\glut32.lib">
+      <Filter>Lib</Filter>
+    </Library>
+    <Library Include="lib\SDL2.lib">
+      <Filter>Lib</Filter>
+    </Library>
+    <Library Include="lib\SDL2_image.lib">
+      <Filter>Lib</Filter>
+    </Library>
+    <Library Include="lib\SDL2_mixer.lib">
+      <Filter>Lib</Filter>
+    </Library>
+    <Library Include="lib\SDL2_ttf.lib">
+      <Filter>Lib</Filter>
+    </Library>
+    <Library Include="lib\SDL2main.lib">
+      <Filter>Lib</Filter>
+    </Library>
+    <Library Include="lib\SDL2test.lib">
+      <Filter>Lib</Filter>
+    </Library>
   </ItemGroup>
 </Project>
