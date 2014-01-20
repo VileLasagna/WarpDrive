@@ -12,10 +12,11 @@ DisplayManager::DisplayManager()
     SDL_Init(SDL_INIT_EVERYTHING);	
 	maxDT = 0.05f;
 	fullscreen = 0;
-#pragma warning("TODO - URGENT")
-//	videoFlags = SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_ASYNCBLIT;
+    renderer = 0;
+    gl_context = 0;
+    videoFlags = 0/*SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_ASYNCBLIT*/;
 
-	  int numJs = SDL_NumJoysticks();
+    int numJs = SDL_NumJoysticks();
     for (int i = 0; i < numJs; i++)
     {
         SDL_JoystickOpen(i);  
@@ -35,8 +36,7 @@ void DisplayManager::FullScreen(bool b)
 {
 	if (b)
 	{
-#pragma warning("TODO - URGENT")
-//		fullscreen = SDL_FULLSCREEN;
+        fullscreen = SDL_WINDOW_FULLSCREEN_DESKTOP;
 	}
 	else
 	{
@@ -53,29 +53,31 @@ void DisplayManager::ToggleFS()
 	}
 	else
 	{
-#pragma warning("TODO - URGENT")
-//		fullscreen = SDL_FULLSCREEN;
+        fullscreen = SDL_WINDOW_FULLSCREEN_DESKTOP;
 	}
 	setVideo();
 }
 
 
-SDL_Surface* DisplayManager::getScreen() const
+SDL_Window* DisplayManager::getScreen() const
 {
     return screen;
+}
+
+SDL_Renderer* DisplayManager::getRenderer() const
+{
+    return renderer;
 }
 
 void DisplayManager::Flip()
 {
 	if(openGL)
 	{
-#pragma warning("TODO - URGENT")
-//		SDL_GL_SwapBuffers();
+        SDL_GL_SwapWindow(screen);
 	}
 	else
 	{
-#pragma warning("TODO - URGENT")
-//		SDL_Flip(screen);
+        SDL_RenderPresent(renderer);
 	}
 }
 
@@ -123,8 +125,25 @@ void DisplayManager::setSize(int width, int height)
 
 void DisplayManager::setVideo()
 {
-#pragma warning("TODO - URGENT")
-//	screen = SDL_SetVideoMode(w, h, bpp, videoFlags | fullscreen);
+
+    if(!fullscreen)
+    {
+        screen = SDL_CreateWindow(
+                "Warp Drive",
+                SDL_WINDOWPOS_UNDEFINED,
+                SDL_WINDOWPOS_UNDEFINED,
+                w, h,
+                videoFlags);
+    }
+    else
+    {
+        screen = SDL_CreateWindow(
+                "Warp Drive",
+                SDL_WINDOWPOS_UNDEFINED,
+                SDL_WINDOWPOS_UNDEFINED,
+                0,0,
+                fullscreen);
+    }
 }
 
 void DisplayManager::setBPP(int i)
@@ -138,14 +157,12 @@ void DisplayManager::useOpengGL(bool b)
 	if (b)
 	{
 		openGL = true;
-#pragma warning("TODO - URGENT")
-//		videoFlags = SDL_OPENGL | fullscreen;
+        videoFlags = SDL_WINDOW_OPENGL | fullscreen;
 	}
 	else
 	{
 		openGL = false;
-#pragma warning("TODO - URGENT")
-//		videoFlags =  SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_ASYNCBLIT | fullscreen;
+        videoFlags =  0/*DL_HWSURFACE | SDL_DOUBLEBUF | SDL_ASYNCBLIT */| fullscreen;
 	}
 }
 
@@ -154,6 +171,14 @@ void DisplayManager::Init(bool Fullscreen, bool UsingOpenGL)
 	FullScreen(Fullscreen);
 	useOpengGL(UsingOpenGL);
 	setVideo();
+    if(!openGL)
+    {
+        renderer = SDL_CreateRenderer(screen, -1, 0);
+    }
+    else
+    {
+        gl_context = SDL_GL_CreateContext(screen);
+    }
 	assert(screen);
 }
 

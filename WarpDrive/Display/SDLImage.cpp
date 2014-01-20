@@ -5,6 +5,7 @@
 SDLImage::SDLImage()
 {
     image = 0;
+    surface = 0;
 	setAlphaT();
 	x = 0;
 	y = 0;
@@ -12,25 +13,27 @@ SDLImage::SDLImage()
 
 bool SDLImage::Load(const std::string& filename)
 {
-    image = IMG_Load(filename.c_str());
+    surface = IMG_Load(filename.c_str());
+    image = SDL_CreateTextureFromSurface(DisplayManager::instance()->getRenderer(), surface);
 
     return (image != 0);
 }
 
 void SDLImage::setColourKey(const SDLRGBColour& tc)
 {
-#pragma warning("TODO - URGENT")
-/**	SDL_SetColorKey(
-        image, 
-        SDL_SRCCOLORKEY | SDL_RLEACCEL, 
-		SDL_MapRGB(image->format, tc.R(), tc.G(), tc.B()));
-        */
+    SDL_SetColorKey(
+        surface,
+        SDL_TRUE | SDL_RLEACCEL,
+        SDL_MapRGB(surface->format, tc.R(), tc.G(), tc.B()));
+    image = SDL_CreateTextureFromSurface(DisplayManager::instance()->getRenderer(), surface);
+
 }
 
 SDLImage::~SDLImage()
 {
 	
-    SDL_FreeSurface(image);
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(image);
 	
 }
 
@@ -41,12 +44,12 @@ void SDLImage::Blit(int x, int y)
     SDL_Rect dest;
     dest.x = x;
     dest.y = y;
-	SDL_BlitSurface(image, 0, DisplayManager::instance()->getScreen(), &dest);
+    SDL_RenderCopy(DisplayManager::instance()->getRenderer(), image, 0, &dest );
 }
 
 Rectf SDLImage::getBox() const
 {
-	return Rectf(x,image->w,y,image->h);
+    return Rectf(x,surface->w,y,surface->h);
 }
 
 Vec2f SDLImage::getPos() const
@@ -56,27 +59,25 @@ Vec2f SDLImage::getPos() const
 
 void SDLImage::setDrawAlpha(int i)
 {
-#pragma warning("TODO - URGENT")
-//	SDL_SetAlpha(image, SDL_SRCALPHA | SDL_RLEACCEL , i);
+    SDL_SetTextureAlphaMod(image, i);
 }
 
 unsigned int SDLImage::getPixelColour(int x, int y) const
 {
 	unsigned char* c = 
-        (unsigned char*) image->pixels + 
-        (y * image->pitch) +
-        (x * image->format->BytesPerPixel);
+        (unsigned char*) surface->pixels +
+        (y * surface->pitch) +
+        (x * surface->format->BytesPerPixel);
 
 	unsigned int r = 0;
-    if (image->format->BytesPerPixel == 3)
+    if (surface->format->BytesPerPixel == 3)
     {
         r = c[0] + (c[1] << 8) + (c[2] << 16);
     }
-    else if (image->format->BytesPerPixel == 4)
+    else if (surface->format->BytesPerPixel == 4)
     {
         r = c[0] + (c[1] << 8) + (c[2] << 16) + (c[3] << 24);
     }
-
     return r;
 }
 
@@ -84,11 +85,10 @@ bool SDLImage::isPixTransparent(int x, int y) const
 {
     unsigned int r = getPixelColour(x, y);
 
-    if (image->format->BytesPerPixel <= 3)
+    if (surface->format->BytesPerPixel <= 3)
     {
         // No alpha channel - check if colour is same as colour key
-#pragma warning("TODO - URGENT")
-//return (r == image->format->colorkey);
+        //return (r == image->format->colorkey);
         return false;
     }
 

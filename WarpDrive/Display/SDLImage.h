@@ -24,14 +24,15 @@ public:
 	void setAlphaT(int i = 128) {alphaT = i;}
 	void setDrawAlpha(int i);
 	bool isPixTransparent(int x, int y) const;
-	SDL_Surface* getSurf() {return image;}
+    SDL_Texture* getTexture() {return image;}
 	unsigned int getPixelColour(int x, int y) const;
 	Rectf getBox() const;
 	Vec2f getPos()const;
 
 
 protected:
-    SDL_Surface* image;
+    SDL_Texture* image;
+    SDL_Surface* surface;
 	unsigned int alphaT; //The threshold above which a pixel is considered transparent. default 128 (50%)
 	int x,y;
 };

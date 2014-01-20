@@ -19,10 +19,25 @@ protected:
     virtual void onJoyBallEvent(const SDL_JoyBallEvent& ) {}
     virtual void onJoyHatEvent(const SDL_JoyHatEvent& ) {}
     virtual void onJoyButtonEvent(const SDL_JoyButtonEvent& ) {}
-    //virtual void onActiveEvent (const SDL_ActiveEvent& ) {}
-    //virtual void onExposeEvent (const SDL_ExposeEvent& ) {}
-    //virtual void onResizeEvent (const SDL_ResizeEvent& ) {}
+
+    virtual void onMouseEntered(const SDL_WindowEvent& ) {}
+    virtual void onMouseLeft(const SDL_WindowEvent& ) {}
+    virtual void onWindowMaximized(const SDL_WindowEvent& ) {}
+    virtual void onWindowMinimized(const SDL_WindowEvent& ) {}
+    virtual void onWindowShown(const SDL_WindowEvent& ) {}
+    virtual void onWindowHidden(const SDL_WindowEvent& ) {}
+    virtual void onWindowExposed(const SDL_WindowEvent& ) {}
+    virtual void onWindowMoved(const SDL_WindowEvent& ) {}
+    virtual void onWindowResized(const SDL_WindowEvent& ) {}
+    virtual void onWindowRestored(const SDL_WindowEvent& ) {}
+    virtual void onKeyboardFocus(const SDL_WindowEvent& ) {}
+    virtual void onKeyboardFocusLost(const SDL_WindowEvent& ) {}
+    virtual void onWindowCloseRequest(const SDL_WindowEvent& ) {onQuitEvent();}
+
     virtual void onQuitEvent();
+
+private:
+    void onWindowEvent(const SDL_WindowEvent& );
 };
 
 #endif //EVENT_HANDLER_H

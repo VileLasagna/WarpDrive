@@ -4,7 +4,7 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_opengl.h>
 #include <utility>
-#include <GL/glut.h>
+#include <GL/freeglut.h>
 #include "BaseMaths/Matrix44.h"
 
 struct SDL_Surface;
@@ -31,7 +31,8 @@ public:
 	void setSize (int width, int height);
 	std::pair<int,int> getSize() const{ return std::pair<int,int>(w,h);} //returns (width,height)
 
-    SDL_Surface* getScreen() const;
+    SDL_Window* getScreen() const;
+    SDL_Renderer* getRenderer() const;
 
     void Update();
 
@@ -65,7 +66,9 @@ private:
 
 	void setVideo();
 
-    SDL_Surface* screen;
+    SDL_Window* screen;
+    SDL_Renderer* renderer;
+    SDL_GLContext gl_context;
     float dt;
 	float maxDT;
 	unsigned __int32 videoFlags;
