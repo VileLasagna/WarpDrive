@@ -44,6 +44,7 @@ public:
 			glTranslatef(pos.X(),pos.Y(),pos.Z());
 			glutSolidTeapot(size);
 		glPopMatrix();
+        glEnd();
 	}
 	void setSize(float s){size = s;}
 	void setTex(Texture* T) {tex = T;}

@@ -178,6 +178,7 @@ void DisplayManager::Init(bool Fullscreen, bool UsingOpenGL)
     else
     {
         gl_context = SDL_GL_CreateContext(screen);
+        SDL_GL_MakeCurrent(screen, gl_context);
     }
 	assert(screen);
 }
