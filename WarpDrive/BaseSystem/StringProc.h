@@ -3,7 +3,7 @@
 #ifndef STRPROC_H
 #define STRPROC_H
 
-#include <String>
+#include <string>
 #include "BaseMaths/Vec2.h"
 #include "BaseMaths/Vec3.h"
 #include <assert.h>

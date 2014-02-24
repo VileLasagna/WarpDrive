@@ -1,7 +1,11 @@
 #ifndef SDL_IMAGE_H
 #define SDL_IMAGE_H
 
-#include <SDL/SDL.h>
+#ifdef _WIN32
+	#include <SDL/SDL.h>
+#else
+	#include <SDL2/SDL.h>
+#endif //_WIN32
 #include <string>
 #include "Display/SDLRGBColour.h"
 #include "BaseSystem/DisplayManager.h"
@@ -13,18 +17,18 @@ class SDLImage
 public:
     SDLImage();
     
-    virtual ~SDLImage();
+	virtual ~SDLImage();
 
-    bool Load(const std::string& filename);
+	bool Load(const std::string& filename);
 
-	void setColourKey(const SDLRGBColour& tc = SDLRGBColour::SDLRGBColour(0,255,255));//default = Pure Cyan
+	void setColourKey(const SDLRGBColour& tc = SDLRGBColour(0,255,255));//default = Pure Cyan
 
-    void Blit(int x = 0, int y = 0);
+	void Blit(int x = 0, int y = 0);
 
 	void setAlphaT(int i = 128) {alphaT = i;}
 	void setDrawAlpha(int i);
 	bool isPixTransparent(int x, int y) const;
-    SDL_Texture* getTexture() {return image;}
+	SDL_Texture* getTexture() {return image;}
 	unsigned int getPixelColour(int x, int y) const;
 	Rectf getBox() const;
 	Vec2f getPos()const;

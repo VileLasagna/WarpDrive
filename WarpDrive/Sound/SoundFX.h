@@ -42,8 +42,8 @@ public:
 	unsigned int getPlayed() const {return played;}//returns the estimate position on the file
 	
 
-	unsigned __int8 getDistance() const {return distance;}
-	void setDistance (unsigned __int8 i) {distance = i;} //0 unregisters effect. 255 is the farthest possible (but still audible) 
+	Uint8 getDistance() const {return distance;}
+	void setDistance (Uint8 i) {distance = i;} //0 unregisters effect. 255 is the farthest possible (but still audible)
 
 	int getPosition() const {return position;} //this is an angle relative to what should be your "front"
 	void setPosition(int deg) {position = deg;} //This is an angle! (0 = front, 90 = right)
@@ -99,7 +99,7 @@ private:
 	unsigned int fadeOut; //miliseconds to fade out.
 	unsigned int fadeOutFrom; //time (in ms) from which the sound should start fading.
 	unsigned int fadeIn;	//ms to fade in.
-	unsigned __int8 distance;
+	Uint8 distance;
 	int position; //0 is directly in front. Angle increases clockwise (90 is right, 270 is left)
 	bool reverseStereo;
 	bool priority; //true means high proprity when cancelling channels to allocate more sounds;

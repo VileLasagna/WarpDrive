@@ -7,7 +7,7 @@
 #include "BaseMaths/Vec3.h"
 #include "BaseSystem/DisplayManager.h"
 #include "Events/ObjectEvent.h"
-#include <Vector>
+#include <vector>
 
 class GameObject
 

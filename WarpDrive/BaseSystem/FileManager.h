@@ -13,7 +13,7 @@
 
 class ManagedFile;
 
-typedef enum FMCODE { FM_OK = 0, FM_FAIL = 1, FM_EOF = 2};
+ typedef enum{ FM_OK = 0, FM_FAIL = 1, FM_EOF = 2} FMCODE;
 
 
 class FileManager

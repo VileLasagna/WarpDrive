@@ -12,7 +12,7 @@ public:
 
 	Vec4() : x(0), y(0), z(0), w(1) {}
     Vec4(T x, T y, T z, T w) {this->x = x; this->y = y; this->z = z; this->w = w;}
-	Vec4 (const Vec2<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = 0; this->w = 1}
+    Vec4 (const Vec2<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = 0; this->w = 1;}
 	Vec4 (const Vec3<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = ref.Z(); this->w = 1;}
 	Vec4& operator= (const Vec4<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = ref.Z(); this->w = ref.W(); return *this;}
 
@@ -153,7 +153,7 @@ bool operator != (const Vec4<T>&a, const Vec4<T>& b)
 template <class T>
 Vec4<T> operator- (const Vec4<T>& v)
 {
-	Vec4<T> ret(-(v.X()), -(v.Y()), -(v.Z()), V.W());
+    Vec4<T> ret(-(v.X()), -(v.Y()), -(v.Z()), v.W());
 	return ret;
 }
 
@@ -207,7 +207,7 @@ T dotProd (const Vec4<T>& a, const Vec4<T>& b)
 template <class T>
 Vec4<T> triNormal(const Vec4<T>& v1, const Vec4<T>& v2, const Vec4<T>& v3)
 {
-	Vec3<T>[3] v = {v1.toVec3(), v2.toVec3(), v3.toVec3()};
+	Vec3<T> v [3] = {v1.toVec3(), v2.toVec3(), v3.toVec3()};
 
 	return Vec4<T>(triNormal(v));
 }
@@ -215,7 +215,7 @@ Vec4<T> triNormal(const Vec4<T>& v1, const Vec4<T>& v2, const Vec4<T>& v3)
 template <class T>
 Vec4<T> triNormal(const Vec4<T>* v)
 {
-	return triNormal(v[0],v[1],v[2]);
+	return Vec3<T>::triNormal(v[0],v[1],v[2]);
 }
 typedef Vec4<float> Vec4f;
 typedef Vec4<int> Vec4i;

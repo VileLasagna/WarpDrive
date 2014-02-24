@@ -2,7 +2,7 @@
 #define CONFIG_LOADER_H
 
 
-#include <String>
+#include <string>
 #include <map>
 #include <utility>
 

@@ -1,5 +1,5 @@
 #include "Events/TKMoveObject.h"
-#include "baseSystem/Game.h"
+#include "BaseSystem/Game.h"
 
 
 TKMoveObject::TKMoveObject(float Time, std::string ObjName, bool UniqueID, bool ChangePos, bool ChangeVel, bool ChangeAccel, const Vec3f &Pos, const Vec3f &Vel, const Vec3f &Accel)

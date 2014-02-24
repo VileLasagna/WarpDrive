@@ -20,9 +20,10 @@ private: //Each different factory is a Singleton
 
 public:
 	static Factory<Family, Key>* instance() {static Factory<Family, Key>* inst = new Factory<Family, Key>; return inst;}
-	void clear() {delete <Family, Key>::instance();}
+	void clear() {delete Factory<Family, Key>::instance();}
 	Family* Create(Key id)
 	{
+		/* TODO
 		std::map<Key,Construc>::iterator it = types.find(id);
 		if(it != types.end())
 		{
@@ -32,6 +33,8 @@ public:
 		{
 			return 0;
 		}
+		*/
+		return NULL;
 	}
 	bool Register (Key id, Construc f)
 	{

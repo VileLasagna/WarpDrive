@@ -1,7 +1,6 @@
 #ifndef COLOUR_H_DEFINED
 #define COLOUR_H_DEFINED
 
-#include "BaseMaths/Vec3.h"
 #include "BaseMaths/Vec4.h"
 
 
@@ -45,4 +44,4 @@ private:
 
 
 
-#endif COLOUR_H_DEFINED
+#endif //COLOUR_H_DEFINED

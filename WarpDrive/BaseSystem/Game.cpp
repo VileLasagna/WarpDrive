@@ -90,7 +90,7 @@ void Game::Clear()
 	{
 		delete (*it); //delete all states
 	}
-	for (std::multimap<std::string,std::pair<GameObject*,ObjStatus>>::iterator it = Game::instance()->Objects.begin(); it != Game::instance()->Objects.end(); it++)
+	for (std::multimap<std::string,std::pair<GameObject*,ObjStatus> >::iterator it = Game::instance()->Objects.begin(); it != Game::instance()->Objects.end(); it++)
 	{
 		delete (*it).second.first;//delete all Objects
 	}
@@ -306,7 +306,7 @@ void Game::removeObject(std::string type)
 
 void Game::addObject(GameObject *object)
 {
-	std::pair<std::string,std::pair<GameObject*,ObjStatus>> ob(object->getType(),std::pair<GameObject*,ObjStatus>(object,ObjStatus()));
+	std::pair<std::string,std::pair<GameObject*,ObjStatus> > ob(object->getType(),std::pair<GameObject*,ObjStatus>(object,ObjStatus()));
 	ob.second.second.draw = drawnTypes[ob.first];
 	ob.second.second.update = activeTypes[ob.first];
 	Objects.insert(ob);

@@ -7,7 +7,7 @@
 #include "3DMaths/ModelLoader.h"
 
 #include <string>
-#include <Vector>
+#include <vector>
 
 //typedef bool (*LoaderFunction) (); 
 

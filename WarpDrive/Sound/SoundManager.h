@@ -4,11 +4,18 @@
 
 #include <string>
 #include <map>
-#include <Vector>
+#include <vector>
 #include <set>
 #include <cstdio>
-#include <SDL/SDL_mixer.h>
-#include <SDL/SDL.h>
+#ifdef _WIN32
+	#include <SDL/SDL_mixer.h>
+	#include <SDL/SDL.h>
+#else
+
+	#include <SDL2/SDL_mixer.h>
+	#include <SDL2/SDL.h>
+
+#endif //_WIN32
 
 //#include "SoundFX.h"
 class SoundFX;
@@ -82,7 +89,7 @@ protected:
 	std::vector<SoundFX*> channels; //A pointer to an effect currently being played at [channel] or NULL if the channel is free
 	Mix_Music* music;
 	int musLoops;
-	unsigned __int8 musVolume;
+	Uint8 musVolume;
 	unsigned int musPos;
 	std::string MusicOnQueue;
 	std::string CurrentMusic;

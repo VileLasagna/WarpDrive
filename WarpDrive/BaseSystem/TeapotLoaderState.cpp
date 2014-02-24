@@ -1,5 +1,5 @@
 #include "TeapotLoaderState.h"
-#include "GL/freeglut.h"
+#include "GL/glut.h"
 
 
 

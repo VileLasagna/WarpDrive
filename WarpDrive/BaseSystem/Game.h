@@ -1,8 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <Vector>
-#include <String>
+#include <vector>
+#include <string>
 #include <fstream>
 #include <map>
 #include <set>
@@ -21,7 +21,7 @@ typedef enum GOIT{GOIT_ALL = 0, GOIT_ACTIVE = 1, GOIT_DRAWN = 2};
 
 struct ObjStatus { bool draw; bool update; ObjStatus(bool DRAW = false, bool UPDATE = false):draw(DRAW),update(UPDATE){}};
 class CollisionSystem; //CollisionSystem.h
-typedef std::multimap<std::string,std::pair<GameObject*,ObjStatus>> ObjectMap; //maps a typename to pointers to gameobjects and wether they should be drawn and updated
+typedef std::multimap<std::string,std::pair<GameObject*,ObjStatus> > ObjectMap; //maps a typename to pointers to gameobjects and wether they should be drawn and updated
 
 
 class Game

@@ -1,5 +1,9 @@
 #include "SDLImage.h"
-#include <SDL/SDL_Image.h>
+#ifdef _WIN32
+	#include <SDL/SDL_Image.h>
+#else
+	#include <SDL2/SDL_image.h>
+#endif //_WIN32
 #include <assert.h>
 
 SDLImage::SDLImage()

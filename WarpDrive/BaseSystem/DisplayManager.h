@@ -1,10 +1,15 @@
 #ifndef DISPLAY_MANAGER_H
 #define DISPLAY_MANAGER_H
+#ifdef _WIN32
+	#include "SDL/SDL.h"
+	#include "SDL/SDL_opengl.h"
+#else
+	#include <SDL2/SDL.h>
+	#include <SDL2/SDL_opengl.h>
+#endif //WIN32
 
-#include <SDL/SDL.h>
-#include <SDL/SDL_opengl.h>
 #include <utility>
-#include <GL/freeglut.h>
+#include <GL/glut.h>
 #include "BaseMaths/Matrix44.h"
 
 struct SDL_Surface;
@@ -71,12 +76,13 @@ private:
     SDL_GLContext gl_context;
     float dt;
 	float maxDT;
-	unsigned __int32 videoFlags;
 	bool openGL;
 	int bpp;
 	int w;
 	int h;
-	unsigned __int32 fullscreen;
+
+	Uint32 fullscreen;
+	Uint32 videoFlags;
 
 };
 

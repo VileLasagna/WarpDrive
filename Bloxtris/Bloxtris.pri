@@ -1,20 +1,20 @@
 HEADERS += \
-#    ../Bloxtris/Brick.h \
-#    ../Bloxtris/DemoState.h \
-#    ../Bloxtris/GOScreen.h \
-#    ../Bloxtris/Grid.h \
-#    ../Bloxtris/MainGS.h \
-#    ../Bloxtris/Splash.h \
-#    ../Bloxtris/Tetrad.h \
-#    ../Bloxtris/TKGridCommand.h
+#    $$_PRO_FILE_PWD_/Bloxtris/Brick.h \
+#    $$_PRO_FILE_PWD_/Bloxtris/DemoState.h \
+#    $$_PRO_FILE_PWD_/Bloxtris/GOScreen.h \
+#    $$_PRO_FILE_PWD_/Bloxtris/Grid.h \
+#    $$_PRO_FILE_PWD_/Bloxtris/MainGS.h \
+#    $$_PRO_FILE_PWD_/Bloxtris/Splash.h \
+#    $$_PRO_FILE_PWD_/Bloxtris/Tetrad.h \
+#    $$_PRO_FILE_PWD_/Bloxtris/TKGridCommand.h
 
 SOURCES += \
- #   ../Bloxtris/Brick.cpp \
- #   ../Bloxtris/DemoState.cpp \
- #   ../Bloxtris/GOScreen.cpp \
- #   ../Bloxtris/Grid.cpp \
-    ../Bloxtris/main.cpp \
- #   ../Bloxtris/MainGS.cpp \
- #   ../Bloxtris/Splash.cpp \
- #   ../Bloxtris/Tetrad.cpp \
- #   ../Bloxtris/TKGridCommand.cpp
+ #   $$_PRO_FILE_PWD_/Bloxtris/Brick.cpp \
+ #   $$_PRO_FILE_PWD_/Bloxtris/DemoState.cpp \
+ #   $$_PRO_FILE_PWD_/Bloxtris/GOScreen.cpp \
+ #   $$_PRO_FILE_PWD_/Bloxtris/Grid.cpp \
+ #   $$_PRO_FILE_PWD_/Bloxtris/MainGS.cpp \
+ #   $$_PRO_FILE_PWD_/Bloxtris/Splash.cpp \
+ #   $$_PRO_FILE_PWD_/Bloxtris/Tetrad.cpp \
+ #   $$_PRO_FILE_PWD_/Bloxtris/TKGridCommand.cpp \
+    $$_PRO_FILE_PWD_/Bloxtris/main.cpp

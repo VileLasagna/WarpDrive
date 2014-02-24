@@ -1,8 +1,8 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
-#include <Vector>
-#include <String>
+#include <vector>
+#include <string>
 #include <fstream>
 
 #include "BaseSystem/SDLEventHandler.h"

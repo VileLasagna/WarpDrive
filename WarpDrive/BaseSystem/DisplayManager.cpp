@@ -5,23 +5,23 @@
 
 DisplayManager::DisplayManager()
 {
-    dt = 0;
+	dt = 0;
 	bpp = 32;
 	w = 640;
 	h = 480;
-    SDL_Init(SDL_INIT_EVERYTHING);	
+	SDL_Init(SDL_INIT_EVERYTHING);
 	maxDT = 0.05f;
 	fullscreen = 0;
-    renderer = 0;
-    gl_context = 0;
-    videoFlags = 0/*SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_ASYNCBLIT*/;
+	renderer = 0;
+	gl_context = 0;
+	videoFlags = 0/*SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_ASYNCBLIT*/;
 
-    int numJs = SDL_NumJoysticks();
-    for (int i = 0; i < numJs; i++)
-    {
-        SDL_JoystickOpen(i);  
-    }
-    SDL_JoystickEventState(SDL_ENABLE);
+	int numJs = SDL_NumJoysticks();
+	for (int i = 0; i < numJs; i++)
+	{
+		SDL_JoystickOpen(i);
+	}
+	SDL_JoystickEventState(SDL_ENABLE);
    
 
 }
@@ -29,14 +29,14 @@ DisplayManager::DisplayManager()
 
 DisplayManager::~DisplayManager()
 {
-    SDL_Quit();
+	SDL_Quit();
 }
 
 void DisplayManager::FullScreen(bool b)
-{
+	{
 	if (b)
 	{
-        fullscreen = SDL_WINDOW_FULLSCREEN_DESKTOP;
+		fullscreen = SDL_WINDOW_FULLSCREEN_DESKTOP;
 	}
 	else
 	{

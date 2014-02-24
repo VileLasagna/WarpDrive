@@ -1,6 +1,7 @@
 
 #include "StringProc.h"
 #include <assert.h>
+#include <cmath>
 
 
 bool StringProc::trim(std::string *s)
@@ -215,7 +216,7 @@ std::string StringProc::intToString(int i)
 		do
 		{
 			int m = M-1;
-			int S = abs((a % ((int)pow(10,(float)M))) - (a % ((int)pow(10,(float)m)) ) );
+			int S = std::abs((a % ((int)pow(10,(float)M))) - (a % ((int)pow(10,(float)m)) ) );
 			other = ret;
 			ret = getNumChar(  (S/( (int)pow(10,(float)m)) )  );
 			ret.append(other);
@@ -274,15 +275,15 @@ float StringProc::parseFloat(const std::string &s)
 std::string StringProc::floatToString(float f)
 {
 	float first, second, third, fourth;
-	second = modf(f,&first);
+	second = std::modf(f,&first);
 	third = 0; fourth = 1;
 	while (fourth != 0)
 	{
-		fourth = modf(second, &third);
+		fourth = std::modf(second, &third);
 		second *= 10;
 	}
 	bool neg = f<0;
-	std::string ret = intToString(abs(first)) + "." + intToString(abs(third));
+	std::string ret = intToString(std::abs(first)) + "." + intToString(std::abs(third));
 	if (neg)
 	{
 	return "-"+ret;
