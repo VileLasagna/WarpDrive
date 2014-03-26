@@ -33,8 +33,8 @@ int Splash::Update()
 	((Camera*)GO)->Use();
 	if (demotimer <= 0)
 	{
-		Game::instance()->resetState(3);
-		ret = 3;
+        //Game::instance()->resetState(3);
+        //ret = 3;
 	}
 	return ret;
 }
@@ -57,8 +57,8 @@ void Splash::onJoyButtonEvent(const SDL_JoyButtonEvent& e)
 		}
 		else
 		{
-			Game::instance()->resetState(1);
-			ret = 1;
+            //Game::instance()->resetState(1);
+            ret = -1;
 		}
 	}
 }
@@ -71,11 +71,11 @@ void Splash::onKeyboardEvent(const SDL_KeyboardEvent &e)
 	}
 	else
 	{
-		if(e.type == SDL_KEYDOWN)
-		{
-			Game::instance()->resetState(1);
-			ret = 1;
-		}
+//		if(e.type == SDL_KEYDOWN)
+//		{
+//			Game::instance()->resetState(1);
+//			ret = 1;
+//		}
 
 	}
 }

@@ -55,7 +55,7 @@ void SDLEventHandler::HandleEvent(const SDL_Event& e)
 
 	default:
         // Unexpected event type!
-		assert(0);
+        //assert(0);
 		break;
 	}
 }
