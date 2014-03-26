@@ -2,7 +2,7 @@
 #define LINE_SEGMENT_H
 
 
-#include "Vec3.h"
+#include "BaseMaths/Vec3.h"
 
 #include <utility>
 

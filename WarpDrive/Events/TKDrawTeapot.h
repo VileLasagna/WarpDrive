@@ -2,8 +2,8 @@
 #define TK_SET_DRAWN_OBJECTSS_H
 
 
-#include "Game.h"
-#include "TimelineKey.h"
+#include "BaseSystem/Game.h"
+#include "Events/TimelineKey.h"
 
 
 class TKDrawTeapot: public TimelineKey

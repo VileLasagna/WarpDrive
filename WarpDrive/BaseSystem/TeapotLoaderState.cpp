@@ -1,4 +1,7 @@
-#include "TeapotLoaderState.h"
+#include "BaseSystem/TeapotLoaderState.h"
+#ifdef WIN32
+    #include <windows.h>
+#endif //WIN32
 #include "GL/glut.h"
 
 

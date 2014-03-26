@@ -6,9 +6,9 @@
 #include <map>
 #include <utility>
 
-#include "FileManager.h"
-#include "ManagedFile.h"
-#include "Game.h"
+#include "BaseSystem/FileManager.h"
+#include "BaseSystem/ManagedFile.h"
+#include "BaseSystem/Game.h"
 
 class ConfigLoader
 {

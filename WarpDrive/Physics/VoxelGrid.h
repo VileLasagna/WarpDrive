@@ -1,8 +1,8 @@
 #ifndef VOXEL_GRID_H
 #define VOXEL_GRID_H
 
-#include "Vec3.h"
-#include "CollisionSystem.h"
+#include "BaseMaths/Vec3.h"
+#include "Physics/CollisionSystem.h"
 
 
 class VoxelGrid: public CollisionSystem

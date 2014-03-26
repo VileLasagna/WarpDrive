@@ -1,7 +1,7 @@
 #ifndef SDLRGBACOLOUR_H
 #define SDLRGBACOLOUR_H
 
-#include "SDLRGBColour.h"
+#include "Display/SDLRGBColour.h"
 
 
 class SDLRGBAColour: public SDLRGBColour

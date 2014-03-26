@@ -1,8 +1,8 @@
-#include "Score.h"
-#include "Game.h"
-#include "DisplayManager.h"
-#include "TTFManager.h"
-#include "StringProc.h"
+#include "BaseSystem/Score.h"
+#include "BaseSystem/Game.h"
+#include "BaseSystem/DisplayManager.h"
+#include "BaseSystem/TTFManager.h"
+#include "BaseSystem/StringProc.h"
 
 
 Score::Score()

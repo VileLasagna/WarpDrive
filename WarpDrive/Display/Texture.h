@@ -2,8 +2,8 @@
 #define TEXTURE_H
 
 #ifdef WIN32
-#include <windows.h>
-#endif
+    #include <windows.h>
+#endif //WIN32
 #include <SDL/SDL.h>
 #include <GL/gl.h>
 

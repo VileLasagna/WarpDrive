@@ -1,10 +1,11 @@
 #include "Physics/BoundingBox.h"
 #include "BaseMaths/Vec3.h"
 #include "BaseMaths/ClipLineSegBox.h"
+#ifdef WIN32
+    #include <windows.h>
+#endif //WIN32
 #include <GL/gl.h>
-#ifdef _WIN32
-	#include <windows.h>
-#endif //_WIN32
+
 
 BBox::BBox(
   float xmin, float xmax, float ymin, float ymax, float zmin, float zmax) :

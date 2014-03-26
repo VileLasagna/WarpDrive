@@ -2,8 +2,8 @@
 #define OCTREE_H
 
 #include <vector>
-#include "Tri.h"
-#include "BoundingBox.h"
+#include "BaseMaths/Tri.h"
+#include "BaseMaths/BoundingBox.h"
 
 class OctreeLeaf;
 

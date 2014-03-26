@@ -23,7 +23,7 @@ public:
 		GameObject::Update();
 		vel+= accel*DisplayManager::instance()->getDtSecs(); 
 		pos+= vel*DisplayManager::instance()->getDtSecs();
-		float halfsize = size*1.3;
+        float halfsize = size*1.3f;
 		Box = BBox(pos.X()-halfsize,pos.X()+halfsize,pos.Y()-halfsize,pos.Y()+halfsize,pos.Z()-halfsize,pos.Z()+halfsize);
 		type = "Teapot";
 	}

@@ -1,5 +1,8 @@
-#include "Texture.h"
+#include "Display/Texture.h"
 #include "BaseSystem/Err.h"
+#ifdef WIN32
+    #include <windows.h>
+#endif //WIN32
 #include <GL/glu.h>
 #ifdef _WIN32
 	#include <SDL/SDL_Image.h>

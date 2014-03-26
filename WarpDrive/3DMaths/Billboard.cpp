@@ -1,4 +1,7 @@
-#include "Billboard.h"
+#include "3DMaths/Billboard.h"
+#ifdef WIN32
+    #include <windows.h>
+#endif //WIN32
 #include <GL/glut.h>
 
 

@@ -1,4 +1,4 @@
-#include "SDLRGBColour.h"
+#include "Display/SDLRGBColour.h"
 
 SDLRGBColour::SDLRGBColour(
     unsigned int r, 

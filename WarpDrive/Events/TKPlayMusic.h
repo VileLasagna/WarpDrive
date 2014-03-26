@@ -1,9 +1,9 @@
 #ifndef TIMELINE_KEY_PLAY_MUSIC_H
 #define TIMELINE_KEY_PLAY_MUSIC_H
 
-#include "Game.h"
-#include "TimelineKey.h"
-#include "SoundManager.h"
+#include "BaseSystem/Game.h"
+#include "Events/TimelineKey.h"
+#include "Sound/SoundManager.h"
 
 #include <string>
 

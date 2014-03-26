@@ -6,7 +6,7 @@
 #endif //WIN32
 
 #include <cmath>
-#include "Quaternion.h"
+#include "BaseMaths/Quaternion.h"
 
 Quaternion::Quaternion()
 {

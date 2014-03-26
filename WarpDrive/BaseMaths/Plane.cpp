@@ -1,7 +1,12 @@
+
+#ifdef WIN32
+    #include <windows.h>
+#endif //WIN32
+
 #include <SDL/SDL_opengl.h>
-#include "Plane.h"
-#include "Matrix44.h"
-#include "Quaternion.h"
+#include "BaseMaths/Plane.h"
+#include "BaseMaths/Matrix44.h"
+#include "BaseMaths/Quaternion.h"
 #include <GL/glut.h>
 
 

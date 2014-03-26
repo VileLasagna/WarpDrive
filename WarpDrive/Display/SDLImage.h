@@ -2,6 +2,7 @@
 #define SDL_IMAGE_H
 
 #ifdef _WIN32
+    #include <windows.h>
 	#include <SDL/SDL.h>
 #else
 	#include <SDL2/SDL.h>

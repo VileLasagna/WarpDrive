@@ -1,5 +1,5 @@
 
-#include "Vertex.h"
+#include "3DMaths/Vertex.h"
 
 
 Vertex::Vertex(const Vec3f& pos)

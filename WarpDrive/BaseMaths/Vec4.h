@@ -1,8 +1,8 @@
 #ifndef VEC4_H
 #define VEC4_H
 
-#include "Vec2.h"
-#include "Vec3.h"
+#include "BaseMaths/Vec2.h"
+#include "BaseMaths/Vec3.h"
 
 
 template <class T>

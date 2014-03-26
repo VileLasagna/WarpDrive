@@ -1,7 +1,7 @@
 #ifndef BOUNDING_SPHERE_H
 #define BOUNDING_SPHERE_H
 
-#include "Vec3.h"
+#include "BaseMaths/Vec3.h"
 
 
 class Sphere

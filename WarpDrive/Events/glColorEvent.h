@@ -1,7 +1,7 @@
 #ifndef GL_COLOR_EVENT_H
 #define GL_COLOR_EVENT_H
 
-#include "ObjectEvent.h"
+#include "Events/ObjectEvent.h"
 
 class glColorEvent: public GOEvent
 {

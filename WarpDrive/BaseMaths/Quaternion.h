@@ -3,7 +3,7 @@
 #ifndef QUATERNION_H
 #define QUATERNION_H
 
-#include "Vec3.h"
+#include "BaseMaths/Vec3.h"
 
 class Quaternion  
 {

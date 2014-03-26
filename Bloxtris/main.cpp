@@ -9,10 +9,14 @@
 //	return 0;
 //}
 
+#ifdef WIN32
+    #include <windows.h>
+#endif //WIN32
 
 #include "BaseSystem/DisplayManager.h"
 #include "BaseSystem/Game.h"
 #include "BaseSystem/TeapotLoaderState.h"
+
 #include <GL/glut.h>
 //#include "MainGS.h"
 //#include "Splash.h"
@@ -39,7 +43,7 @@ int main(int argc, char* argv[])
 
 	Game::instance()->Run();
 	
-	//Game::instance()->Clear();
+    Game::instance()->Clear();
 
         
     return 0;

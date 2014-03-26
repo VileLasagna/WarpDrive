@@ -1,9 +1,9 @@
 #ifndef CAPSULE_SHAPE_H
 #define CAPSULE_SHAPE_H
 
-#include "Sphere.h"
-#include "LineSeg.h"
-#include "Vec3.h"
+#include "BaseMaths/Sphere.h"
+#include "BaseMaths/LineSeg.h"
+#include "BaseMaths/Vec3.h"
 
 
 class Capsule

@@ -1,4 +1,4 @@
-#include "SDLImage.h"
+#include "Display/SDLImage.h"
 #ifdef _WIN32
 	#include <SDL/SDL_Image.h>
 #else

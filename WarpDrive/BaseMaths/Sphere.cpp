@@ -1,4 +1,7 @@
-#include "Sphere.h"
+#include "BaseMaths/Sphere.h"
+#ifdef WIN32
+    #include <windows.h>
+#endif //WIN32
 #include <GL/glut.h>
 #include <math.h>
 

@@ -7,14 +7,14 @@
 #include <map>
 #include <set>
 #include <utility>
-#include "Err.h"
-#include "StringProc.h"
-#include "DisplayManager.h"
-#include "GameState.h"
-#include "TTFManager.h"
-#include "GameObject.h"
-#include "Factory.h"
-#include "ConfigLoader.h"
+#include "BaseSystem/Err.h"
+#include "BaseSystem/StringProc.h"
+#include "BaseSystem/DisplayManager.h"
+#include "BaseSystem/GameState.h"
+#include "BaseSystem/TTFManager.h"
+#include "BaseSystem/GameObject.h"
+#include "BaseSystem/Factory.h"
+#include "BaseSystem/ConfigLoader.h"
 
 
 typedef enum GOIT{GOIT_ALL = 0, GOIT_ACTIVE = 1, GOIT_DRAWN = 2};

@@ -1,11 +1,13 @@
 #ifndef VIEWPORT_H
 #define VIEWPORT_H
 
-#include "Vec2.h"
-#include "Camera.h"
+
 #ifdef WIN32
-#include <windows.h>
-#endif 
+    #include <windows.h>
+#endif //WIN32
+
+#include "BaseMaths/Vec2.h"
+#include "Display/Camera.h"
 #include <GL/gl.h>
 //TODO:  Source File to be written
 

@@ -1,4 +1,4 @@
-#include "Capsule.h"
+#include "BaseMaths/Capsule.h"
 
 bool Capsule::Collides(const Sphere &S) const
 {

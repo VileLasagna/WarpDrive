@@ -2,6 +2,10 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
+#ifdef WIN32
+    #include <windows.h>
+#endif //WIN32
+
 #include "BaseMaths/Vec3.h"
 #include "BaseSystem/GameObject.h"
 #include <utility>

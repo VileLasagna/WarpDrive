@@ -1,7 +1,7 @@
 #ifndef TIMELINE_KEY_ADD_EVENT_H
 #define TIMELINE_KEY_ADD_EVENT_H
 
-#include "TimelineKey.h"
+#include "Events/TimelineKey.h"
 #include "BaseSystem/GameObject.h"
 
 class TKAddEvent: public TimelineKey

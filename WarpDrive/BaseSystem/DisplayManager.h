@@ -1,6 +1,7 @@
 #ifndef DISPLAY_MANAGER_H
 #define DISPLAY_MANAGER_H
 #ifdef _WIN32
+    #include <windows.h>
 	#include "SDL/SDL.h"
 	#include "SDL/SDL_opengl.h"
 #else

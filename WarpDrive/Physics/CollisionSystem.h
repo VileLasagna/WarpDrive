@@ -3,8 +3,8 @@
 
 #include <string>
 #include <map>
-#include "Game.h"
-#include "GameObject.h"
+#include "BaseSystem/Game.h"
+#include "BaseSystem/GameObject.h"
 
 
 class CollisionPair

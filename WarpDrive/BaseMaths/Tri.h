@@ -1,7 +1,7 @@
 #ifndef TRI_H_DEFINED
 #define TRI_H_DEFINED
 
-#include "Vertex.h"
+#include "3DMaths/Vertex.h"
 
 class Tri
 {
