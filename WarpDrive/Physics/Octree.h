@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "BaseMaths/Tri.h"
-#include "BaseMaths/BoundingBox.h"
+#include "Physics/BoundingBox.h"
 
 class OctreeLeaf;
 

@@ -1,0 +1,2 @@
+SOURCES += \
+    GLPickingDemo/main.cpp

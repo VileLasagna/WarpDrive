@@ -1,5 +1,5 @@
 #ifndef TK_SET_DRAWN_OBJECTS_H
-#define TK_SET_DRAWN_OBJECTSS_H
+#define TK_SET_DRAWN_OBJECTS_H
 
 
 #include "BaseSystem/Game.h"
@@ -21,4 +21,4 @@ public:
 
 };
 
-#endif TK_SET_DRAWN_TEAPOTS_H
+#endif TK_SET_DRAWN_OBJECTS_H

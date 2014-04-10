@@ -50,26 +50,16 @@ bool Sphere::collides(const Sphere& other) const
 
 void Sphere::Draw() const
 {
-    /*
-	glPushMatrix();
-	glDisable(GL_LIGHTING);
-	glEnable(GL_COLOR);
-	glColor3f(1,0,1);
-	//glTranslatef(Centre.X(),Centre.Y(),Centre.Z());
 
-	glColor3f(1,1,1);
-	glDisable(GL_COLOR);
-	glEnable(GL_LIGHTING);
-	glPopMatrix();
-    */
-    //GLdouble r = Radius;
-    //glDisable(GL_LIGHTING);
-    //glEnable(GL_COLOR);
-    //glColor3f(1,0,1);
+
+    //TODO: LIGHTING
+    glEnable(GL_COLOR_MATERIAL);
+    glColor3f(1,0,1);
+    glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
     gluSphere(quadric, Radius,16,16);
-    //glColor3f(1,1,1);
-    //glDisable(GL_COLOR);
-    //glEnable(GL_LIGHTING);
+    glColor3f(1,1,1);
+    glDisable(GL_COLOR_MATERIAL);
+
 }
 
 Sphere::~Sphere()
@@ -80,7 +70,7 @@ void Sphere::initQuadric()
 {
     quadric = gluNewQuadric();
     assert(quadric);
-    gluQuadricDrawStyle(quadric, GLU_LINE);
+    gluQuadricDrawStyle(quadric, GLU_FILL);
     gluQuadricOrientation(quadric, GLU_OUTSIDE);
 
 }

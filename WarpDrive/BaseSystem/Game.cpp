@@ -99,33 +99,19 @@ void Game::Clear()
 
 void Game::drawFPS()
 {
- //   static SDLTTF* pFont = 
- //       SDLFontManager::instance()->getFont("arial.ttf", 30);
- //   assert(pFont);
-	//pFont ->setColour(255,128,255);
+
 
     static float t = 0;
-	//static std::string f = "";
-	//static std::string u = "";
     t += DisplayManager::instance()->getDtSecs(); // update time..
     if (int(t) >= 1) // if number of seconds has changed..
     {
-        // ..we are on to the Next second
 
-        // Update text, as the count has changed
-        //f = "FPS: ";
-        //f.append(StringProc::intToString(frames));
-        //u = "UPS: ";
-        //u.append(StringProc::intToString(updates));
         t = 0;
         DisplayManager::instance()->showStats(updates, frames);
         frames = 0; // reset count for the new second
         updates = 0;
     }
 
- //   // Display the count
- //   pFont->Draw(f, 0, 0);
-	//pFont->Draw(u, 0, 30);
 }
 
 bool Game::setActiveTypes(const std::set<std::string> &types)

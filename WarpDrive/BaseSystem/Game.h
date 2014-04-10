@@ -100,6 +100,8 @@ private:
 	int Update();
 	void Draw();
 	void Flip();
+    void drawFPS();
+
 	
 
 	CollisionSystem* CS;
@@ -110,7 +112,6 @@ private:
 	Factory<GameObject>* GOFactory;
 	int currentState;
 	bool FPS;
-	void drawFPS();
 	unsigned int frames;
 	unsigned int updates;
 	unsigned int minFPS;
