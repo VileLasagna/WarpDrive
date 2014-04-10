@@ -21,7 +21,7 @@ glColorEvent::glColorEvent(float Time, float Red, float Green, float Blue)
 	}
 }
 
-void glColorEvent::Update(GameObject* target)
+void glColorEvent::Update(GameObject* )
 {
 	if(finished)
 	{

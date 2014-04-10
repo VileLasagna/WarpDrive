@@ -3,18 +3,20 @@
 #include <assert.h>
 
 
-DisplayManager::DisplayManager()
+DisplayManager::DisplayManager():
+    dt          (0),
+    bpp         (32),
+    w           (640),
+    h           (480),
+    maxDT       (0.05f),
+    fullscreen  (0),
+    renderer    (0),
+    gl_context  (0),
+    videoFlags  (0),
+    mainWindow  (0)
 {
-	dt = 0;
-	bpp = 32;
-	w = 640;
-	h = 480;
 	SDL_Init(SDL_INIT_EVERYTHING);
-	maxDT = 0.05f;
-	fullscreen = 0;
-	renderer = 0;
-	gl_context = 0;
-	videoFlags = 0/*SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_ASYNCBLIT*/;
+    //videoFlags = 0/*SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_ASYNCBLIT*/;
 
 	int numJs = SDL_NumJoysticks();
 	for (int i = 0; i < numJs; i++)
@@ -61,7 +63,7 @@ void DisplayManager::ToggleFS()
 
 SDL_Window* DisplayManager::getScreen() const
 {
-    return screen;
+    return mainWindow;
 }
 
 SDL_Renderer* DisplayManager::getRenderer() const
@@ -73,7 +75,7 @@ void DisplayManager::Flip()
 {
 	if(openGL)
 	{
-        SDL_GL_SwapWindow(screen);
+        SDL_GL_SwapWindow(mainWindow);
 	}
 	else
 	{
@@ -120,15 +122,21 @@ void DisplayManager::setSize(int width, int height)
 {
 	w = width;
 	h = height;
-	setVideo();
+    if(mainWindow)
+    {
+
+        SDL_SetWindowSize(mainWindow, w, h);
+
+    }
+
 }
 
 void DisplayManager::setVideo()
 {
-
+    //TODO: This is not properly structured for multiple window support
     if(!fullscreen)
     {
-        screen = SDL_CreateWindow(
+        mainWindow = SDL_CreateWindow(
                 "Warp Drive",
                 SDL_WINDOWPOS_UNDEFINED,
                 SDL_WINDOWPOS_UNDEFINED,
@@ -137,7 +145,7 @@ void DisplayManager::setVideo()
     }
     else
     {
-        screen = SDL_CreateWindow(
+        mainWindow = SDL_CreateWindow(
                 "Warp Drive",
                 SDL_WINDOWPOS_UNDEFINED,
                 SDL_WINDOWPOS_UNDEFINED,
@@ -173,14 +181,14 @@ void DisplayManager::Init(bool Fullscreen, bool UsingOpenGL)
 	setVideo();
     if(!openGL)
     {
-        renderer = SDL_CreateRenderer(screen, -1, 0);
+        renderer = SDL_CreateRenderer(mainWindow, -1, 0);
     }
     else
     {
-        gl_context = SDL_GL_CreateContext(screen);
-        SDL_GL_MakeCurrent(screen, gl_context);
+        gl_context = SDL_GL_CreateContext(mainWindow);
+        SDL_GL_MakeCurrent(mainWindow, gl_context);
     }
-	assert(screen);
+    assert(mainWindow);
 }
 
 void DisplayManager::clearDisplay()

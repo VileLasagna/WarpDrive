@@ -17,7 +17,7 @@
 #include "BaseSystem/ConfigLoader.h"
 
 
-typedef enum GOIT{GOIT_ALL = 0, GOIT_ACTIVE = 1, GOIT_DRAWN = 2};
+enum class ObjIterator : short {ALL = 0, ACTIVE = 1, DRAWN = 2};
 
 struct ObjStatus { bool draw; bool update; ObjStatus(bool DRAW = false, bool UPDATE = false):draw(DRAW),update(UPDATE){}};
 class CollisionSystem; //CollisionSystem.h
@@ -57,7 +57,7 @@ public:
 	class iterator	//iterator class to the GameObjectCollection
 	{
 	public:
-		iterator(std::string type = "", int flag = GOIT_ALL);
+        iterator(std::string type = "", ObjIterator flag = ObjIterator::ALL);
 		bool Next();
 		bool Prev();
 		bool Find(std::string key);
@@ -76,7 +76,7 @@ public:
 
 		friend class Game;
 		ObjectMap::iterator begin, current, end;
-		int mode;
+        ObjIterator mode;
 		std::string type;
 
 	};

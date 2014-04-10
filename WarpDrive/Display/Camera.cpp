@@ -4,14 +4,13 @@
     #include <windows.h>
 #endif //WIN32
 #include <GL/glut.h>
+#include<math.h>
 
 
-Camera::Camera()
+Camera::Camera(): targetObj(0), up(Vec3f(0,1,0)), orbitRadius(0), orbitPeriod(1), orbitFactors(1,0,1), time(0), relativePos(0)
 {
-	targetObj = 0;
-	up = Vec3f(0,1,0);
-	type = "Camera";
-	removeMe = false;
+     type = "camera";
+     removeMe = false;
 }
 
 void Camera::Update()
@@ -20,14 +19,27 @@ void Camera::Update()
 	GameObject::Update();
 	if(targetObj)
 	{
-		target = targetObj->getPos();
-		pos = target + relativePos;
+        target = targetObj->getPos();
+        if(!orbitRadius)
+        {
+            pos = target + relativePos;
+        }
+
 	}
 	else
 	{
 	/*	vel += accel*DisplayManager::instance()->getDtSecs();
 		pos += vel*DisplayManager::instance()->getDtSecs();*/
 	}
+    if(orbitRadius)
+    {
+        time += DisplayManager::instance()->getDtSecs();
+        //relativePos = Vec3f(orbitFactors.X()*orbitRadius*sin(time*(orbitPeriod*0.5f)),orbitFactors.Y()*orbitRadius*sin(time*(orbitPeriod*0.5f)),orbitFactors.Z()*orbitRadius*sin(time*(orbitPeriod*0.5f)));
+        Vec3f direction = Vec3f(orbitFactors.X()*sin(time*(orbitPeriod*0.5f)),   orbitFactors.Y()*sin(time*(orbitPeriod*0.5f)),   orbitFactors.Z()*cos(time*(orbitPeriod*0.5f)));
+        direction.normalise();
+        relativePos = direction * orbitRadius;
+        pos = target+relativePos;
+    }
 }
 
 void Camera::setTarget(const Vec3f& targetPos)
@@ -73,4 +85,11 @@ std::pair<bool, Vec3f> Camera::getTarget() const
 		ret.second = target;
 	}
 	return ret;
+}
+
+void Camera::orbit(float X, float Y, float Z, float radius, float periodSecs)
+{
+    orbitFactors = Vec3f(X,Y,Z);
+    orbitRadius = radius;
+    orbitPeriod = periodSecs;
 }

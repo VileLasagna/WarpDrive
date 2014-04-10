@@ -14,19 +14,22 @@ public:
 
 	TeapotLoaderState();
 
-	int Update();
-	void Draw();
-	void Reset();
+    int Update() override;
+    void Draw() override;
+    void Reset() override;
+    void onJoyButtonEvent(const SDL_JoyButtonEvent& e) override;
+    void onKeyboardEvent(const SDL_KeyboardEvent& e) override;
+    void onMouseButtonEvent(const SDL_MouseButtonEvent& e) override;
 
 
 
-	~TeapotLoaderState(){};
+    ~TeapotLoaderState(){}
 
 
 private:
 
 
-    std::vector<Teapot*> pots;
+    std::vector<Sphere*> pots;
     Camera cam;
 
 

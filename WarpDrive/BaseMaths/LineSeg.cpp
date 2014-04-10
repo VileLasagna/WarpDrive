@@ -19,7 +19,7 @@ bool LineSeg::parallel(const LineSeg& other) const
 	return (thisNorm == otherNorm);
 }
 
-std::pair<bool, Vec3f> LineSeg::intersects(const LineSeg& other) const
+std::pair<bool, Vec3f> LineSeg::intersects(const LineSeg& ) const
 {
 
 	//TODO: Definition

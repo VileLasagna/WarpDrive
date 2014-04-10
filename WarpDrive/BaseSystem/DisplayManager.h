@@ -23,8 +23,8 @@ class DisplayManager
 {
 private:	//this class is a singleton
 	    DisplayManager();
-		DisplayManager(const DisplayManager& ref) {}
-		DisplayManager operator= (const DisplayManager& ref) {}
+        DisplayManager(const DisplayManager& ) {}
+        DisplayManager operator= (const DisplayManager& ) {}
 public:
 
 	static DisplayManager* instance();
@@ -72,7 +72,7 @@ private:
 
 	void setVideo();
 
-    SDL_Window* screen;
+    SDL_Window* mainWindow;
     SDL_Renderer* renderer;
     SDL_GLContext gl_context;
     float dt;

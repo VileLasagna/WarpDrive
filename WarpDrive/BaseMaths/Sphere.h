@@ -3,6 +3,9 @@
 
 #include "BaseMaths/Vec3.h"
 
+//Forward Declarations
+class GLUquadric;
+
 
 class Sphere
 {
@@ -21,12 +24,16 @@ public:
 
 	Vec3f getCentre() const {return Centre;}
 	float getRadius() const {return Radius;}
+    ~Sphere();
 
 
 private:
 
 	Vec3f Centre;
 	float Radius;
+    GLUquadric* quadric;
+
+    void initQuadric();
 
 };
 

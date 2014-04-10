@@ -12,7 +12,7 @@ Timeline::Timeline()
 
 }
 
-void Timeline::Load(const std::string& file)
+void Timeline::Load(const std::string& )
 {
 
 	//load file here

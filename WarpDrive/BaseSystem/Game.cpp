@@ -28,7 +28,7 @@ void Game::Run()
 	while(currentState != -1)
 	{
 		DisplayManager::instance()->Update(); //Get the time and all before everyone starts checking this kind of stuff
-		i = Update();
+        i = Update();
 		Draw();
 		Flip();
 		currentState = i;
@@ -314,7 +314,7 @@ void Game::addObject(GameObject *object)
 
 //Iterator definitions
 
-Game::iterator::iterator(std::string type, int flag)
+Game::iterator::iterator(std::string type, ObjIterator flag)
 {
 	mode = flag;
 	if (type.compare(""))
@@ -375,7 +375,7 @@ bool Game::iterator::seekName(const std::string& N)
 void Game::iterator::Begin()
 {
 	current = begin;
-	if (mode == GOIT_ACTIVE)
+    if (mode == ObjIterator::ACTIVE)
 	{
 		while (!(current->second.second.update))
 		{
@@ -386,7 +386,7 @@ void Game::iterator::Begin()
 			current++;
 		}
 	}
-	if (mode == GOIT_DRAWN)
+    if (mode == ObjIterator::DRAWN)
 	{
 		while (!(current->second.second.draw))
 		{
@@ -403,7 +403,7 @@ void Game::iterator::Begin()
 void Game::iterator::End()
 {
 	current = end;
-	if (mode == GOIT_ACTIVE)
+    if (mode == ObjIterator::ACTIVE)
 	{
 		while (!(current->second.second.update))
 		{
@@ -414,7 +414,7 @@ void Game::iterator::End()
 			current--;
 		}
 	}
-	if (mode == GOIT_DRAWN)
+    if (mode == ObjIterator::DRAWN)
 	{
 		while (!(current->second.second.draw))
 		{
@@ -431,7 +431,7 @@ bool Game::iterator::Next()
 {
 	ObjectMap::iterator it = current;
 	it++;
-	if (mode == GOIT_ACTIVE)
+    if (mode == ObjIterator::ACTIVE)
 	{
 		while (!(it->second.second.update))
 		{
@@ -442,7 +442,7 @@ bool Game::iterator::Next()
 			it++;
 		}
 	}
-	if (mode == GOIT_DRAWN)
+    if (mode == ObjIterator::DRAWN)
 	{
 		while (!(it->second.second.draw))
 		{
@@ -472,7 +472,7 @@ bool Game::iterator::Prev()
 	}
 	ObjectMap::iterator it = current;	
 	it--;
-	if (mode == GOIT_ACTIVE)
+    if (mode == ObjIterator::ACTIVE)
 	{
 		while (!(it->second.second.update))
 		{
@@ -483,7 +483,7 @@ bool Game::iterator::Prev()
 			it--;
 		}
 	}
-	if (mode == GOIT_DRAWN)
+    if (mode == ObjIterator::DRAWN)
 	{
 		while (!(it->second.second.draw))
 		{
@@ -501,7 +501,7 @@ bool Game::iterator::Prev()
 bool Game::iterator::isEmpty()
 {
 	ObjectMap::iterator it = begin;
-	if (mode == GOIT_ACTIVE)
+    if (mode == ObjIterator::ACTIVE)
 	{
 		while(it != end)
 		{
@@ -512,7 +512,7 @@ bool Game::iterator::isEmpty()
 			it++;
 		}
 	}
-	if (mode == GOIT_DRAWN)
+    if (mode == ObjIterator::DRAWN)
 	{
 		while(it != end)
 		{
@@ -523,7 +523,7 @@ bool Game::iterator::isEmpty()
 			it++;
 		}
 	}
-	if (mode == GOIT_ALL)
+    if (mode == ObjIterator::ALL)
 	{
 		if (it != end)
 		{

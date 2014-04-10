@@ -29,8 +29,8 @@ class SoundManager
 
 private:	//this class is a singleton
 	SoundManager();
-	SoundManager operator = (const SoundManager& ref){}
-	SoundManager(const SoundManager& ref) {}
+    SoundManager operator = (const SoundManager& ){}
+    SoundManager(const SoundManager& ) {}
 
 public:
 	~SoundManager();

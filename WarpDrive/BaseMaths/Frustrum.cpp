@@ -31,7 +31,7 @@ bool Frustrum::isInside(const Vec4f& v)
 
 }
 
-bool Frustrum::intersects(const BBox& Box)
+bool Frustrum::intersects(const BBox& )
 {
 
 	return false;

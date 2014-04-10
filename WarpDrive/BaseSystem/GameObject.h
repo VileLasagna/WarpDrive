@@ -17,7 +17,7 @@ public:
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
 	virtual ~GameObject(){};
-	virtual bool Load(ManagedFile* F) {return true;}
+    virtual bool Load(ManagedFile* ) {return true;}
 	virtual const char* getType() const {return type.c_str();}
 
 	virtual void setVel(const Vec3f& v) { vel = v;}

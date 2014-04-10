@@ -2,27 +2,25 @@
 #ifdef WIN32
     #include <windows.h>
 #endif //WIN32
-#include <GL/glut.h>
+#include <GL/GLU.h>
 #include <math.h>
+#include <assert.h>
 
 
-Sphere::Sphere()
+Sphere::Sphere():Centre(Vec3f(0,0,0)), Radius(0), quadric(0)
 {
-	//nullSphere
-	Centre = Vec3f(0,0,0);
-	Radius = 0;
+    //nullSphere
+    initQuadric();
 }
 
-Sphere::Sphere(const Vec3f& centre, float r)
+Sphere::Sphere(const Vec3f& centre, float r): Centre(centre), Radius(r), quadric(0)
 {
-	Centre = centre;
-	Radius = r;
+    initQuadric();
 }
 
-Sphere::Sphere(float centreX, float centreY, float centreZ, float R)
+Sphere::Sphere(float centreX, float centreY, float centreZ, float R): Centre(Vec3f(centreX,centreY,centreZ)), Radius(R), quadric(0)
 {
-	Centre = Vec3f(centreX,centreY,centreZ);
-	Radius = R;
+    initQuadric();
 }
 
 void Sphere::setPos(float X, float Y, float Z)
@@ -52,14 +50,37 @@ bool Sphere::collides(const Sphere& other) const
 
 void Sphere::Draw() const
 {
+    /*
 	glPushMatrix();
 	glDisable(GL_LIGHTING);
 	glEnable(GL_COLOR);
 	glColor3f(1,0,1);
 	//glTranslatef(Centre.X(),Centre.Y(),Centre.Z());
-	glutWireSphere(Radius,8,8);
+
 	glColor3f(1,1,1);
 	glDisable(GL_COLOR);
 	glEnable(GL_LIGHTING);
 	glPopMatrix();
+    */
+    //GLdouble r = Radius;
+    //glDisable(GL_LIGHTING);
+    //glEnable(GL_COLOR);
+    //glColor3f(1,0,1);
+    gluSphere(quadric, Radius,16,16);
+    //glColor3f(1,1,1);
+    //glDisable(GL_COLOR);
+    //glEnable(GL_LIGHTING);
+}
+
+Sphere::~Sphere()
+{
+    gluDeleteQuadric(quadric);
+}
+void Sphere::initQuadric()
+{
+    quadric = gluNewQuadric();
+    assert(quadric);
+    gluQuadricDrawStyle(quadric, GLU_LINE);
+    gluQuadricOrientation(quadric, GLU_OUTSIDE);
+
 }

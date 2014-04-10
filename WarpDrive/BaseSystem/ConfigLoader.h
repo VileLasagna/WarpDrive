@@ -14,8 +14,8 @@ class ConfigLoader
 {
 private: //This class is a singleton
 	ConfigLoader(){}
-	ConfigLoader(const ConfigLoader& ref){}
-	ConfigLoader operator=(ConfigLoader& ref){}
+    ConfigLoader(const ConfigLoader& ){}
+    ConfigLoader operator=(ConfigLoader& ){}
 public:
 	static ConfigLoader* instance();
 	static void clear();
