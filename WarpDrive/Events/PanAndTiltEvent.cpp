@@ -58,7 +58,7 @@ void PanAndTiltEvent::Update(GameObject* Target)
 		C->setPos(C->getPos() + pan);
 		C->setTarget((C->getTarget().second)+tilt);
 			//a little trick because there's no camera updates between these two calls
-		C->setTarget((GameObject*)0);
+        C->setTarget(nullptr);
 		finished = true;
 	}
 }

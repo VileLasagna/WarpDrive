@@ -2,9 +2,9 @@
 
 HEADERS += \
     $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Billboard.h                \
-    #$$_PRO_FILE_PWD_/WarpDrive/3DMaths/glm.h                      \
-    #$$_PRO_FILE_PWD_/WarpDrive/3DMaths/GLMesh.h                   \
-    #$$_PRO_FILE_PWD_/WarpDrive/3DMaths/glmint.h                   \
+    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/glm.h                      \
+    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/GLMesh.h                   \
+    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/glmint.h                   \
     $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Material.h                 \
     $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Model.h                    \
     $$_PRO_FILE_PWD_/WarpDrive/3DMaths/ModelLoader.h              \
@@ -69,14 +69,14 @@ HEADERS += \
 
 SOURCES += \
     $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Billboard.cpp              \
-    #$$_PRO_FILE_PWD_/WarpDrive/3DMaths/GLMesh.cpp                 \
+    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/GLMesh.cpp                 \
     $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Material.cpp               \
     $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Model.cpp                  \
     $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Vertex.cpp                 \
-    #$$_PRO_FILE_PWD_/WarpDrive/3DMaths/glm.c                      \
-    #$$_PRO_FILE_PWD_/WarpDrive/3DMaths/glm_util.c                 \
-    #$$_PRO_FILE_PWD_/WarpDrive/3DMaths/glmimg.c                   \
-    #$$_PRO_FILE_PWD_/WarpDrive/3DMaths/glmimg_sdl.c               \
+    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/glm.c                      \
+    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/glm_util.c                 \
+    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/glmimg.c                   \
+    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/glmimg_sdl.c               \
     $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Capsule.cpp              \
     $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/ClipLineSegBox.cpp       \
     $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Frustrum.cpp             \

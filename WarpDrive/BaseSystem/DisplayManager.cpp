@@ -1,4 +1,5 @@
 #include "BaseSystem/DisplayManager.h"
+#include "BaseSystem/StringProc.h"
 
 #include <assert.h>
 
@@ -58,6 +59,19 @@ void DisplayManager::ToggleFS()
         fullscreen = SDL_WINDOW_FULLSCREEN_DESKTOP;
 	}
 	setVideo();
+}
+
+void DisplayManager::showStats(int updates, int frames)
+{
+    if(!mainWindow)
+    {
+        return;
+    }
+    else
+    {
+        std::string title = "Warp Drive :: UPS: "+ StringProc::intToString(updates)+"  FPS: "+StringProc::intToString(updates);
+        SDL_SetWindowTitle(mainWindow, title.c_str());
+    }
 }
 
 

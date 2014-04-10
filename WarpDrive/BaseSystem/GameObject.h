@@ -29,10 +29,13 @@ public:
 	virtual void addEvent(GOEvent* e) {events.push_back(e);}
 	virtual void clearEvents() 
 	{
+        /*
 		for (std::vector<GOEvent*>::iterator it = events.begin(); it != events.end(); it++)
 		{
-		delete (*it);
+            GOEvent* e = *it;
+            delete e;
 		}
+        */
 		events.clear();
 	} 
 

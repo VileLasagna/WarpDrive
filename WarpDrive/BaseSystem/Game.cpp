@@ -104,24 +104,24 @@ void Game::drawFPS()
  //   assert(pFont);
 	//pFont ->setColour(255,128,255);
 
- //   static float t = 0;
+    static float t = 0;
 	//static std::string f = "";
 	//static std::string u = "";
- //   frames++;
- //   t += DisplayManager::instance()->getDtSecs(); // update time..
- //   if (int(t) >= 1) // if number of seconds has changed..
- //   {
- //       // ..we are on to the Next second
+    t += DisplayManager::instance()->getDtSecs(); // update time..
+    if (int(t) >= 1) // if number of seconds has changed..
+    {
+        // ..we are on to the Next second
 
- //       // Update text, as the count has changed
-	//	f = "FPS: ";
-	//	f.append(StringProc::intToString(frames));
-	//	u = "UPS: ";
-	//	u.append(StringProc::intToString(updates));
- //       t = 0;
- //       frames = 0; // reset count for the new second
-	//	updates = 0;
- //   }
+        // Update text, as the count has changed
+        //f = "FPS: ";
+        //f.append(StringProc::intToString(frames));
+        //u = "UPS: ";
+        //u.append(StringProc::intToString(updates));
+        t = 0;
+        DisplayManager::instance()->showStats(updates, frames);
+        frames = 0; // reset count for the new second
+        updates = 0;
+    }
 
  //   // Display the count
  //   pFont->Draw(f, 0, 0);
@@ -274,6 +274,7 @@ void Game::DrawObjects()
 			it->second.first->Draw();
 		}
 	}
+    frames++;
 }
 
 void Game::UpdateObjects()

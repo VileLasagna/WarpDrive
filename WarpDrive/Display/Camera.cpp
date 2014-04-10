@@ -9,7 +9,7 @@
 
 Camera::Camera(): targetObj(0), up(Vec3f(0,1,0)), orbitRadius(0), orbitPeriod(1), orbitFactors(1,0,1), time(0), relativePos(0)
 {
-     type = "camera";
+     type = "Camera";
      removeMe = false;
 }
 
@@ -20,7 +20,7 @@ void Camera::Update()
 	if(targetObj)
 	{
         target = targetObj->getPos();
-        if(!orbitRadius)
+        if(orbitRadius == 0)
         {
             pos = target + relativePos;
         }
@@ -28,10 +28,10 @@ void Camera::Update()
 	}
 	else
 	{
-	/*	vel += accel*DisplayManager::instance()->getDtSecs();
-		pos += vel*DisplayManager::instance()->getDtSecs();*/
+    /*	vel += accel*DisplayManager::instance()->getDtSecs();
+        pos += vel*DisplayManager::instance()->getDtSecs();*/
 	}
-    if(orbitRadius)
+    if(orbitRadius != 0)
     {
         time += DisplayManager::instance()->getDtSecs();
         //relativePos = Vec3f(orbitFactors.X()*orbitRadius*sin(time*(orbitPeriod*0.5f)),orbitFactors.Y()*orbitRadius*sin(time*(orbitPeriod*0.5f)),orbitFactors.Z()*orbitRadius*sin(time*(orbitPeriod*0.5f)));

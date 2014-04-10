@@ -51,6 +51,7 @@ public:
 	void useOpengGL (bool b);
 	bool usingOpenGL () {return openGL;}
 	void clearDisplay();
+    void showStats(int updates, int frames);
 
 	void setBPP(int i);
 

@@ -164,6 +164,7 @@ void DemoState::Reset()
 	((Camera*) p)->setPos(Vec3f(10,10,40));
 	((Camera*) p)->setTarget(Vec3f(10,15,0));
 	p->clearEvents();
+    assert(p);
 
 	demo->addKey(new TKAddEvent(10,((Camera*) p),new PanAndTiltEvent(4, Vec3f(10,30,-7))));
 	demo->addKey(new TKAddEvent(14,((Camera*) p),new PanAndTiltEvent(2, Vec3f(-10,-10,5))));
