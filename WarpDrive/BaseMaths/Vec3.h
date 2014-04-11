@@ -22,6 +22,13 @@ public:
 	void setY(T y) { this->y = y; }
 	void setZ(T z) { this->z = z; }
 
+    T R() const { return x; }
+    T G() const { return y; }
+    T B() const { return z; }
+    void setR(T x) { this->x = x; }
+    void setG(T y) { this->y = y; }
+    void setB(T z) { this->z = z; }
+
 	Vec3& operator+=(const Vec3& rhs)
 	{
 		this->x += rhs.x;

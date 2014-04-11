@@ -7,18 +7,18 @@
 #include <assert.h>
 
 
-Sphere::Sphere():Centre(Vec3f(0,0,0)), Radius(0), quadric(0)
+Sphere::Sphere():Centre(Vec3f(0,0,0)), Radius(0), quadric(0), colour(Vec3f(1,1,1))
 {
     //nullSphere
     initQuadric();
 }
 
-Sphere::Sphere(const Vec3f& centre, float r): Centre(centre), Radius(r), quadric(0)
+Sphere::Sphere(const Vec3f& centre, float r): Centre(centre), Radius(r), quadric(0), colour(Vec3f(1,1,1))
 {
     initQuadric();
 }
 
-Sphere::Sphere(float centreX, float centreY, float centreZ, float R): Centre(Vec3f(centreX,centreY,centreZ)), Radius(R), quadric(0)
+Sphere::Sphere(float centreX, float centreY, float centreZ, float R): Centre(Vec3f(centreX,centreY,centreZ)), Radius(R), quadric(0), colour(Vec3f(1,1,1))
 {
     initQuadric();
 }
@@ -31,6 +31,16 @@ void Sphere::setPos(float X, float Y, float Z)
 void Sphere::setPos(const Vec3f& pos)
 {
 	Centre = pos;
+}
+
+void Sphere::setColour(float R, float G, float B)
+{
+    colour = Vec3f(R,G,B);
+}
+
+void Sphere::setColour(const Vec3f& pos)
+{
+    colour = pos;
 }
 
 void Sphere::setRadius(float R)
@@ -54,9 +64,14 @@ void Sphere::Draw() const
 
     //TODO: LIGHTING
     glEnable(GL_COLOR_MATERIAL);
-    glColor3f(1,0,1);
+    glColor3f(colour.R(),colour.G(), colour.B());
     glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
-    gluSphere(quadric, Radius,16,16);
+
+    glPushMatrix();
+        glTranslatef(Centre.X(),Centre.Y(),Centre.Z());
+        gluSphere(quadric, Radius,16,16);
+    glPopMatrix();
+
     glColor3f(1,1,1);
     glDisable(GL_COLOR_MATERIAL);
 
@@ -70,7 +85,7 @@ void Sphere::initQuadric()
 {
     quadric = gluNewQuadric();
     assert(quadric);
-    gluQuadricDrawStyle(quadric, GLU_FILL);
+    gluQuadricDrawStyle(quadric, GLU_LINE);
     gluQuadricOrientation(quadric, GLU_OUTSIDE);
 
 }

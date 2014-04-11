@@ -12,7 +12,8 @@ TeapotLoaderState::TeapotLoaderState()
    ret = self;
    Reset();
    pots.push_back(new Sphere(0, 0, 0, 3));
-   cam.setTarget(pots.front()->getCentre());
+   //cam.setTarget(pots.front()->getCentre());
+   cam.setTarget(Vec3f(0,0,0));
    cam.setPos(Vec3f(0,0,20));
    cam.Use();
    //glutInit(0, NULL);
@@ -52,10 +53,10 @@ void TeapotLoaderState::Reset()
 
 
 
-    GLfloat light_direction[] = {0, 10, 15, 1};
-    GLfloat ambientL[] = {1,1,1,1};
+    GLfloat light_direction[] = {15, 50, 15, 1};
+    GLfloat ambientL[] = {0.1,0.1,0.1,1};
     GLfloat diffuseL[] = {1,1,1,1};
-    GLfloat specularL[] = {1,1,1,1};
+    GLfloat specularL[] = {0,0,0,1};
 
 
     glLightfv(GL_LIGHT0, GL_POSITION, light_direction);
@@ -106,8 +107,33 @@ void TeapotLoaderState::onMouseButtonEvent(const SDL_MouseButtonEvent &e)
     {
         ret = -1;
     }
-    if (e.button == SDL_BUTTON_LEFT)
+    if (e.button == SDL_BUTTON_LEFT && e.type == SDL_MOUSEBUTTONUP)
     {
-        cam.orbit(1,0,1, 20, 2);
+        GLdouble x, y, z;
+        x = 0;
+        y = 0;
+        z = 0;
+        GLdouble model[16];
+        GLdouble proj[16];
+        GLint viewport[4];
+
+        glGetDoublev(GL_MODELVIEW,model);
+        glGetDoublev(GL_PROJECTION_MATRIX,proj);
+        glGetIntegerv(GL_VIEWPORT,viewport);
+
+        int res = gluUnProject(e.x,e.y,0,model, proj, viewport,&x,&y,&z);
+        if (res == GL_FALSE)
+        {
+            assert(0);
+        }
+        pots.push_back(new Sphere(x, y, z, 1));
+    }
+    if (e.button == SDL_BUTTON_MIDDLE)
+    {
+        for(Sphere* p: pots)
+        {
+            p->setColour(1,0,1);
+        }
+
     }
 }

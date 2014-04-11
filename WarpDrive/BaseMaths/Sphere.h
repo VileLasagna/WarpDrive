@@ -19,6 +19,8 @@ public:
 	void setPos(const Vec3f& pos);
 	void setPos(float X, float Y, float Z);
 	void setRadius(float R);
+    void setColour(const Vec3f& pos);
+    void setColour(float X, float Y, float Z);
 
 	bool collides(const Sphere& other) const;
 
@@ -32,6 +34,7 @@ private:
 	Vec3f Centre;
 	float Radius;
     GLUquadric* quadric;
+    Vec3f colour;
 
     void initQuadric();
 
