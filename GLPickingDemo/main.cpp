@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
     DisplayManager::instance()->Init(false,true);
     Game::instance()->addState(new TeapotLoaderState());
 
-    Game::instance()->showFPS();
+    Game::instance()->showFPS(false);
     Game::instance()->Run();
 
     Game::instance()->Clear();

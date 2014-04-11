@@ -9,9 +9,9 @@
 
 Material::Material()
 {
-	ambient = Vec3f(0.2,0.2,0.2);
+    ambient = Vec3f(0.2f,0.2f,0.2f);
 	specular = Vec3f(0,0,0);
-	diffuse = Vec3f(0.8,0.8,0.8);
+    diffuse = Vec3f(0.8f,0.8f,0.8f);
 	shiny = 0;
 }
 

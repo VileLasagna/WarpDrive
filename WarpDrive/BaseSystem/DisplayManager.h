@@ -12,6 +12,7 @@
 #include <utility>
 #include <GL/glut.h>
 #include "BaseMaths/Matrix44.h"
+#include <string>
 
 struct SDL_Surface;
 
@@ -52,6 +53,7 @@ public:
 	bool usingOpenGL () {return openGL;}
 	void clearDisplay();
     void showStats(int updates, int frames);
+    void setTitle(std::string newTitle, int windowIndex = 1);
 
 	void setBPP(int i);
 

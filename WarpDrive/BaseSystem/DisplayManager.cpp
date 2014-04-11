@@ -69,11 +69,16 @@ void DisplayManager::showStats(int updates, int frames)
     }
     else
     {
-        std::string title = "Warp Drive :: UPS: "+ StringProc::intToString(updates)+"  FPS: "+StringProc::intToString(updates);
+        std::string title = "Warp Drive :: UPS: "+ StringProc::intToString(updates)+"  FPS: "+StringProc::intToString(frames);
         SDL_SetWindowTitle(mainWindow, title.c_str());
     }
 }
 
+void DisplayManager::setTitle(std::string newTitle, int)
+{
+    //second argument is for when we're supporting multiple windows
+     SDL_SetWindowTitle(mainWindow, newTitle.c_str());
+}
 
 SDL_Window* DisplayManager::getScreen() const
 {

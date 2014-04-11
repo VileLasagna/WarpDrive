@@ -64,7 +64,11 @@ HEADERS += \
     $$_PRO_FILE_PWD_/WarpDrive/Physics/Octree.h                   \
     $$_PRO_FILE_PWD_/WarpDrive/Physics/VoxelGrid.h                \
     $$_PRO_FILE_PWD_/WarpDrive/Sound/SoundFX.h                    \
-    $$_PRO_FILE_PWD_/WarpDrive/Sound/SoundManager.h
+    $$_PRO_FILE_PWD_/WarpDrive/Sound/SoundManager.h               \
+    $$_PRO_FILE_PWD_/WarpDrive/Display/AnimSheet.h                \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/SDLFontManager.h        \
+    $$_PRO_FILE_PWD_/WarpDrive/Display/Sprite.h                   \
+    $$_PRO_FILE_PWD_/WarpDrive/Display/TextureSheet.h
 
 
 SOURCES += \
@@ -112,7 +116,11 @@ SOURCES += \
     $$_PRO_FILE_PWD_/WarpDrive/Events/TKUseObject.cpp             \
     $$_PRO_FILE_PWD_/WarpDrive/Physics/BoundingBox.cpp            \
     $$_PRO_FILE_PWD_/WarpDrive/Sound/SoundFX.cpp                  \
-    $$_PRO_FILE_PWD_/WarpDrive/Sound/SoundManager.cpp
+    $$_PRO_FILE_PWD_/WarpDrive/Sound/SoundManager.cpp             \
+    $$_PRO_FILE_PWD_/WarpDrive/Display/AnimSheet.cpp              \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/SDLFontManager.cpp      \
+    $$_PRO_FILE_PWD_/WarpDrive/Display/Sprite.cpp                 \
+    $$_PRO_FILE_PWD_/WarpDrive/Display/TextureSheet.cpp
 
 include ($$_PRO_FILE_PWD_/WarpDrive/include/external.pri)
 

@@ -3,6 +3,7 @@
     #include <windows.h>
 #endif //WIN32
 #include "GL/glut.h"
+#include<string>
 
 
 
@@ -54,7 +55,7 @@ void TeapotLoaderState::Reset()
 
 
     GLfloat light_direction[] = {15, 50, 15, 1};
-    GLfloat ambientL[] = {0.1,0.1,0.1,1};
+    GLfloat ambientL[] = {0.1f,0.1f,0.1f,1};
     GLfloat diffuseL[] = {1,1,1,1};
     GLfloat specularL[] = {0,0,0,1};
 
@@ -103,7 +104,7 @@ void TeapotLoaderState::onKeyboardEvent(const SDL_KeyboardEvent &e)
 
 void TeapotLoaderState::onMouseButtonEvent(const SDL_MouseButtonEvent &e)
 {
-    if (e.button == SDL_BUTTON_RIGHT)
+    if (e.button == SDL_BUTTON_RIGHT && e.type == SDL_MOUSEBUTTONUP)
     {
         ret = -1;
     }
@@ -121,12 +122,23 @@ void TeapotLoaderState::onMouseButtonEvent(const SDL_MouseButtonEvent &e)
         glGetDoublev(GL_PROJECTION_MATRIX,proj);
         glGetIntegerv(GL_VIEWPORT,viewport);
 
-        int res = gluUnProject(e.x,e.y,0,model, proj, viewport,&x,&y,&z);
+        int res = gluUnProject(e.x,viewport[3] - e.y,0,model, proj, viewport,&x,&y,&z);
         if (res == GL_FALSE)
         {
             assert(0);
         }
-        pots.push_back(new Sphere(x, y, z, 1));
+
+        glPointSize(10);
+        glBegin(GL_POINTS);
+        glColor3f(1, 0, 0);
+            glVertex3f(x, y, z);
+        glEnd();
+
+
+        std::string title = "Unprojected X: "+ std::to_string(x)+"  Unprojected Y: " + std::to_string(y);
+        DisplayManager::instance()->setTitle(title);
+        //pots.push_back(new Sphere(4, 0, 0, 1));
+
     }
     if (e.button == SDL_BUTTON_MIDDLE)
     {
