@@ -3,6 +3,7 @@
     #include <windows.h>
 #endif //WIN32
 #include <GL/glut.h>
+#include <GL/gl.h>
 
 
 void Billboard::Draw() const

@@ -182,7 +182,7 @@ win32 \
 linux-g++:contains(QMAKE_HOST.arch, x86_64):\
 {
     # include SDL
-    LIBS += -L/usr/lib64 -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_gfx -lSDL2_mixer -lSDL2_test -lGL -lglut -lGLU
+    LIBS += -L/usr/lib64 -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_gfx -lSDL2_mixer -lGL -lglut -lGLU #-lSDL2_test
     message("Configured for 64bits GCC Linux")
 }
 linux-g++:contains(QMAKE_HOST.arch, x86):\

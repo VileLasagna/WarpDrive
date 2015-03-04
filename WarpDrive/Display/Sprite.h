@@ -39,7 +39,7 @@ public:
 	void setTransp(int i = 128) {transpThreshold = i;}
 	void setDrawAlpha(int i);
 	const AnimSheet& getSheet() const { return *sheets[animations[current.X()].first.X().X()];}
-	void setColourKey(const SDLRGBColour& tc = SDLRGBColour::SDLRGBColour(0,255,255));
+	void setColourKey(const SDLRGBColour& tc = SDLRGBColour(0,255,255));
 
 protected:
 

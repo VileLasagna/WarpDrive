@@ -265,9 +265,9 @@ Rectf Sprite::intersection(const Rectf &box) const
 	else
 	{
 		return Rectf(
-            max(rect.MinX(), box.MinX()),   // Min X
-            min(rect.MaxX(), box.MaxX()),   // Max X
-            max(rect.MinY(), box.MinY()),   // Min Y
-            min(rect.MaxY(), box.MaxY()) ); // Max Y
+		  std::max(rect.MinX(), box.MinX()),   // Min X
+		  std::min(rect.MaxX(), box.MaxX()),   // Max X
+		  std::max(rect.MinY(), box.MinY()),   // Min Y
+		  std::min(rect.MaxY(), box.MaxY()) ); // Max Y
 	}
 }

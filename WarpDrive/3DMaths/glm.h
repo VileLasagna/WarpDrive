@@ -18,7 +18,9 @@
 #include <OpenGL/gl.h>
 #include <OpenGL/glu.h>
 #else
-#include <windows.h>
+#ifdef WIN32
+    #include <windows.h>
+#endif //WIN32
 #include <GL/gl.h>
 #include <GL/glu.h>
 #endif

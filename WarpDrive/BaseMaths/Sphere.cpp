@@ -2,7 +2,7 @@
 #ifdef WIN32
     #include <windows.h>
 #endif //WIN32
-#include <GL/GLU.h>
+#include <GL/glu.h>
 #include <math.h>
 #include <assert.h>
 

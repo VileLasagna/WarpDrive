@@ -2,10 +2,10 @@
 #define ANIMSHEET_H
 
 #include "Display/TextureSheet.h"
-#include <Vector>
+#include <vector>
 #include <iostream>
 #include "BaseMaths/Vec2.h"
-#include <String>
+#include <string>
 #include <fstream>
 #include <utility>
 #include "BaseSystem/StringProc.h"
@@ -43,7 +43,7 @@ private:
 
 	int anims;
 	int* lengths;
-	std::vector<std::pair<std::vector<Vec2i>, int> > animations; // because a Vec2i** doesn't really work ¬¬
+	std::vector<std::pair<std::vector<Vec2i>, int> > animations; // because a Vec2i** doesn't really work Â¬Â¬
 	void loadseq (const std::string& s);
 	int pass;
 	Vec2i adjust; 

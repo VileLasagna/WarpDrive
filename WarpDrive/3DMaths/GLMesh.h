@@ -1,7 +1,9 @@
 #ifndef GLMESH_H
 #define GLMESH_H
 
-#include <windows.h>
+#ifdef WIN32
+    #include <windows.h>
+#endif //WIN32
 #include <GL/gl.h>
 #include "glm.h"
 
