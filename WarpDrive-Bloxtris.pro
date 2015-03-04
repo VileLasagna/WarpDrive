@@ -4,7 +4,7 @@
 
 
 
-CONFIG += app c++11
+CONFIG += app c++14
 #QT -= gui core
 CONFIG -= qt
 
@@ -19,6 +19,14 @@ CONFIG(debug, debug|release) \
     DESTDIR = $$_PRO_FILE_PWD_/distro/debug
 }
 
+QMAKE_CXX = clang++
+QMAKE_CC = clang
+QMAKE_CXXFLAGS += -std=c++14 -stdlib=libstdc++
+QMAKE_CFLAGS += -stdlib=libstdc++
+#QMAKE_LINK = llvm-link
+#QMAKE_LFLAGS = -cppgen=program -v
+#QMAKE_POST_LINK = llc -cppgen=program $$DESTDIR_TARGET
+#QMAKE_LINK = ld
 
 include($$_PRO_FILE_PWD_/WarpDrive/WarpDrive.pri)
 #include a pri with your game specific code here
