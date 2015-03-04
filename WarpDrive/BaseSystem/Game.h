@@ -48,6 +48,10 @@ public:
 	void DrawObjects();
 	void UpdateObjects();
 
+
+	Game operator= (const Game&) = delete;
+	Game (const Game&) = delete;
+
 	~Game();
 
 
@@ -88,11 +92,6 @@ public:
 	void addObject(GameObject* object);
 	void resetState(int i);
 
-
-	Game operator= (const Game&) = delete;
-	Game (const Game&) = delete;
-
-	
 
 private:
 

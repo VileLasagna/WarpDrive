@@ -26,6 +26,8 @@ public:
 	ConfigLoader(const ConfigLoader& ) = delete;
 	ConfigLoader operator=(ConfigLoader& ) = delete;
 
+	~ConfigLoader() = default;
+
 
 private:
 

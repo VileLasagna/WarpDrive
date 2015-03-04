@@ -44,6 +44,7 @@ public:
 		return true;
 	}
 
+	~Factory() = default;
 
 
 private:
