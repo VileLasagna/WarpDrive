@@ -28,8 +28,6 @@ class Game
 {
 private:	//This class is a singleton.
 	Game();
-	Game operator= (const Game&);
-	Game (const Game&);
 
 public:
 
@@ -89,6 +87,10 @@ public:
 	void removeObject(std::string type);
 	void addObject(GameObject* object);
 	void resetState(int i);
+
+
+	Game operator= (const Game&) = delete;
+	Game (const Game&) = delete;
 
 	
 

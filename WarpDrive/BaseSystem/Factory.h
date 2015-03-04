@@ -15,10 +15,12 @@ class Factory
 typedef Family* (*Construc) ();
 private: //Each different factory is a Singleton
 	Factory(){}
-	Factory (const Factory<Key,Family>& ref) {}
-	Factory operator= (const Factory<Key,Family>& ref) {}
 
 public:
+
+	Factory (const Factory<Key,Family>& ref) = delete;
+	Factory operator= (const Factory<Key,Family>& ref) = delete;
+
 	static Factory<Family, Key>* instance() {static Factory<Family, Key>* inst = new Factory<Family, Key>; return inst;}
 	void clear() {delete Factory<Family, Key>::instance();}
 	Family* Create(Key id)

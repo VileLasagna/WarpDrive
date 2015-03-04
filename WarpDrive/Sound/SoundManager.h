@@ -29,8 +29,6 @@ class SoundManager
 
 private:	//this class is a singleton
 	SoundManager();
-    SoundManager operator = (const SoundManager& ){}
-    SoundManager(const SoundManager& ) {}
 
 public:
 	~SoundManager();
@@ -67,6 +65,8 @@ public:
 	bool SystemActive(); //Returns false if the system is dormant(setSoundQuality(NO_SOUND);)	
 	
 
+	SoundManager operator = (const SoundManager& ) = delete;
+	SoundManager(const SoundManager& ) = delete;
 
 
 protected:

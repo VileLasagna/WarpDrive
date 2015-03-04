@@ -14,8 +14,7 @@ class ConfigLoader
 {
 private: //This class is a singleton
 	ConfigLoader(){}
-    ConfigLoader(const ConfigLoader& ){}
-    ConfigLoader operator=(ConfigLoader& ){}
+
 public:
 	static ConfigLoader* instance();
 	static void clear();
@@ -24,7 +23,8 @@ public:
 	std::pair<bool,std::string> getValue(std::string key);
 
 
-
+	ConfigLoader(const ConfigLoader& ) = delete;
+	ConfigLoader operator=(ConfigLoader& ) = delete;
 
 
 private:
