@@ -189,7 +189,7 @@ void Plane::Draw() const
 	glPushMatrix();
 
 		glTranslatef(Origin.X(),Origin.Y(),Origin.Z()); //Drawing by Local
-		glMultMatrixf(rot.getElements());
+		glMultMatrixf(rot.getElements().data());
 		//glMultMatrixf(m);
 		//glTranslatef(0,D,0); //Drawing by world
 
