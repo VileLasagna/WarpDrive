@@ -23,7 +23,7 @@ public:
 
 	static Factory<Family, Key>* instance() {static Factory<Family, Key>* inst = new Factory<Family, Key>; return inst;}
 	void clear() {delete Factory<Family, Key>::instance();}
-	Family* Create(Key id)
+	Family* Create(Key)
 	{
 		/* TODO
 		std::map<Key,Construc>::iterator it = types.find(id);

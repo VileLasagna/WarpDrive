@@ -23,9 +23,9 @@ namespace Matrix
 class DisplayManager
 {
 private:	//this class is a singleton
-	    DisplayManager();
-        DisplayManager(const DisplayManager& ) {}
-        DisplayManager operator= (const DisplayManager& ) {}
+		DisplayManager();
+		DisplayManager(const DisplayManager& ) = delete;
+		DisplayManager operator= (const DisplayManager& ) = delete;
 public:
 
 	static DisplayManager* instance();

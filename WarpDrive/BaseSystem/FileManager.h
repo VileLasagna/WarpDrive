@@ -20,8 +20,8 @@ class FileManager
 {
 private:	//This class is a singleton
 	FileManager(){}
-    FileManager operator= (const FileManager& ){}
-    FileManager(const FileManager& ){}
+	FileManager operator= (const FileManager& ) = delete;
+	FileManager(const FileManager& ) = delete;
 
 public:
 

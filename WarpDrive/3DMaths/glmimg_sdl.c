@@ -4,9 +4,11 @@
 
 // Quick hack to turn off warnings: if you want to use this code much you should
 //  re-enable the warnings and fix the code properly
-#pragma warning(disable: 4996)
-#pragma warning(disable: 4305)
-#pragma warning(disable: 4244)
+#ifdef MSVC
+	#pragma warning(disable: 4996)
+	#pragma warning(disable: 4305)
+	#pragma warning(disable: 4244)
+#endif //MSVC]
 
 #include "glm.h"
 #include "glmint.h"

@@ -15,13 +15,14 @@ public:
 	Texture();
 	~Texture();
 
-    bool LoadTexture(const std::string& filename);
+	bool LoadTexture(const std::string& filename);
 	bool CreateFromSDLSurface(SDL_Surface* surf);
 	void UseThisTexture();
 	static void UseNoTexture();
 
 private:
 	GLuint textureId;
+	bool initialized;
 };
 
 #endif

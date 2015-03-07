@@ -53,7 +53,7 @@ void Game::Draw()
 
 void Game::resetState(int i)
 {
-	if (i <0 || i >= states.size())
+	if (i < 0 || static_cast<size_t>(i) >= states.size())
 	{
 		return;
 	}

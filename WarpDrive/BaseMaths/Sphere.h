@@ -19,24 +19,24 @@ public:
 	void setPos(const Vec3f& pos);
 	void setPos(float X, float Y, float Z);
 	void setRadius(float R);
-    void setColour(const Vec3f& pos);
-    void setColour(float X, float Y, float Z);
+	void setColour(const Vec3f& pos);
+	void setColour(float X, float Y, float Z);
 
 	bool collides(const Sphere& other) const;
 
 	Vec3f getCentre() const {return Centre;}
 	float getRadius() const {return Radius;}
-    ~Sphere();
+	~Sphere();
 
 
 private:
 
 	Vec3f Centre;
 	float Radius;
-    GLUquadric* quadric;
-    Vec3f colour;
+	GLUquadric* quadric;
+	Vec3f colour;
 
-    void initQuadric();
+	void initQuadric();
 
 };
 

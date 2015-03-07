@@ -52,7 +52,7 @@ void Timeline::addKey(TimelineKey *key)
 		//positive time RELATIVE to the last added timeline key
 		if(lastAdded)
 		{
-			float t = lastAdded->getTime() + abs(key->getTime());
+			float t = lastAdded->getTime() + std::abs(key->getTime());
 			key->setTime(t);
 		}
 		else

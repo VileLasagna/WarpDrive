@@ -175,8 +175,8 @@ void SoundManager::playSound(SoundFX *FX)
 		if (autochannels)
 		{
 			c = channels.size();
-			int j = channels.size();
-			int i = Mix_AllocateChannels(channels.size()/2);
+			auto j = channels.size();
+			auto i = Mix_AllocateChannels(channels.size()/2);
 			channels.resize(channels.size()+i);
 			while(j != channels.size())
 			{

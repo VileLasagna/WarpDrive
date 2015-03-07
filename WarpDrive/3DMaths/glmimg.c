@@ -1,8 +1,14 @@
 // Quick hack to turn off warnings: if you want to use this code much you should
 //  re-enable the warnings and fix the code properly
-#pragma warning(disable: 4996)
-#pragma warning(disable: 4305)
-#pragma warning(disable: 4244)
+#ifdef MSVC
+	#pragma warning(disable: 4996)
+	#pragma warning(disable: 4305)
+	#pragma warning(disable: 4244)
+#endif //MSVC
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-parameter"
+
 
 #ifdef HAVE_CONFIG_H
 #include "config.h"
@@ -407,3 +413,5 @@ glmLoadTexture(const char *filename, GLboolean alpha, GLboolean repeat, GLboolea
    
     return tex;
 }
+#pragma clang diagnostic pop
+

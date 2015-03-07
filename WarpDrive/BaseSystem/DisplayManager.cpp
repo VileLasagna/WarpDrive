@@ -3,6 +3,9 @@
 
 #include <assert.h>
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreorder"
+
 
 DisplayManager::DisplayManager():
     dt          (0),
@@ -218,3 +221,5 @@ void DisplayManager::clearDisplay()
 	}
 
 };
+
+#pragma clang diagnostic pop

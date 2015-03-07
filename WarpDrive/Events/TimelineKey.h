@@ -24,6 +24,7 @@ public:
 	{
 		time = t;
 	}
+	virtual ~TimelineKey() = default;
 
 protected:
 

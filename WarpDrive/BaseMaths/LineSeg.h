@@ -22,7 +22,7 @@ public:
 
 	void Draw() ;
 
-    bool contains(const Vec3f& ) const {}
+	bool contains(const Vec3f& ) const {return true;}
 	std::pair<bool, Vec3f> intersects (const LineSeg& other) const ;
 	bool parallel(const LineSeg& other) const;
 	float sqDistToPoint ( const Vec3f& p) const;

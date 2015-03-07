@@ -16,8 +16,8 @@ public:
 
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
-	virtual ~GameObject(){};
-    virtual bool Load(ManagedFile* ) {return true;}
+	virtual ~GameObject() = default;
+	virtual bool Load(ManagedFile* ) {return true;}
 	virtual const char* getType() const {return type.c_str();}
 
 	virtual void setVel(const Vec3f& v) { vel = v;}
@@ -27,17 +27,17 @@ public:
 	virtual void setType(const std::string& s) { type = s;} //for organizing groups of objects
 															//TODO: Should be separate from type and also indexed in Game::iterator
 	virtual void addEvent(GOEvent* e) {events.push_back(e);}
-	virtual void clearEvents() 
+	virtual void clearEvents()
 	{
-        /*
+	   /*
 		for (std::vector<GOEvent*>::iterator it = events.begin(); it != events.end(); it++)
 		{
-            GOEvent* e = *it;
-            delete e;
+		  GOEvent* e = *it;
+		  delete e;
 		}
-        */
+	   */
 		events.clear();
-	} 
+	}
 
 	virtual Vec3f getVel() const {return vel;}
 	virtual Vec3f getPos() const {return pos;}

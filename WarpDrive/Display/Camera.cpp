@@ -6,8 +6,17 @@
 #include <GL/glut.h>
 #include<math.h>
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wreorder"
 
-Camera::Camera(): targetObj(0), up(Vec3f(0,1,0)), orbitRadius(0), orbitPeriod(1), orbitFactors(1,0,1), time(0), relativePos(0)
+Camera::Camera():
+	up(Vec3f(0,1,0)),
+	targetObj(0),
+	orbitFactors(1,0,1),
+	relativePos(0),
+	orbitRadius(0),
+	orbitPeriod(1),
+	time(0)
 {
      type = "Camera";
      removeMe = false;
@@ -93,3 +102,6 @@ void Camera::orbit(float X, float Y, float Z, float radius, float periodSecs)
     orbitRadius = radius;
     orbitPeriod = periodSecs;
 }
+
+#pragma clang diagnostic pop
+

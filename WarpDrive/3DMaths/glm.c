@@ -28,9 +28,14 @@
 
 // Quick hack to turn off warnings: if you want to use this code much you should
 //  re-enable the warnings and fix the code properly
-#pragma warning(disable: 4996)
-#pragma warning(disable: 4305)
-#pragma warning(disable: 4244)
+#ifdef MSVC
+	#pragma warning(disable: 4996)
+	#pragma warning(disable: 4305)
+	#pragma warning(disable: 4244)
+#endif //MSVC
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wsign-compare"
 
 #define MATERIAL_BY_FACE
 
@@ -1280,8 +1285,9 @@ glmVertexNormals(GLMmodel* model, GLfloat angle, GLboolean keep_existing)
                 /* if this node was averaged, use the average normal */
 		for (j = 0; j<3; j++) {
 		    assert(T(node->index).vindices[j] <= model->numvertices);
-		    if (T(node->index).vindices[j] == i) {
-			if(T(node->index).nindices[j] > numnormals);
+			if (T(node->index).vindices[j] == i) {
+			if(T(node->index).nindices[j] > numnormals)
+				;
 			assert(T(node->index).nindices[j] == -1 || T(node->index).nindices[j] <= model->numnormals);
 			if (!keep_existing || T(node->index).nindices[j] == -1) {
 			    if (avg_index == -1) {
@@ -2242,3 +2248,5 @@ for (i = 1; i <= model->numvertices; i++) {
     }
 }
 #endif
+
+#pragma clang diagnostic pop

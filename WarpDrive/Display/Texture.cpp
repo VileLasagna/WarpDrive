@@ -11,10 +11,9 @@
 #endif //_WIN32
 #include <assert.h>
 
-Texture::Texture()
-{
-    textureId = -1;
-}
+Texture::Texture():
+	textureId{0},
+	initialized{false} {}
 
 bool Texture::LoadTexture(const std::string& filename)
 {
@@ -31,20 +30,22 @@ bool Texture::LoadTexture(const std::string& filename)
 bool Texture::CreateFromSDLSurface(SDL_Surface* surf)
 {
 	glGenTextures(1, &textureId);
-    glBindTexture(GL_TEXTURE_2D, textureId);
+	glBindTexture(GL_TEXTURE_2D, textureId);
 
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
 	if (!surf)
 	{
 		Err::Log("Surface pointer invalid while creating Texture");
 		return false;
 	}
-#pragma warning("TODO - URGENT")
-//SDL_SetAlpha(surf,SDL_SRCALPHA|SDL_RLEACCEL,128);
+
+//#pragma warning("TODO - URGENT")
+#pragma message "TODO - URGENT"
+	//SDL_SetAlpha(surf,SDL_SRCALPHA|SDL_RLEACCEL,128);
 	unsigned char* data = (unsigned char*)surf->pixels;
 	int width = surf->w;
 	int height = surf->h;
@@ -102,7 +103,7 @@ bool Texture::CreateFromSDLSurface(SDL_Surface* surf)
 
 Texture::~Texture()
 {
-    if (textureId > -1)
+    if (initialized)
     {
     	glDeleteTextures(1, &textureId);
     }

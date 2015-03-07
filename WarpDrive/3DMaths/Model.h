@@ -17,10 +17,10 @@ public:
 	Model();
 	Model(const std::string& filename);
 	ModelLoader* Loader(const std::string& FileFormat, ModelLoader* L = 0); //0 gets the function, a pointer sets is to that.
-	bool Load(const std::string& filename);
+	bool Load(ManagedFile*) override;
 	const char* getType() const {return "Model";}
-	void Draw();
-	void Update();
+	void Draw() override;
+	void Update() override;
 	
 private:
 
