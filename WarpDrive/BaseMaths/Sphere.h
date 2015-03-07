@@ -1,11 +1,17 @@
 #ifndef BOUNDING_SPHERE_H
 #define BOUNDING_SPHERE_H
 
+#include<memory>
+#include <GL/glu.h>
+
+
 #include "BaseMaths/Vec3.h"
+#include "Display/RGBColour.h"
 
 //Forward Declarations
 class GLUquadric;
-
+auto gluQuadDeleter = [](GLUquadric* p){gluDeleteQuadric(p);};
+using ptr_GLUquad = std::unique_ptr<GLUquadric,decltype(gluQuadDeleter)>;
 
 class Sphere
 {
@@ -26,17 +32,18 @@ public:
 
 	Vec3f getCentre() const {return Centre;}
 	float getRadius() const {return Radius;}
-	~Sphere();
+	~Sphere() = default;
 
 
 private:
 
+
 	Vec3f Centre;
 	float Radius;
-	GLUquadric* quadric;
-	Vec3f colour;
+	ptr_GLUquad quadric;
+	GLRGBColour colour;
 
-	void initQuadric();
+	ptr_GLUquad initQuadric();
 
 };
 
