@@ -11,22 +11,22 @@ class Vec4
 public:
 
 	Vec4() : x(0), y(0), z(0), w(1) {}
-    Vec4(T x, T y, T z, T w) {this->x = x; this->y = y; this->z = z; this->w = w;}
-    Vec4 (const Vec2<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = 0; this->w = 1;}
+	Vec4(T x, T y, T z, T w) {this->x = x; this->y = y; this->z = z; this->w = w;}
+	Vec4 (const Vec2<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = 0; this->w = 1;}
 	Vec4 (const Vec3<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = ref.Z(); this->w = 1;}
 	Vec4& operator= (const Vec4<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = ref.Z(); this->w = ref.W(); return *this;}
 
 	T X() const { return x; }
-    T Y() const { return y; }
+	T Y() const { return y; }
 	T Z() const { return z; }
 	T W() const { return w; }
-    void setX(T x) { this->x = x; }
-    void setY(T y) { this->y = y; }
+	void setX(T x) { this->x = x; }
+	void setY(T y) { this->y = y; }
 	void setZ(T z) { this->z = z; }
 	void setW(T w) { this->w = w; }
 
-	Vec4 operator+=(const Vec4& rhs)
-    {
+	Vec4& operator+=(const Vec4& rhs)
+	{
 		if (this->w == rhs.W())
 		{
 			this->x += rhs.x;
@@ -39,8 +39,8 @@ public:
 			this->y += (rhs.y/rhs.w)*this->w;
 			this->z += (rhs.z/rhs.w)*this->w;
 		}
-        return *this;
-    }
+		return *this;
+	}
 
 	Vec4& operator*=(const T& f)
     {
@@ -217,9 +217,11 @@ Vec4<T> triNormal(const Vec4<T>* v)
 {
 	return Vec3<T>::triNormal(v[0],v[1],v[2]);
 }
-typedef Vec4<float> Vec4f;
-typedef Vec4<int> Vec4i;
-typedef Vec4<double> Vec4d;
+
+using Vec4f = Vec4<float>;
+using Vec4i = Vec4<int>;
+using Vec4d = Vec4<double>;
 
 
-#endif //VEC3_H
+
+#endif //VEC4_H

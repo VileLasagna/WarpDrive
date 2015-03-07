@@ -8,70 +8,72 @@ template <class T>
 class Vec2
 {
 public:
-    Vec2(int i = 0) : x(0), y(0) {} //the argument is to avoid a bug when making Vec2<Vec2> 
-    Vec2(T x, T y) : x(x), y(y) {}
+	Vec2(int = 0) : x(0), y(0) {} //the argument is to avoid a bug when making Vec2<Vec2>
+	Vec2(T x, T y) : x(x), y(y) {}
 	Vec2 (const Vec2<T>& ref) {this->x = ref.X(); this->y = ref.Y();}
 	Vec2& operator= (const Vec2<T>& ref) {this->x = ref.X(); this->y = ref.Y(); return *this;}
 
-    T X() const { return x; }
-    T Y() const { return y; }
-    void setX(T x) { this->x = x; }
-    void setY(T y) { this->y = y; }
+	T X() const { return x; }
+	T Y() const { return y; }
+	void setX(T x) { this->x = x; }
+	void setY(T y) { this->y = y; }
 
-   Vec2& operator+=(const Vec2& rhs)
-    {
-        this->x += rhs.x;
-        this->y += rhs.y;
-        return *this;
-    }
-      Vec2& operator-=(const Vec2& rhs)
-    {
-        this->x -= rhs.x;
-        this->y -= rhs.y;
-        return *this;
-    }
+	Vec2& operator+=(const Vec2& rhs)
+	{
+		x += rhs.x;
+		y += rhs.y;
+		return *this;
+	}
 
-   Vec2& operator*=(T f)
-    {
-        this->x *= f;
-        this->y *= f;
-        return *this;
-    }
+	Vec2& operator-=(const Vec2& rhs)
+	{
+		x -= rhs.x;
+		y -= rhs.y;
+		return *this;
+	}
 
-   Vec2& operator*=(const Vec2<T>& f)
-    {
-        this->x *= f.X();
-        this->y *= f.Y();
-        return *this;
-    }
+	Vec2& operator*=(T f)
+	{
+		x *= f;
+		y *= f;
+		return *this;
+	}
 
-   T sqMod()
-   {
-	   T ret = ((this->x)*(this->x))+((this->y)*(this->y)) ;
-	   return ret;
-   }
+	Vec2& operator*=(const Vec2<T>& f)
+	{
+		x *= f.X();
+		y *= f.Y();
+		return *this;
+	}
 
-   T mod()
-   {
-	   T sqm = this->sqMod();
-	   void* p = &sqm;
-	   if(typeid(T) == typeid(double))
-	   {
+	T sqMod()
+	{
+		T ret = (x*x)+(y*y);
+		return ret;
+	}
+
+	T mod()
+	{
+		//TODO: Come back to this after revising templates
+		T sqm = this->sqMod();
+		void* p = &sqm;
+		if(typeid(T) == typeid(double))
+		{
 		   return sqrt( *((double*) p));
-	   }
-	   if(typeid(T) == typeid(long double))
-	   {
+		}
+		if(typeid(T) == typeid(long double))
+		{
 		   return sqrt( *((long double*) p));
-	   }
-	   if ( ( typeid(T) == typeid(float) ) || ( typeid(T) == typeid(int) ) || ( typeid(T) == typeid(long) ) || ( typeid(T) == typeid(short) ) )
-	   {
+		}
+		if ( ( typeid(T) == typeid(float) ) || ( typeid(T) == typeid(int) ) || ( typeid(T) == typeid(long) ) || ( typeid(T) == typeid(short) ) )
+		{
 		   return sqrt( *((float*) p));
-	   }
-	   else
-	   {
+		}
+		else
+		{
 		   return 0; //sqrt will probably make no sense on this type.
-	   }
-   }
+		}
+	}
 
 
 protected:
@@ -122,8 +124,8 @@ bool operator != (const Vec2<T>&a, const Vec2<T>& b)
 	return ( !(a==b) );
 }
 
-typedef Vec2<float> Vec2f;
-typedef Vec2<int> Vec2i;
-typedef Vec2<double> Vec2d;
+using Vec2f = Vec2<float>;
+using Vec2i = Vec2<int>;
+using Vec2d = Vec2<double>;
 
 #endif

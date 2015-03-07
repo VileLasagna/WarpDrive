@@ -186,9 +186,11 @@ static Vec3<T> triNormal(const Vec3<T>* v)
 {
 	return triNormal(v[0],v[1],v[2]);
 }
-typedef Vec3<float> Vec3f;
-typedef Vec3<int> Vec3i;
-typedef Vec3<double> Vec3d;
+
+using Vec3f = Vec3<float>;
+using Vec3i = Vec3<int>;
+using Vec3d = Vec3<double>;
+
 
 
 #endif //VEC3_H
