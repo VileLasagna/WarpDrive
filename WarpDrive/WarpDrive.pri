@@ -104,7 +104,6 @@ SOURCES += \
     $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/SDLEventHandler.cpp     \
     $$_PRO_FILE_PWD_/WarpDrive/Display/Camera.cpp                 \
     $$_PRO_FILE_PWD_/WarpDrive/Display/SDLImage.cpp               \
-    $$_PRO_FILE_PWD_/WarpDrive/Display/SDLRGBColour.cpp           \
     $$_PRO_FILE_PWD_/WarpDrive/Display/SDLTTF.cpp                 \
     $$_PRO_FILE_PWD_/WarpDrive/Display/Texture.cpp                \
     $$_PRO_FILE_PWD_/WarpDrive/Events/glColorEvent.cpp            \

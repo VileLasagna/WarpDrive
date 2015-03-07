@@ -8,23 +8,17 @@ class SDLRGBAColour: public SDLRGBColour
 
 {
 public:
-	    SDLRGBAColour(
-        unsigned int r = 0, 
-        unsigned int g = 0, 
-        unsigned int b = 0,
-		unsigned int a = 255) 
-		{    
-			rgb[0] = r;
-			rgb[1] = g;
-			rgb[2] = b;
-			alpha = a;
-		}
+	constexpr SDLRGBAColour(	unsigned int red   = 0,
+						unsigned int green = 0,
+						unsigned int blue  = 0,
+						unsigned int alpha = 255 ):
+						a{alpha}{ SDLRGBColour(red,green,blue);}
 
-		unsigned int A() const {return alpha;}
+	constexpr auto A() const {return a;}
 		
 protected:
 
-	unsigned int alpha;
+	unsigned int a;
 };
 
 #endif //SDLRGBACOLOUR_H

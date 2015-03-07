@@ -4,17 +4,21 @@
 class SDLRGBColour
 {
 public:
-    SDLRGBColour(
-        unsigned int r = 0, 
-        unsigned int g = 0, 
-        unsigned int b = 0);
+	constexpr explicit SDLRGBColour(
+			unsigned int red   = 0,
+			unsigned int green = 0,
+			unsigned int blue  = 0   ):
+		r{red},
+		g{green},
+		b{blue} {}
+	constexpr auto R() const{ return g; }
+	constexpr auto G() const{ return g; }
+	constexpr auto B() const{ return b; }
 
-    unsigned int R() const;
-    unsigned int G() const;
-    unsigned int B() const;
 
 protected:
-    unsigned int rgb[3];
+    unsigned int r,g,b;
 };
+
 
 #endif
