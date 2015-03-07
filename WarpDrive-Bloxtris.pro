@@ -4,7 +4,7 @@
 
 
 
-CONFIG += app c++14
+CONFIG += app
 #QT -= gui core
 CONFIG -= qt
 
@@ -21,7 +21,8 @@ CONFIG(debug, debug|release) \
 
 #QMAKE_CXX = clang++
 #QMAKE_CC = clang
-#QMAKE_CXXFLAGS += -std=c++14 -stdlib=libstdc++
+#QMAKE_CXXFLAGS += -std=c++14 #-stdlib=libstdc++
+QMAKE_CXXFLAGS += -std=c++1y
 #QMAKE_CFLAGS += -stdlib=libstdc++
 #QMAKE_LINK = llvm-link
 #QMAKE_LFLAGS = -cppgen=program -v
