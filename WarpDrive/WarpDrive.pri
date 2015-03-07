@@ -1,4 +1,4 @@
-
+include ($$_PRO_FILE_PWD_/WarpDrive/include/external.pri)
 
 HEADERS += \
     $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Billboard.h                \
@@ -122,5 +122,5 @@ SOURCES += \
     $$_PRO_FILE_PWD_/WarpDrive/Display/Sprite.cpp                 \
     $$_PRO_FILE_PWD_/WarpDrive/Display/TextureSheet.cpp
 
-include ($$_PRO_FILE_PWD_/WarpDrive/include/external.pri)
+
 
