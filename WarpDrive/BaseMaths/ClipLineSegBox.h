@@ -9,6 +9,6 @@
 //  if there is all or some of the line seg left after clipping.
 // The line seg pointed to by clipped will be set to the clipped
 //  remnant of the original line seg, if clipped is not zero.
-bool Clip(const LineSeg& lineSeg, const BBox& box, LineSeg* clipped = 0);
+bool Clip(const LineSeg& lineSeg, const BBox& box, LineSeg* clipped = nullptr);
 
 #endif

@@ -9,10 +9,10 @@ class Frustrum
 {
 public:
 
-	Frustrum();
+	Frustrum() = default;
 	void Update();
-	bool isInside(const Vec4f& v);
-	bool intersects(const BBox& Box);
+	bool isInside(const Vec4f& v) const;
+	bool intersects(const BBox& Box) const;
 
 private:
 

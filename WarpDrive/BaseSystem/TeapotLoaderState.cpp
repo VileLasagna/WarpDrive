@@ -122,10 +122,10 @@ void TeapotLoaderState::onMouseButtonEvent(const SDL_MouseButtonEvent &e)
         glGetDoublev(GL_PROJECTION_MATRIX,proj);
         glGetIntegerv(GL_VIEWPORT,viewport);
 
-        int res = gluUnProject(e.x,viewport[3] - e.y,0,model, proj, viewport,&x,&y,&z);
+	   auto res = gluUnProject(e.x,viewport[3] - e.y,0,model, proj, viewport,&x,&y,&z);
         if (res == GL_FALSE)
         {
-            assert(0);
+		  //assert(0);
         }
 
         glPointSize(10);

@@ -1,9 +1,5 @@
 #include "BaseMaths/Frustrum.h"
 
-Frustrum::Frustrum()
-{
-	ClipMatrix.setIdentity();
-}
 
 
 void Frustrum::Update()
@@ -20,23 +16,24 @@ void Frustrum::Update()
 
 }
 
-bool Frustrum::isInside(const Vec4f& v)
+bool Frustrum::isInside(const Vec4f& v) const
 {
 	Vec4f V = Matrix44::Multiply(ClipMatrix,v);
 
 	float w = V.W();
-	return (V.X() >= (-w))&&(V.X() <= w)&&(V.Y() >= (-w))&&(V.Y() <= w)&&(V.Z() >= (-w))&&(V.Z() <= w);
-
-
-
+	return	(V.X() >= (-w)) &&
+			(V.X() <= w)    &&
+			(V.Y() >= (-w)) &&
+			(V.Y() <= w)    &&
+			(V.Z() >= (-w)) &&
+			(V.Z() <= w);
 }
 
-bool Frustrum::intersects(const BBox& )
+bool Frustrum::intersects(const BBox& ) const
 {
 
+#pragma message "TODO - Missing implementation"
+
 	return false;
-
-
-
 
 }
