@@ -1,7 +1,7 @@
 #ifndef RECT_H
 #define RECT_H
 
-#include "Display/SDLRGBAColour.h"
+#include "Display/RGBAColour.h"
 
 template <class T>
 class Rect

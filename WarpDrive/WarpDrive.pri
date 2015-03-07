@@ -43,8 +43,8 @@ HEADERS += \
     $$_PRO_FILE_PWD_/WarpDrive/Display/Camera.h                   \
     $$_PRO_FILE_PWD_/WarpDrive/Display/Colour.h                   \
     $$_PRO_FILE_PWD_/WarpDrive/Display/SDLImage.h                 \
-    $$_PRO_FILE_PWD_/WarpDrive/Display/SDLRGBAColour.h            \
-    $$_PRO_FILE_PWD_/WarpDrive/Display/SDLRGBColour.h             \
+    $$_PRO_FILE_PWD_/WarpDrive/Display/RGBAColour.h               \
+    $$_PRO_FILE_PWD_/WarpDrive/Display/RGBColour.h                \
     $$_PRO_FILE_PWD_/WarpDrive/Display/SDLTTF.h                   \
     $$_PRO_FILE_PWD_/WarpDrive/Display/Texture.h                  \
     $$_PRO_FILE_PWD_/WarpDrive/Events/glColorEvent.h              \

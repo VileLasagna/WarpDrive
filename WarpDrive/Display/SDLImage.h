@@ -8,7 +8,7 @@
 	#include <SDL2/SDL.h>
 #endif //_WIN32
 #include <string>
-#include "Display/SDLRGBColour.h"
+#include "Display/RGBColour.h"
 #include "BaseSystem/DisplayManager.h"
 #include "BaseMaths/Rect.h"
 #include "BaseMaths/Vec2.h"
