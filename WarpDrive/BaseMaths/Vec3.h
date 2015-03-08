@@ -9,27 +9,27 @@ class Vec3
 {
 public:
 
-	Vec3() : x(0), y(0), z(0) {}
-	Vec3(T x, T y, T z) {this->x = x; this->y = y; this->z = z;}
-	Vec3 (const Vec2<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = 0;}
-	Vec3 (const Vec3<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = ref.Z();}
+	constexpr explicit Vec3() : x(0), y(0), z(0) {}
+	constexpr explicit Vec3(T x, T y, T z): x{x}, y{y}, z{z} {}
+	constexpr explicit Vec3 (const Vec2<T>& ref): x{ref.X()}, y{ref.Y()}, z{0} {}
+	constexpr Vec3 (const Vec3<T>& ref): x{ref.X()}, y{ref.Y()}, z{ref.Z()} {}
 	Vec3& operator= (const Vec3<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = ref.Z(); return *this;}
 
-	T X() const { return x; }
-	T Y() const { return y; }
-	T Z() const { return z; }
-	void setX(T x) { this->x = x; }
-	void setY(T y) { this->y = y; }
-	void setZ(T z) { this->z = z; }
+	constexpr T X() const { return x; }
+	constexpr T Y() const { return y; }
+	constexpr T Z() const { return z; }
+	constexpr void setX(T newX) { x = newX; }
+	constexpr void setY(T newY) { y = newY; }
+	constexpr void setZ(T newZ) { z = newZ; }
 
-    T R() const { return x; }
-    T G() const { return y; }
-    T B() const { return z; }
-    void setR(T x) { this->x = x; }
-    void setG(T y) { this->y = y; }
-    void setB(T z) { this->z = z; }
+	constexpr T R() const { return x; }
+	constexpr T G() const { return y; }
+	constexpr T B() const { return z; }
+	constexpr void setR(T r) { x = r; }
+	constexpr void setG(T g) { y = g; }
+	constexpr void setB(T b) { z = b; }
 
-	Vec3& operator+=(const Vec3& rhs)
+	constexpr Vec3& operator+=(const Vec3& rhs)
 	{
 		this->x += rhs.x;
 		this->y += rhs.y;
@@ -37,29 +37,29 @@ public:
 		return *this;
 	}
 
-	Vec3& operator*=(const T& f)
+	constexpr Vec3& operator*=(const T& f)
 	{
-		this->x *= f;
-		this->y *= f;
-		this->z *= f;
+		x *= f;
+		y *= f;
+		z *= f;
 		return *this;
 	}
-	Vec3& operator/=(const T& f)
+	constexpr Vec3& operator/=(const T& f)
 	{
-		this->x /= f;
-		this->y /= f;
-		this->z /= f;
+		x /= f;
+		y /= f;
+		z /= f;
 		return *this;
 	}
-    Vec3& operator*=(const Vec3<T>& f)
-    {
-        this->x *= f.X();
-        this->y *= f.Y();
-		this->z *= f.Z();
-        return *this;
-    }
+	constexpr Vec3& operator*=(const Vec3<T>& rhs)
+	{
+		x *= rhs.X();
+		y *= rhs.Y();
+		z *= rhs.Z();
+		return *this;
+	}
 
-	T sqMod() const
+	constexpr T sqMod() const
 	{
 		return x*x+y*y+z*z;
 	}
@@ -104,7 +104,7 @@ protected:
 };
 
 template <class T>
-Vec3<T> operator+(const Vec3<T>& a, const Vec3<T>& b)
+constexpr Vec3<T> operator+(const Vec3<T>& a, const Vec3<T>& b)
 {
     Vec3<T> res = a;
     res += b;
@@ -112,7 +112,7 @@ Vec3<T> operator+(const Vec3<T>& a, const Vec3<T>& b)
 }
 
 template <class T>
-Vec3<T> operator*(const Vec3<T>&a, T f)
+constexpr Vec3<T> operator*(const Vec3<T>&a, T f)
 {
     Vec3<T> res = a;
     res *= f;
@@ -120,7 +120,7 @@ Vec3<T> operator*(const Vec3<T>&a, T f)
 }
 
 template <class T>
-Vec3<T> operator/(const Vec3<T>&a, T f)
+constexpr Vec3<T> operator/(const Vec3<T>&a, T f)
 {
     Vec3<T> res = a;
     res /= f;
@@ -128,41 +128,38 @@ Vec3<T> operator/(const Vec3<T>&a, T f)
 }
 
 template <class T>
-bool operator == (const Vec3<T>&a, const Vec3<T>& b)
+constexpr bool operator == (const Vec3<T>&a, const Vec3<T>& b)
 {
-	return ( (a.X()==b.X())&&(a.Y()==b.Y())&&(a.Z()==b.Z()));
+	return ( (a.X()==b.X())&&(a.Y()==b.Y())&&(a.Z()==b.Z()) );
 }
 
 template <class T>
-bool operator != (const Vec3<T>&a, const Vec3<T>& b)
+constexpr bool operator != (const Vec3<T>&a, const Vec3<T>& b)
 {
 	return !(a==b);
 }
 
 template <class T>
-Vec3<T> operator- (const Vec3<T>& v)
+constexpr Vec3<T> operator- (const Vec3<T>& v)
 {
-	Vec3<T> ret(-(v.X()), -(v.Y()), -(v.Z()));
+	Vec3<T> ret( -(v.X()), -(v.Y()), -(v.Z()) );
 	return ret;
 }
 
 template <class T>
-
-Vec3<T> operator- (const Vec3<T>& a, const Vec3<T>& b)
+constexpr Vec3<T> operator- (const Vec3<T>& a, const Vec3<T>& b)
 {
-	Vec3<T> ret(a.X() - b.X(), a.Y()-b.Y(), a.Z() - b.Z());
-	return ret;
+	return Vec3<T>(a.X() - b.X(), a.Y()-b.Y(), a.Z() - b.Z());
 }
 
 template <class T>
-static Vec3<T> crossProd (const Vec3<T>& a, const Vec3<T>& b)
+constexpr static Vec3<T> crossProd (const Vec3<T>& a, const Vec3<T>& b)
 {
-	Vec3<T> ret(a.Y()*b.Z() - a.Z()*b.Y(), a.Z()*b.X() - a.X()*b.Z(), a.X()*b.Y() - a.Y()*b.X());
-	return ret;
+	return Vec3<T>(a.Y()*b.Z() - a.Z()*b.Y(), a.Z()*b.X() - a.X()*b.Z(), a.X()*b.Y() - a.Y()*b.X());
 }
 
 template <class T>
-static T dotProd (const Vec3<T>& a, const Vec3<T>& b)
+constexpr static T dotProd (const Vec3<T>& a, const Vec3<T>& b)
 {
 	return a.X()*b.X() + a.Y()*b.Y() + a.Z()*b.Z();
 }

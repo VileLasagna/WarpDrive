@@ -10,48 +10,48 @@ class Vec4
 {
 public:
 
-	Vec4() : x(0), y(0), z(0), w(1) {}
-	Vec4(T x, T y, T z, T w) {this->x = x; this->y = y; this->z = z; this->w = w;}
-	Vec4 (const Vec2<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = 0; this->w = 1;}
-	Vec4 (const Vec3<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = ref.Z(); this->w = 1;}
-	Vec4& operator= (const Vec4<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = ref.Z(); this->w = ref.W(); return *this;}
+	constexpr Vec4() : x(0), y(0), z(0), w(1) {}
+	constexpr Vec4(T x, T y, T z, T w): x{x}, y{y}, z{z}, w{w} {}
+	constexpr Vec4 (const Vec2<T>& ref): x{ref.X()}, y{ref.Y()}, z{0}, w{1} {}
+	constexpr Vec4 (const Vec3<T>& ref): x{ref.X()}, y{ref.Y()}, z{ref.Z()}, w{1} {}
+	constexpr Vec4& operator= (const Vec4<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = ref.Z(); this->w = ref.W(); return *this;}
 
-	T X() const { return x; }
-	T Y() const { return y; }
-	T Z() const { return z; }
-	T W() const { return w; }
-	void setX(T x) { this->x = x; }
-	void setY(T y) { this->y = y; }
-	void setZ(T z) { this->z = z; }
-	void setW(T w) { this->w = w; }
+	constexpr T X() const { return x; }
+	constexpr T Y() const { return y; }
+	constexpr T Z() const { return z; }
+	constexpr T W() const { return w; }
+	constexpr void setX(T newX) { x = newX; }
+	constexpr void setY(T newY) { y = newY; }
+	constexpr void setZ(T newZ) { z = newZ; }
+	constexpr void setW(T newW) { w = newW; }
 
-	Vec4& operator+=(const Vec4& rhs)
+	constexpr Vec4& operator+=(const Vec4& rhs)
 	{
-		if (this->w == rhs.W())
+		if (w == rhs.W())
 		{
-			this->x += rhs.x;
-			this->y += rhs.y;
-			this->z += rhs.z;
+			x += rhs.X();
+			y += rhs.Y();
+			z += rhs.Z();
 		}
 		else
 		{
-			this->x += (rhs.x/rhs.w)*this->w;
-			this->y += (rhs.y/rhs.w)*this->w;
-			this->z += (rhs.z/rhs.w)*this->w;
+			x += (rhs.X()/rhs.W())*w;
+			y += (rhs.Y()/rhs.W())*w;
+			z += (rhs.Z()/rhs.W())*w;
 		}
 		return *this;
 	}
 
-	Vec4& operator*=(const T& f)
-    {
-        this->x *= f;
-        this->y *= f;
-		this->z *= f;
-        return *this;
-    }
+	constexpr Vec4& operator*=(const T& f)
+	{
+		x *= f;
+		y *= f;
+		z *= f;
+		return *this;
+	}
 
 
-	T sqMod() const
+	constexpr T sqMod() const
 	{
 		if (w == 1)
 		{
@@ -87,13 +87,13 @@ public:
 
 	void normalise()
 	{
-		T m = this->mod();
+		T m = mod();
 		x /= m*w;
 		y /= m*w;
 		z /= m*w;
 	}
 
-	Vec3<T> toVec3()
+	constexpr Vec3<T> toVec3()
 	{
 		if (w == 1)
 		{
@@ -116,23 +116,23 @@ protected:
 };
 
 template <class T>
-Vec4<T> operator+(const Vec4<T>& a, const Vec4<T>& b)
+constexpr Vec4<T> operator+(const Vec4<T>& a, const Vec4<T>& b)
 {
-    Vec4<T> res = a;
-    res += b;
-    return res;
+	Vec4<T> res = a;
+	res += b;
+	return res;
 }
 
 template <class T>
-Vec4<T> operator*(const Vec4<T>&a, T f)
+constexpr Vec4<T> operator*(const Vec4<T>&a, T f)
 {
-    Vec4<T> res = a;
-    res *= f;
-    return res;
+	Vec4<T> res = a;
+	res *= f;
+	return res;
 }
 
 template <class T>
-bool operator == (const Vec4<T>&a, const Vec4<T>& b)
+constexpr bool operator == (const Vec4<T>&a, const Vec4<T>& b)
 {
 	if ( a.W() == b.W())
 	{
@@ -145,21 +145,20 @@ bool operator == (const Vec4<T>&a, const Vec4<T>& b)
 }
 
 template <class T>
-bool operator != (const Vec4<T>&a, const Vec4<T>& b)
+constexpr bool operator != (const Vec4<T>&a, const Vec4<T>& b)
 {
 	return !(a==b);
 }
 
 template <class T>
-Vec4<T> operator- (const Vec4<T>& v)
+constexpr Vec4<T> operator- (const Vec4<T>& v)
 {
-    Vec4<T> ret(-(v.X()), -(v.Y()), -(v.Z()), v.W());
+	Vec4<T> ret(-(v.X()), -(v.Y()), -(v.Z()), v.W());
 	return ret;
 }
 
 template <class T>
-
-Vec4<T> operator- (const Vec4<T>& a, const Vec4<T>& b)
+constexpr Vec4<T> operator- (const Vec4<T>& a, const Vec4<T>& b)
 {
 	Vec4<T> ret;
 	if( a.W() == b.W())
@@ -174,7 +173,7 @@ Vec4<T> operator- (const Vec4<T>& a, const Vec4<T>& b)
 }
 
 template <class T>
-Vec4<T> crossProd (const Vec4<T>& a, const Vec4<T>& b)
+constexpr Vec4<T> crossProd (const Vec4<T>& a, const Vec4<T>& b)
 {
 	Vec4<T> ret;
 	if (a.W() == b.W())
@@ -183,16 +182,16 @@ Vec4<T> crossProd (const Vec4<T>& a, const Vec4<T>& b)
 	}
 	else
 	{
-		ret = Vec4<T>((a.Y()/a.W())*(b.Z()/b.W()) - (a.Z()/a.W())*(b.Y()/b.W()),
-						(a.Z()/a.W())*(b.X()/b.W()) - (a.X()/a.W())*(b.Z()/b.W()),
-						(a.X()/a.W())*(b.Y()/b.W()) - (a.Y()/a.W())*(b.X()/b.W()),
-						a.W());
+		ret = Vec4<T>(	(a.Y()/a.W())*(b.Z()/b.W()) - (a.Z()/a.W())*(b.Y()/b.W()),
+					(a.Z()/a.W())*(b.X()/b.W()) - (a.X()/a.W())*(b.Z()/b.W()),
+					(a.X()/a.W())*(b.Y()/b.W()) - (a.Y()/a.W())*(b.X()/b.W()),
+					a.W());
 	}
 	return ret;
 }
 
 template <class T>
-T dotProd (const Vec4<T>& a, const Vec4<T>& b)
+constexpr T dotProd (const Vec4<T>& a, const Vec4<T>& b)
 {
 	if(a.W() == b.W())
 	{
