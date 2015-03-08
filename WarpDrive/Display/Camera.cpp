@@ -13,7 +13,7 @@ Camera::Camera():
 	up(Vec3f(0,1,0)),
 	targetObj(0),
 	orbitFactors(1,0,1),
-	relativePos(0),
+	relativePos(),
 	orbitRadius(0),
 	orbitPeriod(1),
 	time(0)

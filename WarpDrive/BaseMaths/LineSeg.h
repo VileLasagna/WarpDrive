@@ -11,16 +11,16 @@ class LineSeg
 {
 
 public:
-	LineSeg() {p0 = Vec3f(0,0,0); p1 = Vec3f(0,0,0);}
+	LineSeg(): p0{Vec3f(0,0,0)},p1{Vec3f(0,0,0)}{}
 
-	LineSeg(const Vec3f& a, const Vec3f& b) {p0 = a; p1 = b;}
-	LineSeg(float ax, float ay, float az, float bx, float by, float bz){ p0 = Vec3f(ax,ay,az); p1 = Vec3f(bx,by,bz);}
+	LineSeg(const Vec3f& a, const Vec3f& b): p0{a}, p1{b} {}
+	LineSeg(float ax, float ay, float az, float bx, float by, float bz): p0 {Vec3f(ax,ay,az)}, p1{Vec3f(bx,by,bz)} {}
 
 
 	Vec3f getStart() const {return p0;}
 	Vec3f getEnd() const {return p1;}
 
-	void Draw() ;
+	void Draw();
 
 	bool contains(const Vec3f& ) const {return true;}
 	std::pair<bool, Vec3f> intersects (const LineSeg& other) const ;
