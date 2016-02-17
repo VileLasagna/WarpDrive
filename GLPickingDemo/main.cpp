@@ -8,10 +8,10 @@
 #include "BaseSystem/TeapotLoaderState.h"
 
 
-int main(int argc, char* argv[])
+int main(/*int argc, char* argv[]*/)
 {
 
-    glutInit(&argc, argv);
+    //glutInit(&argc, argv);
     DisplayManager::instance()->setSize(1280,728);
     DisplayManager::instance()->Init(false,true);
     Game::instance()->addState(new TeapotLoaderState());

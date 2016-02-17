@@ -9,10 +9,10 @@ DEPENDPATH += \
 win32 \
 {
     HEADERS += \
-        $$_PRO_FILE_PWD_/WarpDrive/include/GL/glut.h                      \
-        $$_PRO_FILE_PWD_/WarpDrive/include/GL/freeglut.h                  \
-        $$_PRO_FILE_PWD_/WarpDrive/include/GL/freeglut_ext.h              \
-        $$_PRO_FILE_PWD_/WarpDrive/include/GL/freeglut_std.h              \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/GL/glut.h                      \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/GL/freeglut.h                  \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/GL/freeglut_ext.h              \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/GL/freeglut_std.h              \
         $$_PRO_FILE_PWD_/WarpDrive/include/SDL/begin_code.h               \
         $$_PRO_FILE_PWD_/WarpDrive/include/SDL/close_code.h               \
         $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL.h                      \

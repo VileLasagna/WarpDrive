@@ -1,5 +1,5 @@
 #include "BaseMaths/LineSeg.h"
-#include <GL/glut.h>
+#include <GL/glu.h>
 
 
 void LineSeg::Draw()

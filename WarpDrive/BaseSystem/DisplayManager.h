@@ -10,7 +10,7 @@
 #endif //WIN32
 
 #include <utility>
-#include <GL/glut.h>
+#include <GL/glu.h>
 #include "BaseMaths/Matrix44.h"
 #include <string>
 

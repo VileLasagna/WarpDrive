@@ -7,7 +7,7 @@
 #include "Sound/SoundManager.h"
 #include <time.h>
 #include <math.h>
-#include <GL/glut.h>
+#include <GL/glu.h>
 
 
 MainGS::MainGS()

@@ -42,7 +42,7 @@ public:
 		glEnable(GL_LIGHTING);
 		glPushMatrix();
 			glTranslatef(pos.X(),pos.Y(),pos.Z());
-			glutSolidTeapot(size);
+            //glutSolidTeapot(size);
 		glPopMatrix();
         glEnd();
 	}

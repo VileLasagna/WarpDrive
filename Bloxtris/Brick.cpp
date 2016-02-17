@@ -1,5 +1,5 @@
 #include "Brick.h"
-#include <GL/glut.h>
+#include <GL/glu.h>
 #include "Events/TimedRemoveEvent.h"
 
 

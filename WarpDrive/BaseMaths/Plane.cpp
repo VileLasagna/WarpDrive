@@ -7,7 +7,7 @@
 #include "BaseMaths/Plane.h"
 #include "BaseMaths/Matrix44.h"
 #include "BaseMaths/Quaternion.h"
-#include <GL/glut.h>
+#include <GL/glu.h>
 
 
 

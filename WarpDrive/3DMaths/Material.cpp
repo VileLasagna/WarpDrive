@@ -4,7 +4,7 @@
 #ifdef WIN32
     #include <windows.h>
 #endif //WIN32
-#include <GL/glut.h>
+#include <GL/glu.h>
 
 
 Material::Material()

@@ -4,7 +4,7 @@
 #include "Display/Texture.h"
 #include "Sound/SoundManager.h"
 #include "Sound/SoundFX.h"
-#include <GL/glut.h>
+#include <GL/glu.h>
 
 
 Grid::Grid()
