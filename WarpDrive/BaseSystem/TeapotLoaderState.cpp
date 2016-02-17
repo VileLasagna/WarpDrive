@@ -2,7 +2,7 @@
 #ifdef WIN32
     #include <windows.h>
 #endif //WIN32
-#include "GL/glut.h"
+#include "GL/glu.h"
 #include<string>
 
 
@@ -12,7 +12,20 @@ TeapotLoaderState::TeapotLoaderState()
    self = 0;
    ret = self;
    Reset();
-   pots.push_back(new Sphere(0, 0, 0, 3));
+   pots.push_back(new Sphere(0, 0, 0, 2));
+
+   pots.push_back(new Sphere(3, 6, 4, 2));
+   pots.push_back(new Sphere(-2, 4, 0, 1));
+   pots.push_back(new Sphere(6, 3.5, 7, 2));
+   pots.push_back(new Sphere(-3, -10, -10, 2));
+   pots.push_back(new Sphere(-10, -4, 0, 4));
+   pots.push_back(new Sphere(-6, 3.5, -2.5, 1));
+
+   for(Sphere* p: pots)
+   {
+       p->setWireframe(false);
+   }
+
    //cam.setTarget(pots.front()->getCentre());
    cam.setTarget(Vec3f(0,0,0));
    cam.setPos(Vec3f(0,0,20));
@@ -97,7 +110,65 @@ void TeapotLoaderState::onKeyboardEvent(const SDL_KeyboardEvent &e)
     }
     else
     {
+        auto velocity = 6.f;
+        auto v = cam.getVel();
 
+        if (e.keysym.sym == SDLK_LEFT)
+        {
+            if(e.type == SDL_KEYDOWN)
+            {
+                cam.setVel( Vec3f(-velocity, v.Y(), v.Z()) );
+            }
+            else
+            {
+                if(e.type == SDL_KEYUP)
+                {
+                    cam.setVel( Vec3f(0, v.Y(), v.Z()) );
+                }
+            }
+        }
+        if (e.keysym.sym == SDLK_RIGHT)
+        {
+            if(e.type == SDL_KEYDOWN)
+            {
+                cam.setVel( Vec3f(velocity, v.Y(), v.Z()) );
+            }
+            else
+            {
+                if(e.type == SDL_KEYUP)
+                {
+                    cam.setVel( Vec3f(0, v.Y(), v.Z()) );
+                }
+            }
+        }
+        if (e.keysym.sym == SDLK_DOWN)
+        {
+            if(e.type == SDL_KEYDOWN)
+            {
+                cam.setVel( Vec3f(v.X(), -velocity, v.Z()) );
+            }
+            else
+            {
+                if(e.type == SDL_KEYUP)
+                {
+                    cam.setVel(Vec3f(v.X(), 0, v.Z()));
+                }
+            }
+        }
+        if (e.keysym.sym == SDLK_UP)
+        {
+            if(e.type == SDL_KEYDOWN)
+            {
+                cam.setVel( Vec3f(v.X(), velocity, v.Z()) );
+            }
+            else
+            {
+                if(e.type == SDL_KEYUP)
+                {
+                    cam.setVel(Vec3f(v.X(), 0, v.Z()) );
+                }
+            }
+        }
 
     }
 }
@@ -110,19 +181,33 @@ void TeapotLoaderState::onMouseButtonEvent(const SDL_MouseButtonEvent &e)
     }
     if (e.button == SDL_BUTTON_LEFT && e.type == SDL_MOUSEBUTTONUP)
     {
+        for(Sphere* p: pots)
+        {
+            p->setColour(1, 1, 1);
+        }
+
         GLdouble x, y, z;
+        GLfloat winZ;
         x = 0;
         y = 0;
         z = 0;
-        GLdouble model[16];
+        winZ = 0;
+        GLdouble model[16] /*= {1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1}*/;
         GLdouble proj[16];
         GLint viewport[4];
 
-        glGetDoublev(GL_MODELVIEW,model);
+        glGetDoublev(GL_MODELVIEW_MATRIX,model);
+
         glGetDoublev(GL_PROJECTION_MATRIX,proj);
         glGetIntegerv(GL_VIEWPORT,viewport);
 
-	   auto res = gluUnProject(e.x,viewport[3] - e.y,0,model, proj, viewport,&x,&y,&z);
+
+        glReadPixels(e.x, viewport[3] - e.y, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
+
+
+       auto res = gluUnProject(e.x,viewport[3] - e.y, winZ , model, proj, viewport, &x,&y,&z);
+
+
         if (res == GL_FALSE)
         {
 		  //assert(0);
@@ -135,16 +220,33 @@ void TeapotLoaderState::onMouseButtonEvent(const SDL_MouseButtonEvent &e)
         glEnd();
 
 
-        std::string title = "Unprojected X: "+ std::to_string(x)+"  Unprojected Y: " + std::to_string(y);
+        std::string title = "Screen X Y Z: "+ std::to_string(e.x)+" " + std::to_string(e.y) + " " +  std::to_string(winZ) +
+                " // World X Y Z: "+ std::to_string(x)+" " + std::to_string(y) + " " +  std::to_string(z);
         DisplayManager::instance()->setTitle(title);
         //pots.push_back(new Sphere(4, 0, 0, 1));
 
+        Vec3f point (x,y,z);
+
+        for(Sphere* p: pots)
+        {
+            auto trace = point - p->getCentre();
+            if( trace.sqMod() <= p->getRadius()*p->getRadius() )
+            {
+                p->setColour(0, 1, 0.5f);
+            }
+            else
+            {
+                p->setColour(1,1,1);
+            }
+        }
+
     }
-    if (e.button == SDL_BUTTON_MIDDLE)
+    if (e.button == SDL_BUTTON_MIDDLE  && e.type == SDL_MOUSEBUTTONUP)
     {
         for(Sphere* p: pots)
         {
-            p->setColour(1,0,1);
+            //p->setColour(1,0,1);
+            p->setWireframe(!p->getWireframe());
         }
 
     }
