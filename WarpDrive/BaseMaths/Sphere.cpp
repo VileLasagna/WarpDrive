@@ -12,19 +12,26 @@ Sphere::Sphere():
 	Centre(Vec3f(0,0,0)),
 	Radius(0),
 	colour(GLRGBColour(1,1,1)),
-	quadric(initQuadric()){}
+    quadric(initQuadric()),
+    wireframe(true)
+    {}
+
 
 Sphere::Sphere(const Vec3f& centre, float r):
 	Centre(centre),
 	Radius(r),
 	colour(GLRGBColour(1,1,1)),
-	quadric(initQuadric()){}
+    quadric(initQuadric()),
+    wireframe(true)
+    {}
 
 Sphere::Sphere(float centreX, float centreY, float centreZ, float R):
 	Centre{Vec3f{centreX,centreY,centreZ}},
 	Radius{R},
 	colour{GLRGBColour{1,1,1}},
-	quadric(initQuadric()){}
+    quadric(initQuadric()),
+    wireframe(true)
+    {}
 
 
 void Sphere::setPos(float X, float Y, float Z)
@@ -40,6 +47,20 @@ void Sphere::setPos(const Vec3f& pos)
 void Sphere::setColour(float R, float G, float B)
 {
     colour = GLRGBColour{R,G,B};
+}
+
+void Sphere::setWireframe(bool b)
+{
+    wireframe = b;
+    if (b)
+    {
+        gluQuadricDrawStyle(quadric.get(), GLU_LINE);
+    }
+    else
+    {
+        gluQuadricDrawStyle(quadric.get(), GLU_FILL);
+
+    }
 }
 
 void Sphere::setColour(const Vec3f& pos)
@@ -71,8 +92,10 @@ void Sphere::Draw() const
     glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
 
     glPushMatrix();
+
         glTranslatef(Centre.X(),Centre.Y(),Centre.Z());
-	   gluSphere(quadric.get(), Radius,16,16);
+        gluSphere(quadric.get(), Radius,roundness,roundness);
+
     glPopMatrix();
 
     glColor3f(1,1,1);

@@ -15,6 +15,8 @@ using ptr_GLUquad = std::unique_ptr<GLUquadric,decltype(gluQuadDeleter)>;
 
 class Sphere
 {
+    static constexpr const unsigned int roundness = 24;
+
 public:
 
 	Sphere();
@@ -27,11 +29,13 @@ public:
 	void setRadius(float R);
 	void setColour(const Vec3f& pos);
 	void setColour(float X, float Y, float Z);
+    void setWireframe(bool b);
 
 	bool collides(const Sphere& other) const;
 
-	Vec3f getCentre() const {return Centre;}
-	float getRadius() const {return Radius;}
+    Vec3f getCentre()   const   {return Centre;}
+    float getRadius()   const   {return Radius;}
+    bool getWireframe() const   {return wireframe;}
 	~Sphere() = default;
 
 
@@ -42,6 +46,7 @@ private:
 	float Radius;
 	ptr_GLUquad quadric;
 	GLRGBColour colour;
+    bool wireframe;
 
 	ptr_GLUquad initQuadric();
 
