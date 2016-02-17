@@ -18,7 +18,7 @@ public:
 	Model(const std::string& filename);
 	ModelLoader* Loader(const std::string& FileFormat, ModelLoader* L = 0); //0 gets the function, a pointer sets is to that.
 	bool Load(ManagedFile*) override;
-	const char* getType() const {return "Model";}
+    const char* getType() const override {return "Model";}
 	void Draw() override;
 	void Update() override;
 	
