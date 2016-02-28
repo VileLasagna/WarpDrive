@@ -26,7 +26,7 @@ Plane::Plane()
 	Origin = Vec3f();
 	D0 = D;
 	showNormal = 0;
-	TEX = 0;
+    TEX = nullptr;
 }
 
 Plane::Plane (float A, float B, float C, float d) 
@@ -49,8 +49,8 @@ Plane::Plane (float A, float B, float C, float d)
 	drawWire = true;
 	Origin = Vec3f(Nx*D,Ny*D,Nz*D);
 	D0 = D;
-	showNormal = 0;
-	TEX = 0;
+    showNormal = false;
+    TEX = nullptr;
 }
 
 void Plane::useTexture(Texture *tex, bool Tile)
@@ -71,8 +71,8 @@ Plane::Plane (const Vec3f& Normal, float Distance)
 	drawWire = true;
 	Origin = Vec3f(Nx*D,Ny*D,Nz*D);
 	D0 = D;
-	showNormal = 0;
-	TEX = 0;
+    showNormal = false;
+    TEX = nullptr;
 }
 
 Plane::Plane (const Vec3f& P1, const Vec3f& P2, const Vec3f& P3) 
@@ -87,7 +87,7 @@ Plane::Plane (const Vec3f& P1, const Vec3f& P2, const Vec3f& P3)
 	drawWire = true;
 	Origin = Vec3f(Nx*D,Ny*D,Nz*D);
 	D0 = D;
-	showNormal = 0;
+    showNormal = false;
 	TEX = 0;
 }
 
@@ -221,6 +221,9 @@ void Plane::Draw() const
 			{
 				if(drawWire)
 				{
+//                    glDisable(GL_LIGHTING);
+//                    glEnable(GL_COLOR);
+//                    glColor3f(1,1,1);
 					glBegin(GL_LINE_LOOP);
 						
 						glNormal3f(0,1,0);
@@ -233,13 +236,15 @@ void Plane::Draw() const
 						glVertex3f(x*cellSize,0,(z+1)*cellSize);
 
 					glEnd();
+//                    glDisable(GL_COLOR);
+//                    glEnable(GL_LIGHTING);
 				}
 				else
 				{
-					if (TEX)
+                    if (TEX != nullptr)
 					{
 						TEX->UseThisTexture();
-					glBegin(GL_QUADS);
+                        glBegin(GL_QUADS);
 						if(!tile)
 						{
 							glTexCoord2f(1- texStepX*x, 1-texStepY*z);
