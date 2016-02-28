@@ -18,13 +18,13 @@ public:
 
 protected:
     // Every concrete Octree type needs a bounding box
-    BBox box;
+    AABBox box;
 };
 
 class OctreeLeaf : public Octree
 {
 public:
-	OctreeLeaf(const std::vector<Tri>& tris, const BBox& box);
+    OctreeLeaf(const std::vector<Tri>& tris, const AABBox& box);
 	virtual void getIntersectingLeaves(const Capsule& capsule, std::vector<OctreeLeaf*>* pLeaves);
 
     virtual void Draw();
@@ -36,7 +36,7 @@ private:
 class OctreeComposite : public Octree
 {
 public:
-    OctreeComposite(const BBox& box);
+    OctreeComposite(const AABBox& box);
 
 	virtual void getIntersectingLeaves(const Capsule& capsule, std::vector<OctreeLeaf*>* pLeaves);
 

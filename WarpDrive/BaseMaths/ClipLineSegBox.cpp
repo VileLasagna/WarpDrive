@@ -96,7 +96,7 @@ bool ClipAxis(
     return true;
 }
 
-bool Clip(const LineSeg& ls, const BBox& box, LineSeg* clipped)
+bool Clip(const LineSeg& ls, const AABBox& box, LineSeg* clipped)
 {
     float t0 = 0;
     float t1 = 1.0f;

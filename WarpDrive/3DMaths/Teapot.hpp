@@ -24,7 +24,7 @@ public:
 		vel+= accel*DisplayManager::instance()->getDtSecs(); 
 		pos+= vel*DisplayManager::instance()->getDtSecs();
         float halfsize = size*1.3f;
-		Box = BBox(pos.X()-halfsize,pos.X()+halfsize,pos.Y()-halfsize,pos.Y()+halfsize,pos.Z()-halfsize,pos.Z()+halfsize);
+        Box = AABBox(pos.X()-halfsize,pos.X()+halfsize,pos.Y()-halfsize,pos.Y()+halfsize,pos.Z()-halfsize,pos.Z()+halfsize);
 		type = "Teapot";
 	}
 	void Draw() 
@@ -53,7 +53,7 @@ private:
 
 	float size;
 	Texture* tex;
-	BBox Box;
+    AABBox Box;
 
 
 

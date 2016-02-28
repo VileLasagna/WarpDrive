@@ -12,7 +12,7 @@ public:
 	Frustrum() = default;
 	void Update();
 	bool isInside(const Vec4f& v) const;
-	bool intersects(const BBox& Box) const;
+    bool intersects(const AABBox& Box) const;
 
 private:
 

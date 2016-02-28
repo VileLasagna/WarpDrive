@@ -29,7 +29,7 @@ bool Frustrum::isInside(const Vec4f& v) const
 			(V.Z() <= w);
 }
 
-bool Frustrum::intersects(const BBox& ) const
+bool Frustrum::intersects(const AABBox& ) const
 {
 
 #pragma message "TODO - Missing implementation"
