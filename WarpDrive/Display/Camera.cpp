@@ -63,7 +63,34 @@ void Camera::setTarget(const GameObject *targetObject)
 
 void Camera::setRelativePos(const Vec3f &Relative)
 {
-	relativePos = Relative;
+    relativePos = Relative;
+}
+
+Ray Camera::traceRay(int x, int y) const noexcept
+{
+    GLdouble worldX, worldY, worldZ;
+    //GLfloat winZ;
+    worldX = 0;
+    worldY = 0;
+    worldZ = 0;
+    //winZ = 0;
+    GLdouble model[16];
+    GLdouble proj[16];
+    GLint viewport[4];
+
+    glGetDoublev(GL_MODELVIEW_MATRIX,model);
+
+    glGetDoublev(GL_PROJECTION_MATRIX,proj);
+    glGetIntegerv(GL_VIEWPORT,viewport);
+
+
+//    glReadPixels(e.x, viewport[3] - e.y, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
+
+
+   auto res = gluUnProject(x,viewport[3] - y, 0 , model, proj, viewport, &worldX, &worldY, &worldZ);
+
+   return Ray( LineSeg(pos, Vec3f(worldX,worldY,worldZ) ) );
+
 }
 
 void Camera::Draw()

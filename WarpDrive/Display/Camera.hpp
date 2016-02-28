@@ -7,6 +7,7 @@
 #endif //WIN32
 
 #include "BaseMaths/Vec3.hpp"
+#include "BaseMaths/ray.hpp"
 #include "BaseSystem/GameObject.hpp"
 #include <utility>
 #include <GL/gl.h>
@@ -25,6 +26,9 @@ public:
 	std::pair<bool, Vec3f> getTarget() const;
 	void setRelativePos(const Vec3f& Relative); //Relative Position to a targeted Object
 	Vec3f getRelativePos() const {return relativePos;}
+
+    Ray traceRay(int x, int y) const noexcept;
+
     //orbits around a target object (if any). X, Y and Z are the factors by which the camera moves in each axis
     void orbit(float X, float Y, float Z, float radius, float periodSecs = 1);
 
