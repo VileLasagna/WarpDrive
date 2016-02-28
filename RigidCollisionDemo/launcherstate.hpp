@@ -4,6 +4,7 @@
 #include "WarpDrive/BaseSystem/GameState.hpp"
 #include "WarpDrive/Display/Camera.hpp"
 #include "WarpDrive/BaseMaths/Plane.hpp"
+#include "WarpDrive/BaseMaths/LineSeg.hpp"
 
 #include "ball.hpp"
 

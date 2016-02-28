@@ -13,19 +13,6 @@ LauncherState::LauncherState()
    self = 0;
    ret = self;
    Reset();
-//   pots.push_back(new Sphere(0, 0, 0, 2));
-
-//   pots.push_back(new Sphere(3, 6, 4, 2));
-//   pots.push_back(new Sphere(-2, 4, 0, 1));
-//   pots.push_back(new Sphere(6, 3.5, 7, 2));
-//   pots.push_back(new Sphere(-3, -10, -10, 2));
-//   pots.push_back(new Sphere(-10, -4, 0, 4));
-//   pots.push_back(new Sphere(-6, 3.5, -2.5, 1));
-
-//   for(Sphere* p: pots)
-//   {
-//       p->setWireframe(false);
-//   }
 
    cam.setTarget(Vec3f(0,0,0));
    cam.setPos(Vec3f(0,400,-700));
@@ -41,8 +28,6 @@ LauncherState::LauncherState()
 
 }
 
-
-
 void LauncherState::Draw()
 {
 
@@ -51,10 +36,10 @@ void LauncherState::Draw()
         b->Draw();
     }
 
+
     floor.Draw();
 
 }
-
 
 void LauncherState::Reset()
 {
@@ -130,7 +115,7 @@ void LauncherState::onKeyboardEvent(const SDL_KeyboardEvent &e)
         {
             if(e.type == SDL_KEYDOWN)
             {
-                cam.setVel( Vec3f(-velocity, v.Y(), v.Z()) );
+                cam.setVel( Vec3f(velocity, v.Y(), v.Z()) );
             }
             else
             {
@@ -144,7 +129,7 @@ void LauncherState::onKeyboardEvent(const SDL_KeyboardEvent &e)
         {
             if(e.type == SDL_KEYDOWN)
             {
-                cam.setVel( Vec3f(velocity, v.Y(), v.Z()) );
+                cam.setVel( Vec3f(-velocity, v.Y(), v.Z()) );
             }
             else
             {
@@ -188,79 +173,26 @@ void LauncherState::onKeyboardEvent(const SDL_KeyboardEvent &e)
 
 void LauncherState::onMouseButtonEvent(const SDL_MouseButtonEvent &e)
 {
-//    if (e.button == SDL_BUTTON_RIGHT && e.type == SDL_MOUSEBUTTONUP)
-//    {
-//        ret = -1;
-//    }
-//    if (e.button == SDL_BUTTON_LEFT && e.type == SDL_MOUSEBUTTONUP)
-//    {
-//        for(Sphere* p: pots)
-//        {
-//            p->setColour(1, 1, 1);
-//        }
+    if (e.button == SDL_BUTTON_RIGHT && e.type == SDL_MOUSEBUTTONUP)
+    {
+        ret = -1;
+    }
+    if (e.button == SDL_BUTTON_LEFT && e.type == SDL_MOUSEBUTTONUP)
+    {
+        static constexpr float launchforce = 300.f;
+        Ray r = cam.traceRay(e.x, e.y);
+        Ball* b = new Ball(cam.getPos(), r.Direction()*launchforce);
+        b->setRadius(30);
+        balls.push_back(b);
 
-//        GLdouble x, y, z;
-//        GLfloat winZ;
-//        x = 0;
-//        y = 0;
-//        z = 0;
-//        winZ = 0;
-//        GLdouble model[16] /*= {1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1}*/;
-//        GLdouble proj[16];
-//        GLint viewport[4];
+    }
+    if (e.button == SDL_BUTTON_MIDDLE  && e.type == SDL_MOUSEBUTTONUP)
+    {
+        for(Ball* b: balls)
+        {
+            //p->setColour(1,0,1);
+            //b->setWireframe(!b->getWireframe());
+        }
 
-//        glGetDoublev(GL_MODELVIEW_MATRIX,model);
-
-//        glGetDoublev(GL_PROJECTION_MATRIX,proj);
-//        glGetIntegerv(GL_VIEWPORT,viewport);
-
-
-//        glReadPixels(e.x, viewport[3] - e.y, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
-
-
-//       auto res = gluUnProject(e.x,viewport[3] - e.y, winZ , model, proj, viewport, &x,&y,&z);
-
-
-//        if (res == GL_FALSE)
-//        {
-//          //assert(0);
-//        }
-
-//        glPointSize(10);
-//        glBegin(GL_POINTS);
-//        glColor3f(1, 0, 0);
-//            glVertex3f(x, y, z);
-//        glEnd();
-
-
-//        std::string title = "Screen X Y Z: "+ std::to_string(e.x)+" " + std::to_string(e.y) + " " +  std::to_string(winZ) +
-//                " // World X Y Z: "+ std::to_string(x)+" " + std::to_string(y) + " " +  std::to_string(z);
-//        DisplayManager::instance()->setTitle(title);
-//        //pots.push_back(new Sphere(4, 0, 0, 1));
-
-//        Vec3f point (x,y,z);
-
-//        for(Sphere* p: pots)
-//        {
-//            auto trace = point - p->getCentre();
-//            if( trace.sqMod() <= p->getRadius()*p->getRadius() )
-//            {
-//                p->setColour(0, 1, 0.5f);
-//            }
-//            else
-//            {
-//                p->setColour(1,1,1);
-//            }
-//        }
-
-//    }
-//    if (e.button == SDL_BUTTON_MIDDLE  && e.type == SDL_MOUSEBUTTONUP)
-//    {
-//        for(Sphere* p: pots)
-//        {
-//            //p->setColour(1,0,1);
-//            p->setWireframe(!p->getWireframe());
-//        }
-
-//    }
+    }
 }
