@@ -1,9 +1,11 @@
 #include "ball.hpp"
 
 
-Ball::Ball()
+Ball::Ball(Vec3f position, Vec3f velocity)
 {
     static constexpr float gravity = 296.f;
+    pos = position;
+    vel = velocity;
     accel = Vec3f(0,-gravity,0);
     body.setPos(pos);
     body.setRadius(10);
