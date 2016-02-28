@@ -68,7 +68,8 @@ HEADERS += \
     $$_PRO_FILE_PWD_/WarpDrive/Display/AnimSheet.hpp                \
     $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/SDLFontManager.hpp        \
     $$_PRO_FILE_PWD_/WarpDrive/Display/Sprite.hpp                   \
-    $$_PRO_FILE_PWD_/WarpDrive/Display/TextureSheet.hpp
+    $$_PRO_FILE_PWD_/WarpDrive/Display/TextureSheet.hpp \
+    $$PWD/BaseMaths/ray.hpp
 
 
 SOURCES += \
@@ -119,6 +120,7 @@ SOURCES += \
     $$_PRO_FILE_PWD_/WarpDrive/Display/AnimSheet.cpp              \
     $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/SDLFontManager.cpp      \
     $$_PRO_FILE_PWD_/WarpDrive/Display/Sprite.cpp                 \
-    $$_PRO_FILE_PWD_/WarpDrive/Display/TextureSheet.cpp
+    $$_PRO_FILE_PWD_/WarpDrive/Display/TextureSheet.cpp \
+    $$PWD/BaseMaths/ray.cpp
 
 
