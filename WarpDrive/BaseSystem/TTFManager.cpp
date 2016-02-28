@@ -1,5 +1,5 @@
-#include "BaseSystem/TTFManager.h"
-#include "BaseSystem/Err.h"
+#include "BaseSystem/TTFManager.hpp"
+#include "BaseSystem/Err.hpp"
 
 
 TTFManager* TTFManager::instance()

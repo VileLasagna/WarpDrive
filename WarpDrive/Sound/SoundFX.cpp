@@ -1,5 +1,5 @@
-#include "Sound/SoundFX.h"
-#include "BaseSystem/Err.h"
+#include "Sound/SoundFX.hpp"
+#include "BaseSystem/Err.hpp"
 
 
 SoundFX::SoundFX(SDL_RWops* source)

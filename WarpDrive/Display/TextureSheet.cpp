@@ -1,4 +1,4 @@
-#include "Display/TextureSheet.h"
+#include "Display/TextureSheet.hpp"
 #include <assert.h>
 
 TextureSheet::TextureSheet()

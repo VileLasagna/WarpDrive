@@ -1,6 +1,6 @@
-#include "3DMaths/Model.h"
-#include "BaseSystem/StringProc.h"
-#include "BaseSystem/Err.h"
+#include "3DMaths/Model.hpp"
+#include "BaseSystem/StringProc.hpp"
+#include "BaseSystem/Err.hpp"
 #include <map>
 
 

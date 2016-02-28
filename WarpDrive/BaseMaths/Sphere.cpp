@@ -1,4 +1,4 @@
-#include "BaseMaths/Sphere.h"
+#include "BaseMaths/Sphere.hpp"
 #ifdef WIN32
     #include <windows.h>
 #endif //WIN32

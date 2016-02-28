@@ -1,5 +1,5 @@
-#include "BaseSystem/ConfigLoader.h"
-#include "BaseSystem/Err.h"
+#include "BaseSystem/ConfigLoader.hpp"
+#include "BaseSystem/Err.hpp"
 
 ConfigLoader* ConfigLoader::instance()
 {

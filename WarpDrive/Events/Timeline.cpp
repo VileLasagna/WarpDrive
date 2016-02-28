@@ -1,6 +1,6 @@
-#include "BaseSystem/Factory.h"
-#include "Events/Timeline.h"
-#include "BaseSystem/DisplayManager.h"
+#include "BaseSystem/Factory.hpp"
+#include "Events/Timeline.hpp"
+#include "BaseSystem/DisplayManager.hpp"
 
 
 Timeline::Timeline()

@@ -1,5 +1,5 @@
 
-#include "Display/Sprite.h"
+#include "Display/Sprite.hpp"
 #include <algorithm>
 
 

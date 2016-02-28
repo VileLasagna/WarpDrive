@@ -1,4 +1,4 @@
-#include "BaseMaths/ClipLineSegBox.h"
+#include "BaseMaths/ClipLineSegBox.hpp"
 
 // Valid points on the line seg are m_start + t * m_direction for
 //  t in [0..1] for x, y and z.

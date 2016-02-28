@@ -1,4 +1,4 @@
-#include "TKUseObject.h"
+#include "TKUseObject.hpp"
 
 TKUseObject::TKUseObject(float Time, bool Activate, bool Draw, const std::string& Obj, bool isUniqueName)
 {

@@ -1,6 +1,6 @@
 #include <assert.h>
-#include "BaseSystem/SDLEventHandler.h"
-#include "BaseSystem/DisplayManager.h"
+#include "BaseSystem/SDLEventHandler.hpp"
+#include "BaseSystem/DisplayManager.hpp"
 
 void SDLEventHandler::Update()
 {

@@ -1,4 +1,4 @@
-#include "BaseMaths/LineSeg.h"
+#include "BaseMaths/LineSeg.hpp"
 #include <GL/glu.h>
 
 

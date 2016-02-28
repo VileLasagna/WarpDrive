@@ -1,5 +1,5 @@
-#include "BaseSystem/DisplayManager.h"
-#include "BaseSystem/StringProc.h"
+#include "BaseSystem/DisplayManager.hpp"
+#include "BaseSystem/StringProc.hpp"
 
 #include <assert.h>
 

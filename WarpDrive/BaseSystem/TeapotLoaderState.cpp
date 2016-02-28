@@ -1,4 +1,4 @@
-#include "BaseSystem/TeapotLoaderState.h"
+#include "BaseSystem/TeapotLoaderState.hpp"
 #ifdef WIN32
     #include <windows.h>
 #endif //WIN32

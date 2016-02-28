@@ -1,5 +1,5 @@
 #include <assert.h>
-#include "Display/SDLTTF.h"
+#include "Display/SDLTTF.hpp"
 
 
 struct FontInitialiser

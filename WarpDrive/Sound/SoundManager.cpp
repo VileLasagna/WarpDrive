@@ -1,8 +1,8 @@
-#include "Sound/SoundManager.h"
-#include "BaseSystem/Err.h"
+#include "Sound/SoundManager.hpp"
+#include "BaseSystem/Err.hpp"
 #include <time.h>
 #include <math.h>
-#include "Sound/SoundFX.h"
+#include "Sound/SoundFX.hpp"
 
 
 

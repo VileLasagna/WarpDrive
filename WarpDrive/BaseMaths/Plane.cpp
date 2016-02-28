@@ -4,9 +4,9 @@
 #endif //WIN32
 
 #include <SDL/SDL_opengl.h>
-#include "BaseMaths/Plane.h"
-#include "BaseMaths/Matrix44.h"
-#include "BaseMaths/Quaternion.h"
+#include "BaseMaths/Plane.hpp"
+#include "BaseMaths/Matrix44.hpp"
+#include "BaseMaths/Quaternion.hpp"
 #include <GL/glu.h>
 
 

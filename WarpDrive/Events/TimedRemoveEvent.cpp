@@ -1,5 +1,5 @@
-#include "Events/TimedRemoveEvent.h"
-#include "BaseSystem/DisplayManager.h"
+#include "Events/TimedRemoveEvent.hpp"
+#include "BaseSystem/DisplayManager.hpp"
 
 TimedRemoveEvent::TimedRemoveEvent(float Time)
 {

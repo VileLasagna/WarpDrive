@@ -1,6 +1,6 @@
-#include "Events/PanAndTiltEvent.h"
-#include "Display/Camera.h"
-#include "BaseSystem/DisplayManager.h"
+#include "Events/PanAndTiltEvent.hpp"
+#include "Display/Camera.hpp"
+#include "BaseSystem/DisplayManager.hpp"
 
 
 PanAndTiltEvent::PanAndTiltEvent(float Time, Vec3f Pan, Vec3f Tilt)

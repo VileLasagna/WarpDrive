@@ -1,4 +1,4 @@
-#include "BaseSystem/Game.h"
+#include "BaseSystem/Game.hpp"
 
 Game::Game()
 {

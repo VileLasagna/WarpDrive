@@ -1,5 +1,5 @@
 
-#include "BaseSystem/StringProc.h"
+#include "BaseSystem/StringProc.hpp"
 #include <assert.h>
 #include <cmath>
 

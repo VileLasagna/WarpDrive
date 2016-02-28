@@ -1,74 +1,74 @@
 include ($$_PRO_FILE_PWD_/WarpDrive/include/external.pri)
 
 HEADERS += \
-    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Billboard.h                \
+    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Billboard.hpp              \
     $$_PRO_FILE_PWD_/WarpDrive/3DMaths/glm.h                      \
-    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/GLMesh.h                   \
-    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/glmint.h                   \
-    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Material.h                 \
-    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Model.h                    \
-    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/ModelLoader.h              \
-    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Teapot.h                   \
-    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Vertex.h                   \
-    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Viewport.h                 \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Capsule.h                \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/ClipLineSegBox.h         \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Frustrum.h               \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/LineSeg.h                \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Matrix44.h               \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Plane.h                  \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Quaternion.h             \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Rect.h                   \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Sphere.h                 \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Tri.h                    \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Vec2.h                   \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Vec3.h                   \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Vec4.h                   \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/ConfigLoader.h          \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/DisplayManager.h        \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/Err.h                   \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/Factory.h               \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/FileManager.h           \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/Game.h                  \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/GameObject.h            \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/GameState.h             \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/ManagedFile.h           \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/Memory.h                \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/OBJLoader.h             \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/Score.h                 \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/StringProc.h            \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/TeapotLoaderState.h     \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/TTFManager.h            \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/SDLEventHandler.h       \
-    $$_PRO_FILE_PWD_/WarpDrive/Display/Camera.h                   \
-    $$_PRO_FILE_PWD_/WarpDrive/Display/Colour.h                   \
-    $$_PRO_FILE_PWD_/WarpDrive/Display/SDLImage.h                 \
-    $$_PRO_FILE_PWD_/WarpDrive/Display/RGBAColour.h               \
-    $$_PRO_FILE_PWD_/WarpDrive/Display/RGBColour.h                \
-    $$_PRO_FILE_PWD_/WarpDrive/Display/SDLTTF.h                   \
-    $$_PRO_FILE_PWD_/WarpDrive/Display/Texture.h                  \
-    $$_PRO_FILE_PWD_/WarpDrive/Events/glColorEvent.h              \
-    $$_PRO_FILE_PWD_/WarpDrive/Events/ObjectEvent.h               \
-    $$_PRO_FILE_PWD_/WarpDrive/Events/PanAndTiltEvent.h           \
-    $$_PRO_FILE_PWD_/WarpDrive/Events/TimedMoveEvent.h            \
-    $$_PRO_FILE_PWD_/WarpDrive/Events/TimedRemoveEvent.h          \
-    $$_PRO_FILE_PWD_/WarpDrive/Events/Timeline.h                  \
-    $$_PRO_FILE_PWD_/WarpDrive/Events/TimelineKey.h               \
-    $$_PRO_FILE_PWD_/WarpDrive/Events/TKAddEvent.h                \
-    $$_PRO_FILE_PWD_/WarpDrive/Events/TKDrawTeapot.h              \
-    $$_PRO_FILE_PWD_/WarpDrive/Events/TKMoveObject.h              \
-    $$_PRO_FILE_PWD_/WarpDrive/Events/TKPlayMusic.h               \
-    $$_PRO_FILE_PWD_/WarpDrive/Events/TKUseObject.h               \
-    $$_PRO_FILE_PWD_/WarpDrive/Physics/BoundingBox.h              \
-    $$_PRO_FILE_PWD_/WarpDrive/Physics/CollisionSystem.h          \
-    $$_PRO_FILE_PWD_/WarpDrive/Physics/Octree.h                   \
-    $$_PRO_FILE_PWD_/WarpDrive/Physics/VoxelGrid.h                \
-    $$_PRO_FILE_PWD_/WarpDrive/Sound/SoundFX.h                    \
-    $$_PRO_FILE_PWD_/WarpDrive/Sound/SoundManager.h               \
-    $$_PRO_FILE_PWD_/WarpDrive/Display/AnimSheet.h                \
-    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/SDLFontManager.h        \
-    $$_PRO_FILE_PWD_/WarpDrive/Display/Sprite.h                   \
-    $$_PRO_FILE_PWD_/WarpDrive/Display/TextureSheet.h
+    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/GLMesh.hpp                   \
+    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/glmint.hpp                   \
+    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Material.hpp                 \
+    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Model.hpp                    \
+    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/ModelLoader.hpp              \
+    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Teapot.hpp                   \
+    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Vertex.hpp                   \
+    $$_PRO_FILE_PWD_/WarpDrive/3DMaths/Viewport.hpp                 \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Capsule.hpp                \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/ClipLineSegBox.hpp         \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Frustrum.hpp               \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/LineSeg.hpp                \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Matrix44.hpp               \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Plane.hpp                  \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Quaternion.hpp             \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Rect.hpp                   \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Sphere.hpp                \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Tri.hpp                    \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Vec2.hpp                   \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Vec3.hpp                   \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseMaths/Vec4.hpp                   \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/ConfigLoader.hpp          \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/DisplayManager.hpp        \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/Err.hpp                   \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/Factory.hpp               \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/FileManager.hpp           \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/Game.hpp                  \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/GameObject.hpp            \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/GameState.hpp             \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/ManagedFile.hpp           \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/Memory.hpp                \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/OBJLoader.hpp             \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/Score.hpp                 \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/StringProc.hpp            \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/TeapotLoaderState.hpp     \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/TTFManager.hpp            \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/SDLEventHandler.hpp       \
+    $$_PRO_FILE_PWD_/WarpDrive/Display/Camera.hpp                   \
+    $$_PRO_FILE_PWD_/WarpDrive/Display/Colour.hpp                   \
+    $$_PRO_FILE_PWD_/WarpDrive/Display/SDLImage.hpp                 \
+    $$_PRO_FILE_PWD_/WarpDrive/Display/RGBAColour.hpp               \
+    $$_PRO_FILE_PWD_/WarpDrive/Display/RGBColour.hpp                \
+    $$_PRO_FILE_PWD_/WarpDrive/Display/SDLTTF.hpp                   \
+    $$_PRO_FILE_PWD_/WarpDrive/Display/Texture.hpp                  \
+    $$_PRO_FILE_PWD_/WarpDrive/Events/glColorEvent.hpp              \
+    $$_PRO_FILE_PWD_/WarpDrive/Events/ObjectEvent.hpp               \
+    $$_PRO_FILE_PWD_/WarpDrive/Events/PanAndTiltEvent.hpp           \
+    $$_PRO_FILE_PWD_/WarpDrive/Events/TimedMoveEvent.hpp            \
+    $$_PRO_FILE_PWD_/WarpDrive/Events/TimedRemoveEvent.hpp          \
+    $$_PRO_FILE_PWD_/WarpDrive/Events/Timeline.hpp                  \
+    $$_PRO_FILE_PWD_/WarpDrive/Events/TimelineKey.hpp               \
+    $$_PRO_FILE_PWD_/WarpDrive/Events/TKAddEvent.hpp                \
+    $$_PRO_FILE_PWD_/WarpDrive/Events/TKDrawTeapot.hpp              \
+    $$_PRO_FILE_PWD_/WarpDrive/Events/TKMoveObject.hpp              \
+    $$_PRO_FILE_PWD_/WarpDrive/Events/TKPlayMusic.hpp               \
+    $$_PRO_FILE_PWD_/WarpDrive/Events/TKUseObject.hpp               \
+    $$_PRO_FILE_PWD_/WarpDrive/Physics/AlignedBoundingBox.hpp       \
+    $$_PRO_FILE_PWD_/WarpDrive/Physics/CollisionSystem.hpp          \
+    $$_PRO_FILE_PWD_/WarpDrive/Physics/Octree.hpp                   \
+    $$_PRO_FILE_PWD_/WarpDrive/Physics/VoxelGrid.hpp                \
+    $$_PRO_FILE_PWD_/WarpDrive/Sound/SoundFX.hpp                    \
+    $$_PRO_FILE_PWD_/WarpDrive/Sound/SoundManager.hpp               \
+    $$_PRO_FILE_PWD_/WarpDrive/Display/AnimSheet.hpp                \
+    $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/SDLFontManager.hpp        \
+    $$_PRO_FILE_PWD_/WarpDrive/Display/Sprite.hpp                   \
+    $$_PRO_FILE_PWD_/WarpDrive/Display/TextureSheet.hpp
 
 
 SOURCES += \
@@ -113,13 +113,12 @@ SOURCES += \
     $$_PRO_FILE_PWD_/WarpDrive/Events/Timeline.cpp                \
     $$_PRO_FILE_PWD_/WarpDrive/Events/TKMoveObject.cpp            \
     $$_PRO_FILE_PWD_/WarpDrive/Events/TKUseObject.cpp             \
-    $$_PRO_FILE_PWD_/WarpDrive/Physics/BoundingBox.cpp            \
+    $$_PRO_FILE_PWD_/WarpDrive/Physics/AlignedBoundingBox.cpp     \
     $$_PRO_FILE_PWD_/WarpDrive/Sound/SoundFX.cpp                  \
     $$_PRO_FILE_PWD_/WarpDrive/Sound/SoundManager.cpp             \
     $$_PRO_FILE_PWD_/WarpDrive/Display/AnimSheet.cpp              \
     $$_PRO_FILE_PWD_/WarpDrive/BaseSystem/SDLFontManager.cpp      \
     $$_PRO_FILE_PWD_/WarpDrive/Display/Sprite.cpp                 \
     $$_PRO_FILE_PWD_/WarpDrive/Display/TextureSheet.cpp
-
 
 

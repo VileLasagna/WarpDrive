@@ -1,6 +1,6 @@
-#include "BaseSystem/FileManager.h"
-#include "BaseSystem/ManagedFile.h"
-#include "BaseSystem/StringProc.h"
+#include "BaseSystem/FileManager.hpp"
+#include "BaseSystem/ManagedFile.hpp"
+#include "BaseSystem/StringProc.hpp"
 
 
 FileManager* FileManager::instance()

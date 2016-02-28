@@ -1,5 +1,5 @@
-#include "Display/Texture.h"
-#include "BaseSystem/Err.h"
+#include "Display/Texture.hpp"
+#include "BaseSystem/Err.hpp"
 #ifdef WIN32
     #include <windows.h>
 #endif //WIN32
@@ -45,7 +45,8 @@ bool Texture::CreateFromSDLSurface(SDL_Surface* surf)
 
 //#pragma warning("TODO - URGENT")
 #pragma message "TODO - URGENT"
-	//SDL_SetAlpha(surf,SDL_SRCALPHA|SDL_RLEACCEL,128);
+    //SDL_SetAlpha(surf,SDL_SRCALPHA|SDL_RLEACCEL,128);
+    SDL_SetSurfaceAlphaMod(surf, 128);
 	unsigned char* data = (unsigned char*)surf->pixels;
 	int width = surf->w;
 	int height = surf->h;

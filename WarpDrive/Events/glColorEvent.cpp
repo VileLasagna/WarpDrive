@@ -1,6 +1,6 @@
 
-#include "Events/glColorEvent.h"
-#include "BaseSystem/DisplayManager.h"
+#include "Events/glColorEvent.hpp"
+#include "BaseSystem/DisplayManager.hpp"
 
 glColorEvent::glColorEvent(float Time, float Red, float Green, float Blue)
 {

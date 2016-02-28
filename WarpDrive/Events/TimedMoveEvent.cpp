@@ -1,6 +1,6 @@
-#include "Events/TimedMoveEvent.h"
-#include "BaseSystem/GameObject.h"
-#include "BaseSystem/DisplayManager.h"
+#include "Events/TimedMoveEvent.hpp"
+#include "BaseSystem/GameObject.hpp"
+#include "BaseSystem/DisplayManager.hpp"
 
 
 

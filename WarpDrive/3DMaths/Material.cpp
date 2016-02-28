@@ -1,5 +1,5 @@
 
-#include "3DMaths/Material.h"
+#include "3DMaths/Material.hpp"
 #include <assert.h>
 #ifdef WIN32
     #include <windows.h>

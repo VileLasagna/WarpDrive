@@ -1,5 +1,5 @@
-#include "BaseSystem/SDLFontManager.h"
-#include "BaseSystem/Err.h"
+#include "BaseSystem/SDLFontManager.hpp"
+#include "BaseSystem/Err.hpp"
 
 
 SDLFontManager* SDLFontManager::instance()
