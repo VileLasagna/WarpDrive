@@ -32,4 +32,6 @@ QMAKE_CXXFLAGS += -std=c++14
 include($$_PRO_FILE_PWD_/WarpDrive/WarpDrive.pri)
 #include a pri with your game specific code here
 #include($$_PRO_FILE_PWD_/Bloxtris/Bloxtris.pri)
-include($$_PRO_FILE_PWD_/GLPickingDemo/PickingDemo.pri)
+#include($$_PRO_FILE_PWD_/GLPickingDemo/PickingDemo.pri)
+include($$_PRO_FILE_PWD_/RigidCollisionDemo/RigidCollision.pri)
+
