@@ -86,12 +86,14 @@ public:
 		}
 	}
 
-	void normalise()
+    Vec3<T>& normalise()
 	{
 		T m = this->mod();
 		x /= m;
 		y /= m;
 		z /= m;
+
+        return *this;
 	}
 
 
