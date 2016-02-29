@@ -1,7 +1,7 @@
 #ifndef GOScreen_H
 #define GOScreen_H
 
-#include "BaseSystem/GameState.h"
+#include "basesystem/GameState.h"
 #include "Display/Texture.h"
 #include "3DMaths/Billboard.h"
 

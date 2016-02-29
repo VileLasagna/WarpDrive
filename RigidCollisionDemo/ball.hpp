@@ -1,8 +1,8 @@
 #ifndef BALL_HPP
 #define BALL_HPP
 
-#include "WarpDrive/BaseSystem/GameObject.hpp"
-#include "WarpDrive/BaseMaths/Sphere.hpp"
+#include "WarpDrive/basesystem/gameobject.hpp"
+#include "WarpDrive/basemaths/sphere.hpp"
 
 class Ball : public GameObject
 {

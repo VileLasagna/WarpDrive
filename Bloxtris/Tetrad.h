@@ -1,8 +1,8 @@
 #ifndef TETRAD_H
 #define TETRAD_H
 
-#include "BaseSystem/GameObject.h"
-#include "BaseMaths/Vec4.h"
+#include "basesystem/GameObject.h"
+#include "basemaths/Vec4.h"
 #include "Brick.h"
 
 

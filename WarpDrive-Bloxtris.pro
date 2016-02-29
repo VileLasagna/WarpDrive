@@ -1,9 +1,4 @@
 
-
-
-
-
-
 CONFIG += app
 #QT -= gui core
 CONFIG -= qt

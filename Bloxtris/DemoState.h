@@ -1,7 +1,7 @@
 #ifndef DEMO_STATE_H
 #define DEMO_STATE_H
 
-#include "BaseSystem/GameState.h"
+#include "basesystem/GameState.h"
 #include "Events/Timeline.h"
 #include "Display/Texture.h"
 

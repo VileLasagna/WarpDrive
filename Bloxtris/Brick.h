@@ -1,7 +1,7 @@
 #ifndef BRICK_H
 #define BRICK_H
 
-#include "BaseSystem/GameObject.h"
+#include "basesystem/GameObject.h"
 #include "3DMaths/Material.h"
 #include "Display/Texture.h"
 #include "3DMaths/GLMesh.h"

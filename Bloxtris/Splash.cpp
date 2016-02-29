@@ -1,5 +1,5 @@
 #include "Splash.h"
-#include "BaseSystem/Game.h"
+#include "basesystem/Game.h"
 #include "Display/Camera.h"
 
 Splash::Splash()

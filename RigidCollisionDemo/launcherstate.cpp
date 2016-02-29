@@ -5,7 +5,7 @@
 #include "GL/glu.h"
 #include<string>
 
-#include "WarpDrive/BaseMaths/Sphere.hpp"
+#include "WarpDrive/basemaths/sphere.hpp"
 
 LauncherState::LauncherState()
    :floor(Vec3f(0,1,0),0)

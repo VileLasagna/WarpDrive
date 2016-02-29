@@ -1,7 +1,7 @@
 #ifndef MAIN_GAME_STATE_H
 #define MAIN_GAME_STATE_H
 
-#include "BaseSystem/GameState.h"
+#include "basesystem/GameState.h"
 #include "Display/Camera.h"
 #include "3DMaths/Billboard.h"
 #include "Display/Texture.h"

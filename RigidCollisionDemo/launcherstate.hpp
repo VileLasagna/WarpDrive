@@ -1,10 +1,10 @@
 #ifndef LAUNCHERSTATE_HPP_DEFINED
 #define LAUNCHERSTATE_HPP_DEFINED
 
-#include "WarpDrive/BaseSystem/GameState.hpp"
-#include "WarpDrive/Display/Camera.hpp"
-#include "WarpDrive/BaseMaths/Plane.hpp"
-#include "WarpDrive/BaseMaths/LineSeg.hpp"
+#include "WarpDrive/basesystem/gamestate.hpp"
+#include "WarpDrive/display/camera.hpp"
+#include "WarpDrive/basemaths/plane.hpp"
+#include "WarpDrive/basemaths/lineseg.hpp"
 
 #include "ball.hpp"
 

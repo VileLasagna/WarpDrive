@@ -1,9 +1,9 @@
 #include "MainGS.h"
-#include "BaseSystem/Game.h"
+#include "basesystem/Game.h"
 #include "Display/Camera.h"
 #include "Brick.h"
 #include "Grid.h"
-#include "BaseSystem/Score.h"
+#include "basesystem/Score.h"
 #include "Sound/SoundManager.h"
 #include <time.h>
 #include <math.h>

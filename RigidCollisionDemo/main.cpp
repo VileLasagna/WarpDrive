@@ -3,8 +3,8 @@
     #include <windows.h>
 #endif //WIN32
 
-#include "BaseSystem/DisplayManager.hpp"
-#include "BaseSystem/Game.hpp"
+#include "basesystem/displaymanager.hpp"
+#include "basesystem/game.hpp"
 #include "launcherstate.hpp"
 
 

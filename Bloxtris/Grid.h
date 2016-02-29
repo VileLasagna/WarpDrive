@@ -1,7 +1,7 @@
 #ifndef PLAY_GRID_H
 #define PLAY_GRID_H
 
-#include "BaseSystem/GameObject.h"
+#include "basesystem/GameObject.h"
 #include "Brick.h"
 #include "Tetrad.h"
 #include "Sound/SoundFX.h"

@@ -1,5 +1,5 @@
 #include "GOScreen.h"
-#include "BaseSystem/Game.h"
+#include "basesystem/Game.h"
 
 GOScreen::GOScreen()
 {

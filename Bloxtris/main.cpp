@@ -13,9 +13,9 @@
     #include <windows.h>
 #endif //WIN32
 
-#include "BaseSystem/DisplayManager.h"
-#include "BaseSystem/Game.h"
-#include "BaseSystem/TeapotLoaderState.h"
+#include "basesystem/DisplayManager.h"
+#include "basesystem/Game.h"
+#include "basesystem/TeapotLoaderState.h"
 
 //#include <GL/glut.h>
 #include "MainGS.h"

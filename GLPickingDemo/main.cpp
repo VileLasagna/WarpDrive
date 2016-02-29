@@ -3,9 +3,9 @@
     #include <windows.h>
 #endif //WIN32
 
-#include "BaseSystem/DisplayManager.hpp"
-#include "BaseSystem/Game.hpp"
-#include "BaseSystem/TeapotLoaderState.hpp"
+#include "basesystem/displaymanager.hpp"
+#include "basesystem/game.hpp"
+#include "basesystem/TeapotLoaderState.hpp"
 
 
 int main(/*int argc, char* argv[]*/)

@@ -1,7 +1,7 @@
 #include "DemoState.h"
 
 #include "Display/Camera.h"
-#include "BaseSystem/Game.h"
+#include "basesystem/Game.h"
 #include "Grid.h"
 #include "TKGridCommand.h"
 #include "3DMaths/Billboard.h"
