@@ -14,6 +14,7 @@ public:
     void Draw() override;
 
     void setRadius(float f) { body.setRadius(f);}
+    void setColour(GLRGBColour colour) noexcept;
 
     ~Ball() = default;
 
