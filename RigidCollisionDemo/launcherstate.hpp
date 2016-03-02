@@ -5,6 +5,7 @@
 #include "WarpDrive/display/camera.hpp"
 #include "WarpDrive/basemaths/plane.hpp"
 #include "WarpDrive/basemaths/lineseg.hpp"
+#include "WarpDrive/physics/bruteforcecollision.hpp"
 
 #include "ball.hpp"
 
@@ -22,6 +23,9 @@ public:
     void onMouseButtonEvent(const SDL_MouseButtonEvent& e) override;
 
 
+    static void ballsTouchedSoGay(GameObject* a, GameObject* b) noexcept;
+
+
 
     ~LauncherState(){}
 
@@ -29,9 +33,10 @@ public:
 private:
 
 
-    std::vector<Ball*> balls;
     Camera cam;
     Plane floor;
+    BruteForceCollision brute;
+
 };
 
 #endif // LAUNCHERSTATE_HPP_DEFINED

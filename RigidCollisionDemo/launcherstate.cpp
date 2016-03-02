@@ -6,6 +6,7 @@
 #include<string>
 
 #include "WarpDrive/basemaths/sphere.hpp"
+#include "WarpDrive/basesystem/game.hpp"
 
 LauncherState::LauncherState()
    :floor(Vec3f(0,1,0),0)
@@ -21,21 +22,21 @@ LauncherState::LauncherState()
    floor.setDrawn(100,100,60);
    floor.DrawNormal(true);
 
-   balls.push_back(new Ball());
-   balls[0]->setRadius(30);
-   balls[0]->setPos(Vec3f(0,400,0));
-   balls[0]->setVel(Vec3f(0,0,300));
+   Ball* b0 = new Ball();
+   b0->setRadius(30);
+   b0->setPos(Vec3f(0,400,0));
+   b0->setVel(Vec3f(0,0,300));
+   Game::instance()->addObject(b0);
+   Game::instance()->addDrawnType("Ball");
+   Game::instance()->addActiveType("Ball");
+   brute.load("Ball", "Ball", &LauncherState::ballsTouchedSoGay);
 
 }
 
 void LauncherState::Draw()
 {
 
-    for(Ball* b: balls)
-    {
-        b->Draw();
-    }
-
+    Game::instance()->DrawObjects();
 
     floor.Draw();
 
@@ -79,10 +80,9 @@ int LauncherState::Update()
 {
     SDLEventHandler::Update();
 
-    for(Ball* b: balls)
-    {
-        b->Update();
-    }
+    Game::instance()->UpdateObjects();
+
+    brute.Update(Game::iterator(/*"Ball",ObjIterator::ALL*/));
 
     cam.Update();
     cam.Use();
@@ -183,16 +183,18 @@ void LauncherState::onMouseButtonEvent(const SDL_MouseButtonEvent &e)
         Ray r = cam.traceRay(e.x, e.y);
         Ball* b = new Ball(cam.getPos(), r.Direction()*launchforce);
         b->setRadius(30);
-        balls.push_back(b);
+        Game::instance()->addObject(b);
 
     }
     if (e.button == SDL_BUTTON_MIDDLE  && e.type == SDL_MOUSEBUTTONUP)
     {
-        for(Ball* b: balls)
-        {
-            //p->setColour(1,0,1);
-            //b->setWireframe(!b->getWireframe());
-        }
+
 
     }
+}
+
+void LauncherState::ballsTouchedSoGay(GameObject* a, GameObject* b) noexcept
+{
+    dynamic_cast<Ball*>(a)->setColour(GLRGBColour(0.8f,0.2f,0.7f));
+    dynamic_cast<Ball*>(b)->setColour(GLRGBColour(0.8f,0.2f,0.7f));
 }
