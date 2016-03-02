@@ -69,7 +69,8 @@ HEADERS += \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/sdlfontmanager.hpp        \
     $$_PRO_FILE_PWD_/WarpDrive/display/sprite.hpp                   \
     $$_PRO_FILE_PWD_/WarpDrive/display/texturesheet.hpp             \
-    $$_PRO_FILE_PWD_/WarpDrive//basemaths/ray.hpp
+    $$_PRO_FILE_PWD_/WarpDrive//basemaths/ray.hpp \
+    $$PWD/physics/bruteforcecollision.hpp
 
 
 SOURCES += \
@@ -121,6 +122,7 @@ SOURCES += \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/sdlfontmanager.cpp      \
     $$_PRO_FILE_PWD_/WarpDrive/display/sprite.cpp                 \
     $$_PRO_FILE_PWD_/WarpDrive/display/texturesheet.cpp           \
-    $$_PRO_FILE_PWD_/WarpDrive/basemaths/ray.cpp
+    $$_PRO_FILE_PWD_/WarpDrive/basemaths/ray.cpp \
+    $$PWD/physics/bruteforcecollision.cpp
 
 
