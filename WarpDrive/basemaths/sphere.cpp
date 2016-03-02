@@ -5,51 +5,89 @@
 #include <math.h>
 #include <assert.h>
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wreorder"
 
-Sphere::Sphere():
-	Centre(Vec3f(0,0,0)),
-	Radius(0),
+Sphere::Sphere() noexcept:
+    centre(Vec3f(0,0,0)),
+    radius(0),
 	colour(GLRGBColour(1,1,1)),
-    quadric(initQuadric()),
-    wireframe(true)
+    wireframe(true),
+    quadric(initQuadric())
     {}
 
 
-Sphere::Sphere(const Vec3f& centre, float r):
-	Centre(centre),
-	Radius(r),
+Sphere::Sphere(const Vec3f& centre, float r) noexcept:
+    centre(centre),
+    radius(r),
 	colour(GLRGBColour(1,1,1)),
-    quadric(initQuadric()),
-    wireframe(true)
+    wireframe(true),
+    quadric(initQuadric())
     {}
 
-Sphere::Sphere(float centreX, float centreY, float centreZ, float R):
-	Centre{Vec3f{centreX,centreY,centreZ}},
-	Radius{R},
+Sphere::Sphere(float centreX, float centreY, float centreZ, float R) noexcept:
+    centre{Vec3f{centreX,centreY,centreZ}},
+    radius{R},
 	colour{GLRGBColour{1,1,1}},
-    quadric(initQuadric()),
-    wireframe(true)
-    {}
+    wireframe(true),
+    quadric(initQuadric())
+{}
 
+Sphere::Sphere(const Sphere& other) noexcept
+   :centre{other.Centre()},
+    radius{other.Radius()},
+    colour{other.Colour()},
+    wireframe{other.Wireframe()},
+    quadric(initQuadric())
+{}
 
-void Sphere::setPos(float X, float Y, float Z)
+Sphere::Sphere(Sphere&& other) noexcept
+    :centre{other.Centre()},
+     radius{other.Radius()},
+     colour{other.Colour()},
+     wireframe{other.Wireframe()},
+     quadric(std::move(other.quadric))
+{}
+
+Sphere& Sphere::operator=(const Sphere& other) noexcept
 {
-	Centre = Vec3f(X,Y,Z);
+    colour = other.Colour();
+    radius = other.Radius();
+    centre = other.Centre();
+    wireframe = other.Wireframe();
+    if(quadric.get() == nullptr)
+    {
+        initQuadric();
+    }
+    return *this;
 }
 
-void Sphere::setPos(const Vec3f& pos)
+Sphere& Sphere::operator=(Sphere&& other) noexcept
 {
-	Centre = pos;
+    colour = other.Colour();
+    radius = other.Radius();
+    centre = other.Centre();
+    wireframe = other.Wireframe();
+    quadric = std::move(other.quadric);
+
+    return *this;
 }
 
-void Sphere::setColour(float R, float G, float B)
+
+void Sphere::setPos(float X, float Y, float Z) noexcept
+{
+    centre = Vec3f(X,Y,Z);
+}
+
+void Sphere::setPos(const Vec3f& pos) noexcept
+{
+    centre = pos;
+}
+
+void Sphere::setColour(float R, float G, float B) noexcept
 {
     colour = GLRGBColour{R,G,B};
 }
 
-void Sphere::setWireframe(bool b)
+void Sphere::setWireframe(bool b) noexcept
 {
     wireframe = b;
     if (b)
@@ -63,26 +101,30 @@ void Sphere::setWireframe(bool b)
     }
 }
 
-void Sphere::setColour(const Vec3f& pos)
+void Sphere::setColour(const Vec3f& c) noexcept
 {
-    colour = GLRGBColour(pos.R(),pos.G(),pos.B());
+    colour = GLRGBColour(c.R(),c.G(),c.B());
 }
 
-void Sphere::setRadius(float R)
+void Sphere::setColour(const GLRGBColour& c) noexcept
 {
-	Radius = R;
+    colour = c;
 }
 
-bool Sphere::collides(const Sphere& other) const
+void Sphere::setRadius(float R) noexcept
 {
-	return ( (Radius+other.Radius)*(Radius+other.Radius) >= 
-			    ( (Centre.X()-other.Centre.X())*(Centre.X()-other.Centre.X()) +
-				 (Centre.Y()-other.Centre.Y())*(Centre.Y()-other.Centre.Y()) +
-				 (Centre.Z()-other.Centre.Z())*(Centre.Z()-other.Centre.Z())  )
-																	);
+    radius = R;
 }
 
-void Sphere::Draw() const
+bool Sphere::collides(const Sphere& other) const noexcept
+{
+    return (    (radius+other.Radius())*(radius+other.Radius()) >=
+                ( (centre.X()-other.Centre().X())*(centre.X()-other.Centre().X()) +
+                  (centre.Y()-other.Centre().Y())*(centre.Y()-other.Centre().Y()) +
+                  (centre.Z()-other.Centre().Z())*(centre.Z()-other.Centre().Z()) )  );
+}
+
+void Sphere::Draw() const noexcept
 {
 
 
@@ -93,8 +135,8 @@ void Sphere::Draw() const
 
     glPushMatrix();
 
-        glTranslatef(Centre.X(),Centre.Y(),Centre.Z());
-        gluSphere(quadric.get(), Radius,roundness,roundness);
+        glTranslatef(centre.X(),centre.Y(),centre.Z());
+        gluSphere(quadric.get(), radius,roundness,roundness);
 
     glPopMatrix();
 
@@ -104,7 +146,7 @@ void Sphere::Draw() const
 }
 
 
-ptr_GLUquad Sphere::initQuadric()
+ptr_GLUquad Sphere::initQuadric() noexcept
 {
     auto quad = ptr_GLUquad(gluNewQuadric(), gluQuadDeleter);
     assert(quad);
@@ -114,4 +156,3 @@ ptr_GLUquad Sphere::initQuadric()
 
 }
 
-#pragma clang diagnostic pop

@@ -2,7 +2,7 @@
 
 bool Capsule::Collides(const Sphere &S) const
 {
-	return Path.sqDistToPoint(S.getCentre()) <= (R+S.getRadius())*(R+S.getRadius());
+	return Path.sqDistToPoint(S.Centre()) <= (R+S.Radius())*(R+S.Radius());
 }
 
 Capsule::Capsule():
@@ -23,6 +23,6 @@ Capsule::Capsule(const Vec3f &A, const Vec3f &B, float r)
 
 Capsule::Capsule(const Sphere &S, const Vec3f &Path)
 {
-	this->Path = LineSeg(S.getCentre(), S.getCentre()+Path);
-	R = S.getRadius();
+	this->Path = LineSeg(S.Centre(), S.Centre()+Path);
+	R = S.Radius();
 }

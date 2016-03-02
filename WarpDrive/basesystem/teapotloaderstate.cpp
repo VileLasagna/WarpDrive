@@ -229,8 +229,8 @@ void TeapotLoaderState::onMouseButtonEvent(const SDL_MouseButtonEvent &e)
 
         for(Sphere* p: pots)
         {
-            auto trace = point - p->getCentre();
-            if( trace.sqMod() <= p->getRadius()*p->getRadius() )
+            auto trace = point - p->Centre();
+            if( trace.sqMod() <= p->Radius()*p->Radius() )
             {
                 p->setColour(0, 1, 0.5f);
             }
@@ -246,7 +246,7 @@ void TeapotLoaderState::onMouseButtonEvent(const SDL_MouseButtonEvent &e)
         for(Sphere* p: pots)
         {
             //p->setColour(1,0,1);
-            p->setWireframe(!p->getWireframe());
+            p->setWireframe(!p->Wireframe());
         }
 
     }

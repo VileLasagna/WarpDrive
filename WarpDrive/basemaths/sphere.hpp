@@ -19,36 +19,46 @@ class Sphere
 
 public:
 
-	Sphere();
-	Sphere(const Vec3f& centre, float r);
-	Sphere(float centreX, float centreY, float centreZ, float R);
+    Sphere() noexcept;
+    Sphere(const Vec3f& centre, float r) noexcept;
+    Sphere(float centreX, float centreY, float centreZ, float R) noexcept;
 
-	void Draw() const;
-	void setPos(const Vec3f& pos);
-	void setPos(float X, float Y, float Z);
-	void setRadius(float R);
-	void setColour(const Vec3f& pos);
-	void setColour(float X, float Y, float Z);
-    void setWireframe(bool b);
+    Sphere(const Sphere& other) noexcept;
+    Sphere(Sphere&& other) noexcept;
 
-	bool collides(const Sphere& other) const;
+    Sphere& operator=(const Sphere& other) noexcept;
+    Sphere& operator=(Sphere&& other) noexcept;
 
-    Vec3f getCentre()   const   {return Centre;}
-    float getRadius()   const   {return Radius;}
-    bool getWireframe() const   {return wireframe;}
+    void Draw() const noexcept;
+    void setPos(const Vec3f& pos) noexcept;
+    void setPos(float X, float Y, float Z) noexcept;
+    void setRadius(float R) noexcept;
+    void setColour(const Vec3f& c) noexcept;
+    void setColour(const GLRGBColour& c) noexcept;
+    void setColour(float X, float Y, float Z) noexcept;
+    void setWireframe(bool b) noexcept;
+
+    bool collides(const Sphere& other) const noexcept;
+
+    Vec3f Centre()       const noexcept {return centre;}
+    float Radius()       const noexcept {return radius;}
+    GLRGBColour Colour() const noexcept {return colour;}
+    bool Wireframe()     const noexcept {return wireframe;}
 	~Sphere() = default;
 
 
 private:
 
 
-	Vec3f Centre;
-	float Radius;
-	ptr_GLUquad quadric;
+    Vec3f centre;
+    float radius;
 	GLRGBColour colour;
     bool wireframe;
 
-	ptr_GLUquad initQuadric();
+    ptr_GLUquad quadric;
+
+
+    ptr_GLUquad initQuadric() noexcept;
 
 };
 
