@@ -17,6 +17,18 @@ void GameObject::Update()
 
 AABBox GameObject::getBox() const noexcept
 {
+    if(dimensions != Vec3f (0,0,0))
+    {
+        return AABBox( pos.X() - dimensions.X()/2, pos.X() + dimensions.X()/2 ,
+                       pos.Y() - dimensions.Y()/2, pos.Y() + dimensions.Y()/2 ,
+                       pos.Z() - dimensions.Z()/2, pos.Z() + dimensions.Z()/2 );
+    }
+    if(radius != 0)
+    {
+        return AABBox( pos.X() - radius, pos.X() + radius ,
+                       pos.Y() - radius, pos.Y() + radius ,
+                       pos.Z() - radius, pos.Z() + radius );
+    }
     return AABBox();
 }
 
