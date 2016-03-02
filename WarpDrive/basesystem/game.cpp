@@ -151,7 +151,24 @@ bool Game::addActiveTypes(const std::set<std::string> &types)
 	{
 		activeTypes[*it] = true;
 	}
-	return ret;
+    return ret;
+}
+
+bool Game::addActiveType(const std::__cxx11::string& type)
+{
+    bool ret = false;
+
+    for(ObjectMap::iterator it = Objects.begin(); it != Objects.end(); it++)
+    {
+        if (type == it->first)
+        {
+            it->second.second.update = true;
+            ret = true;
+        }
+    }
+
+    activeTypes[type] = true;
+    return ret;
 }
 
 bool Game::removeActiveTypes(const std::set<std::string> &types)
@@ -170,6 +187,23 @@ bool Game::removeActiveTypes(const std::set<std::string> &types)
 		activeTypes[*it] = false;
 	}
 	return ret;
+}
+
+bool Game::removeActiveType(const std::string &type)
+{
+    bool ret = false;
+    for(ObjectMap::iterator it = Objects.begin(); it != Objects.end(); it++)
+    {
+        if (type == it->first)
+        {
+            it->second.second.update = false;
+            ret = true;
+        }
+    }
+
+    activeTypes[type] = false;
+
+    return ret;
 }
 
 bool Game::setDrawnTypes(const std::set<std::string> &types)
@@ -213,6 +247,23 @@ bool Game::addDrawnTypes(const std::set<std::string> &types)
 	return ret;
 }
 
+bool Game::addDrawnType(const std::string& type)
+{
+    bool ret = false;
+    for(ObjectMap::iterator it = Objects.begin(); it != Objects.end(); it++)
+    {
+        if (type == it->first)
+        {
+            it->second.second.draw = true;
+            ret = true;
+        }
+    }
+
+    drawnTypes[type] = true;
+
+    return ret;
+}
+
 bool Game::removeDrawnTypes(const std::set<std::string> &types)
 {
 	bool ret = false;
@@ -229,6 +280,23 @@ bool Game::removeDrawnTypes(const std::set<std::string> &types)
 		drawnTypes[*it] = false;
 	}
 	return ret;
+}
+
+bool Game::removeDrawnType(const std::string& type)
+{
+    bool ret = false;
+    for(ObjectMap::iterator it = Objects.begin(); it != Objects.end(); it++)
+    {
+        if (type == it->first)
+        {
+            it->second.second.draw = false;
+            ret = true;
+        }
+    }
+
+    drawnTypes[type] = false;
+
+    return ret;
 }
 
 void Game::addDrawnObject(Game::iterator it)

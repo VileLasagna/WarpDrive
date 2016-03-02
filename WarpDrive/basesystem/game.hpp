@@ -39,12 +39,15 @@ public:
 
 	bool setDrawnTypes(const std::set<std::string>& types); //sets all(and only the) ObjectTypes in "types" to be drawn. Returns false if no objects are active then.
 	bool addDrawnTypes(const std::set<std::string>& types); //returns true if it made any changes
+    bool addDrawnType(const std::string& type);//returns true if it made any changes
 	bool removeDrawnTypes(const std::set<std::string>& types); //returns true if it made any changes
-
+    bool removeDrawnType(const std::string& type);//returns true if it made any changes
 
 	bool setActiveTypes(const std::set<std::string>& types);//sets all(and only the) ObjectTypes in "types" to be updated. Returns false if no objects are active then.
 	bool addActiveTypes(const std::set<std::string>& types);//returns true if it made any changes
+    bool addActiveType(const std::string& type);//returns true if it made any changes
 	bool removeActiveTypes(const std::set<std::string>& types);//returns true if it made any changes
+    bool removeActiveType(const std::string& type);//returns true if it made any changes
 	void DrawObjects();
 	void UpdateObjects();
 
