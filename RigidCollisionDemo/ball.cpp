@@ -45,10 +45,11 @@ void Ball::Update()
 
 void Ball::Draw()
 {
+    //getSphere().Draw();
     body.Draw();
 }
 
-void Ball::setColour(GLRGBColour colour)
+void Ball::setColour(GLRGBColour colour) noexcept
 {
     body.setColour(colour);
 }
