@@ -46,6 +46,7 @@ void Ball::Update()
 void Ball::Draw()
 {
     //getSphere().Draw();
+    getBox().Draw();
     body.Draw();
 }
 
