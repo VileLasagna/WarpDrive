@@ -14,3 +14,13 @@ void GameObject::Update()
 	vel+= accel*dt;
 	pos+= vel*dt;
 }
+
+AABBox GameObject::getBox() const noexcept
+{
+    return AABBox();
+}
+
+Sphere GameObject::getSphere() const noexcept
+{
+    return Sphere(pos, radius);
+}
