@@ -111,6 +111,7 @@ void LauncherState::onKeyboardEvent(const SDL_KeyboardEvent &e)
         auto velocity = 400.f;
         auto v = cam.getVel();
 
+
         if (e.keysym.sym == SDLK_LEFT)
         {
             if(e.type == SDL_KEYDOWN)
@@ -164,6 +165,91 @@ void LauncherState::onKeyboardEvent(const SDL_KeyboardEvent &e)
                 if(e.type == SDL_KEYUP)
                 {
                     cam.setVel(Vec3f(v.X(), 0, v.Z()) );
+                }
+            }
+        }
+
+        if (e.keysym.sym == SDLK_a)
+        {
+            if(e.type == SDL_KEYDOWN)
+            {
+                cam.setVel( Vec3f(-velocity, v.Y(), v.Z()) );
+            }
+            else
+            {
+                if(e.type == SDL_KEYUP)
+                {
+                    cam.setVel( Vec3f(0, v.Y(), v.Z()) );
+                }
+            }
+        }
+        if (e.keysym.sym == SDLK_d)
+        {
+            if(e.type == SDL_KEYDOWN)
+            {
+                cam.setVel( Vec3f(velocity, v.Y(), v.Z()) );
+            }
+            else
+            {
+                if(e.type == SDL_KEYUP)
+                {
+                    cam.setVel( Vec3f(0, v.Y(), v.Z()) );
+                }
+            }
+        }
+        if (e.keysym.sym == SDLK_s)
+        {
+            if(e.type == SDL_KEYDOWN)
+            {
+                cam.setVel( Vec3f(v.X(), v.Y(), -velocity) );
+            }
+            else
+            {
+                if(e.type == SDL_KEYUP)
+                {
+                    cam.setVel(Vec3f(v.X(), v.Y(), 0));
+                }
+            }
+        }
+        if (e.keysym.sym == SDLK_w)
+        {
+            if(e.type == SDL_KEYDOWN)
+            {
+                cam.setVel( Vec3f(v.X(), v.Y(), velocity) );
+            }
+            else
+            {
+                if(e.type == SDL_KEYUP)
+                {
+                    cam.setVel(Vec3f(v.X(), v.Y(), 0));
+                }
+            }
+        }
+        if (e.keysym.sym == SDLK_q)
+        {
+            if(e.type == SDL_KEYDOWN)
+            {
+                cam.setVel( Vec3f(v.X(), -velocity, v.Z()) );
+            }
+            else
+            {
+                if(e.type == SDL_KEYUP)
+                {
+                    cam.setVel(Vec3f(v.X(), 0, v.Z()));
+                }
+            }
+        }
+        if (e.keysym.sym == SDLK_e)
+        {
+            if(e.type == SDL_KEYDOWN)
+            {
+                cam.setVel( Vec3f(v.X(), velocity, v.Z()) );
+            }
+            else
+            {
+                if(e.type == SDL_KEYUP)
+                {
+                    cam.setVel(Vec3f(v.X(), 0, v.Z()));
                 }
             }
         }
