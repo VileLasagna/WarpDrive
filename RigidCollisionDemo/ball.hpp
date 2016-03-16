@@ -13,7 +13,7 @@ public:
     void Update() override;
     void Draw() override;
 
-    void setRadius(float f) { body.setRadius(f); radius = f;}
+    void setRadius(float f) { body.setRadius(f); radius = f; dimensions = Vec3f{f*2,f*2,f*2};}
     void setColour(GLRGBColour colour) noexcept;
 
     ~Ball() = default;
