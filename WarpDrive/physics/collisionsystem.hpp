@@ -83,7 +83,7 @@ class CollisionSystem
 {
 public:
 
-    virtual ~CollisionSystem() {}
+    virtual ~CollisionSystem() = default;
 	virtual void Update(Game::iterator it) = 0; //Just to not forget how to go around this
     void load(CollisionPair cp,func f)
 	{
