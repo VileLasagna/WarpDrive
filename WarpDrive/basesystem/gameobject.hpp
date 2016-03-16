@@ -18,6 +18,7 @@ class GameObject
 {
 public:
 
+    GameObject();
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
 	virtual ~GameObject() = default;
@@ -56,12 +57,14 @@ public:
     virtual Vec3f Dimensions() const noexcept {return dimensions;}
     virtual float Radius() const noexcept {return radius;}
     virtual std::string getName() const noexcept {return name;}
+    size_t Index() const noexcept {return index;}
 	bool isDead() {return removeMe;}
 	void KILL() {removeMe = true;}
 
 
 protected:
 
+    size_t index;
 	Vec3f vel;
 	Vec3f pos;
 	Vec3f accel;

@@ -50,6 +50,7 @@ public:
     bool removeActiveType(const std::string& type);//returns true if it made any changes
 	void DrawObjects();
 	void UpdateObjects();
+    size_t ObjIndex();
 
 
 	Game operator= (const Game&) = delete;
@@ -119,6 +120,7 @@ private:
 	unsigned int frames;
 	unsigned int updates;
 	unsigned int minFPS;
+    size_t objindex;
 	
 
 

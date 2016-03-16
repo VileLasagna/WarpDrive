@@ -7,6 +7,7 @@ Game::Game()
 	frames = 0;
 	updates = 0;
 	minFPS = 30;
+    objindex = 0;
 	GOFactory = Factory<GameObject>::instance();
 #ifdef _DEBUG
 	FPS = true;
@@ -346,7 +347,12 @@ void Game::UpdateObjects()
 			it->second.second.draw = false;
 		}
 
-	}
+    }
+}
+
+size_t Game::ObjIndex()
+{
+    return objindex++;
 }
 
 void Game::removeObject(Game::iterator it)

@@ -1,4 +1,5 @@
 #include "basesystem/gameobject.hpp"
+#include "basesystem/game.hpp"
 
 
 void GameObject::Update()
@@ -13,6 +14,11 @@ void GameObject::Update()
 	float dt = DisplayManager::instance()->getDtSecs();
 	vel+= accel*dt;
 	pos+= vel*dt;
+}
+
+GameObject::GameObject()
+{
+    index = Game::instance()->ObjIndex();
 }
 
 AABBox GameObject::getBox() const noexcept
