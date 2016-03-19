@@ -3,7 +3,9 @@
     #include <windows.h>
 #endif //WIN32
 #include "GL/glu.h"
-#include<string>
+#include <string>
+#include <random>
+#include <chrono>
 
 #include "WarpDrive/basemaths/sphere.hpp"
 #include "WarpDrive/basesystem/game.hpp"
@@ -11,25 +13,44 @@
 LauncherState::LauncherState()
    :floor(Vec3f(0,1,0),0)
 {
-   self = 0;
-   ret = self;
-   Reset();
+    self = 0;
+    ret = self;
+    Reset();
 
-   cam.setTarget(Vec3f(0,0,0));
-   cam.setPos(Vec3f(0,400,-700));
-   cam.Use();
-   floor.DrawAsWireframe(true);
-   floor.setDrawn(100,100,60);
-   floor.DrawNormal(true);
+    cam.setTarget(Vec3f(0,0,0));
+    cam.setPos(Vec3f(0,400,-700));
+    cam.Use();
+    floor.DrawAsWireframe(true);
+    floor.setDrawn(100,100,60);
+    floor.DrawNormal(true);
 
-   Ball* b0 = new Ball();
-   b0->setRadius(30);
-   b0->setPos(Vec3f(0,400,0));
-   b0->setVel(Vec3f(0,0,300));
-   Game::instance()->addObject(b0);
-   Game::instance()->addDrawnType("Ball");
-   Game::instance()->addActiveType("Ball");
-   brute.load("Ball", "Ball", &LauncherState::ballsTouchedSoGay);
+    float minX = -3000;
+    float minZ = -3000;
+    float X = 6000;
+    float Z = 6000;
+
+   // construct a trivial random generator engine from a time-based seed:
+    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    std::default_random_engine generator (seed);
+    std::uniform_real_distribution<double> rand(-1.,1.);
+
+    size_t numRows = 20;
+    for(size_t row = 0; row < numRows; row++)
+    {
+        for(size_t column = 0; column < numRows; column++)
+        {
+            Ball* b0 = new Ball();
+            b0->setRadius(30);
+            b0->setPos(Vec3f(minX+( (X/numRows)*row),1500+(rand(generator)*500),minZ+( (Z/numRows)*column)));
+            b0->setVel(Vec3f(0,0,0));
+            Game::instance()->addObject(b0);
+        }
+    }
+
+    Game::instance()->addDrawnType("Ball");
+    Game::instance()->addActiveType("Ball");
+    brute.load("Ball", "Ball", &LauncherState::ballsTouchedSoGay);
+    rdc.load("Ball", "Ball", &LauncherState::ballsTouchedSoGay);
 
 }
 
@@ -82,8 +103,8 @@ int LauncherState::Update()
 
     Game::instance()->UpdateObjects();
 
-    brute.Update(Game::iterator(/*"Ball",ObjIterator::ALL*/));
-
+    //brute.Update(Game::iterator(/*"Ball",ObjIterator::ALL*/));
+    rdc.Update(Game::iterator(/*"Ball",ObjIterator::ALL*/));
     cam.Update();
     cam.Use();
 

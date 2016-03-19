@@ -6,8 +6,11 @@
 #include "WarpDrive/basemaths/plane.hpp"
 #include "WarpDrive/basemaths/lineseg.hpp"
 #include "WarpDrive/physics/bruteforcecollision.hpp"
+#include "WarpDrive/physics/rdccollision.hpp"
 
 #include "ball.hpp"
+
+
 
 class LauncherState : public GameState
 {
@@ -36,6 +39,7 @@ private:
     Camera cam;
     Plane floor;
     BruteForceCollision brute;
+    RDCCollision rdc;
 
 };
 

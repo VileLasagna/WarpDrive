@@ -79,6 +79,8 @@ private:
 
 typedef void (*func)(GameObject*, GameObject*);
 
+using ObjPair = std::pair<GameObject*,GameObject*>;
+
 class CollisionSystem
 {
 public:
