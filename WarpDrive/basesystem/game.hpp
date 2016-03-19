@@ -36,6 +36,7 @@ public:
 	void addState(GameState* g);
 	static void Clear();
 	void showFPS(bool fps = true) {FPS = fps;}
+    int CurrentState() const noexcept { return currentState;}
 
 	bool setDrawnTypes(const std::set<std::string>& types); //sets all(and only the) ObjectTypes in "types" to be drawn. Returns false if no objects are active then.
 	bool addDrawnTypes(const std::set<std::string>& types); //returns true if it made any changes

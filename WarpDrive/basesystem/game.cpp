@@ -1,5 +1,8 @@
 #include "basesystem/game.hpp"
 
+#include <future>
+#include <chrono>
+
 Game::Game()
 {
 	DisplayManager::instance(); //to grant that call to SDLInit_Everything
@@ -25,26 +28,43 @@ Game::~Game()
 
 void Game::Run()
 {
-	int i = 0;
-	while(currentState != -1)
-	{
-		DisplayManager::instance()->Update(); //Get the time and all before everyone starts checking this kind of stuff
-        i = Update();
-		Draw();
-		Flip();
-		currentState = i;
-	}
+    //int i = 0;
+    std::future<void> up = std::async(std::launch::async, [](Game* g)
+                                                          { while(g->CurrentState() != -1)
+                                                            { DisplayManager::instance()->Update();
+                                                              g->Update();
+                                                            } }, this);
+//    std::future<void> dr = std::async(std::launch::async, [](Game* g)
+//                                                          { while(g->CurrentState() != -1)
+//                                                            { g->Draw();
+//                                                              g->Flip();
+//                                                            } }, this);
+    while(currentState != -1)
+    {
+//        DisplayManager::instance()->Update(); //Get the time and all before everyone starts checking this kind of stuff
+//        Update();
+        Draw();
+        Flip();
+//        //currentState = i;
+    }
+    //dr.get();
+    //up.get();
+
 }
 
 int Game::Update()
 {
 	updates++;
-	return states[currentState]->Update();
+    currentState = states[currentState]->Update();
+    return currentState;
+
 }
 
 void Game::Draw()
 {
 	DisplayManager::instance()->clearDisplay();
+    DisplayManager::instance()->updateMatrices();
+
 	states[currentState]->Draw();
 	if (FPS)
 	{
@@ -101,17 +121,20 @@ void Game::Clear()
 void Game::drawFPS()
 {
 
+    static std::chrono::steady_clock::time_point lastCall = std::chrono::steady_clock::now();
+    static std::chrono::milliseconds t = std::chrono::milliseconds::zero();
 
-    static float t = 0;
-    t += DisplayManager::instance()->getDtSecs(); // update time..
-    if (int(t) >= 1) // if number of seconds has changed..
+    auto now = std::chrono::steady_clock::now();
+    t += std::chrono::duration_cast<std::chrono::milliseconds>(now - lastCall); // update time..
+    if (t.count()>= 1000) // if number of seconds has changed..
     {
 
-        t = 0;
+        t = std::chrono::milliseconds::zero();
         DisplayManager::instance()->showStats(updates, frames);
         frames = 0; // reset count for the new second
         updates = 0;
     }
+    lastCall = now;
 
 }
 
