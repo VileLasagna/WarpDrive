@@ -8,16 +8,20 @@
 
 
 DisplayManager::DisplayManager():
+    mainWindow  (0),
+    renderer    (0),
+    gl_context  (0),
     dt          (0),
+    maxDT       (0.05f),
+    openGL      (false),
     bpp         (32),
     w           (640),
     h           (480),
-    maxDT       (0.05f),
+    modelview   (new GLdouble[16]),
+    projection  (new GLdouble[16]),
+    viewport    (new GLint[4]),
     fullscreen  (0),
-    renderer    (0),
-    gl_context  (0),
-    videoFlags  (0),
-    mainWindow  (0)
+    videoFlags  (0)
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
     //videoFlags = 0/*SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_ASYNCBLIT*/;
@@ -35,6 +39,9 @@ DisplayManager::DisplayManager():
 
 DisplayManager::~DisplayManager()
 {
+    delete[] modelview;
+    delete[] projection;
+    delete[] viewport;
 	SDL_Quit();
 }
 
@@ -211,6 +218,13 @@ void DisplayManager::Init(bool Fullscreen, bool UsingOpenGL)
         SDL_GL_MakeCurrent(mainWindow, gl_context);
     }
     assert(mainWindow);
+}
+
+void DisplayManager::updateMatrices()
+{
+    glGetDoublev(GL_MODELVIEW_MATRIX,modelview);
+    glGetDoublev(GL_PROJECTION_MATRIX,projection);
+    glGetIntegerv(GL_VIEWPORT,viewport);
 }
 
 void DisplayManager::clearDisplay()

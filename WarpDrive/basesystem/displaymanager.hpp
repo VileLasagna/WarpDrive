@@ -59,9 +59,12 @@ public:
 
 	void Init(bool Fullscreen = false, bool UsingOpenGL = false);
 
-	Matrix44 getModelviewMatrix();
-	Matrix44 getProjectionMatrix();
-	Matrix44 getTextureMatrix();
+    void updateMatrices();
+
+    const GLdouble* ModelviewMatrix() const noexcept{return modelview;}
+    const GLdouble* ProjectionMatrix()const noexcept{return projection;}
+    const GLint* Viewport() const noexcept{return viewport;}
+    Matrix44 TextureMatrix();
 
 	void setMatrixMode(Matrix::Matrix type);
 	void applyMatrix (const Matrix44& mat);
@@ -84,6 +87,9 @@ private:
 	int bpp;
 	int w;
 	int h;
+    GLdouble* modelview;
+    GLdouble* projection;
+    GLint* viewport;
 
 	Uint32 fullscreen;
 	Uint32 videoFlags;
