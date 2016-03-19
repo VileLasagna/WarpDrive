@@ -11,9 +11,9 @@ class Score:public GameObject
 {
 public:
 	Score();
-	void Update();
-	void Draw();
-	const char* getType() const {return "score";}
+    void Update() override;
+    void Draw()const override;
+    const char* getType() const override {return "score";}
 	void add(int points);
 	void load();
 	void save();

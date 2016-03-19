@@ -69,41 +69,32 @@ void Camera::setRelativePos(const Vec3f &Relative)
 Ray Camera::traceRay(int x, int y) const noexcept
 {
     GLdouble worldX, worldY, worldZ;
-    //GLfloat winZ;
     worldX = 0;
     worldY = 0;
     worldZ = 0;
-    //winZ = 0;
-    GLdouble model[16];
-    GLdouble proj[16];
-    GLint viewport[4];
 
-    glGetDoublev(GL_MODELVIEW_MATRIX,model);
+    auto proj  = DisplayManager::instance()->ProjectionMatrix();
+    auto model = DisplayManager::instance()->ModelviewMatrix();
+    auto view  = DisplayManager::instance()->Viewport();
 
-    glGetDoublev(GL_PROJECTION_MATRIX,proj);
-    glGetIntegerv(GL_VIEWPORT,viewport);
+    gluUnProject(x,view[3] - y, 0 , model, proj, view, &worldX, &worldY, &worldZ);
 
-
-//    glReadPixels(e.x, viewport[3] - e.y, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
-
-
-   auto res = gluUnProject(x,viewport[3] - y, 0 , model, proj, viewport, &worldX, &worldY, &worldZ);
-
-   return Ray( LineSeg(pos, Vec3f(worldX,worldY,worldZ) ) );
+    return Ray( LineSeg(pos, Vec3f(worldX,worldY,worldZ) ) );
 
 }
 
-void Camera::Draw()
+void Camera::Draw() const
 {
 	//insert code HERE
 	//TODO: A wireframe camera like those in Maya would be awesome
 }
 
-void Camera::Use()
+void Camera::Use() const
 {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	gluLookAt(pos.X(),pos.Y(),pos.Z(),target.X(),target.Y(),target.Z(),up.X(),up.Y(),up.Z());
+    DisplayManager::instance()->updateMatrices();
 	//TODO: Auto turning around, Needs rotation member in GameObject;
 }
 

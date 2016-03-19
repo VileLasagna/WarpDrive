@@ -15,7 +15,7 @@ public:
 	TeapotLoaderState();
 
     int Update() override;
-    void Draw() override;
+    void Draw() const override;
     void Reset() override;
     void onJoyButtonEvent(const SDL_JoyButtonEvent& e) override;
     void onKeyboardEvent(const SDL_KeyboardEvent& e) override;

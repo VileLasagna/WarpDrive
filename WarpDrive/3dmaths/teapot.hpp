@@ -18,7 +18,7 @@ public:
 		name = "TheTestTeapot";
 		type = "Teapot";
 	}
-	void Update() 
+    void Update() override
 	{
 		GameObject::Update();
 		vel+= accel*DisplayManager::instance()->getDtSecs(); 
@@ -27,7 +27,7 @@ public:
         Box = AABBox(pos.X()-halfsize,pos.X()+halfsize,pos.Y()-halfsize,pos.Y()+halfsize,pos.Z()-halfsize,pos.Z()+halfsize);
 		type = "Teapot";
 	}
-	void Draw() 
+    void Draw() const override
 	{
 		if(tex)
 		{

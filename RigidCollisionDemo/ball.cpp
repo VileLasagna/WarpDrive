@@ -43,7 +43,7 @@ void Ball::Update()
 
 }
 
-void Ball::Draw()
+void Ball::Draw() const
 {
     //getSphere().Draw();
     getBox().Draw();

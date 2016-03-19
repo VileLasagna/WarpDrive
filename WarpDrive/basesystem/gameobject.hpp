@@ -20,7 +20,7 @@ public:
 
     GameObject();
 	virtual void Update() = 0;
-	virtual void Draw() = 0;
+    virtual void Draw() const= 0;
 	virtual ~GameObject() = default;
 	virtual bool Load(ManagedFile* ) {return true;}
 	virtual const char* getType() const {return type.c_str();}

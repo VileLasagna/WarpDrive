@@ -17,7 +17,7 @@ public:
 	virtual~ GameState(){}
 	virtual int Update() = 0;	 //The return value is the Game State to be run on the following update
 								// Return -1 to terminate the program
-	virtual void Draw() = 0; //Blit everything.
+    virtual void Draw() const = 0; //Blit everything.
 
 	virtual void Reset() = 0; //resets the game state;
 

@@ -54,8 +54,9 @@ LauncherState::LauncherState()
 
 }
 
-void LauncherState::Draw()
+void LauncherState::Draw() const
 {
+    cam.Use();
 
     Game::instance()->DrawObjects();
 
@@ -106,7 +107,6 @@ int LauncherState::Update()
     //brute.Update(Game::iterator(/*"Ball",ObjIterator::ALL*/));
     rdc.Update(Game::iterator(/*"Ball",ObjIterator::ALL*/));
     cam.Update();
-    cam.Use();
 
     return ret;
 }

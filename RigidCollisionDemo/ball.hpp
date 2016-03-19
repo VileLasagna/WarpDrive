@@ -11,7 +11,7 @@ public:
     Ball(Vec3f position = Vec3f(0,0,0), Vec3f velocity = Vec3f(0,0,0));
 
     void Update() override;
-    void Draw() override;
+    void Draw() const override;
 
     void setRadius(float f) { body.setRadius(f); radius = f; dimensions = Vec3f{f*2,f*2,f*2};}
     void setColour(GLRGBColour colour) noexcept;

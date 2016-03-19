@@ -17,9 +17,9 @@ class Camera: public GameObject
 public:
 
 	Camera();
-	void Update();
-	void Draw();
-	void Use();
+    void Update() override;
+    void Draw() const override;
+    void Use() const;
 
 	void setTarget(const Vec3f& targetPos);
 	void setTarget(const GameObject* targetObject);

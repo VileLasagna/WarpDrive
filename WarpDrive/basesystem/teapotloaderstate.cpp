@@ -36,7 +36,7 @@ TeapotLoaderState::TeapotLoaderState()
 
 
 
-void TeapotLoaderState::Draw()
+void TeapotLoaderState::Draw() const
 {
 
     for(Sphere* p: pots)

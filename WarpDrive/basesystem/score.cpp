@@ -31,7 +31,7 @@ void Score::add(int points)
 }
 
 
-void Score::Draw()
+void Score::Draw() const
 {
 	display->UseThisTexture();
 	quad.Draw();
