@@ -6,6 +6,7 @@
 #include <array>
 
 #include "basemaths/vec4.hpp"
+#include <GL/gl.h>
 
 
 
@@ -22,21 +23,20 @@ public:
 
 	Matrix44();
 	explicit Matrix44(float16& mat);
+    explicit Matrix44(GLdouble* mat);
 
 
 	void setIdentity();
 
 	void Multiply(const Matrix44& rhs);
 	 
-	
-
 	void setTranslation(float x, float y, float z);
 	void setScaling(float x, float y, float z);
 	void setRotation(float degx, float degy, float degz);
 	void setRotationRad( float radx, float rady, float radz);
 	//void Print();
 
-	const float16& getElements() const {return elements;}
+    const float16& Elements() const {return elements;}
 
 	void applyMatrix() const;	//Apply this to the current Display Matrix
 	void setMatrix() const;		//SET the current Display Matrix to be THIS
@@ -47,7 +47,7 @@ public:
 
 	static Vec4f Multiply( const Matrix44& mat, const Vec4f& vec)
 		{
-			auto e = mat.getElements();
+            auto e = mat.Elements();
 			return Vec4f(  e[0]*vec.X()+e[4]*vec.Y()+e[8]*vec.Z()+e[12]*vec.W(),
 						e[1]*vec.X()+e[5]*vec.Y()+e[9]*vec.Z()+e[13]*vec.W(),
 						e[2]*vec.X()+e[6]*vec.Y()+e[10]*vec.Z()+e[14]*vec.W(),

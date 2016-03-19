@@ -18,7 +18,6 @@ void Matrix44::setIdentity()
 	elements[10] = 1;
 	elements[15] = 1;
 
-
 }
 
 Matrix44::Matrix44()
@@ -29,7 +28,15 @@ Matrix44::Matrix44()
 Matrix44::Matrix44(float16& mat)
 {
 
-	elements = mat;
+    elements = mat;
+}
+
+Matrix44::Matrix44(GLdouble* mat)
+{
+    for(int i = 0; i < 16; i++)
+    {
+        elements[i] = mat[i];
+    }
 }
 
 void Matrix44::Multiply(const Matrix44 &rhs)
@@ -58,7 +65,6 @@ void Matrix44::Multiply(const Matrix44 &rhs)
 	elements = result;
 
 }
-
 
 void Matrix44::setRotation(float degx, float degy, float degz)
 {
