@@ -1,5 +1,5 @@
-#ifndef TIMED_REMOVE_EVENT_H
-#define TIMED_REMOVE_EVENT_H
+#ifndef WD_TIMED_REMOVE_EVENT_HPP_DEFINED
+#define WD_TIMED_REMOVE_EVENT_HPP_DEFINED
 
 #include "events/objectevent.hpp"
 #include "basesystem/gameobject.hpp"
@@ -11,15 +11,11 @@ public:
 
 	TimedRemoveEvent(float Time = 5);
 	~TimedRemoveEvent(){}
-	void Update(GameObject* target);
+    void update(GameObject* target) override;
 
 private:
 
 	float time;
 };
 
-
-
-
-
-#endif //TIMED_REMOVE_EVENT_H
+#endif //WD_TIMED_REMOVE_EVENT_HPP_DEFINED

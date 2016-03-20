@@ -2,27 +2,27 @@
 
 bool Capsule::Collides(const Sphere &S) const
 {
-	return Path.sqDistToPoint(S.Centre()) <= (R+S.Radius())*(R+S.Radius());
+	return path.sqDistToPoint(S.Centre()) <= (R+S.Radius())*(R+S.Radius());
 }
 
-Capsule::Capsule():
-	Path{LineSeg()},
+Capsule::Capsule() noexcept:
+	path{LineSeg()},
 	R{0} {}
 
-Capsule::Capsule(const LineSeg& path, float r)
+Capsule::Capsule(const LineSeg& p, float r) noexcept
 {
-	Path = {path};
+    path = {p};
 	R = {r};
 }
 
-Capsule::Capsule(const Vec3f &A, const Vec3f &B, float r)
+Capsule::Capsule(const Vec3f &A, const Vec3f &B, float r) noexcept
 {
-	Path = {LineSeg(A,B)};
+	path = {LineSeg(A,B)};
 	R = {r};
 }
 
-Capsule::Capsule(const Sphere &S, const Vec3f &Path)
+Capsule::Capsule(const Sphere &S, const Vec3f &Path) noexcept
 {
-	this->Path = LineSeg(S.Centre(), S.Centre()+Path);
+	this->path = LineSeg(S.Centre(), S.Centre()+Path);
 	R = S.Radius();
 }

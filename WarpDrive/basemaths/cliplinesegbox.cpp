@@ -96,31 +96,31 @@ bool ClipAxis(
     return true;
 }
 
-bool Clip(const LineSeg& ls, const AABBox& box, LineSeg* clipped)
+bool Clip(const LineSeg& ls, const AABBox& box, LineSeg* clipped) noexcept
 {
     float t0 = 0;
     float t1 = 1.0f;
 
-    if (!ClipAxis(box.MinX(), box.MaxX(), ls.getStart().X(), (ls.getEnd()-ls.getStart()).X(), t0, t1))
+    if (!ClipAxis(box.MinX(), box.MaxX(), ls.Start().X(), (ls.End()-ls.Start()).X(), t0, t1))
     {
         return false;
     }
 
-    if (!ClipAxis(box.MinY(), box.MaxY(), ls.getStart().Y(), (ls.getEnd()-ls.getStart()).Y(), t0, t1))
+    if (!ClipAxis(box.MinY(), box.MaxY(), ls.Start().Y(), (ls.End()-ls.Start()).Y(), t0, t1))
     {
         return false;
     }
 
-    if (!ClipAxis(box.MinZ(), box.MaxZ(), ls.getStart().Z(), (ls.getEnd()-ls.getStart()).Z(), t0, t1))
+    if (!ClipAxis(box.MinZ(), box.MaxZ(), ls.Start().Z(), (ls.End()-ls.Start()).Z(), t0, t1))
     {
         return false;
     }
 
-    if (clipped)
+    if (clipped != nullptr)
     {
         *clipped = LineSeg(
-            ls.getStart() + (ls.getEnd()-ls.getStart()) * t0,
-            (ls.getEnd()-ls.getStart()) * (t1 - t0));
+            ls.Start() + (ls.End()-ls.Start()) * t0,
+            (ls.End()-ls.Start()) * (t1 - t0));
     }
 
     return true;

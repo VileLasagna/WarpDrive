@@ -35,7 +35,7 @@ void DrawLine(const Vec3f& v1, const Vec3f& v2)
     glEnable(GL_TEXTURE_2D);
 }
 
-void AABBox::Draw() const
+void AABBox::draw() const
 {
     DrawLine( Vec3f(xmin, ymin, zmin) ,
             Vec3f(xmax, ymin, zmin) );
@@ -74,7 +74,7 @@ void AABBox::Draw() const
             Vec3f(xmin, ymax, zmax) );
 }
 
-AABBox AABBox::MakeOctChild(int octant) const
+AABBox AABBox::makeOctChild(int octant) const
 {
     // Centre of box
     float cx = (xmin + xmax) / 2.0f;
@@ -110,16 +110,16 @@ AABBox AABBox::MakeOctChild(int octant) const
     return AABBox(x_min, x_max, y_min, y_max, z_min, z_max);
 }
 
-bool AABBox::Contains(const Vec3f& v) const noexcept
+bool AABBox::contains(const Vec3f& v) const noexcept
 {
     return (    v.X() >= xmin && v.X() < xmax &&
                 v.Y() >= ymin && v.Y() < ymax &&
                 v.Z() >= zmin && v.Z() < zmax );
 }
 
-bool Intersects(const Capsule& c, const AABBox& box)
+bool intersects(const Capsule& c, const AABBox& box)
 {
-    AABBox B(box.MinX()-c.radius(), box.MaxX() + c.radius(), box.MinY()-c.radius(), box.MaxY()+c.radius(), box.MinZ() - c.radius(), box.MaxZ() + c.radius());
-    LineSeg clipped = c.getPath();
+    AABBox B(box.MinX()-c.Radius(), box.MaxX() + c.Radius(), box.MinY()-c.Radius(), box.MaxY()+c.Radius(), box.MinZ() - c.Radius(), box.MaxZ() + c.Radius());
+    LineSeg clipped = c.Path();
     return Clip(clipped,B);
 }

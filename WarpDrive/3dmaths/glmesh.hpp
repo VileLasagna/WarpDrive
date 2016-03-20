@@ -1,5 +1,5 @@
-#ifndef GLMESH_H
-#define GLMESH_H
+#ifndef WD_GLMESH_HPP_DEFINED
+#define WD_GLMESH_HPP_DEFINED
 
 #ifdef WIN32
     #include <windows.h>
@@ -12,16 +12,16 @@ class GLMesh
 
 private:
 
-	GLMesh operator=(const GLMesh& ref);
+    GLMesh operator=(const GLMesh& ref);
 	GLMesh(const GLMesh& ref);
 
 public:
 
 	GLMesh();
 	GLMesh(const char* objfile, bool Textured = true, bool Smooth = true, bool TwoSidedPolys = false);
-	bool Load(const char* objfile, bool Textured = true, bool Smooth = true, bool TwoSidedPolys = false);
+    bool load(const char* objfile, bool Textured = true, bool Smooth = true, bool TwoSidedPolys = false);
 	bool setSize(float f) {glmUnitize(mesh); glmScale(mesh,f); return true;}
-	void Draw();
+    void draw() const;
 	~GLMesh();
 
 private:
@@ -33,4 +33,4 @@ private:
 };
 
 
-#endif //GL_MESH_H
+#endif //WD_GLMESH_HPP_DEFINED

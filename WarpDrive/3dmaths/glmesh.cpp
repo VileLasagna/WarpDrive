@@ -34,7 +34,7 @@ GLMesh::GLMesh(const char *objfile, bool Textured, bool Smooth , bool TwoSidedPo
 	} 
 }
 
-bool GLMesh::Load(const char *objfile, bool Textured, bool Smooth , bool TwoSidedPolys)
+bool GLMesh::load(const char *objfile, bool Textured, bool Smooth , bool TwoSidedPolys)
 {
 	mesh = glmReadOBJ(objfile);
 	flags = 0;
@@ -61,10 +61,9 @@ bool GLMesh::Load(const char *objfile, bool Textured, bool Smooth , bool TwoSide
 	return true;
 }
 
-void GLMesh::Draw()
+void GLMesh::draw() const
 {
 	glmDraw(mesh, flags);
-
 }
 
 GLMesh::~GLMesh()

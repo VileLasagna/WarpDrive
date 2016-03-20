@@ -1,16 +1,19 @@
-#ifndef SDL_FONT_MANAGER_H
-#define SDL_FONT_MANAGER_H
+#ifndef WD_SDL_FONT_MANAGER_HPP_DEFINED
+#define WD_SDL_FONT_MANAGER_HPP_DEFINED
 
 #include <map>
+
 #include "display/sdlttf.hpp"
 
 class SDLFontManager
 {
+
 private:	//this class is a singleton
     SDLFontManager() {}
 
 public:
-	static SDLFontManager* instance();
+
+    static SDLFontManager* instance() noexcept;
 	SDLTTF* getFont(const std::string& fontName, int pointSize);
 	static void clear();
 
@@ -20,10 +23,10 @@ public:
 	~SDLFontManager() = default;
 
 private:
-    typedef std::pair<std::string, int> FP; // font name/size pair
-    typedef std::map<FP, SDLTTF*> FontMap;
+
+    using FP = std::pair<std::string, int>; // font name/size pair
+    using FontMap = std::map<FP, SDLTTF*>;
     FontMap fmap;
 };
 
-
-#endif //SDL_FONT_MANAGER_H
+#endif //WD_SDL_FONT_MANAGER_HPP_DEFINED

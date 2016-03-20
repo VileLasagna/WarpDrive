@@ -1,5 +1,5 @@
-#ifndef MODEL_LOADER_H
-#define MODEL_LOADER_H
+#ifndef WD_MODEL_LOADER_HPP_DEFINED
+#define WD_MODEL_LOADER_HPP_DEFINED
 
 class Model;
 
@@ -16,4 +16,4 @@ public:
 
 
 
-#endif //MODEL_LOADER_H
+#endif //WD_MODEL_LOADER_HPP_DEFINED

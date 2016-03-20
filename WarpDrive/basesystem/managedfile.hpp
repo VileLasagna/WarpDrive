@@ -1,13 +1,12 @@
-#ifndef MANAGED_FILE_H
-#define MANAGED_FILE_H
+#ifndef WD_MANAGED_FILE_HPP_DEFINED
+#define WD_MANAGED_FILE_HPP_DEFINED
 
 #include "basesystem/filemanager.hpp"
-
-
 
 class ManagedFile
 {
 public:
+
 	ManagedFile(std::string filename);
 
 	FMCODE getInt	(int* dest);
@@ -17,10 +16,6 @@ public:
 	FMCODE getState() const {return state;}
 
 	~ManagedFile();
-
-
-
-
 
 private:
 
@@ -35,14 +30,6 @@ private:
 	std::string filename;
 	bool readOnly;
 
-
-
 };
 
-
-
-
-
-
-
-#endif //MANAGED_FILE_H
+#endif //WD_MANAGED_FILE_HPP_DEFINED

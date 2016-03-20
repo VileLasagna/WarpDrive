@@ -38,7 +38,7 @@ Sprite::Sprite(const std::string& filename)
 				}
 			}
 		}
-		baseSize = sheets[0]->getSize();
+        baseSize = sheets[0]->CellSize();
 		infile.close();
 		this->setCellTime();
 	}
@@ -47,7 +47,7 @@ Sprite::Sprite(const std::string& filename)
 		AnimSheet* as = new AnimSheet(filename);
 		sheets.push_back(as);
 		sheets[0]->setAlphaT(transpThreshold);
-		baseSize = sheets[0]->getSize();
+        baseSize = sheets[0]->CellSize();
 		std::vector<std::pair<Vec2<Vec2i>,int> > tempAnims = sheets[0]->getAnims();
 		for (unsigned int i = 0; i < tempAnims.size(); i++)
 		{
@@ -80,9 +80,9 @@ int Sprite::playAnimation(int i)
 		// Update bounding rect
 		rect = Rectf(
         pos.X(), 
-		pos.X() + sheets[animations[current.X()].first.X().X()]->getSize().X(),
+        pos.X() + sheets[animations[current.X()].first.X().X()]->CellSize().X(),
         pos.Y(),
-        pos.Y() + sheets[animations[current.X()].first.X().X()]->getSize().Y());
+        pos.Y() + sheets[animations[current.X()].first.X().X()]->CellSize().Y());
 		if (currentCell != animations[i].first.Z())//not the last frame in the animation
 		{
 			if (dt >= maxCellTime)
@@ -106,9 +106,9 @@ int Sprite::playAnimation(int i)
 						// Update bounding rect
 						rect = Rectf(
 						pos.X(), 
-						pos.X() + sheets[animations[current.X()].first.X().X()]->getSize().X(),
+                        pos.X() + sheets[animations[current.X()].first.X().X()]->CellSize().X(),
 						pos.Y(),
-						pos.Y() + sheets[animations[current.X()].first.X().X()]->getSize().Y());
+                        pos.Y() + sheets[animations[current.X()].first.X().X()]->CellSize().Y());
 						sheets[animations[current.X()].first.X().X()]->setAlphaT(transpThreshold);
 						dt = 0;
 			}
@@ -127,9 +127,9 @@ int Sprite::playAnimation(int i)
 		// Update bounding rect
 		rect = Rectf(
         pos.X(), 
-		pos.X() + sheets[animations[current.X()].first.X().X()]->getSize().X(),
+        pos.X() + sheets[animations[current.X()].first.X().X()]->CellSize().X(),
         pos.Y(),
-        pos.Y() + sheets[animations[current.X()].first.X().X()]->getSize().Y());
+        pos.Y() + sheets[animations[current.X()].first.X().X()]->CellSize().Y());
 		sheets[animations[current.X()].first.X().X()]->setAlphaT(transpThreshold);
 		dt = 0;
 	}   
@@ -152,15 +152,15 @@ void Sprite::setColourKey(const SDLRGBColour& tc)
 	}
 }
 
-void Sprite::Draw()
+void Sprite::draw()
 {
 	if (current.X() == -1) {return;} //this method has been called before the sprite was updated for the first time. Ignore the mistake
-	int ax = sheets[animations[current.X()].first.X().X()]->getAdjust().X();
-	int ay = sheets[animations[current.X()].first.X().X()]->getAdjust().Y();
+    int ax = sheets[animations[current.X()].first.X().X()]->Adjust().X();
+    int ay = sheets[animations[current.X()].first.X().X()]->Adjust().Y();
 	Vec2i apos;//the position adjusted by any offset this sheet might have.
 	apos.setX( (int)pos.X() + ax);
 	apos.setY( (int)pos.Y() + ay);
-	sheets[animations[current.X()].first.X().X()]->Blit(currentCell, (int)apos.X(), (int)apos.Y());
+    sheets[animations[current.X()].first.X().X()]->blit(currentCell, (int)apos.X(), (int)apos.Y());
 }
 
 void Sprite::setPos(const Vec2f& p)
@@ -175,22 +175,22 @@ bool Sprite::pixCollision(const Sprite& other) const
 {
 	// If bounding rectangles do not intersect, sprites
     //  do not collide
-	if (!rect.intersects(other.getBox()))
+    if (!rect.intersects(other.Box()))
     {
         return false;
     }
 	else
 	{
-		Rectf inter = intersection(other.getBox());
+        Rectf inter = intersection(other.Box());
 		 // Loop over region
 		int height = (int)(inter.Height());
 		int width = (int)(inter.Width());
 
 		int xOff = (int)(inter.MinX() - pos.X());
-		int xOffOther = (int)(inter.MinX() - other.getPos().X());
+        int xOffOther = (int)(inter.MinX() - other.Position().X());
 
 		int yOff = (int)(inter.MinY() - pos.Y());
-		int yOffOther = (int)(inter.MinY() - other.getPos().Y());
+        int yOffOther = (int)(inter.MinY() - other.Position().Y());
 
 		for (int i = 0; i < height; i++)
 		{
@@ -200,7 +200,7 @@ bool Sprite::pixCollision(const Sprite& other) const
 				//  for both sprites, then they do intersect
 				bool thisIsTransparent = sheets[animations[current.X()].first.X().X()]->isPixTransparent(
 					currentCell, j + xOff, i + yOff);
-				bool otherIsTransparent = other.getSheet().isPixTransparent(
+                bool otherIsTransparent = other.Sheet().isPixTransparent(
 					other.currentCell, j + xOffOther, i + yOffOther);
 
 				if (!thisIsTransparent && !otherIsTransparent)
@@ -218,22 +218,22 @@ bool Sprite::pixCollision(const SDLImage& other) const
 {
 	// If bounding rectangles do not intersect, sprites
     //  do not collide
-	if (!rect.intersects(other.getBox()))
+    if (!rect.intersects(other.Box()))
     {
         return false;
     }
 	else
 	{
-		Rectf inter = intersection(other.getBox());
+        Rectf inter = intersection(other.Box());
 		 // Loop over region
 		int height = (int)(inter.Height());
 		int width = (int)(inter.Width());
 
 		int xOff = (int)(inter.MinX() - pos.X());
-		int xOffOther = (int)(inter.MinX() - other.getPos().X());
+        int xOffOther = (int)(inter.MinX() - other.Position().X());
 
 		int yOff = (int)(inter.MinY() - pos.Y());
-		int yOffOther = (int)(inter.MinY() - other.getPos().Y());
+        int yOffOther = (int)(inter.MinY() - other.Position().Y());
 
 		for (int i = 0; i < height; i++)
 		{

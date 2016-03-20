@@ -12,7 +12,7 @@ void ManagedFile::init(FileManager::streamStatus &s)
 {
 	s.stream->seekg(0, std::ios::beg);
 	setPos(s.stream->tellg());
-	state = FM_OK;
+    state = FMCODE::FM_OK;
 	readOnly = s.readOnly;
 }
 

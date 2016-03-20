@@ -1,9 +1,9 @@
-#ifndef SOUND_FX_H
-#define SOUND_FX_H
+#ifndef WD_SOUND_FX_HPP_DEFINED
+#define WD_SOUND_FX_HPP_DEFINED
 
 #include <string>
-#include <SDL/SDL_mixer.h>
-#include <SDL/SDL.h>
+#include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL.h>
 
 #include "soundmanager.hpp"
 /*
@@ -25,30 +25,29 @@ public:
 	SoundFX(SDL_RWops* source);
 	~SoundFX();
 
-
-	int getVolume() const {return volume;}
+    int Volume() const {return volume;}
 	void setVolume(int i) {volume = i;} //from 0 to 100. 50 is neutral, other values will adjust this when played by SoundManager
 	
-	int getLoop() const {return loop;}//how many times is this to be looped. -1 = forever
+    int Loop() const {return loop;}//how many times is this to be looped. -1 = forever
 	void setLoop(int i) {loop = i;}
 
-	unsigned int getFadeIn() const {return fadeIn;}//fadeIn and fadeOut are the time, in miliseconds, that this sound should fade
+    unsigned int FadeIn() const {return fadeIn;}//fadeIn and fadeOut are the time, in miliseconds, that this sound should fade
 	void setFadeIn(int milis) {fadeIn = milis;}
-	unsigned int getFadeOut() const {return fadeOut;}
+    unsigned int FadeOut() const {return fadeOut;}
 	void setFadeOut(unsigned int milis) {fadeOut = milis;}
 	void setFadeOutFrom(unsigned int pos) {fadeOutFrom = pos;} //this can't be set automatically. It's from when, in miliseconds, the sound should start fading out
-	unsigned int getFadeOutFrom() const {return fadeOutFrom;}
+    unsigned int FadeOutFrom() const {return fadeOutFrom;}
 	
-	unsigned int getPlayed() const {return played;}//returns the estimate position on the file
+    unsigned int Played() const {return played;}//returns the estimate position on the file
 	
 
-	Uint8 getDistance() const {return distance;}
+    Uint8 Distance() const {return distance;}
 	void setDistance (Uint8 i) {distance = i;} //0 unregisters effect. 255 is the farthest possible (but still audible)
 
-	int getPosition() const {return position;} //this is an angle relative to what should be your "front"
+    int Position() const {return position;} //this is an angle relative to what should be your "front"
 	void setPosition(int deg) {position = deg;} //This is an angle! (0 = front, 90 = right)
 
-	bool getReverseStereo() const {return reverseStereo;}
+    bool ReverseStereo() const {return reverseStereo;}
 	void setReverseStereo(bool b) {reverseStereo = b;}
 
 	int getChannel() const {return channel;}
@@ -56,34 +55,28 @@ public:
 	Mix_Chunk* getChunk(){return chunk;} 
 	
 	void setPanning(int i) {panning = i;} //0 unregisters effect. If distance+angle are set, this is ignored.
-	int getPanning() const {return panning;} //0 is full-left. 128 = center. 255 is full-right
+    int Panning() const {return panning;} //0 is full-left. 128 = center. 255 is full-right
 
 	void setType(const std::string& s) {type = s;} //Sound type for Manager's auto-volume
-	const std::string& getType() const {return type;}
+    const std::string& Type() const {return type;}
 
 	void setPriority(bool b) {priority = b;} //Priority sounds aren't dropped unless extreme circunstances arise
 	bool getPriority() {return priority;}
 
 	void Halt() {halt = true;}
-	bool getHalt() const {return halt;}
+    bool Halted() const {return halt;}
 
 
-	bool hasFinished() const {return finished;}
+    bool Finished() const {return finished;}
 
-	static bool hasFinished(const SoundFX& fx) {return fx.hasFinished();}
-
-	
-	
+    static bool Finished(const SoundFX& fx) {return fx.Finished();}
 
 	
-
-
 private:
 
-	
 	friend class SoundManager;
 
-	void Finished(){finished = true;}
+    void finish(){finished = true;}
 	void freeChunk(); //This is a safeguard against a possible coding mistake.
 	void rewind() {played = 0; finished = false;}
 	void addPlayed(int i) {played+=i;} //register that the sound has advanced i miliseconds (needed for planning fade-outs)
@@ -111,7 +104,4 @@ private:
 
 };
 
-
-
-
-#endif //SOUND_FX_H
+#endif //WD_SOUND_FX_HPP_DEFINED

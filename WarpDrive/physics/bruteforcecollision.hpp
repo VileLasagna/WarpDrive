@@ -1,19 +1,19 @@
-#ifndef BRUTEFORCECOLLISION_HPP
-#define BRUTEFORCECOLLISION_HPP
+#ifndef WD_BRUTEFORCECOLLISION_HPP_DEFINED
+#define WD_BRUTEFORCECOLLISION_HPP_DEFINED
 
 #include "physics/collisionsystem.hpp"
 
-
 class BruteForceCollision : public CollisionSystem
 {
+
 public:
 
     BruteForceCollision();
 
-
     // CollisionSystem interface
 public:
-    void Update(Game::iterator it);
+
+    void update(Game::iterator it);
 };
 
-#endif // BRUTEFORCECOLLISION_HPP
+#endif // WD_BRUTEFORCECOLLISION_HPP_DEFINED

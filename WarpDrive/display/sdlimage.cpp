@@ -1,6 +1,6 @@
 #include "display/sdlimage.hpp"
 #ifdef _WIN32
-	#include <SDL/SDL_Image.h>
+	#include <SDL2/SDL_Image.h>
 #else
 	#include <SDL2/SDL_image.h>
 #endif //_WIN32
@@ -15,10 +15,10 @@ SDLImage::SDLImage()
 	y = 0;
 }
 
-bool SDLImage::Load(const std::string& filename)
+bool SDLImage::load(const std::string& filename)
 {
     surface = IMG_Load(filename.c_str());
-    image = SDL_CreateTextureFromSurface(DisplayManager::instance()->getRenderer(), surface);
+    image = SDL_CreateTextureFromSurface(DisplayManager::instance()->Renderer(), surface);
 
     return (image != 0);
 }
@@ -29,7 +29,7 @@ void SDLImage::setColourKey(const SDLRGBColour& tc)
         surface,
         SDL_TRUE | SDL_RLEACCEL,
         SDL_MapRGB(surface->format, tc.R(), tc.G(), tc.B()));
-    image = SDL_CreateTextureFromSurface(DisplayManager::instance()->getRenderer(), surface);
+    image = SDL_CreateTextureFromSurface(DisplayManager::instance()->Renderer(), surface);
 
 }
 
@@ -41,22 +41,22 @@ SDLImage::~SDLImage()
 	
 }
 
-void SDLImage::Blit(int x, int y)
+void SDLImage::blit(int x, int y)
 {
 	this->x = x;
 	this->y = y;
     SDL_Rect dest;
     dest.x = x;
     dest.y = y;
-    SDL_RenderCopy(DisplayManager::instance()->getRenderer(), image, 0, &dest );
+    SDL_RenderCopy(DisplayManager::instance()->Renderer(), image, 0, &dest );
 }
 
-Rectf SDLImage::getBox() const
+Rectf SDLImage::Box() const
 {
     return Rectf(x,surface->w,y,surface->h);
 }
 
-Vec2f SDLImage::getPos() const
+Vec2f SDLImage::Position() const
 {
 	return Vec2f(x,y);
 }
@@ -66,7 +66,7 @@ void SDLImage::setDrawAlpha(int i)
     SDL_SetTextureAlphaMod(image, i);
 }
 
-unsigned int SDLImage::getPixelColour(int x, int y) const
+unsigned int SDLImage::PixelColour(int x, int y) const
 {
 	unsigned char* c = 
         (unsigned char*) surface->pixels +
@@ -87,7 +87,7 @@ unsigned int SDLImage::getPixelColour(int x, int y) const
 
 bool SDLImage::isPixTransparent(int x, int y) const
 {
-    unsigned int r = getPixelColour(x, y);
+    unsigned int r = PixelColour(x, y);
 
     if (surface->format->BytesPerPixel <= 3)
     {

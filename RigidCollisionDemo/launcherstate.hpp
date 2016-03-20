@@ -18,9 +18,9 @@ public:
 
     LauncherState();
 
-    int Update() override;
-    void Draw() const override;
-    void Reset() override;
+    int update() override;
+    void draw() const override;
+    void reset() override;
     void onJoyButtonEvent(const SDL_JoyButtonEvent& e) override;
     void onKeyboardEvent(const SDL_KeyboardEvent& e) override;
     void onMouseButtonEvent(const SDL_MouseButtonEvent& e) override;

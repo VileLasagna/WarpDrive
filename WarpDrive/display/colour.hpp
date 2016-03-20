@@ -1,8 +1,7 @@
-#ifndef COLOUR_H_DEFINED
-#define COLOUR_H_DEFINED
+#ifndef WD_COLOUR_HPP_DEFINED
+#define WD_COLOUR_HPP_DEFINED
 
 #include "basemaths/vec4.hpp"
-
 
 class Colour
 {
@@ -10,19 +9,20 @@ class Colour
 	//R,G,B and A go from 0 to 1
 	//Alpha 1 is 100% opaque
 public:
-	Colour(): r(1),g(1),b(1),a(1){}
-	Colour(float red, float green, float blue, float alpha = 1): r(red),g(green),b(blue),a(alpha){}
-	Colour(const Vec3f& rgb) {r = rgb.X(); g = rgb.Y(); b = rgb.Z(); a = 1;}
-	Colour(const Vec4f& rgba) {r = rgba.X(); g = rgba.Y(); b = rgba.Z(); a = rgba.W();}
-	float R() const {return r;}
-	float G() const {return g;}
-	float B() const {return b;}
-	float A() const {return a;}
 
-	void getRGB(float* dest) const {dest[0] = r; dest[1] = g; dest[2] = b;}
-	Vec3f getRGB() const {return Vec3f(r,g,b);}
-	void getRGBA(float* dest) const {dest[0] = r; dest[1] = g; dest[2] = b; dest[3] = a;}
-	Vec4f getRGBA() const {return Vec4f(r,g,b,a);}
+    Colour() noexcept: r(1),g(1),b(1),a(1){}
+    Colour(float red, float green, float blue, float alpha = 1) noexcept: r(red),g(green),b(blue),a(alpha){}
+    Colour(const Vec3f& rgb) noexcept {r = rgb.X(); g = rgb.Y(); b = rgb.Z(); a = 1;}
+    Colour(const Vec4f& rgba) noexcept {r = rgba.X(); g = rgba.Y(); b = rgba.Z(); a = rgba.W();}
+    float R() const noexcept {return r;}
+    float G() const noexcept {return g;}
+    float B() const noexcept {return b;}
+    float A() const noexcept {return a;}
+
+    void RGB(float* dest) const {dest[0] = r; dest[1] = g; dest[2] = b;}
+    Vec3f RGB() const {return Vec3f(r,g,b);}
+    void RGBA(float* dest) const {dest[0] = r; dest[1] = g; dest[2] = b; dest[3] = a;}
+    Vec4f RGBA() const {return Vec4f(r,g,b,a);}
 
 	void setR(float f) {r = f;}
 	void setB(float f) {g = f;}
@@ -30,10 +30,9 @@ public:
 	void setA(float f) {a = f;}
 
 	bool operator== (const Colour& b) const
-{
-	return ( (R() == b.R()) && (G() == b.G()) && (B() == b.B()) && (A() == b.A()));
-}
-
+    {
+        return ( (R() == b.R()) && (G() == b.G()) && (B() == b.B()) && (A() == b.A()));
+    }
 
 private:
 
@@ -41,7 +40,4 @@ private:
 
 };
 
-
-
-
-#endif //COLOUR_H_DEFINED
+#endif //WD_COLOUR_HPP_DEFINED

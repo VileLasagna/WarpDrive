@@ -1,5 +1,5 @@
-#ifndef SCORE_H
-#define SCORE_H
+#ifndef WD_SCORE_HPP_DEFINED
+#define WD_SCORE_HPP_DEFINED
 
 #include "basesystem/gameobject.hpp"
 #include "3dmaths/billboard.hpp"
@@ -11,11 +11,11 @@ class Score:public GameObject
 {
 public:
 	Score();
-    void Update() override;
-    void Draw()const override;
-    const char* getType() const override {return "score";}
+    void update() override;
+    void draw()const override;
+    const char* Type() const override {return "score";}
 	void add(int points);
-	void load();
+    //void load() override;
 	void save();
 	void Reset();
 
@@ -29,10 +29,4 @@ private:
 	Texture* display;
 };
 
-
-
-
-
-
-
-#endif //SCORE_H
+#endif //WD_SCORE_HPP_DEFINED

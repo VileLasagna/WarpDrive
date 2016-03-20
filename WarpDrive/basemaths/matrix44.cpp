@@ -16,7 +16,7 @@ void Matrix44::setIdentity()
 	elements[0] = 1;
 	elements[5] = 1;
 	elements[10] = 1;
-	elements[15] = 1;
+    elements[15] = 1;
 
 }
 
@@ -39,7 +39,7 @@ Matrix44::Matrix44(GLdouble* mat)
     }
 }
 
-void Matrix44::Multiply(const Matrix44 &rhs)
+void Matrix44::multiply(const Matrix44 &rhs)
 {
 
 	//Brace for long maths!

@@ -2,16 +2,16 @@
 #include "basesystem/sdleventhandler.hpp"
 #include "basesystem/displaymanager.hpp"
 
-void SDLEventHandler::Update()
+void SDLEventHandler::update()
 {
 	SDL_Event event;
 	while (SDL_PollEvent(&event))
 	{
-		HandleEvent(event);
+		handleEvent(event);
 	}
 }
 
-void SDLEventHandler::HandleEvent(const SDL_Event& e)
+void SDLEventHandler::handleEvent(const SDL_Event& e)
 {
 	switch (e.type)
 	{
@@ -72,7 +72,7 @@ void SDLEventHandler::onWindowEvent(const SDL_WindowEvent& e)
      * Warp Drive only provides treatment for the "resize request"
      * type, for the moment. Should it prove useful, this will be ammended
      */
-    if (e.windowID != SDL_GetWindowID(DisplayManager::instance()->getScreen()))
+    if (e.windowID != SDL_GetWindowID(DisplayManager::instance()->Screen()))
     {
         return;
     }

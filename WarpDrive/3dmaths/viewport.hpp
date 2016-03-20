@@ -1,5 +1,5 @@
-#ifndef VIEWPORT_H
-#define VIEWPORT_H
+#ifndef WD_VIEWPORT_HPP_DEFINED
+#define WD_VIEWPORT_HPP_DEFINED
 
 
 #ifdef WIN32
@@ -34,4 +34,4 @@ private:
 
 
 
-#endif //VIEWPORT_H
+#endif //WD_VIEWPORT_HPP_DEFINED

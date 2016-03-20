@@ -1,5 +1,5 @@
-#ifndef CONFIG_LOADER_H
-#define CONFIG_LOADER_H
+#ifndef WD_CONFIG_LOADER_HPP_DEFINED
+#define WD_CONFIG_LOADER_HPP_DEFINED
 
 
 #include <string>
@@ -16,11 +16,12 @@ private: //This class is a singleton
 	ConfigLoader(){}
 
 public:
-	static ConfigLoader* instance();
-	static void clear();
 
-	bool LoadFile(std::string filename);
-	std::pair<bool,std::string> getValue(std::string key);
+    static ConfigLoader* instance() noexcept;
+    static void clear() noexcept;
+
+    bool loadFile(std::string filename);
+    std::pair<bool,std::string> Value(std::string key) noexcept;
 
 
 	ConfigLoader(const ConfigLoader& ) = delete;
@@ -41,4 +42,4 @@ private:
 };
 
 
-#endif //CONFIG_LOADER_H
+#endif //WD_CONFIG_LOADER_HPP_DEFINED

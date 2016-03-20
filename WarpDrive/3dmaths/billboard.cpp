@@ -5,10 +5,10 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 
-void Billboard::Draw() const
+void Billboard::draw() const
 {
-	glDisable(GL_LIGHTING);
-	GLfloat m[16];
+    glDisable(GL_LIGHTING);
+    GLfloat m[16];
 	glGetFloatv(GL_MODELVIEW_MATRIX,m);
 	Vec3f UP (0,1,0);
 	if(!absUp)
@@ -43,11 +43,7 @@ void Billboard::Draw() const
 		//glColor3f(0,1,0);
 		glVertex3f(RB.X(),RB.Y(),RB.Z());
 
-		
-
 	glEnd();
 	glEnable(GL_LIGHTING);
-		
-
 
 }

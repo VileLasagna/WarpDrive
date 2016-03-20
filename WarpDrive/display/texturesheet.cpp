@@ -23,7 +23,7 @@ void TextureSheet::setNumCells(Vec2i cells)
 	setNumCells(cells.X(), cells.Y());
 }
 
-void TextureSheet::Blit(int cell, int x, int y) const
+void TextureSheet::blit(int cell, int x, int y) const
 {
     assert(numCells.X());
     assert(numCells.Y());
@@ -39,11 +39,11 @@ void TextureSheet::Blit(int cell, int x, int y) const
 	dest.x = x;
 	dest.y = y;
 
-    SDL_RenderCopy(DisplayManager::instance()->getRenderer(), image, &src, &dest );
+    SDL_RenderCopy(DisplayManager::instance()->Renderer(), image, &src, &dest );
 }
 
 
-void TextureSheet::Blit (Vec2i cell, int x, int y) const
+void TextureSheet::blit (Vec2i cell, int x, int y) const
 {
 
     assert(numCells.X());
@@ -60,13 +60,13 @@ void TextureSheet::Blit (Vec2i cell, int x, int y) const
 	dest.x = x;
 	dest.y = y;
 
-    SDL_RenderCopy(DisplayManager::instance()->getRenderer(), image, &src, &dest );
+    SDL_RenderCopy(DisplayManager::instance()->Renderer(), image, &src, &dest );
 }
 
 
-unsigned int TextureSheet::getPixelColour(int cell, int x, int y) const
+unsigned int TextureSheet::PixelColour(int cell, int x, int y) const
 {
-	return SDLImage::getPixelColour( (x + ( (cell%numCells.X())*cellSize.X() ) ) , (y + ( (cell/numCells.X())*cellSize.Y() ) ) );
+	return SDLImage::PixelColour( (x + ( (cell%numCells.X())*cellSize.X() ) ) , (y + ( (cell/numCells.X())*cellSize.Y() ) ) );
 }
 
 bool TextureSheet::isPixTransparent(int cell, int x, int y) const
@@ -74,9 +74,9 @@ bool TextureSheet::isPixTransparent(int cell, int x, int y) const
 	return SDLImage::isPixTransparent( (x + ( (cell%numCells.X())*cellSize.X() ) ), (y + ( (cell/numCells.X())*cellSize.Y() ) ) );
 }
 
-unsigned int TextureSheet::getPixelColour(Vec2i cell, int x, int y) const
+unsigned int TextureSheet::PixelColour(Vec2i cell, int x, int y) const
 {
-	return SDLImage::getPixelColour( (x + ( (cell.X()-1)*cellSize.X() ) ) , (y + ( (cell.Y()-1)*cellSize.Y() ) ) );
+	return SDLImage::PixelColour( (x + ( (cell.X()-1)*cellSize.X() ) ) , (y + ( (cell.Y()-1)*cellSize.Y() ) ) );
 }
 
 bool TextureSheet::isPixTransparent(Vec2i cell, int x, int y) const

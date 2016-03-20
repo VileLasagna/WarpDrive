@@ -1,5 +1,5 @@
-#ifndef MODEL_H
-#define MODEL_H
+#ifndef WD_MODEL_HPP_DEFINED
+#define WD_MODEL_HPP_DEFINED
 
 #include "3dmaths/vertex.hpp"
 #include "display/texture.hpp"
@@ -14,13 +14,13 @@
 class Model:public GameObject
 {
 public:
-	Model();
+    Model() noexcept;
 	Model(const std::string& filename);
 	ModelLoader* Loader(const std::string& FileFormat, ModelLoader* L = 0); //0 gets the function, a pointer sets is to that.
-	bool Load(ManagedFile*) override;
-    const char* getType() const override {return "Model";}
-    void Draw() const override;
-	void Update() override;
+    bool load(ManagedFile*) override;
+    const char* Type() const override {return "Model";}
+    void draw() const override;
+    void update() override;
 	
 private:
 
@@ -30,4 +30,4 @@ private:
 };
 
 
-#endif //MODEL_H
+#endif //WD_MODEL_HPP_DEFINED

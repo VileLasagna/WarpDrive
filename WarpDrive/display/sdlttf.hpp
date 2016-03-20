@@ -1,9 +1,10 @@
-#ifndef SDLTTF_H
-#define SDLTTF_H
+#ifndef WD_SDLTTF_HPP_DEFINED
+#define WD_SDLTTF_HPP_DEFINED
 
 #include <string>
+#include <SDL2/SDL_ttf.h>
+
 #include "basesystem/displaymanager.hpp"
-#include <SDL/SDL_ttf.h>
 #include "display/texture.hpp"
 
 class SDLTTF
@@ -12,13 +13,14 @@ public:
 	SDLTTF();
 	~SDLTTF();
 
-	bool Load(const std::string& fontFileName, int pointSize);
-	void Draw(const std::string& text, Texture* target);
+    bool load(const std::string& fontFileName, int pointSize);
+    void draw(const std::string& text, Texture* target) const;
 	//void setColour( int r, int g, int b);
 
 private:
+
 	TTF_Font* font;
 	SDL_Colour colour; //standard = white
 };
 
-#endif //SDLTTF_H
+#endif //WD_SDLTTF_HPP_DEFINED

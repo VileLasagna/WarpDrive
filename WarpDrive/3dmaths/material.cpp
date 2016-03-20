@@ -7,7 +7,7 @@
 #include <GL/glu.h>
 
 
-Material::Material()
+Material::Material() noexcept
 {
     ambient = Vec3f(0.2f,0.2f,0.2f);
 	specular = Vec3f(0,0,0);
@@ -15,73 +15,73 @@ Material::Material()
 	shiny = 0;
 }
 
-Vec3f Material::getAmbient() const
+Vec3f Material::Ambient() const noexcept
 {
 	return ambient;
 }
 
-Vec3f Material::getDiffuse() const
+Vec3f Material::Diffuse() const noexcept
 {
 	return diffuse;
 }
 
-Vec3f Material::getSpecular() const
+Vec3f Material::Specular() const noexcept
 {
 	return specular;
 }
 
-float Material::getShiny() const
+float Material::Shiny() const noexcept
 {
 	return shiny;
 }
 
-void Material::setAmbient(float r, float g, float b)
+void Material::setAmbient(float r, float g, float b) noexcept
 {
 	ambient = Vec3f(r,g,b);
 }
 
-void Material::setAmbient(Vec3f v)
+void Material::setAmbient(Vec3f v) noexcept
 {
 	ambient = v;
 }
 
-void Material::setDiffuse(float r, float g, float b)
+void Material::setDiffuse(float r, float g, float b) noexcept
 {
 	diffuse = Vec3f(r,g,b);
 }
 
-void Material::setDiffuse(Vec3f v)
+void Material::setDiffuse(Vec3f v) noexcept
 {
 	diffuse = v;
 }
 
-void Material::setSpecular(float r, float g, float b)
+void Material::setSpecular(float r, float g, float b) noexcept
 {
 	specular = Vec3f(r,g,b);
 }
 
-void Material::setSpecular(Vec3f v)
+void Material::setSpecular(Vec3f v) noexcept
 {
 	specular = v;
 }
 
-void Material::setShiny(float f)
+void Material::setShiny(float f) noexcept
 {
 	shiny = f;
 }
 
-void Material::use(int faces)
+void Material::use(Faces f) const noexcept
 {
 	float av[] = {ambient.X(),ambient.Y(),ambient.Z()};
 	float dv[] = {diffuse.X(),diffuse.Y(),diffuse.Z()};
 	float sv[] = {specular.X(),specular.Y(),specular.Z()};
 	unsigned int mode;
-	switch(faces)
+    switch(f)
 	{
-	case 0: mode = GL_FRONT;break;
-	case 1: mode = GL_BACK;break;
-	case 2: mode = GL_FRONT_AND_BACK;break;
-	default: mode = GL_FRONT;assert(0);break;
+    case Faces::FRONT:          mode = GL_FRONT;break;
+    case Faces::BACK:           mode = GL_BACK;break;
+    case Faces::FRONT_AND_BACK: mode = GL_FRONT_AND_BACK;break;
+    default:                    mode = GL_FRONT;assert(0);break;
 	}
 	glMaterialfv(mode,GL_AMBIENT,av);
 	glMaterialfv(mode,GL_DIFFUSE,dv);
@@ -89,7 +89,7 @@ void Material::use(int faces)
 	glMaterialf(mode,GL_SHININESS,shiny);
 }
 
-void Material::useDefault()
+void Material::useDefault() noexcept
 {
 
 	float av[] = {0.2,0.2,0.2};

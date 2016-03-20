@@ -1,24 +1,22 @@
-#ifndef TIMELINE_KEY_ADD_EVENT_H
-#define TIMELINE_KEY_ADD_EVENT_H
+#ifndef WD_TIMELINE_KEY_ADD_EVENT_HPP_DEFINED
+#define WD_TIMELINE_KEY_ADD_EVENT_HPP_DEFINED
 
 #include "events/timelinekey.hpp"
 #include "basesystem/gameobject.hpp"
 
 class TKAddEvent: public TimelineKey
 {
+
 public:
-	TKAddEvent(float Time = -0.01, GameObject* target = 0, GOEvent* e = 0) {time = Time; Object = target; Ev = e;}
+
+    TKAddEvent(float Time = -0.01, GameObject* target = 0, GOEvent* e = 0) {time = Time; object = target; ev = e;}
 	virtual ~TKAddEvent(){}
-	void Trigger() {if(Object && Ev){Object->addEvent(Ev);}}
+    void trigger() {if(object && ev){object->addEvent(ev);}}
 
 protected:
 
-	GameObject* Object;
-	GOEvent* Ev;
+    GameObject* object;
+    GOEvent* ev;
 };
 
-
-
-
-
-#endif //TIMELINE_KEY_ADD_EVENT_H
+#endif //WD_TIMELINE_KEY_ADD_EVENT_HPP_DEFINED

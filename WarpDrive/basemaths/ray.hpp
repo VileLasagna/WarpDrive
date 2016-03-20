@@ -1,5 +1,5 @@
-#ifndef RAY_HPP_DEFINED
-#define RAY_HPP_DEFINED
+#ifndef WD_RAY_HPP_DEFINED
+#define WD_RAY_HPP_DEFINED
 
 #include "basemaths/vec3.hpp"
 #include "basemaths/lineseg.hpp"
@@ -11,7 +11,7 @@ class Ray
 public:
 
     Ray(Vec3f o = Vec3f(0,0,0) , Vec3f d = Vec3f(0,0,1)) : origin{o}, direction{d.normalise()} {}
-    Ray(LineSeg segment) : origin{segment.getStart()}, direction{(segment.getEnd() - segment.getStart()).normalise()} {}
+    Ray(LineSeg segment) : origin{segment.Start()}, direction{(segment.End() - segment.Start()).normalise()} {}
 
     Vec3f Origin() const noexcept {return origin;}
     Vec3f Direction() const noexcept {return direction;}
@@ -33,4 +33,4 @@ private:
 
 };
 
-#endif // RAY_HPP_DEFINED
+#endif // WD_RAY_HPP_DEFINED

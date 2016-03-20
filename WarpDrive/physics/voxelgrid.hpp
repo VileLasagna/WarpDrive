@@ -1,9 +1,8 @@
-#ifndef VOXEL_GRID_H
-#define VOXEL_GRID_H
+#ifndef WD_VOXEL_GRID_HPP_DEFINED
+#define WD_VOXEL_GRID_HPP_DEFINED
 
 #include "basemaths/vec3.hpp"
 #include "physics/collisionsystem.hpp"
-
 
 class VoxelGrid: public CollisionSystem
 {
@@ -13,8 +12,6 @@ public:
 	VoxelGrid();
 	VoxelGrid(float Cellsize, int WorldSize);
 
-
-
 };
 
-#endif //VOXEL_GRID_H
+#endif //WD_VOXEL_GRID_HPP_DEFINED

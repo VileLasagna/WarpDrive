@@ -49,12 +49,12 @@ FMCODE FileManager::Load	(const std::string& filename, ManagedFile* src, bool Re
 		if (files[filename].stream->fail())
 		{
 			Err::Report("Unable to open file: "+filename);
-			return FM_FAIL; //program should've already crashed, though
+            return FMCODE::FM_FAIL; //program should've already crashed, though
 		}
 	}
 	files[filename].refs++;
 	src->init(files[filename]);
-	return FM_OK;
+    return FMCODE::FM_OK;
 }
 
 FMCODE FileManager::LoadBin	(const std::string& filename, ManagedFile* src, bool ReadOnly)
@@ -72,12 +72,12 @@ FMCODE FileManager::LoadBin	(const std::string& filename, ManagedFile* src, bool
 		if (files[filename].stream->fail())
 		{
 			Err::Report("Unable to open file: "+filename);
-			return FM_FAIL; //program should've already crashed, though
+            return FMCODE::FM_FAIL; //program should've already crashed, though
 		}
 	}
 	files[filename].refs++;
 	src->init(files[filename]);
-	return FM_OK;
+    return FMCODE::FM_OK;
 }
 
 FMCODE FileManager::getInt(ManagedFile *src, int *dest)
@@ -89,13 +89,13 @@ FMCODE FileManager::getInt(ManagedFile *src, int *dest)
 	//	stream.stream->get(
 	//}
 	std::string line;
-	if(getLine(src, &line) == FM_EOF)
+    if(getLine(src, &line) == FMCODE::FM_EOF)
 	{
-		return FM_EOF;
+        return FMCODE::FM_EOF;
 	}
 	*dest = StringProc::parseInt(line);
 	src->setPos(stream.stream->tellg());
-	return FM_OK;
+    return FMCODE::FM_OK;
 }
 
 FMCODE FileManager::getFloat(ManagedFile *src, float *dest)
@@ -107,13 +107,13 @@ FMCODE FileManager::getFloat(ManagedFile *src, float *dest)
 	//	stream.stream->get(
 	//}
 std::string line;
-	if(getLine(src, &line) == FM_EOF)
+    if(getLine(src, &line) == FMCODE::FM_EOF)
 	{
-		return FM_EOF;
+        return FMCODE::FM_EOF;
 	}
 	*dest = StringProc::parseFloat(line);
 	src->setPos(stream.stream->tellg());
-	return FM_OK;
+    return FMCODE::FM_OK;
 }
 FMCODE FileManager::getVec2i(ManagedFile *src, Vec2i *dest)
 {
@@ -124,13 +124,13 @@ FMCODE FileManager::getVec2i(ManagedFile *src, Vec2i *dest)
 	//	stream.stream->get(
 	//}
 	std::string line;
-	if(getLine(src, &line) == FM_EOF)
+    if(getLine(src, &line) == FMCODE::FM_EOF)
 	{
-		return FM_EOF;
+        return FMCODE::FM_EOF;
 	}
 	*dest = StringProc::parseVec2i(line);
 	src->setPos(stream.stream->tellg());
-	return FM_OK;
+    return FMCODE::FM_OK;
 }
 
 FMCODE FileManager::getLine(ManagedFile *src, std::string *dest)
@@ -146,8 +146,8 @@ FMCODE FileManager::getLine(ManagedFile *src, std::string *dest)
 	{
 		if (!std::getline(*(stream.stream), line))
 		{
-			src->state = FM_EOF;
-			return FM_EOF;
+            src->state = FMCODE::FM_EOF;
+            return FMCODE::FM_EOF;
 		}
 		if (!line.empty() || line.at(0) != '#') //skip comments and blank lines
 		{
@@ -157,7 +157,7 @@ FMCODE FileManager::getLine(ManagedFile *src, std::string *dest)
 
 	*dest = line;
 	src->setPos(stream.stream->tellg());
-	return FM_OK;
+    return FMCODE::FM_OK;
 }
 
 void FileManager::Close(const std::string &filename)

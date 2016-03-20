@@ -1,21 +1,19 @@
-
-#ifndef TIMELINE_KEY_H
-#define TIMELINE_KEY_H
-
+#ifndef WD_TIMELINE_KEY_HPP_DEFINED
+#define WD_TIMELINE_KEY_HPP_DEFINED
 
 class TimelineKey
 {
 
 public:
+
 	TimelineKey(){}
 	TimelineKey(float T)
 	{
 		time = T;
 	}
-	virtual void Trigger() = 0;
+    virtual void trigger() = 0;
 
-
-	float getTime() const
+    float Time() const
 	{
 		return time;
 	}
@@ -31,4 +29,4 @@ protected:
 	float time;
 };
 
-#endif //TIMELINE_KEY_H
+#endif //WD_TIMELINE_KEY_HPP_DEFINED

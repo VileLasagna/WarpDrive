@@ -5,23 +5,23 @@
 glColorEvent::glColorEvent(float Time, float Red, float Green, float Blue)
 {
 	time = Time;
-	R = Red;
-	G = Green;
-	B = Blue;
+	r = Red;
+	g = Green;
+	b = Blue;
 	float rgb[4];
 	glGetFloatv(GL_CURRENT_COLOR,rgb);
-	R0 = rgb[0];
-	G0 = rgb[1];
-	B0 = rgb[2];
+	r0 = rgb[0];
+	g0 = rgb[1];
+	b0 = rgb[2];
 	if(time)
 	{
-		Rstep = (R - R0)/time;
-		Gstep = (G - G0)/time;
-		Bstep = (B - B0)/time;
+		rStep = (r - r0)/time;
+		gStep = (g - g0)/time;
+		bStep = (b - b0)/time;
 	}
 }
 
-void glColorEvent::Update(GameObject* )
+void glColorEvent::update(GameObject* )
 {
 	if(finished)
 	{
@@ -29,7 +29,7 @@ void glColorEvent::Update(GameObject* )
 	}
 	if (!time)
 	{
-		glColor3f(R,G,B);
+		glColor3f(r,g,b);
 		finished = true;
 	}
 	else
@@ -37,10 +37,10 @@ void glColorEvent::Update(GameObject* )
 		float dt = DisplayManager::instance()->getDtSecs();
 		float rgb[4];
 		glGetFloatv(GL_CURRENT_COLOR,rgb);
-		R0 = rgb[0];
-		G0 = rgb[1];
-		B0 = rgb[2];
-		glColor3f((R0+Rstep*dt),(G0+Gstep*dt),(B0+Bstep*dt));
+		r0 = rgb[0];
+		g0 = rgb[1];
+		b0 = rgb[2];
+		glColor3f((r0+rStep*dt),(g0+gStep*dt),(b0+bStep*dt));
 		time -= dt;
 		if (time <= 0)
 		{

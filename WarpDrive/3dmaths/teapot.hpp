@@ -1,5 +1,5 @@
-#ifndef TEAPOT_H
-#define TEAPOT_H
+#ifndef WD_TEAPOT_HPP_DEFINED
+#define WD_TEAPOT_HPP_DEFINED
 
 
 #include "basesystem/gameobject.hpp"
@@ -18,27 +18,27 @@ public:
 		name = "TheTestTeapot";
 		type = "Teapot";
 	}
-    void Update() override
+    void update() override
 	{
-		GameObject::Update();
+        GameObject::update();
 		vel+= accel*DisplayManager::instance()->getDtSecs(); 
 		pos+= vel*DisplayManager::instance()->getDtSecs();
         float halfsize = size*1.3f;
-        Box = AABBox(pos.X()-halfsize,pos.X()+halfsize,pos.Y()-halfsize,pos.Y()+halfsize,pos.Z()-halfsize,pos.Z()+halfsize);
+        BoundingBox = AABBox(pos.X()-halfsize,pos.X()+halfsize,pos.Y()-halfsize,pos.Y()+halfsize,pos.Z()-halfsize,pos.Z()+halfsize);
 		type = "Teapot";
 	}
-    void Draw() const override
+    void draw() const override
 	{
-		if(tex)
+        if(tex)
 		{
-			tex->UseThisTexture();
+            tex->useThisTexture();
 		}
 		else
 		{
-			Texture::UseNoTexture();
+            Texture::useNoTexture();
 		}
 		glDisable(GL_LIGHTING);
-		Box.Draw();
+        BoundingBox.draw();
 		glEnable(GL_LIGHTING);
 		glPushMatrix();
 			glTranslatef(pos.X(),pos.Y(),pos.Z());
@@ -53,9 +53,9 @@ private:
 
 	float size;
 	Texture* tex;
-    AABBox Box;
+    AABBox BoundingBox;
 
 
 
 };
-#endif //TEAPOT_H
+#endif //WD_TEAPOT_HPP_DEFINED

@@ -1,5 +1,5 @@
-#ifndef PAN_AND_TILT_EVENT_H
-#define PAN_AND_TILT_EVENT_H
+#ifndef WD_PAN_AND_TILT_EVENT_HPP_DEFINED
+#define WD_PAN_AND_TILT_EVENT_HPP_DEFINED
 
 #include "events/objectevent.hpp"
 #include "basemaths/vec3.hpp"
@@ -10,7 +10,7 @@ class PanAndTiltEvent: public GOEvent
 public:
 
 	PanAndTiltEvent(float Time = 0, Vec3f Pan = Vec3f(), Vec3f Tilt = Vec3f());
-	void Update(GameObject* target);
+	void update(GameObject* target);
 
 protected:
 
@@ -18,10 +18,6 @@ protected:
 	float time;
 	bool overTime;
 
-
-
-
-
 };
 
-#endif //PAN_AND_TILT_EVENT_H
+#endif //WD_PAN_AND_TILT_EVENT_HPP_DEFINED

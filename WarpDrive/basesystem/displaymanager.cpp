@@ -3,10 +3,6 @@
 
 #include <assert.h>
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wreorder"
-
-
 DisplayManager::DisplayManager():
     mainWindow  (0),
     renderer    (0),
@@ -45,7 +41,7 @@ DisplayManager::~DisplayManager()
 	SDL_Quit();
 }
 
-void DisplayManager::FullScreen(bool b)
+void DisplayManager::setFullscreen(bool b)
 	{
 	if (b)
 	{
@@ -58,7 +54,7 @@ void DisplayManager::FullScreen(bool b)
 }
 
 
-void DisplayManager::ToggleFS()
+void DisplayManager::toggleFS()
 {
 	if (fullscreen)
 	{
@@ -71,7 +67,7 @@ void DisplayManager::ToggleFS()
 	setVideo();
 }
 
-void DisplayManager::showStats(int updates, int frames)
+void DisplayManager::showStats(int updates, int frames) noexcept
 {
     if(!mainWindow)
     {
@@ -84,18 +80,18 @@ void DisplayManager::showStats(int updates, int frames)
     }
 }
 
-void DisplayManager::setTitle(std::string newTitle, int)
+void DisplayManager::setTitle(std::string newTitle, int) noexcept
 {
     //second argument is for when we're supporting multiple windows
      SDL_SetWindowTitle(mainWindow, newTitle.c_str());
 }
 
-SDL_Window* DisplayManager::getScreen() const
+SDL_Window* DisplayManager::Screen() const
 {
     return mainWindow;
 }
 
-SDL_Renderer* DisplayManager::getRenderer() const
+SDL_Renderer* DisplayManager::Renderer() const
 {
     return renderer;
 }
@@ -140,7 +136,7 @@ DisplayManager* DisplayManager::instance()
 	return inst;
 }
 
-void DisplayManager::clear()
+void DisplayManager::clear() noexcept
 {
 	delete(DisplayManager::instance());
 	//yeah, I know this might end up initialising this unnecessarily
@@ -189,7 +185,7 @@ void DisplayManager::setBPP(int i)
 	setVideo();
 }
 
-void DisplayManager::useOpengGL(bool b)
+void DisplayManager::useOpengGL(bool b) noexcept
 {
 	if (b)
 	{
@@ -203,9 +199,9 @@ void DisplayManager::useOpengGL(bool b)
 	}
 }
 
-void DisplayManager::Init(bool Fullscreen, bool UsingOpenGL)
+void DisplayManager::init(bool Fullscreen, bool UsingOpenGL) noexcept
 {
-	FullScreen(Fullscreen);
+    setFullscreen(Fullscreen);
 	useOpengGL(UsingOpenGL);
 	setVideo();
     if(!openGL)
@@ -227,13 +223,10 @@ void DisplayManager::updateMatrices()
     glGetIntegerv(GL_VIEWPORT,viewport);
 }
 
-void DisplayManager::clearDisplay()
+void DisplayManager::clearDisplay() noexcept
 {
 	if(openGL)
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
-
-};
-
-#pragma clang diagnostic pop
+}

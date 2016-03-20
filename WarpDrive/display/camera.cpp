@@ -22,13 +22,13 @@ Camera::Camera():
      removeMe = false;
 }
 
-void Camera::Update()
+void Camera::update()
 {
 
-	GameObject::Update();
+    GameObject::update();
 	if(targetObj)
 	{
-        target = targetObj->getPos();
+        target = targetObj->Position();
         if(orbitRadius == 0)
         {
             pos = target + relativePos;
@@ -83,13 +83,13 @@ Ray Camera::traceRay(int x, int y) const noexcept
 
 }
 
-void Camera::Draw() const
+void Camera::draw() const
 {
 	//insert code HERE
 	//TODO: A wireframe camera like those in Maya would be awesome
 }
 
-void Camera::Use() const
+void Camera::use() const
 {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -98,13 +98,13 @@ void Camera::Use() const
 	//TODO: Auto turning around, Needs rotation member in GameObject;
 }
 
-std::pair<bool, Vec3f> Camera::getTarget() const
+std::pair<bool, Vec3f> Camera::Target() const
 {
 	std::pair<bool, Vec3f> ret;
 	if (targetObj)
 	{
 		ret.first = true;
-		ret.second = targetObj->getPos();
+        ret.second = targetObj->Position();
 	}
 	else
 	{

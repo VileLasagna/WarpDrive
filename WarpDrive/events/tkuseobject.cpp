@@ -6,49 +6,49 @@ TKUseObject::TKUseObject(float Time, bool Activate, bool Draw, const std::string
 	time = Time;
 	draw = Draw;
 	update = Activate;
-	S.insert(Obj);
+	s.insert(Obj);
 	unique = isUniqueName;
 	if (unique)
 	{
-		T = Game::iterator();
-		T.seekName(Obj);
+		t = Game::iterator();
+		t.seekName(Obj);
 	}
 }
 
-void TKUseObject::Trigger()
+void TKUseObject::trigger()
 {
 	if(unique)
 	{
 		if(draw)
 		{
-			Game::instance()->addDrawnObject(T);
+			Game::instance()->addDrawnObject(t);
 		}
 		else
 		{
-			Game::instance()->removeDrawnObject(T);
+			Game::instance()->removeDrawnObject(t);
 		}
 		if(update)
 		{
-			Game::instance()->addActiveObject(T);
+			Game::instance()->addActiveObject(t);
 		}
 		else
 		{
-			Game::instance()->removeActiveObject(T);
+			Game::instance()->removeActiveObject(t);
 		}
 	}
 	else
 	{
 		if(draw)
 		{
-			Game::instance()->addDrawnTypes(S);
+			Game::instance()->addDrawnTypes(s);
 		}
 		else
 		{
-			Game::instance()->removeDrawnTypes(S);
+			Game::instance()->removeDrawnTypes(s);
 		}
 		if(update)
 		{
-			Game::instance()->removeActiveTypes(S);
+			Game::instance()->removeActiveTypes(s);
 		}
 	}
 }

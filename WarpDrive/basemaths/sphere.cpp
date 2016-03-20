@@ -124,7 +124,7 @@ bool Sphere::collides(const Sphere& other) const noexcept
                   (centre.Z()-other.Centre().Z())*(centre.Z()-other.Centre().Z()) )  );
 }
 
-void Sphere::Draw() const noexcept
+void Sphere::draw() const noexcept
 {
 
 

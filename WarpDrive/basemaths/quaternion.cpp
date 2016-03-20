@@ -45,7 +45,7 @@ void Quaternion::Identity()
 	z = 0;
 }
 
-void Quaternion::ToMatrix(float pMatrix[16]) const
+void Quaternion::toMatrix(float pMatrix[16]) const
 {
     assert(pMatrix);
 
@@ -145,7 +145,7 @@ float Quaternion::sqMod()
 	return (w*w)+(x*x)+(y*y)+(z*z);
 }
 
-void Quaternion::Normalise()
+void Quaternion::normalise()
 {
 	float f = this->sqMod();
 	if (f > 0.999999999999999 && f < 1.000000000000001) //f == 1 with some decent precision range

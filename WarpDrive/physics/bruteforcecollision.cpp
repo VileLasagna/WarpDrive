@@ -5,7 +5,7 @@ BruteForceCollision::BruteForceCollision()
 
 }
 
-void BruteForceCollision::Update(Game::iterator it)
+void BruteForceCollision::update(Game::iterator it)
 {
     if(it.isEmpty())
     {
@@ -16,18 +16,18 @@ void BruteForceCollision::Update(Game::iterator it)
     {
         obj = it;
         auto rest = it;
-        auto r0 = obj->getSphere().Radius();
-        auto p0 = obj->getSphere().Centre();
-        while(rest.Next())
+        auto r0 = obj->BoundingSphere().Radius();
+        auto p0 = obj->BoundingSphere().Centre();
+        while(rest.next())
         {
-            auto r1 = rest->getSphere().Radius();
-            auto p1 = rest->getSphere().Centre();
+            auto r1 = rest->BoundingSphere().Radius();
+            auto p1 = rest->BoundingSphere().Centre();
             auto dist = p1 - p0;
             if(dist.sqMod() <= ((r0+r1)*(r0+r1)))
             {
-                handlers.at(CollisionPair(obj->getType(), rest->getType()))(obj,rest);
+                handlers.at(CollisionPair(obj->Type(), rest->Type()))(obj,rest);
             }
         }
     }
-    while(it.Next());
+    while(it.next());
 }

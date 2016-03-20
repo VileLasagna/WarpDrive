@@ -1,18 +1,18 @@
 #include "basesystem/configloader.hpp"
 #include "basesystem/err.hpp"
 
-ConfigLoader* ConfigLoader::instance()
+ConfigLoader* ConfigLoader::instance() noexcept
 {
 	static ConfigLoader* inst = new ConfigLoader();
 	return inst;
 }
 
-void ConfigLoader::clear()
+void ConfigLoader::clear() noexcept
 {
 	delete ConfigLoader::instance();
 }
 
-std::pair<bool, std::string> ConfigLoader::getValue(std::string key)
+std::pair<bool, std::string> ConfigLoader::Value(std::string key) noexcept
 {
 	std::map<std::string,std::string>::iterator it = values.find(key);
 	if (it != values.end())
@@ -25,17 +25,17 @@ std::pair<bool, std::string> ConfigLoader::getValue(std::string key)
 	}
 }
 
-bool ConfigLoader::LoadFile(std::string filename)
+bool ConfigLoader::loadFile(std::string filename)
 {
 	ManagedFile file(filename);
-	if (file.getState() == FM_FAIL)
+    if (file.getState() == FMCODE::FM_FAIL)
 	{	
 		Err::Notify("Could not open ConfigFile: "+filename);
 		return false;
 	}
 	else
 	{
-		while (file.getState() != FM_EOF)
+        while (file.getState() != FMCODE::FM_EOF)
 		{
 			//TODO: INSERT CODE HERE	
 		}

@@ -1,15 +1,15 @@
-#ifndef EVENT_HANDLER_H
-#define EVENT_HANDLER_H
+#ifndef WD_EVENT_HANDLER_HPP_DEFINED
+#define WD_EVENT_HANDLER_HPP_DEFINED
 
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 
 class SDLEventHandler
 {
 public:
     virtual ~SDLEventHandler() {}
 
-    void Update();
-    void HandleEvent(const SDL_Event& event);
+    void update();
+    void handleEvent(const SDL_Event& event);
 
 protected:
     virtual void onKeyboardEvent(const SDL_KeyboardEvent& ) {}
@@ -40,4 +40,4 @@ private:
     void onWindowEvent(const SDL_WindowEvent& );
 };
 
-#endif //EVENT_HANDLER_H
+#endif //WD_EVENT_HANDLER_HPP_DEFINED

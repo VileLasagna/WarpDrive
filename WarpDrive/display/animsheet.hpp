@@ -1,13 +1,14 @@
-#ifndef ANIMSHEET_H
-#define ANIMSHEET_H
+#ifndef WD_ANIMSHEET_HPP_DEFINED
+#define WD_ANIMSHEET_HPP_DEFINED
 
-#include "display/texturesheet.hpp"
-#include <vector>
-#include <iostream>
-#include "basemaths/vec2.hpp"
 #include <string>
 #include <fstream>
 #include <utility>
+#include <vector>
+#include <iostream>
+
+#include "display/texturesheet.hpp"
+#include "basemaths/vec2.hpp"
 #include "basesystem/stringproc.hpp"
 
 class AnimSheet : public TextureSheet
@@ -17,13 +18,13 @@ public:
 
 	AnimSheet(std::string filename); // I COULD provide a default constructor and make things settable and all but no. It's best this way.
 
-	Vec2i getSize() const {return cellSize;}
-	Vec2i getCells() const {return numCells;}
-	Vec2i getAdjust() const {return adjust;}
+    Vec2i CellSize() const {return cellSize;}
+    Vec2i NumCells() const {return numCells;}
+    Vec2i Adjust() const {return adjust;}
 	Vec2i nextSprite(Vec2i current) const; //will be called by the play animation loops
 	std::vector<std::pair<Vec2<Vec2i>,int> > getAnims() const; //Returns a vector with the start and end of each animation (in order) for this sheet
 												// would've been an array, but the having a checkable size is important here
-	int getCellIndex(const Vec2i& cell) const; //returns the cell's number
+    int CellIndex(const Vec2i& cell) const; //returns the cell's number
 	virtual ~AnimSheet(){}
 	
 	/*	Vec2<Vec2i> > allows for empty cells trailing after the end of an animation in a cell before
@@ -38,7 +39,6 @@ public:
 
    // void Blit(int cell, int x, int y);
 	
-
 private:
 
 	int anims;
@@ -54,6 +54,6 @@ private:
 	   in order for the sprites to remain aligned.
 	 */
 
-
 };
-#endif //ANIMSHEET_H
+
+#endif //WD_ANIMSHEET_HPP_DEFINED

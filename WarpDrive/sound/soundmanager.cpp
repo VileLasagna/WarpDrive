@@ -39,8 +39,8 @@ SoundManager::SoundManager()
 	musPos = 0;
 	musLoops = -1;
 	music = 0;
-	MusicOnQueue = "";
-	CurrentMusic = "";
+    musicOnQueue = "";
+    currentMusic = "";
 }
 
 SoundManager::~SoundManager()
@@ -134,7 +134,7 @@ SDL_RWops* SoundManager::loadSound(const std::string &filename)
 	return ret;
 }
 
-int SoundManager::getTypeVolume(std::string type)
+int SoundManager::TypeVolume(std::string type)
 {
 	if(!SoundManager::soundQuality()){return 0;}
 	std::map<std::string,int>::iterator it = soundTypes.find(type);
@@ -148,7 +148,7 @@ int SoundManager::getTypeVolume(std::string type)
 	}
 }
 
-int SoundManager::firstFreeChannel()
+int SoundManager::FirstFreeChannel()
 {
 	if(!SoundManager::soundQuality()){return -1;}
 	for (unsigned int i = 0; i < channels.size(); i++)
@@ -169,7 +169,7 @@ void SoundManager::setTypeVolume(std::string type, int volume)
 void SoundManager::playSound(SoundFX *FX)
 {
 	if(!SoundManager::soundQuality()){return;}
-	int c = firstFreeChannel();
+    int c = FirstFreeChannel();
 	if (c < 0)
 	{
 		if (autochannels)
@@ -190,10 +190,10 @@ void SoundManager::playSound(SoundFX *FX)
 			drop.second = 0;
 			for(unsigned int i = 0; i<channels.size(); i++)
 			{
-				if ( (channels[i]->getPlayed() > drop.second) && (!channels[i]->getPriority()) ) //we already know all channels are busy
+                if ( (channels[i]->Played() > drop.second) && (!channels[i]->getPriority()) ) //we already know all channels are busy
 				{
 					drop.first = i;
-					drop.second = channels[i]->getPlayed();
+                    drop.second = channels[i]->Played();
 				}
 			}
 			if (drop.second == 0) //bastard set no-auto and made all sounds priority. DOH!
@@ -207,32 +207,32 @@ void SoundManager::playSound(SoundFX *FX)
 		}
 	}
 
-	if ( FX->getFadeIn() > 0) //Yeah, I know I could just use a fadeIn of 0 seconds but god knows how is that implemented internally
+	if ( FX->FadeIn() > 0) //Yeah, I know I could just use a fadeIn of 0 seconds but god knows how is that implemented internally
 	{
-		Mix_FadeInChannel(c,FX->getChunk(),FX->getLoop(),FX->getFadeIn());
+		Mix_FadeInChannel(c,FX->getChunk(),FX->Loop(),FX->FadeIn());
 	}
 	else
 	{
-		Mix_PlayChannel(c,FX->getChunk(),FX->getLoop());
+		Mix_PlayChannel(c,FX->getChunk(),FX->Loop());
 	}
-	int v = getTypeVolume(FX->getType());
+    int v = TypeVolume(FX->Type());
 	if ( v == -1)
 	{
 		v = MIX_MAX_VOLUME;
-		setTypeVolume(FX->getType(),v);
+		setTypeVolume(FX->Type(),v);
 	}
-	Mix_Volume(c, (v * ((FX->getVolume()*2)/100) ) );
-	if (FX->getPosition())
+	Mix_Volume(c, (v * ((FX->Volume()*2)/100) ) );
+	if (FX->Position())
 	{
-		Mix_SetPosition(c,FX->getPosition(),FX->getDistance());
+		Mix_SetPosition(c,FX->Position(),FX->Distance());
 	}
 	else
 	{
-		if(FX->getDistance())
+		if(FX->Distance())
 		{
-			Mix_SetDistance(c,FX->getDistance());
+			Mix_SetDistance(c,FX->Distance());
 		}
-		Mix_SetPanning(c,255-(FX->getPanning()),FX->getPanning());
+		Mix_SetPanning(c,255-(FX->Panning()),FX->Panning());
 	}
 	channels[c] = FX;
 	FX->setChannel(c);
@@ -264,7 +264,7 @@ void SoundManager::update()
     unsigned int dt = ms - oldms;
     oldms = ms;
 	if(!SoundManager::soundQuality()){return;}
-	if(!PauseMusic())
+    if(!pauseMusic())
 	{
 		musPos+=dt;
 	}
@@ -273,19 +273,19 @@ void SoundManager::update()
 		if (channels[i])
 		{
 			channels[i]->addPlayed(dt);
-			if(channels[i]->getFadeOut() && (channels[i]->getPlayed() >= channels[i]->getFadeOutFrom()) )
+            if(channels[i]->FadeOut() && (channels[i]->Played() >= channels[i]->FadeOutFrom()) )
 			{
-				Mix_FadeOutChannel(i,channels[i]->getFadeOut());
+                Mix_FadeOutChannel(i,channels[i]->FadeOut());
 			}
-			if(channels[i]->getHalt())
+            if(channels[i]->Halted())
 			{
 				Mix_HaltChannel(i);
 			}
 		}
 	}
-	if (MusicOnQueue.compare("")) // If Music on Queue is not an empty string
+    if (musicOnQueue.compare("")) // If Music on Queue is not an empty string
 	{
-		loadMusic(MusicOnQueue);
+        loadMusic(musicOnQueue);
 	}
 }
 
@@ -296,7 +296,7 @@ void SoundManager::setMusicVolume(int i)
 	Mix_VolumeMusic(musVolume);
 }
 
-bool SoundManager::PauseMusic(bool b)
+bool SoundManager::pauseMusic(bool b)
 {
 	if(!SoundManager::soundQuality()){return 0;}
 	if(b)
@@ -314,13 +314,13 @@ bool SoundManager::PauseMusic(bool b)
 }
 
 
-void SoundManager::ResumeMusic()
+void SoundManager::resumeMusic()
 {
 	if(!SoundManager::soundQuality()){return;}
 	Mix_ResumeMusic();
 }
 
-bool SoundManager::FadeInMusic(int ms)
+bool SoundManager::fadeInMusic(int ms)
 {
 	if(!SoundManager::soundQuality()){return 0;}
 	if(!music)
@@ -340,7 +340,7 @@ bool SoundManager::FadeInMusic(int ms)
 bool SoundManager::PlayMusic()
 {
 	if(!SoundManager::soundQuality()){return 0;}
-	return FadeInMusic(0);
+    return fadeInMusic(0);
 }
 
 bool SoundManager::setMusicPosition(int ms)
@@ -377,7 +377,7 @@ bool SoundManager::setMusicPosition(int ms)
 int SoundManager::loadMusic(const std::string& filename)
 {
 	if(!SoundManager::soundQuality()){return 0;}
-	if (!filename.compare(CurrentMusic))
+    if (!filename.compare(currentMusic))
 	{
 		return 1; //The file is already loaded. Lovely!
 	}
@@ -385,16 +385,16 @@ int SoundManager::loadMusic(const std::string& filename)
 	{
 		if(Mix_FadingMusic() == MIX_FADING_OUT)
 		{
-			MusicOnQueue = filename;
+            musicOnQueue = filename;
 			return 2;
 		}
 		else
 		{
-			HaltMusic();
+            haltMusic();
 		}
 	}
-	CurrentMusic = "";
-	MusicOnQueue = "";
+    currentMusic = "";
+    musicOnQueue = "";
 	if (music)
 	{
 		Mix_FreeMusic(music);
@@ -403,7 +403,7 @@ int SoundManager::loadMusic(const std::string& filename)
 	music = Mix_LoadMUS(filename.c_str());
 	if (music)
 	{
-		CurrentMusic = filename;
+        currentMusic = filename;
 		return 1;
 	}
 	else
@@ -413,13 +413,13 @@ int SoundManager::loadMusic(const std::string& filename)
 	}
 }
 
-bool SoundManager::HaltMusic(int ms)
+bool SoundManager::haltMusic(int ms)
 {
 	if(!SoundManager::soundQuality()){return 0;}
 	if(!ms)
 	{
 		Mix_HaltMusic();
-		if(!isMusicPlaying())
+        if(!MusicPlaying())
 		{
 			return true;
 		}
@@ -434,7 +434,7 @@ bool SoundManager::HaltMusic(int ms)
 	}
 }
 
-int SoundManager::isMusicPlaying()
+int SoundManager::MusicPlaying()
 {
 	if(!SoundManager::soundQuality()){return 0;}
 	if(Mix_PlayingMusic())
@@ -454,7 +454,7 @@ int SoundManager::isMusicPlaying()
 	}
 }
 
-bool SoundManager::AdvanceMusic(int ms)
+bool SoundManager::advanceMusic(int ms)
 {
 	if(!SoundManager::soundQuality()){return 0;}
 	return setMusicPosition(musPos+ms);
@@ -565,8 +565,8 @@ bool SoundManager::applyQuality()
 			{
 				cleanChannel(i);
 			}
-			int mus = isMusicPlaying();
-			bool muspause = PauseMusic();
+            int mus = MusicPlaying();
+            bool muspause = pauseMusic();
 			Mix_CloseAudio();
 			Uint16 audio_format = AUDIO_S16SYS;
 			int audio_channels = 2;
@@ -586,7 +586,7 @@ bool SoundManager::applyQuality()
 					setMusicPosition(musPos);
 					if(muspause)
 					{
-						PauseMusic(true);
+                        pauseMusic(true);
 					}
 				}
 				return true;

@@ -1,31 +1,31 @@
-
-#ifndef CAMERA_H
-#define CAMERA_H
+#ifndef WD_CAMERA_HPP_DEFINED
+#define WD_CAMERA_HPP_DEFINED
 
 #ifdef WIN32
     #include <windows.h>
 #endif //WIN32
 
+#include <utility>
+#include <GL/gl.h>
+
 #include "basemaths/vec3.hpp"
 #include "basemaths/ray.hpp"
 #include "basesystem/gameobject.hpp"
-#include <utility>
-#include <GL/gl.h>
 
 class Camera: public GameObject
 {
 public:
 
 	Camera();
-    void Update() override;
-    void Draw() const override;
-    void Use() const;
+    void update() override;
+    void draw() const override;
+    void use() const;
 
 	void setTarget(const Vec3f& targetPos);
 	void setTarget(const GameObject* targetObject);
-	std::pair<bool, Vec3f> getTarget() const;
+    std::pair<bool, Vec3f> Target() const;
 	void setRelativePos(const Vec3f& Relative); //Relative Position to a targeted Object
-	Vec3f getRelativePos() const {return relativePos;}
+    Vec3f RelativePos() const {return relativePos;}
 
     Ray traceRay(int x, int y) const noexcept;
 
@@ -45,12 +45,6 @@ private:
     float orbitPeriod;
     float time;
 
-
-	
-
-
-
-
 };
 
-#endif //CAMERA_H
+#endif //WD_CAMERA_HPP_DEFINED

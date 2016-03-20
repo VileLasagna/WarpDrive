@@ -1,7 +1,5 @@
-
-
-#ifndef QUATERNION_H
-#define QUATERNION_H
+#ifndef WD_QUATERNION_HPP_DEFINED
+#define WD_QUATERNION_HPP_DEFINED
 
 #include "basemaths/vec3.hpp"
 
@@ -14,12 +12,11 @@ public:
 	Quaternion(float degrees, float x, float y, float z);
 	Quaternion(float degress, Vec3f& axis);
 
-    void Normalise();
-
+    void normalise();
 
 	void Identity();
     // Convert to column-major Matrix
-    void ToMatrix(float matrix[16]) const;
+    void toMatrix(float matrix[16]) const;
 
     // Interpolate between two Quaternions
     // 0 <= t <= 1
@@ -39,4 +36,4 @@ private:
     float z;
 };
 
-#endif //QUATERNION_H 
+#endif //WD_QUATERNION_HPP_DEFINED

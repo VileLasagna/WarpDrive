@@ -10,19 +10,19 @@ TKMoveObject::TKMoveObject(float Time, std::string ObjName, bool UniqueID, bool 
 	pos = Pos;
 	vel = Vel;
 	acc = Accel;
-	Name = ObjName;
+	name = ObjName;
 
 }
 
-void TKMoveObject::Trigger()
+void TKMoveObject::trigger()
 {
 
 	if(!isUnique)
 	{
-		Game::iterator it(Name);
+		Game::iterator it(name);
 		if (it.isEmpty())
 		{
-			Err::Notify("TKMoveObject couldn't find objects of type: "+Name);
+			Err::Notify("TKMoveObject couldn't find objects of type: "+name);
 		}
 		else
 		{
@@ -41,15 +41,15 @@ void TKMoveObject::Trigger()
 					it->setAcc(acc);
 				}
 			}
-			while ( it.Next());
+			while ( it.next());
 		}
 	}
 	else
 	{
 		Game::iterator it;
-		if(!(it.seekName(Name)))
+		if(!(it.seekName(name)))
 		{
-			Err::Notify("TKMoveObject couldn't find specific Object: "+Name);
+			Err::Notify("TKMoveObject couldn't find specific Object: "+name);
 		}
 		else
 		{

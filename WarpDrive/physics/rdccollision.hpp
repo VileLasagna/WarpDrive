@@ -1,5 +1,5 @@
-#ifndef RDCCOLLISION_HPP
-#define RDCCOLLISION_HPP
+#ifndef WD_RDCCOLLISION_HPP_DEFINED
+#define WD_RDCCOLLISION_HPP_DEFINED
 
 /**
   * This class is implemented based on Steve Rabin's article for
@@ -7,14 +7,10 @@
   *
   */
 
-
-
 #include "physics/collisionsystem.hpp"
-
 
 class RDCCollision : public CollisionSystem
 {
-
 
     static constexpr size_t RDCLimit = 10;
 
@@ -25,7 +21,7 @@ public:
 
     RDCCollision();
 
-    void Update(Game::iterator it);
+    void update(Game::iterator it);
 
     ~RDCCollision() = default;
 
@@ -37,17 +33,6 @@ private:
         size_t index;
         bool min;
         GameObject* obj;
-
-//        EdgeInfo(EdgeInfo&& other) = delete;
-
-//        EdgeInfo& operator= (EdgeInfo&& other) = delete;
-
-//        EdgeInfo(const EdgeInfo &other) = default;
-//        EdgeInfo& operator= (const EdgeInfo& other) = default;
-
-//        EdgeInfo():value{0},index{0},min{false},obj{nullptr}{}
-//        ~EdgeInfo() = default;
-
 
         bool operator< (const EdgeInfo& other)const noexcept{return value < other.value;}
 
@@ -64,8 +49,7 @@ private:
 
     using EdgeVec = std::vector<RDCCollision::EdgeInfo>;
 
-
-    void RDC (RDCCollision::Axis a1, RDCCollision::Axis a2, RDCCollision::Axis a3, std::vector<GameObject*> group);
+    void RDC (RDCCollision::Axis a1, RDCCollision::Axis a2, RDCCollision::Axis a3, std::vector<GameObject*> group) noexcept;
     void BruteForce(std::vector<GameObject*> group) noexcept;
 
     EdgeVec SortedBoundaries(RDCCollision::Axis a, std::vector<GameObject*> objs) const;
@@ -73,9 +57,6 @@ private:
     std::vector<ObjPair> pairs;
     std::vector<GameObject*> objs;
 
-
-
-
 };
 
-#endif // RDCCOLLISION_HPP
+#endif // WD_RDCCOLLISION_HPP_DEFINED

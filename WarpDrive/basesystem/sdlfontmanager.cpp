@@ -2,7 +2,7 @@
 #include "basesystem/err.hpp"
 
 
-SDLFontManager* SDLFontManager::instance()
+SDLFontManager* SDLFontManager::instance() noexcept
 {
 	static SDLFontManager* inst = new SDLFontManager();
 	return inst;
@@ -24,7 +24,7 @@ SDLTTF* SDLFontManager::getFont(
     if (!pFont)
     {
         pFont = new SDLTTF();
-        if (!pFont->Load(fontName, pointSize))
+        if (!pFont->load(fontName, pointSize))
         {
 			Err::Report("Couldn't load font! " + fontName);
             return 0;

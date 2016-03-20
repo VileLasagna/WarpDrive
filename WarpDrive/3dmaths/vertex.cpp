@@ -2,64 +2,64 @@
 #include "3dmaths/vertex.hpp"
 
 
-Vertex::Vertex(const Vec3f& pos)
+Vertex::Vertex(const Vec3f& p) noexcept
 {
-	Pos = pos;
-	Vertex::LastNormal( &Normal );
-	Vertex::LastAmbient( &Ambient );
-	Vertex::LastDiffuse( &Diffuse );
-	Vertex::LastShiny( &Shiny );
+    pos = p;
+    Vertex::LastNormal( &normal );
+    Vertex::LastAmbient( &ambient );
+    Vertex::LastDiffuse( &diffuse );
+    Vertex::LastShiny( &shiny );
 }
 
-Vertex::Vertex(const Vec3f& pos, const Vec3f& normal, const Vec2f& uv , const Colour& diffuse, const Colour& ambient, const Colour& specular, float shinyness)
+Vertex::Vertex(const Vec3f& p, const Vec3f& norm, const Vec2f& uvcoords , const Colour& diff, const Colour& amb, const Colour& spec, float shinyness) noexcept
 {
-	Pos = pos;
-	Normal = normal;
-	Vertex::LastNormal(&Normal, true);
-	UV = uv;
+    pos = p;
+    normal = norm;
+    Vertex::LastNormal(&normal, true);
+    uv = uvcoords;
 	Colour def(-1.0f,-1.0f,-1.0f,-1.0f);
 	if (diffuse == def)
 	{
-		Vertex::LastDiffuse(&Diffuse);
+        Vertex::LastDiffuse(&diffuse);
 	}
 	else
 	{
-		Diffuse = diffuse;
-		Vertex::LastDiffuse(&Diffuse, true);
+        diffuse = diff;
+        Vertex::LastDiffuse(&diffuse, true);
 	}
 	if (ambient == def)
 	{
-		Vertex::LastAmbient(&Ambient);
+        Vertex::LastAmbient(&ambient);
 	}
 	else
 	{
-		Ambient = ambient;
-		Vertex::LastAmbient(&Ambient, true);
+        ambient = amb;
+        Vertex::LastAmbient(&ambient, true);
 	}
 
 	if (specular == def )
 	{
-		Vertex::LastSpecular(&Specular);
+        Vertex::LastSpecular(&specular);
 	}
 	else
 	{
-		Specular = specular;
-		Vertex::LastSpecular(&Specular, true);
+        specular = spec;
+        Vertex::LastSpecular(&specular, true);
 	}
 	if (shinyness == -1)
 	{
-		Vertex::LastShiny(&Shiny);
+        Vertex::LastShiny(&shiny);
 	}
 	else
 	{
-		Shiny = shinyness;
-		Vertex::LastShiny(&Shiny, true);
+        shiny = shinyness;
+        Vertex::LastShiny(&shiny, true);
 	}
 
 
 }
 
-void Vertex::LastAmbient(Colour *v, bool set)
+void Vertex::LastAmbient(Colour *v, bool set) noexcept
 {
 	static Colour Ambient(0.1f,0.1f,0.1f);
 	if (set)
@@ -72,7 +72,7 @@ void Vertex::LastAmbient(Colour *v, bool set)
 	}
 }
 
-void Vertex::LastDiffuse(Colour *v, bool set)
+void Vertex::LastDiffuse(Colour *v, bool set) noexcept
 {
 	static Colour diffuse(1,1,1);
 	if (set)
@@ -85,12 +85,12 @@ void Vertex::LastDiffuse(Colour *v, bool set)
 	}
 }
 
-void Vertex::LastNormal(Vec3f *v, bool set)
+void Vertex::LastNormal(Vec3f *v, bool set) noexcept
 {
 	static Vec3f normal(0,0,1);
 	if (set)
 	{
-		normal = *v;
+        normal = *v;
 	}
 	else
 	{
@@ -98,7 +98,7 @@ void Vertex::LastNormal(Vec3f *v, bool set)
 	}
 }
  
-void Vertex::LastShiny(float *f, bool set)
+void Vertex::LastShiny(float *f, bool set) noexcept
 {
 	static float shiny = 100;
 	if (set)
@@ -111,7 +111,7 @@ void Vertex::LastShiny(float *f, bool set)
 	}
 }
 
-void Vertex::LastSpecular(Colour* v, bool set)
+void Vertex::LastSpecular(Colour* v, bool set) noexcept
 {
 	static Colour specular(1,1,1);
 	if(set)

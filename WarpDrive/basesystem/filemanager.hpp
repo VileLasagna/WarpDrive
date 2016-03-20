@@ -1,20 +1,19 @@
-
-#ifndef FILE_MANAGER_H
-#define FILE_MANAGER_H
+#ifndef WD_FILE_MANAGER_HPP_DEFINED
+#define WD_FILE_MANAGER_HPP_DEFINED
 
 #include <string>
 #include <map>
 #include <utility>
 #include <fstream>
 #include <ios>
+
 #include "basesystem/stringproc.hpp"
 #include "basemaths/vec2.hpp"
 #include "basesystem/err.hpp"
 
 class ManagedFile;
 
- typedef enum{ FM_OK = 0, FM_FAIL = 1, FM_EOF = 2} FMCODE;
-
+enum class FMCODE{ FM_OK = 0, FM_FAIL = 1, FM_EOF = 2};
 
 class FileManager
 {
@@ -30,7 +29,6 @@ public:
 	static void setBasePath(const std::string& path);
 	static std::string getBasePath();
 
-
 	FMCODE Load		(const std::string& filename, ManagedFile* src, bool ReadOnly = false);
 	FMCODE LoadBin	(const std::string& filename, ManagedFile* src, bool ReadOnly = false);
 	FMCODE getInt	(ManagedFile* src, int* dest);
@@ -41,7 +39,6 @@ public:
 #ifdef _SDL_H	//Should be done, but I'm not going there for now
 	//FMCODE getRWops (ManagedFile* src, SDL_RWops* dest) {dest = SDL_RWFromFile(filename.c_str(), "rb");}
 #endif
-
 
 private:
 
@@ -63,10 +60,6 @@ private:
 
 	std::map<std::string, streamStatus > files;
 
-
-
-
 };
 
-
-#endif //FILE_MANAGER_H
+#endif //WD_FILE_MANAGER_HPP_DEFINED

@@ -34,7 +34,6 @@ HEADERS += \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/gamestate.hpp             \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/managedfile.hpp           \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/memory.hpp                \
-    $$_PRO_FILE_PWD_/WarpDrive/basesystem/objloader.hpp             \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/score.hpp                 \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/stringproc.hpp            \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/teapotloaderstate.hpp     \

@@ -11,7 +11,7 @@ TeapotLoaderState::TeapotLoaderState()
 {
    self = 0;
    ret = self;
-   Reset();
+   reset();
    pots.push_back(new Sphere(0, 0, 0, 2));
 
    pots.push_back(new Sphere(3, 6, 4, 2));
@@ -29,26 +29,26 @@ TeapotLoaderState::TeapotLoaderState()
    //cam.setTarget(pots.front()->getCentre());
    cam.setTarget(Vec3f(0,0,0));
    cam.setPos(Vec3f(0,0,20));
-   cam.Use();
+   cam.use();
    //glutInit(0, NULL);
 
 }
 
 
 
-void TeapotLoaderState::Draw() const
+void TeapotLoaderState::draw() const
 {
 
     for(Sphere* p: pots)
     {
-        p->Draw();
+        p->draw();
     }
 
 
 }
 
 
-void TeapotLoaderState::Reset()
+void TeapotLoaderState::reset()
 {
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
@@ -82,12 +82,12 @@ void TeapotLoaderState::Reset()
 
 }
 
-int TeapotLoaderState::Update()
+int TeapotLoaderState::update()
 {
-    SDLEventHandler::Update();
+    SDLEventHandler::update();
 
-    cam.Update();
-    cam.Use();
+    cam.update();
+    cam.use();
 
     return ret;
 }
@@ -111,7 +111,7 @@ void TeapotLoaderState::onKeyboardEvent(const SDL_KeyboardEvent &e)
     else
     {
         auto velocity = 6.f;
-        auto v = cam.getVel();
+        auto v = cam.Velocity();
 
         if (e.keysym.sym == SDLK_LEFT)
         {

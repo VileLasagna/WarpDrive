@@ -1,6 +1,5 @@
-
-#ifndef GAME_OBJECT_H
-#define GAME_OBJECT_H
+#ifndef WD_GAME_OBJECT_HPP_DEFINED
+#define WD_GAME_OBJECT_HPP_DEFINED
 
 #include <vector>
 
@@ -12,18 +11,18 @@
 #include "physics/alignedboundingbox.hpp"
 #include "events/objectevent.hpp"
 
-
 class GameObject
-
 {
+
 public:
 
     GameObject();
-	virtual void Update() = 0;
-    virtual void Draw() const= 0;
+
+    virtual void update() = 0;
+    virtual void draw() const = 0;
 	virtual ~GameObject() = default;
-	virtual bool Load(ManagedFile* ) {return true;}
-	virtual const char* getType() const {return type.c_str();}
+    virtual bool load(ManagedFile* ) {return true;}
+    virtual const char* Type() const {return type.c_str();}
 
 	virtual void setVel(const Vec3f& v) { vel = v;}
 	virtual void setPos(const Vec3f& p) { pos = p;}
@@ -48,19 +47,18 @@ public:
 		events.clear();
 	}
 
-    virtual AABBox getBox() const noexcept;
-    virtual Sphere getSphere() const noexcept;
+    virtual AABBox BoundingBox() const noexcept;
+    virtual Sphere BoundingSphere() const noexcept;
 
-    virtual Vec3f getVel() const noexcept {return vel;}
-    virtual Vec3f getPos() const noexcept {return pos;}
-    virtual Vec3f getAcc() const noexcept {return accel;}
+    virtual Vec3f Velocity() const noexcept {return vel;}
+    virtual Vec3f Position() const noexcept {return pos;}
+    virtual Vec3f Accel() const noexcept {return accel;}
     virtual Vec3f Dimensions() const noexcept {return dimensions;}
     virtual float Radius() const noexcept {return radius;}
-    virtual std::string getName() const noexcept {return name;}
+    virtual std::string Name() const noexcept {return name;}
     size_t Index() const noexcept {return index;}
 	bool isDead() {return removeMe;}
 	void KILL() {removeMe = true;}
-
 
 protected:
 
@@ -77,5 +75,4 @@ protected:
 
 };
 
-
-#endif //GAME_OBJECT_H
+#endif //WD_GAME_OBJECT_HPP_DEFINED

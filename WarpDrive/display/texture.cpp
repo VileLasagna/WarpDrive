@@ -5,7 +5,7 @@
 #endif //WIN32
 #include <GL/glu.h>
 #ifdef _WIN32
-	#include <SDL/SDL_Image.h>
+	#include <SDL2/SDL_Image.h>
 #else
 	#include <SDL2/SDL_image.h>
 #endif //_WIN32
@@ -15,19 +15,19 @@ Texture::Texture():
 	textureId{0},
 	initialized{false} {}
 
-bool Texture::LoadTexture(const std::string& filename)
+bool Texture::loadTexture(const std::string& filename)
 {
 
 	SDL_Surface* surf = IMG_Load(filename.c_str());
 	
-	CreateFromSDLSurface(surf);
+	createFromSDLSurface(surf);
 
     SDL_FreeSurface(surf);
 
     return true;
 }
 
-bool Texture::CreateFromSDLSurface(SDL_Surface* surf)
+bool Texture::createFromSDLSurface(SDL_Surface* surf)
 {
 	glGenTextures(1, &textureId);
 	glBindTexture(GL_TEXTURE_2D, textureId);
@@ -110,14 +110,14 @@ Texture::~Texture()
     }
 }
 
-void Texture::UseThisTexture()
+void Texture::useThisTexture()
 {
 	glEnable(GL_TEXTURE_2D);
 
     glBindTexture(GL_TEXTURE_2D, textureId);
 }
 
-void Texture::UseNoTexture()
+void Texture::useNoTexture()
 {
 	glDisable(GL_TEXTURE_2D);
 }

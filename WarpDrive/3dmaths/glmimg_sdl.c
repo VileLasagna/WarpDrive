@@ -14,7 +14,7 @@
 #include "glmint.h"
 
 //#ifdef HAVE_LIBSDL_IMAGE
-#include <SDL/SDL_image.h>
+#include <SDL2/SDL_image.h>
 
 /* following routine is from the SDL documentation */
 /*

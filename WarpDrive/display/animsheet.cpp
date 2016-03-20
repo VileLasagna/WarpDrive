@@ -49,7 +49,7 @@ void AnimSheet::loadseq(const std::string& s)
 	{
 	case 0:
 		{
-			Load(s);
+			load(s);
 			pass++;
 			break;
 		}
@@ -145,7 +145,7 @@ std::vector<std::pair<Vec2<Vec2i>,int> >  AnimSheet::getAnims() const
 	return ret;
 }
 
-int AnimSheet::getCellIndex(const Vec2i &cell) const
+int AnimSheet::CellIndex(const Vec2i &cell) const
 {
 	int i = 0;
 	Vec2i tc(1,1);

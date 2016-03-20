@@ -1,5 +1,5 @@
-#ifndef CAPSULE_SHAPE_H
-#define CAPSULE_SHAPE_H
+#ifndef WD_CAPSULE_SHAPE_HPP_DEFINED
+#define WD_CAPSULE_SHAPE_HPP_DEFINED
 
 #include "basemaths/sphere.hpp"
 #include "basemaths/lineseg.hpp"
@@ -10,22 +10,22 @@ class Capsule
 {
 public:
 
-	Capsule();
-	Capsule(const LineSeg& path, float r);
-	Capsule(const Vec3f& A, const Vec3f& B, float r);
-	Capsule(const Sphere& S, const Vec3f& Path);
+    Capsule() noexcept;
+    Capsule(const LineSeg& path, float r) noexcept;
+    Capsule(const Vec3f& A, const Vec3f& B, float r) noexcept;
+    Capsule(const Sphere& S, const Vec3f& path) noexcept;
 
 	bool Collides( const Sphere& S) const;
 	bool Collides( const Capsule& C) const;
-	float radius() const {return R;}
-	LineSeg getPath()const {return Path;}
+    float Radius() const noexcept {return R;}
+    LineSeg Path()const noexcept {return path;}
 
 
 private:
 
-	LineSeg Path;
+    LineSeg path;
 	float R;
 
 };
 
-#endif //CAPSULE_SHAPE_H
+#endif //WD_CAPSULE_SHAPE_HPP_DEFINED

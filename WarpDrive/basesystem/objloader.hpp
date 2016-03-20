@@ -1,8 +1,6 @@
-#ifndef OBJ_LOADER_H
-#define OBJ_LOADER_H
+#ifndef WD_OBJ_LOADER_HPP_DEFINED
+#define WD_OBJ_LOADER_HPP_DEFINED
 
 #include "3dmaths/modelloader.hpp"
 
-
-
-#endif //OBJ_LOADER_H
+#endif //WD_OBJ_LOADER_HPP_DEFINED

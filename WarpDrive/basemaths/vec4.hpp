@@ -1,5 +1,5 @@
-#ifndef VEC4_H
-#define VEC4_H
+#ifndef WD_VEC4_HPP_DEFINED
+#define WD_VEC4_HPP_DEFINED
 
 #include "basemaths/vec2.hpp"
 #include "basemaths/vec3.hpp"
@@ -223,4 +223,4 @@ using Vec4d = Vec4<double>;
 
 
 
-#endif //VEC4_H
+#endif //WD_VEC4_HPP_DEFINED

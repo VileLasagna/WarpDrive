@@ -1,9 +1,9 @@
-#ifndef TK_MOVE_OBJECT_H
-#define TK_MOVE_OBJECT_H
+#ifndef WD_TK_MOVE_OBJECT_HPP_DEFINED
+#define WD_TK_MOVE_OBJECT_HPP_DEFINED
 
+#include <string>
 #include "events/timelinekey.hpp"
 #include "basemaths/vec3.hpp"
-#include <string>
 
 class TKMoveObject: public TimelineKey
 {
@@ -19,16 +19,17 @@ public:
 		const Vec3f& Pos = Vec3f(0,0,0), 
 		const Vec3f& Vel= Vec3f(0,0,0), 
 		const Vec3f& Accel= Vec3f(0,0,0));
-	void Trigger();
+
+	void trigger();
 
 protected:
 
 	Vec3f pos,vel,acc;
 	Vec3<bool> changes;
-	std::string Name;
+    std::string name;
 	bool isUnique;
 
 
 };
 
-#endif //TK_MOVE_OBJECT_H
+#endif //WD_TK_MOVE_OBJECT_HPP_DEFINED

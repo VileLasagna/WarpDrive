@@ -1,5 +1,5 @@
-#ifndef VEC3_H
-#define VEC3_H
+#ifndef WD_VEC3_HPP_DEFINED
+#define WD_VEC3_HPP_DEFINED
 
 #include "basemaths/vec2.hpp"
 
@@ -192,4 +192,4 @@ using Vec3d = Vec3<double>;
 
 
 
-#endif //VEC3_H
+#endif //WD_VEC3_HPP_DEFINED

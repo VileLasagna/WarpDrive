@@ -1,5 +1,5 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef WD_GAME_HPP_DEFINED
+#define WD_GAME_HPP_DEFINED
 
 #include <vector>
 #include <string>
@@ -7,6 +7,7 @@
 #include <map>
 #include <set>
 #include <utility>
+
 #include "basesystem/err.hpp"
 #include "basesystem/stringproc.hpp"
 #include "basesystem/displaymanager.hpp"
@@ -16,26 +17,26 @@
 #include "basesystem/factory.hpp"
 #include "basesystem/configloader.hpp"
 
-
 enum class ObjIterator : short {ALL = 0, ACTIVE = 1, DRAWN = 2};
 
 struct ObjStatus { bool draw; bool update; ObjStatus(bool DRAW = false, bool UPDATE = false):draw(DRAW),update(UPDATE){}};
-class CollisionSystem; //CollisionSystem.h
+//class CollisionSystem; //CollisionSystem.h
 typedef std::multimap<std::string,std::pair<GameObject*,ObjStatus> > ObjectMap; //maps a typename to pointers to gameobjects and wether they should be drawn and updated
-
 
 class Game
 {
 private:	//This class is a singleton.
-	Game();
+
+    Game();
 
 public:
 
 	static Game* instance();
+
 	void Run();
 	void addState(GameState* g);
 	static void Clear();
-	void showFPS(bool fps = true) {FPS = fps;}
+    void showFPS(bool show = true) noexcept{fps = show;}
     int CurrentState() const noexcept { return currentState;}
 
 	bool setDrawnTypes(const std::set<std::string>& types); //sets all(and only the) ObjectTypes in "types" to be drawn. Returns false if no objects are active then.
@@ -49,8 +50,8 @@ public:
     bool addActiveType(const std::string& type);//returns true if it made any changes
 	bool removeActiveTypes(const std::set<std::string>& types);//returns true if it made any changes
     bool removeActiveType(const std::string& type);//returns true if it made any changes
-	void DrawObjects();
-	void UpdateObjects();
+    void drawObjects();
+    void updateObjects();
     size_t ObjIndex();
 
 
@@ -59,15 +60,15 @@ public:
 
 	~Game();
 
-
-
 	class iterator	//iterator class to the GameObjectCollection
 	{
+
 	public:
+
         iterator(std::string type = "", ObjIterator flag = ObjIterator::ALL);
-		bool Next();
-		bool Prev();
-		bool Find(std::string key);
+        bool next();
+        bool prev();
+        bool find(std::string key);
 		void Begin();
 		void End();
 		const std::string& Type() const {return current->first;}
@@ -103,29 +104,23 @@ private:
 	
 	friend class GameState;
 	friend class ConfigLoader;
-	int Update();
-	void Draw();
-	void Flip();
+    int update();
+    void draw();
+    void flip();
     void drawFPS();
-
-	
-
-	CollisionSystem* CS;
+//	CollisionSystem* CS;
 	std::vector<GameState*> states; //Note: State 0 is ALWAYS the program starting point
-	ObjectMap Objects;
+    ObjectMap objects;
 	std::map<std::string,bool> drawnTypes;
 	std::map<std::string,bool> activeTypes;
-	Factory<GameObject>* GOFactory;
+    Factory<GameObject>* goFactory;
 	int currentState;
-	bool FPS;
+    bool fps;
 	unsigned int frames;
 	unsigned int updates;
 	unsigned int minFPS;
     size_t objindex;
 	
-
-
-
 };
 
-#endif //GAME_H
+#endif //WD_GAME_HPP_DEFINED

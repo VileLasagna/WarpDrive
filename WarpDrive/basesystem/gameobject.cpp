@@ -2,13 +2,13 @@
 #include "basesystem/game.hpp"
 
 
-void GameObject::Update()
+void GameObject::update()
 {
 	for(std::vector<GOEvent*>::iterator it = events.begin(); it != events.end(); it++)
 	{
-        if(!( (*it)->isFinished()))
+        if(!( (*it)->Finished()))
         {
-            (*it)->Update(this);
+            (*it)->update(this);
         }
 	}
 	float dt = DisplayManager::instance()->getDtSecs();
@@ -21,7 +21,7 @@ GameObject::GameObject()
     index = Game::instance()->ObjIndex();
 }
 
-AABBox GameObject::getBox() const noexcept
+AABBox GameObject::BoundingBox() const noexcept
 {
     if(dimensions != Vec3f (0,0,0))
     {
@@ -38,7 +38,7 @@ AABBox GameObject::getBox() const noexcept
     return AABBox();
 }
 
-Sphere GameObject::getSphere() const noexcept
-{
+Sphere GameObject::BoundingSphere() const noexcept
+{   
     return Sphere(pos, radius);
 }

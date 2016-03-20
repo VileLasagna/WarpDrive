@@ -1,28 +1,31 @@
-#ifndef TEXTURE_H
-#define TEXTURE_H
+#ifndef WD_TEXTURE_HPP_DEFINED
+#define WD_TEXTURE_HPP_DEFINED
 
 #ifdef WIN32
     #include <windows.h>
 #endif //WIN32
-#include <SDL/SDL.h>
-#include <GL/gl.h>
 
 #include <string>
+
+#include <SDL2/SDL.h>
+#include <GL/gl.h>
 
 class Texture
 {
 public:
-	Texture();
+
+    Texture();
 	~Texture();
 
-	bool LoadTexture(const std::string& filename);
-	bool CreateFromSDLSurface(SDL_Surface* surf);
-	void UseThisTexture();
-	static void UseNoTexture();
+    bool loadTexture(const std::string& filename);
+    bool createFromSDLSurface(SDL_Surface* surf);
+    void useThisTexture();
+    static void useNoTexture();
 
 private:
+
 	GLuint textureId;
 	bool initialized;
 };
 
-#endif
+#endif //WD_TEXTURE_HPP_DEFINED

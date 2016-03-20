@@ -2,7 +2,7 @@
 
 
 
-void Frustrum::Update()
+void Frustrum::update() noexcept
 {
 	Matrix44 MV;
 	Matrix44 Proj;
@@ -10,15 +10,15 @@ void Frustrum::Update()
 	MV.getModelview();
 	Proj.getProjection();
 
-	MV.Multiply(Proj);
+    MV.multiply(Proj);
 
-	ClipMatrix = MV;
+    clipMatrix = MV;
 
 }
 
-bool Frustrum::isInside(const Vec4f& v) const
+bool Frustrum::isInside(const Vec4f& v) const noexcept
 {
-	Vec4f V = Matrix44::Multiply(ClipMatrix,v);
+    Vec4f V = Matrix44::multiply(clipMatrix,v);
 
 	float w = V.W();
 	return	(V.X() >= (-w)) &&

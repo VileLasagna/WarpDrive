@@ -1,5 +1,5 @@
-#ifndef RECT_H
-#define RECT_H
+#ifndef WD_RECT_HPP_DEFINED
+#define WD_RECT_HPP_DEFINED
 
 #include "display/rgbacolour.hpp"
 
@@ -12,22 +12,22 @@ public:
 	constexpr Rect(T minX, T maxX, T minY, T maxY) :
 			mX(minX), MX(maxX), mY(minY), MY(maxY) {}
 
-	constexpr T MinX() const { return mX; }
-	constexpr T MaxX() const { return MX; }
-	constexpr T MinY() const { return mY; }
-	constexpr T MaxY() const { return MY; }
+    constexpr T MinX() const noexcept { return mX; }
+    constexpr T MaxX() const noexcept { return MX; }
+    constexpr T MinY() const noexcept { return mY; }
+    constexpr T MaxY() const noexcept { return MY; }
 
-	constexpr T Width() const  { return MX - mX; }
-	constexpr T Height() const { return MY - mY; }
+    constexpr T Width() const  noexcept { return MX - mX; }
+    constexpr T Height() const noexcept { return MY - mY; }
 
-	constexpr void setColour (const SDLRGBAColour& c) {colour = c;}
+    constexpr void setColour (const SDLRGBAColour& c) noexcept {colour = c;}
 
-	constexpr bool intersects(const Rect<T>& rhs) const
+    constexpr bool intersects(const Rect<T>& rhs) const noexcept
 	{
 		return ( MinX()     <= rhs.MaxX() &&
-			    rhs.MinX() <=   MaxX()   &&
-			    MinY()     <= rhs.MaxY() &&
-			    rhs.MinY() <=   MaxY()     );
+                rhs.MinX()  <=   MaxX()   &&
+                MinY()      <= rhs.MaxY() &&
+                rhs.MinY()  <=   MaxY()     );
 
 
 	}
@@ -40,4 +40,4 @@ private:
 using Rectf = Rect<float>;
 using Recti = Rect<int>;
 
-#endif
+#endif //WD_RECT_HPP_DEFINED

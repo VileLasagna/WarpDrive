@@ -7,7 +7,7 @@ TimedRemoveEvent::TimedRemoveEvent(float Time)
 }
 
 
-void TimedRemoveEvent::Update(GameObject* target)
+void TimedRemoveEvent::update(GameObject* target)
 {
 	time -= DisplayManager::instance()->getDtSecs();
 	if (time <= 0 && target)

@@ -1,12 +1,11 @@
-#ifndef MEMORY_H
-#define MEMORY_H
+#ifndef WD_MEMORY_HPP_DEFINED
+#define WD_MEMORY_HPP_DEFINED
 
 #ifdef _DEBUG
 
 #include <string>
 #include <utility>
 #include <map>
-
 
 void* operator new(size_t size);
 
@@ -44,12 +43,7 @@ private:
 	MemManager();
 	std::map<const void*,MemPack> allocmap;
 
-
-
 };
 
-
 #endif //_DEBUG
-
-
-#endif //MEMORY_H
+#endif //WD_MEMORY_HPP_DEFINED

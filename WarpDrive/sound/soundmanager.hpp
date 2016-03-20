@@ -1,5 +1,5 @@
-#ifndef SOUND_MANAGER_H
-#define SOUND_MANAGER_H
+#ifndef WD_SOUND_MANAGER_HPP_DEFINED
+#define WD_SOUND_MANAGER_HPP_DEFINED
 
 
 #include <string>
@@ -8,8 +8,8 @@
 #include <set>
 #include <cstdio>
 #ifdef _WIN32
-	#include <SDL/SDL_mixer.h>
-	#include <SDL/SDL.h>
+	#include <SDL2/SDL_mixer.h>
+	#include <SDL2/SDL.h>
 #else
 
 	#include <SDL2/SDL_mixer.h>
@@ -22,15 +22,13 @@ class SoundFX;
 
 class SoundManager
 {
-#define NO_SOUND 0
-#define SOUND_LOW_FI 1
-#define SOUND_MID_FI 2
-#define SOUND_HI_FI 3
+enum class Quality{ NO_SOUND = 0,SOUND_LOW_FI = 1, SOUND_MID_FI = 2, SOUND_HI_FI = 3};
 
 private:	//this class is a singleton
 	SoundManager();
 
 public:
+
 	~SoundManager();
 
 	static SoundManager* instance();
@@ -38,24 +36,24 @@ public:
 	void playSound(SoundFX* FX);
 	//int getMemoryUsage() const{return mem;}; //returns how much memory is being used by the RWops sourcefiles. TODO-> Implementation
 	void setTypeVolume(std::string type, int volume); //volumes from 0 to 100
-	int getTypeVolume(std::string type); //returns -1 if the type is not yet registered in the manager.
+    int TypeVolume(std::string type); //returns -1 if the type is not yet registered in the manager.
 	void setAutoChannels(bool b) {autochannels = b;} //if true, more channels will be allocated automatically, should the need arise.
 	void update(); //needed to pre-set fadeOuts
 	static void clear();
 
 	int loadMusic(const std::string& filename); //0 == error, 1 == OK, 2 == Music on Hold (for fadeOut to end);
 	void setMusicLoop(int i) {musLoops = i;} //number of times to loop the music. -1 = forever, 0 plays once
-	int getMusicLoop() const {return musLoops;}
+    int MusicLooping() const {return musLoops;}
 	void setMusicVolume(int i); //volume from 0 to 100%
-	int getMusicVolume() const {return musVolume/128;}
-	bool PauseMusic(bool b = false); //returns the current state and, if the argument is true, pauses the playback (and returns true. duh!)
-	void ResumeMusic();
+    int MusicVolume() const {return musVolume/128;}
+    bool pauseMusic(bool b = false); //returns the current state and, if the argument is true, pauses the playback (and returns true. duh!)
+    void resumeMusic();
 	bool PlayMusic(); //false = Error
-	bool FadeInMusic(int ms); //Same as PlayMusic, but the Music fades in through ms miliseconds
+    bool fadeInMusic(int ms); //Same as PlayMusic, but the Music fades in through ms miliseconds
 	bool setMusicPosition(int ms); //sets the music position to (you'll never guess) ms miliseconds from the start! returns true if OK
-	bool AdvanceMusic(int ms); //Advances the music ms milis from where it should be right now. a return of false means and error
-	bool HaltMusic(int ms = 0); //Halts the music, fading out for ms miliseconds;
-	int isMusicPlaying(); //0 = not, 1 = yes, 2 = yes, but it's paused
+    bool advanceMusic(int ms); //Advances the music ms milis from where it should be right now. a return of false means and error
+    bool haltMusic(int ms = 0); //Halts the music, fading out for ms miliseconds;
+    int MusicPlaying(); //0 = not, 1 = yes, 2 = yes, but it's paused
 	
 	static int soundQuality(int i = -1);	/* sets the Sound Quality. Use NO_SOUND,SOUND_LOW_FI,SOUND_MID_FI,SOUND_HI_FI
 											 * Should you turn it off, this is the method to restart things again
@@ -64,10 +62,8 @@ public:
 	bool loadSoundSet(std::set<std::string> newset);
 	bool SystemActive(); //Returns false if the system is dormant(setSoundQuality(NO_SOUND);)	
 	
-
 	SoundManager operator = (const SoundManager& ) = delete;
 	SoundManager(const SoundManager& ) = delete;
-
 
 protected:
 
@@ -79,7 +75,7 @@ protected:
 
 	bool applyQuality();
 	static bool hasInst(bool b = false);
-	int firstFreeChannel();
+    int FirstFreeChannel();
 	static void cleanChannel(int i); //to be hooked up and called automatically by Mix_ChannelFinished
 	//static void cleanMusic();
 	int mem;
@@ -91,10 +87,10 @@ protected:
 	int musLoops;
 	Uint8 musVolume;
 	unsigned int musPos;
-	std::string MusicOnQueue;
-	std::string CurrentMusic;
+    std::string musicOnQueue;
+    std::string currentMusic;
 	int audio_rate;
 	FILE* FILECOPY(FILE* F);
 };
 
-#endif //SOUND_MANAGER_H
+#endif //WD_SOUND_MANAGER_HPP_DEFINED

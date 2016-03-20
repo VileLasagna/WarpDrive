@@ -1,5 +1,5 @@
-#ifndef TIMELINE_KEY_USE_OBJECT_H
-#define TIMELINE_KEY_USE_OBJECT_H
+#ifndef WD_TIMELINE_KEY_USE_OBJECT_HPP_DEFINED
+#define WD_TIMELINE_KEY_USE_OBJECT_HPP_DEFINED
 
 #include "events/timelinekey.hpp"
 #include "basesystem/game.hpp"
@@ -12,15 +12,16 @@ public:
 
 	TKUseObject(float Time = -0.01, bool Activate = true, bool Draw = true, const std::string& Obj = "", bool isUniqueName = false);
 	~TKUseObject(){}
-	void Trigger();
+	void trigger();
 
 protected:
 
-	bool update,draw,unique;
-	std::set<std::string> S;
-	Game::iterator T; //for unique objects
-
+    bool update;
+    bool draw;
+    bool unique;
+    std::set<std::string> s;
+    Game::iterator t; //for unique objects
 
 };
 
-#endif //TIMELINE_KEY_USE_OBJECT_H
+#endif //WD_TIMELINE_KEY_USE_OBJECT_HPP_DEFINED

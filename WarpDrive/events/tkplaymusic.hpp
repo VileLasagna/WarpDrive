@@ -1,29 +1,29 @@
-#ifndef TIMELINE_KEY_PLAY_MUSIC_H
-#define TIMELINE_KEY_PLAY_MUSIC_H
+#ifndef WD_TIMELINE_KEY_PLAY_MUSIC_HPP_DEFINED
+#define WD_TIMELINE_KEY_PLAY_MUSIC_HPP_DEFINED
+
+#include <string>
 
 #include "basesystem/game.hpp"
 #include "events/timelinekey.hpp"
 #include "sound/soundmanager.hpp"
 
-#include <string>
-
-
 class TKPlayMusic: public TimelineKey
 {
+
 public:
 
 	TKPlayMusic(float Time = 0, const std::string& Filename = "", int FadeIn = 0)
 	{
 		time = Time;
 		filename = Filename; 
-		if(filename != ""){SoundManager::instance()->loadMusic(filename.c_str());} 
+        if(filename != "") {SoundManager::instance()->loadMusic(filename.c_str());}
 		fadein = FadeIn;
 	}
-	void Trigger()
+	void trigger()
 	{
 		if(filename != "")
 		{
-			SoundManager::instance()->FadeInMusic(fadein);
+            SoundManager::instance()->fadeInMusic(fadein);
 		}
 	}
 
@@ -34,4 +34,4 @@ protected:
 
 };
 
-#endif //TIMELINE_KEY_PLAY_MUSIC_H
+#endif //WD_TIMELINE_KEY_PLAY_MUSIC_HPP_DEFINED

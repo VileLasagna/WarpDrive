@@ -1,5 +1,5 @@
-#ifndef LINE_SEGMENT_H
-#define LINE_SEGMENT_H
+#ifndef WD_LINE_SEGMENT_HPP_DEFINED
+#define WD_LINE_SEGMENT_HPP_DEFINED
 
 
 #include "basemaths/vec3.hpp"
@@ -17,10 +17,10 @@ public:
 	LineSeg(float ax, float ay, float az, float bx, float by, float bz): p0 {Vec3f(ax,ay,az)}, p1{Vec3f(bx,by,bz)} {}
 
 
-	Vec3f getStart() const {return p0;}
-	Vec3f getEnd() const {return p1;}
+    Vec3f Start() const noexcept {return p0;}
+    Vec3f End() const noexcept {return p1;}
 
-	void Draw();
+    void draw() noexcept;
 
 	bool contains(const Vec3f& ) const {return true;}
 	std::pair<bool, Vec3f> intersects (const LineSeg& other) const ;
@@ -38,4 +38,4 @@ private:
 
 };
 
-#endif //LINESEG_H
+#endif //WD_LINE_SEGMENT_HPP_DEFINED

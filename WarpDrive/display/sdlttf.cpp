@@ -1,7 +1,6 @@
 #include <assert.h>
 #include "display/sdlttf.hpp"
 
-
 struct FontInitialiser
 {
 	FontInitialiser()
@@ -30,14 +29,14 @@ SDLTTF::~SDLTTF()
 	}
 }
 
-bool SDLTTF::Load(const std::string& fontFileName, int pointSize)
+bool SDLTTF::load(const std::string& fontFileName, int pointSize)
 {
 	font = TTF_OpenFont(fontFileName.c_str(), pointSize);
 	assert(font);
 	return (font != 0);
 }
 
-void SDLTTF::Draw(const std::string& text, Texture* target)
+void SDLTTF::draw(const std::string& text, Texture* target) const
 {
 	assert(font);
 
@@ -46,9 +45,7 @@ void SDLTTF::Draw(const std::string& text, Texture* target)
 		text.c_str(), 
 		colour);
 
-	target->CreateFromSDLSurface(pSurface);
-
-
+    target->createFromSDLSurface(pSurface);
 
 	//SDL_Rect dest;
 	/*dest.x = x;

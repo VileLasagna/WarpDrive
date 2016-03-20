@@ -1,10 +1,10 @@
-#ifndef PLANE_H
-#define PLANE_H
+#ifndef WD_PLANE_HPP_DEFINED
+#define WD_PLANE_HPP_DEFINED
+
+#include <utility>
 
 #include "basemaths/vec3.hpp"
 #include "display/texture.hpp"
-#include <utility>
-
 
 class Plane
 {
@@ -12,41 +12,45 @@ class Plane
 public:
 
 	Plane();
-	Plane (float A, float B, float C, float d);
+    Plane (float A, float B, float C, float D);
 	Plane (const Vec3f& Normal, float Distance);
 	Plane (const Vec3f& P1, const Vec3f& P2, const Vec3f& P3);
 
-	void setNormal(const Vec3f& N);
-	Vec3f getNormal() const {return Vec3f(Nx,Ny,Nz);}
-	Vec3f getOrigin() const {return Origin;}
-	void RotateAroundOrigin(const Vec3f& angles);
-	void Translate(const Vec3f& dist);
+    Vec3f Normal() const noexcept{return Vec3f(nX,nY,nZ);}
+    Vec3f Origin() const noexcept{return origin;}
+    void rotateAroundOrigin(const Vec3f& angles);
+    void translate(const Vec3f& dist)  noexcept;
 	void setDrawn(int X, int Y, float size);
 	void useTexture(Texture* tex, bool Tile = false); //0 Disables (DOES NOT FREE TEXTURE IN USE!)
 
-	void setColour(const Vec3f& rgb);
-	void setColour(float r, float g, float b);
-	void Draw() const;
+    void setNormal(const Vec3f& N);
+    void setColour(const Vec3f& rgb) noexcept;
+    void setColour(float r, float g, float b) noexcept;
 
-	void DrawAsWireframe(bool b = true);
-	void DrawNormal(bool b = true);
+    void draw() const noexcept;
+    void drawAsWireframe(bool b = true) noexcept;
+    void drawNormal(bool b = true) noexcept;
 
 
 
 
 protected:
 
-	float Nx, Ny, Nz, D, D0;
-	std::pair<int,int> DrawnCells;
+    float nX;
+    float nY;
+    float nZ;
+    float d;
+    float d0;
+    std::pair<int,int> drawnCells;
 	float cellSize;
-	Vec3f Colour;
-	Vec3f Origin;
+    Vec3f colour;
+    Vec3f origin;
 	bool drawWire;
 	bool showNormal;
-	Texture* TEX;
+    Texture* tex;
 	bool tile;
 
 };
 
 
-#endif //PLANE_H
+#endif //WD_PLANE_HPP_DEFINED

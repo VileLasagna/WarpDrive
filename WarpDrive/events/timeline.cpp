@@ -7,12 +7,12 @@ Timeline::Timeline()
 {
 
 	time = 0;
-	NextKey = keys.begin();
+    nextKey = keys.begin();
 	lastAdded = 0;
 
 }
 
-void Timeline::Load(const std::string& )
+void Timeline::load(const std::string& )
 {
 
 	//load file here
@@ -20,39 +20,39 @@ void Timeline::Load(const std::string& )
 }
 
 
-void Timeline::Update()
+void Timeline::update()
 {
 
 	time += DisplayManager::instance()->getDtSecs();
-	if(NextKey == keys.end())
+    if(nextKey == keys.end())
 	{
 		return;
 	}
-	std::multiset<TimelineKey*,MyCompare>::iterator it = NextKey;
-	while( it != keys.end() && time >= (*it)->getTime())
+    std::multiset<TimelineKey*,MyCompare>::iterator it = nextKey;
+    while( it != keys.end() && time >= (*it)->Time())
 	{
-		(*it)->Trigger();
+        (*it)->trigger();
 		it++;
 	}
-	NextKey = it;
+    nextKey = it;
 
 }
 
-void Timeline::Reset()
+void Timeline::reset()
 {
 	time = 0;
-	NextKey = keys.begin();
+    nextKey = keys.begin();
 }
 
 void Timeline::addKey(TimelineKey *key)
 {
-	if(key->getTime() <= 0)
+	if(key->Time() <= 0)
 	{
 		//If the key has a negative time value, interpret that as
 		//positive time RELATIVE to the last added timeline key
 		if(lastAdded)
 		{
-			float t = lastAdded->getTime() + std::abs(key->getTime());
+			float t = lastAdded->Time() + std::abs(key->Time());
 			key->setTime(t);
 		}
 		else
@@ -62,7 +62,7 @@ void Timeline::addKey(TimelineKey *key)
 	}
 	keys.insert(key);
 	lastAdded = key;
-	NextKey = keys.begin();
+    nextKey = keys.begin();
 }
 
 Timeline::~Timeline()

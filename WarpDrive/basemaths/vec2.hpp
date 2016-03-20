@@ -1,5 +1,5 @@
-#ifndef VEC2_H
-#define VEC2_H
+#ifndef WD_VEC2_HPP_DEFINED
+#define WD_VEC2_HPP_DEFINED
 
 #include <cmath>
 #include <typeinfo>
@@ -127,4 +127,4 @@ using Vec2f = Vec2<float>;
 using Vec2i = Vec2<int>;
 using Vec2d = Vec2<double>;
 
-#endif
+#endif //WD_VEC2_HPP_DEFINED

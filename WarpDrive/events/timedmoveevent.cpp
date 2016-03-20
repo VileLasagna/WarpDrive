@@ -4,7 +4,7 @@
 
 
 
-void TimedMoveEvent::Update(GameObject* target)
+void TimedMoveEvent::update(GameObject* target)
 {
 	if (time <= 0)
 	{
@@ -14,6 +14,6 @@ void TimedMoveEvent::Update(GameObject* target)
 	float dt = DisplayManager::instance()->getDtSecs();
 	time -= dt;
 	Vec3f nudge = vel*dt;
-	target->setPos( nudge + (target->getPos()) );
+	target->setPos( nudge + (target->Position()) );
 
 }

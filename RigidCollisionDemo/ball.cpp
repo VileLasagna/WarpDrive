@@ -14,11 +14,11 @@ Ball::Ball(Vec3f position, Vec3f velocity)
     radius = body.Radius();
 }
 
-void Ball::Update()
+void Ball::update()
 {
     static float bouncyness = 0.7f;
     static float friction = 0.8f;
-    GameObject::Update();
+    GameObject::update();
     body.setPos(pos);
     if(pos.Y()-body.Radius() <= 0)
     {
@@ -43,11 +43,11 @@ void Ball::Update()
 
 }
 
-void Ball::Draw() const
+void Ball::draw() const
 {
     //getSphere().Draw();
-    getBox().Draw();
-    body.Draw();
+    BoundingBox().draw();
+    body.draw();
 }
 
 void Ball::setColour(GLRGBColour colour) noexcept

@@ -1,5 +1,5 @@
-#ifndef COLLISIONSYSTEM_H
-#define COLLISIONSYSTEM_H
+#ifndef WD_COLLISIONSYSTEM_HPP_DEFINED
+#define WD_COLLISIONSYSTEM_HPP_DEFINED
 
 #include <string>
 #include <map>
@@ -7,9 +7,9 @@
 #include "basesystem/game.hpp"
 #include "basesystem/gameobject.hpp"
 
-
 class CollisionPair
 {
+
 public:
 
 	CollisionPair (std::string t1, std::string t2)
@@ -25,6 +25,7 @@ public:
 			snd = t1;
 		}
 	}
+
 	const std::string& first() const {return fst;}
 	const std::string& second() const {return snd;}
 
@@ -49,11 +50,10 @@ public:
         }
     }
 
-
-
 private:
 
 	std::string fst, snd;
+
 };
 
 //bool operator< (const CollisionPair& ref, const CollisionPair& comp)
@@ -83,10 +83,11 @@ using ObjPair = std::pair<GameObject*,GameObject*>;
 
 class CollisionSystem
 {
+
 public:
 
     virtual ~CollisionSystem() = default;
-	virtual void Update(Game::iterator it) = 0; //Just to not forget how to go around this
+	virtual void update(Game::iterator it) = 0; //Just to not forget how to go around this
     void load(CollisionPair cp,func f)
 	{
 		handlers[cp] = f;
@@ -103,4 +104,4 @@ public:
 
 };
 
-#endif //COLLISIONSYSTEM_H
+#endif //WD_COLLISIONSYSTEM_HPP_DEFINED

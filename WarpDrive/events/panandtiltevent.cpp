@@ -20,7 +20,7 @@ PanAndTiltEvent::PanAndTiltEvent(float Time, Vec3f Pan, Vec3f Tilt)
 	}
 }
 
-void PanAndTiltEvent::Update(GameObject* Target)
+void PanAndTiltEvent::update(GameObject* Target)
 {
 	if ( finished || (!Target) )
 	{
@@ -37,11 +37,11 @@ void PanAndTiltEvent::Update(GameObject* Target)
 		time -= dt;
 		if (pan != Vec3f(0,0,0))
 		{
-			C->setPos(C->getPos() + ( panNudge*dt));
+			C->setPos(C->Position() + ( panNudge*dt));
 		}
 		if(tilt != Vec3f(0,0,0))
 		{
-			std::pair<bool, Vec3f> currentTarget = C->getTarget();
+			std::pair<bool, Vec3f> currentTarget = C->Target();
 			if(currentTarget.first)
 			{
 				C->setTarget((GameObject*)0);
@@ -55,8 +55,8 @@ void PanAndTiltEvent::Update(GameObject* Target)
 	}
 	else
 	{
-		C->setPos(C->getPos() + pan);
-		C->setTarget((C->getTarget().second)+tilt);
+		C->setPos(C->Position() + pan);
+		C->setTarget((C->Target().second)+tilt);
 			//a little trick because there's no camera updates between these two calls
         C->setTarget(nullptr);
 		finished = true;

@@ -1,5 +1,5 @@
-#ifndef CLIP_LINE_SEG_BOX_H
-#define CLIP_LINE_SEG_BOX_H
+#ifndef WD_CLIP_LINE_SEG_BOX_HPP_DEFINED
+#define WD_CLIP_LINE_SEG_BOX_HPP_DEFINED
 
 #include "basemaths/lineseg.hpp"
 #include "physics/alignedboundingbox.hpp"
@@ -9,6 +9,6 @@
 //  if there is all or some of the line seg left after clipping.
 // The line seg pointed to by clipped will be set to the clipped
 //  remnant of the original line seg, if clipped is not zero.
-bool Clip(const LineSeg& lineSeg, const AABBox& box, LineSeg* clipped = nullptr);
+bool Clip(const LineSeg& lineSeg, const AABBox& box, LineSeg* clipped = nullptr) noexcept;
 
-#endif
+#endif //WD_CLIP_LINE_SEG_BOX_HPP_DEFINED

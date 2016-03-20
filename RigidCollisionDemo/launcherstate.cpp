@@ -15,14 +15,14 @@ LauncherState::LauncherState()
 {
     self = 0;
     ret = self;
-    Reset();
+    reset();
 
     cam.setTarget(Vec3f(0,0,0));
     cam.setPos(Vec3f(0,400,-700));
-    cam.Use();
-    floor.DrawAsWireframe(true);
+    cam.use();
+    floor.drawAsWireframe(true);
     floor.setDrawn(100,100,60);
-    floor.DrawNormal(true);
+    floor.drawNormal(true);
 
     float minX = -3000;
     float minZ = -3000;
@@ -54,17 +54,17 @@ LauncherState::LauncherState()
 
 }
 
-void LauncherState::Draw() const
+void LauncherState::draw() const
 {
-    cam.Use();
+    cam.use();
 
-    Game::instance()->DrawObjects();
+    Game::instance()->drawObjects();
 
-    floor.Draw();
+    floor.draw();
 
 }
 
-void LauncherState::Reset()
+void LauncherState::reset()
 {
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
@@ -98,15 +98,15 @@ void LauncherState::Reset()
 
 }
 
-int LauncherState::Update()
+int LauncherState::update()
 {
-    SDLEventHandler::Update();
+    SDLEventHandler::update();
 
-    Game::instance()->UpdateObjects();
+    Game::instance()->updateObjects();
 
     //brute.Update(Game::iterator(/*"Ball",ObjIterator::ALL*/));
-    rdc.Update(Game::iterator(/*"Ball",ObjIterator::ALL*/));
-    cam.Update();
+    rdc.update(Game::iterator(/*"Ball",ObjIterator::ALL*/));
+    cam.update();
 
     return ret;
 }
@@ -130,7 +130,7 @@ void LauncherState::onKeyboardEvent(const SDL_KeyboardEvent &e)
     else
     {
         auto velocity = 400.f;
-        auto v = cam.getVel();
+        auto v = cam.Velocity();
 
 
         if (e.keysym.sym == SDLK_LEFT)
@@ -288,7 +288,7 @@ void LauncherState::onMouseButtonEvent(const SDL_MouseButtonEvent &e)
     {
         static constexpr float launchforce = 300.f;
         Ray r = cam.traceRay(e.x, e.y);
-        Ball* b = new Ball(cam.getPos(), r.Direction()*launchforce);
+        Ball* b = new Ball(cam.Position(), r.Direction()*launchforce);
         b->setRadius(30);
         Game::instance()->addObject(b);
 

@@ -1,19 +1,21 @@
-#ifndef OCTREE_H
-#define OCTREE_H
+#ifndef WD_OCTREE_HPP_DEFINED
+#define WD_OCTREE_HPP_DEFINED
 
 #include <vector>
+
 #include "basemaths/tri.hpp"
 #include "physics/alignedboundingbox.hpp"
 
 class OctreeLeaf;
 
-
 class Octree
 {
+
 public:
+
     virtual ~Octree() {}
-    virtual void Draw() = 0;
-	virtual void getIntersectingLeaves(const Capsule& capsule, std::vector<OctreeLeaf*>* pLeaves) = 0;
+    virtual void draw() = 0;
+    virtual void IntersectingLeaves(const Capsule& capsule, std::vector<OctreeLeaf*>* pLeaves) = 0;
 
 
 protected:
@@ -23,25 +25,30 @@ protected:
 
 class OctreeLeaf : public Octree
 {
-public:
-    OctreeLeaf(const std::vector<Tri>& tris, const AABBox& box);
-	virtual void getIntersectingLeaves(const Capsule& capsule, std::vector<OctreeLeaf*>* pLeaves);
 
-    virtual void Draw();
+public:
+
+    OctreeLeaf(const std::vector<Tri>& tris, const AABBox& box);
+    virtual void IntersectingLeaves(const Capsule& capsule, std::vector<OctreeLeaf*>* pLeaves);
+
+    virtual void draw();
 
 private:
-	std::vector<Tri> tris;
+
+    std::vector<Tri> tris;
 };
 
 class OctreeComposite : public Octree
 {
+
 public:
+
     OctreeComposite(const AABBox& box);
 
-	virtual void getIntersectingLeaves(const Capsule& capsule, std::vector<OctreeLeaf*>* pLeaves);
+    virtual void IntersectingLeaves(const Capsule& capsule, std::vector<OctreeLeaf*>* pLeaves);
 
-    virtual void Draw();
-    void AddChild(Octree*);
+    virtual void draw();
+    void addChild(Octree*);
 
 	~OctreeComposite()
 	{
@@ -52,7 +59,9 @@ public:
 	}
 
 private:
+
     std::vector<Octree*> children;
+
 };
 
-#endif
+#endif //WD_OCTREE_HPP_DEFINED

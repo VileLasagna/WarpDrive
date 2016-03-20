@@ -1,5 +1,5 @@
-#ifndef TTF_MANAGER_H
-#define TTF_MANAGER_H
+#ifndef WD_TTF_MANAGER_HPP_DEFINED
+#define WD_TTF_MANAGER_HPP_DEFINED
 
 #include <map>
 #include "display/sdlttf.hpp"
@@ -25,5 +25,4 @@ private:
     FontMap fmap;
 };
 
-
-#endif //TTF_MANAGER_H
+#endif //WD_TTF_MANAGER_HPP_DEFINED

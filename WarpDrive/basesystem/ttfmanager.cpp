@@ -34,7 +34,7 @@ SDLTTF* TTFManager::getFont(
     if (!pFont)
     {
         pFont = new SDLTTF();
-        if (!pFont->Load(fontName, pointSize))
+        if (!pFont->load(fontName, pointSize))
         {
 			Err::Report("Couldn't load font! " + fontName);
             return 0;

@@ -1,5 +1,5 @@
-#ifndef TIMED_MOVE_EVENT_H
-#define TIMED_MOVE_EVENT_H
+#ifndef WD_TIMED_MOVE_EVENT_HPP_DEFINED
+#define WD_TIMED_MOVE_EVENT_HPP_DEFINED
 
 #include "events/objectevent.hpp"
 #include "basesystem/displaymanager.hpp"
@@ -7,14 +7,13 @@
 
 class TimedMoveEvent: public GOEvent
 {
+
 public:
 
 	TimedMoveEvent(float Time = 0, const Vec3f& Distance = Vec3f(0,0,0) ) { time = Time; dist = Distance; vel = dist/time;}
 	~TimedMoveEvent() {}
 
-	void Update(GameObject* target);
-
-
+    void update(GameObject* target) override;
 
 protected:
 
@@ -25,7 +24,4 @@ protected:
 
 };
 
-
-
-
-#endif //TIMED_MOVE_EVENT_H
+#endif //WD_TIMED_MOVE_EVENT_HPP_DEFINED

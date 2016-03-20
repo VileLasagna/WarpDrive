@@ -2,7 +2,7 @@
 #include <GL/glu.h>
 
 
-void LineSeg::Draw()
+void LineSeg::draw() noexcept
 {
 	glBegin(GL_LINES);
 		glVertex3f(p0.X(), p0.Y(), p0.Z());
@@ -13,7 +13,7 @@ void LineSeg::Draw()
 bool LineSeg::parallel(const LineSeg& other) const 
 { 
 	Vec3f thisNorm = p1-p0; 
-	Vec3f otherNorm = other.getEnd() - other.getStart(); 
+	Vec3f otherNorm = other.End() - other.Start(); 
 	thisNorm.normalise();
 	otherNorm.normalise();
 	return (thisNorm == otherNorm);

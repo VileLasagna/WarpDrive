@@ -1,5 +1,5 @@
-#ifndef FRUSTRUM_H_DEFINED
-#define FRUSTRUM_H_DEFINED
+#ifndef WD_FRUSTRUM_HPP_DEFINED
+#define WD_FRUSTRUM_HPP_DEFINED
 
 
 #include "basemaths/matrix44.hpp"
@@ -9,18 +9,18 @@ class Frustrum
 {
 public:
 
-	Frustrum() = default;
-	void Update();
-	bool isInside(const Vec4f& v) const;
+    Frustrum() = default;
+    void update() noexcept;
+    bool isInside(const Vec4f& v) const noexcept;
     bool intersects(const AABBox& Box) const;
 
 private:
 
 
-	Matrix44 ClipMatrix;
+    Matrix44 clipMatrix;
 
 
 
 };
 
-#endif //FRUSTRUM_H_DEFINED
+#endif //WD_FRUSTRUM_HPP_DEFINED

@@ -1,5 +1,5 @@
-#ifndef GAME_OBJECT_EVENT_H
-#define GAME_OBJECT_EVENT_H
+#ifndef WD_GAME_OBJECT_EVENT_HPP_DEFINED
+#define WD_GAME_OBJECT_EVENT_HPP_DEFINED
 
 class GameObject;
 
@@ -10,12 +10,12 @@ public:
 
 	GOEvent(){finished = false;}
 	virtual ~GOEvent(){}
-	bool isFinished() {return finished;}
-	virtual void Update(GameObject* target) = 0;
+    bool Finished() {return finished;}
+	virtual void update(GameObject* target) = 0;
 	
 protected:
 
 	bool finished;
 };
 
-#endif //GAME_OBJECT_EVENT_H
+#endif //WD_GAME_OBJECT_EVENT_HPP_DEFINED

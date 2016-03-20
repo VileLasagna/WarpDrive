@@ -1,13 +1,10 @@
-
-#ifndef MATRIX_4X4_H
-#define MATRIX_4X4_H
-
+#ifndef WD_MATRIX_4X4_HPP_DEFINED
+#define WD_MATRIX_4X4_HPP_DEFINED
 
 #include <array>
 
 #include "basemaths/vec4.hpp"
 #include <GL/gl.h>
-
 
 
 using float16 = std::array<float,16>;
@@ -28,7 +25,7 @@ public:
 
 	void setIdentity();
 
-	void Multiply(const Matrix44& rhs);
+    void multiply(const Matrix44& rhs);
 	 
 	void setTranslation(float x, float y, float z);
 	void setScaling(float x, float y, float z);
@@ -45,7 +42,7 @@ public:
 	void getProjection();
 
 
-	static Vec4f Multiply( const Matrix44& mat, const Vec4f& vec)
+    static Vec4f multiply( const Matrix44& mat, const Vec4f& vec)
 		{
             auto e = mat.Elements();
 			return Vec4f(  e[0]*vec.X()+e[4]*vec.Y()+e[8]*vec.Z()+e[12]*vec.W(),
@@ -64,10 +61,4 @@ private:
 
 };
 
-
-
-
-
-
-
-#endif //MATRIX_4X4_H
+#endif //WD_MATRIX_4X4_HPP_DEFINED

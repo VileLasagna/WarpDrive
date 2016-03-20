@@ -7,7 +7,7 @@ RDCCollision::RDCCollision()
 
 }
 
-void RDCCollision::Update(Game::iterator it)
+void RDCCollision::update(Game::iterator it)
 {
     pairs.clear();
     objs.clear();
@@ -20,18 +20,18 @@ void RDCCollision::Update(Game::iterator it)
     {
         objs.push_back(it);
     }
-    while(it.Next());
+    while(it.next());
 
     RDC(Axis::X, Axis::Y, Axis::Z, objs);
 
     for(ObjPair p: pairs)
     {
-        handlers.at(CollisionPair(p.first->getType(), p.second->getType()))(p.first,p.second);
+        handlers.at(CollisionPair(p.first->Type(), p.second->Type()))(p.first,p.second);
     }
 
 }
 
-void RDCCollision::RDC(RDCCollision::Axis a1, RDCCollision::Axis a2, RDCCollision::Axis a3, std::vector<GameObject*> group)
+void RDCCollision::RDC(RDCCollision::Axis a1, RDCCollision::Axis a2, RDCCollision::Axis a3, std::vector<GameObject*> group) noexcept
 {
     if(group.size() <= RDCLimit || a1 == Axis::NONE)
     {
@@ -101,13 +101,13 @@ void RDCCollision::BruteForce(std::vector<GameObject*> group) noexcept
     for(size_t i = 0; i < group.size(); i++)
     {
         obj = group[i];
-        auto r0 = obj->getSphere().Radius();
-        auto p0 = obj->getSphere().Centre();
+        auto r0 = obj->BoundingSphere().Radius();
+        auto p0 = obj->BoundingSphere().Centre();
         for(size_t j = i+1; j < group.size(); j++)
         {
             GameObject* other = group[j];
-            auto r1 = other->getSphere().Radius();
-            auto p1 = other->getSphere().Centre();
+            auto r1 = other->BoundingSphere().Radius();
+            auto p1 = other->BoundingSphere().Centre();
             auto dist = p1 - p0;
             if(dist.sqMod() <= ((r0+r1)*(r0+r1)))
             {
@@ -126,7 +126,7 @@ RDCCollision::EdgeVec RDCCollision::SortedBoundaries(RDCCollision::Axis a, std::
         EdgeInfo min;
         auto sizes = o->Dimensions();
         auto val = sizes.X();
-        auto pos = o->getPos();
+        auto pos = o->Position();
         auto centre = pos.X();
         if (a != RDCCollision::Axis::X)
         {

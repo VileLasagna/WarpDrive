@@ -11,11 +11,11 @@ Game::Game()
 	updates = 0;
 	minFPS = 30;
     objindex = 0;
-	GOFactory = Factory<GameObject>::instance();
+    goFactory = Factory<GameObject>::instance();
 #ifdef _DEBUG
 	FPS = true;
 #else
-	FPS = false;
+    fps = false;
 #endif
 }
 
@@ -32,7 +32,7 @@ void Game::Run()
     std::future<void> up = std::async(std::launch::async, [](Game* g)
                                                           { while(g->CurrentState() != -1)
                                                             { DisplayManager::instance()->Update();
-                                                              g->Update();
+                                                              g->update();
                                                             } }, this);
 //    std::future<void> dr = std::async(std::launch::async, [](Game* g)
 //                                                          { while(g->CurrentState() != -1)
@@ -43,8 +43,8 @@ void Game::Run()
     {
 //        DisplayManager::instance()->Update(); //Get the time and all before everyone starts checking this kind of stuff
 //        Update();
-        Draw();
-        Flip();
+        draw();
+        flip();
 //        //currentState = i;
     }
     //dr.get();
@@ -52,21 +52,21 @@ void Game::Run()
 
 }
 
-int Game::Update()
+int Game::update()
 {
 	updates++;
-    currentState = states[currentState]->Update();
+    currentState = states[currentState]->update();
     return currentState;
 
 }
 
-void Game::Draw()
+void Game::draw()
 {
 	DisplayManager::instance()->clearDisplay();
     DisplayManager::instance()->updateMatrices();
 
-	states[currentState]->Draw();
-	if (FPS)
+    states[currentState]->draw();
+    if (fps)
 	{
 		drawFPS();
 	}
@@ -80,11 +80,11 @@ void Game::resetState(int i)
 	}
 	else
 	{
-		states[i]->Reset();
+        states[i]->reset();
 	}
 }
 
-void Game::Flip()
+void Game::flip()
 {
 	DisplayManager::instance()->Flip();
 }
@@ -111,7 +111,7 @@ void Game::Clear()
 	{
 		delete (*it); //delete all states
 	}
-	for (std::multimap<std::string,std::pair<GameObject*,ObjStatus> >::iterator it = Game::instance()->Objects.begin(); it != Game::instance()->Objects.end(); it++)
+    for (std::multimap<std::string,std::pair<GameObject*,ObjStatus> >::iterator it = Game::instance()->objects.begin(); it != Game::instance()->objects.end(); it++)
 	{
 		delete (*it).second.first;//delete all Objects
 	}
@@ -141,7 +141,7 @@ void Game::drawFPS()
 bool Game::setActiveTypes(const std::set<std::string> &types)
 {
 	bool ret = false;
-	for(ObjectMap::iterator it = Objects.begin(); it != Objects.end(); it++)
+    for(ObjectMap::iterator it = objects.begin(); it != objects.end(); it++)
 	{
 		if (types.find(it->first) != types.end())
 		{
@@ -163,7 +163,7 @@ bool Game::setActiveTypes(const std::set<std::string> &types)
 bool Game::addActiveTypes(const std::set<std::string> &types)
 {
 	bool ret = false;
-	for(ObjectMap::iterator it = Objects.begin(); it != Objects.end(); it++)
+    for(ObjectMap::iterator it = objects.begin(); it != objects.end(); it++)
 	{
 		if (types.find(it->first) != types.end())
 		{
@@ -182,7 +182,7 @@ bool Game::addActiveType(const std::__cxx11::string& type)
 {
     bool ret = false;
 
-    for(ObjectMap::iterator it = Objects.begin(); it != Objects.end(); it++)
+    for(ObjectMap::iterator it = objects.begin(); it != objects.end(); it++)
     {
         if (type == it->first)
         {
@@ -198,7 +198,7 @@ bool Game::addActiveType(const std::__cxx11::string& type)
 bool Game::removeActiveTypes(const std::set<std::string> &types)
 {
 	bool ret = false;
-	for(ObjectMap::iterator it = Objects.begin(); it != Objects.end(); it++)
+    for(ObjectMap::iterator it = objects.begin(); it != objects.end(); it++)
 	{
 		if (types.find(it->first) != types.end())
 		{
@@ -216,7 +216,7 @@ bool Game::removeActiveTypes(const std::set<std::string> &types)
 bool Game::removeActiveType(const std::string &type)
 {
     bool ret = false;
-    for(ObjectMap::iterator it = Objects.begin(); it != Objects.end(); it++)
+    for(ObjectMap::iterator it = objects.begin(); it != objects.end(); it++)
     {
         if (type == it->first)
         {
@@ -233,7 +233,7 @@ bool Game::removeActiveType(const std::string &type)
 bool Game::setDrawnTypes(const std::set<std::string> &types)
 {
 	bool ret = false;
-	for(ObjectMap::iterator it = Objects.begin(); it != Objects.end(); it++)
+    for(ObjectMap::iterator it = objects.begin(); it != objects.end(); it++)
 	{
 		if (types.find(it->first) != types.end())
 		{
@@ -256,7 +256,7 @@ bool Game::setDrawnTypes(const std::set<std::string> &types)
 bool Game::addDrawnTypes(const std::set<std::string> &types)
 {
 	bool ret = false;
-	for(ObjectMap::iterator it = Objects.begin(); it != Objects.end(); it++)
+    for(ObjectMap::iterator it = objects.begin(); it != objects.end(); it++)
 	{
 		if (types.find(it->first) != types.end())
 		{
@@ -274,7 +274,7 @@ bool Game::addDrawnTypes(const std::set<std::string> &types)
 bool Game::addDrawnType(const std::string& type)
 {
     bool ret = false;
-    for(ObjectMap::iterator it = Objects.begin(); it != Objects.end(); it++)
+    for(ObjectMap::iterator it = objects.begin(); it != objects.end(); it++)
     {
         if (type == it->first)
         {
@@ -291,7 +291,7 @@ bool Game::addDrawnType(const std::string& type)
 bool Game::removeDrawnTypes(const std::set<std::string> &types)
 {
 	bool ret = false;
-	for(ObjectMap::iterator it = Objects.begin(); it != Objects.end(); it++)
+    for(ObjectMap::iterator it = objects.begin(); it != objects.end(); it++)
 	{
 		if (types.find(it->first) != types.end())
 		{
@@ -309,7 +309,7 @@ bool Game::removeDrawnTypes(const std::set<std::string> &types)
 bool Game::removeDrawnType(const std::string& type)
 {
     bool ret = false;
-    for(ObjectMap::iterator it = Objects.begin(); it != Objects.end(); it++)
+    for(ObjectMap::iterator it = objects.begin(); it != objects.end(); it++)
     {
         if (type == it->first)
         {
@@ -343,25 +343,25 @@ void Game::removeActiveObject(Game::iterator it)
 	it.current->second.second.update = false;
 }
 
-void Game::DrawObjects()
+void Game::drawObjects()
 {
-	for(ObjectMap::iterator it = Objects.begin(); it != Objects.end(); it++)
+    for(ObjectMap::iterator it = objects.begin(); it != objects.end(); it++)
 	{
 		if (it->second.second.draw)
 		{
-			it->second.first->Draw();
+            it->second.first->draw();
 		}
 	}
     frames++;
 }
 
-void Game::UpdateObjects()
+void Game::updateObjects()
 {
-	for(ObjectMap::iterator it = Objects.begin(); it != Objects.end(); it++)
+    for(ObjectMap::iterator it = objects.begin(); it != objects.end(); it++)
 	{
 		if (it->second.second.update)
 		{
-			it->second.first->Update();
+            it->second.first->update();
 		}
 		if (it->second.first->isDead())
 		{
@@ -380,20 +380,20 @@ size_t Game::ObjIndex()
 
 void Game::removeObject(Game::iterator it)
 {
-	Objects.erase(it.current);
+    objects.erase(it.current);
 }
 
 void Game::removeObject(std::string type)
 {
-	Objects.erase(type);
+    objects.erase(type);
 }
 
 void Game::addObject(GameObject *object)
 {
-	std::pair<std::string,std::pair<GameObject*,ObjStatus> > ob(object->getType(),std::pair<GameObject*,ObjStatus>(object,ObjStatus()));
+    std::pair<std::string,std::pair<GameObject*,ObjStatus> > ob(object->Type(),std::pair<GameObject*,ObjStatus>(object,ObjStatus()));
 	ob.second.second.draw = drawnTypes[ob.first];
 	ob.second.second.update = activeTypes[ob.first];
-	Objects.insert(ob);
+    objects.insert(ob);
 }
 
 //Iterator definitions
@@ -403,21 +403,21 @@ Game::iterator::iterator(std::string type, ObjIterator flag)
 	mode = flag;
 	if (type.compare(""))
 	{
-		begin = Game::instance()->Objects.equal_range(type).first;
-		end = Game::instance()->Objects.equal_range(type).second;
+        begin = Game::instance()->objects.equal_range(type).first;
+        end = Game::instance()->objects.equal_range(type).second;
 	}
 	else
 	{
-		begin = Game::instance()->Objects.begin();
-		end = Game::instance()->Objects.end();
+        begin = Game::instance()->objects.begin();
+        end = Game::instance()->objects.end();
 	}
 	current = begin;
 }
 
-bool Game::iterator::Find(std::string key)
+bool Game::iterator::find(std::string key)
 {
-	current = Game::instance()->Objects.find(key);
-	if(begin != Game::instance()->Objects.begin() || end != Game::instance()->Objects.end()) // this happens if this is a "by-type" iterator
+    current = Game::instance()->objects.find(key);
+    if(begin != Game::instance()->objects.begin() || end != Game::instance()->objects.end()) // this happens if this is a "by-type" iterator
 	{
 		for(ObjectMap::iterator it = begin; it != end; it++) //check if the returned value is within range
 		{
@@ -443,9 +443,9 @@ bool Game::iterator::seekName(const std::string& N)
 {
 	//CAUTION: Only seeks through the objects the iterator can search (obvious but, you never know)
 	Begin();
-	while( current->second.first->getName() != N)
+    while( current->second.first->Name() != N)
 	{//iterate over the elements seeking the one
-		if (! this->Next())
+        if (! this->next())
 		{
 			//We have reached the end of the collection
 			return false;
@@ -511,7 +511,7 @@ void Game::iterator::End()
 	}
 }
 
-bool Game::iterator::Next()
+bool Game::iterator::next()
 {
 	ObjectMap::iterator it = current;
 	it++;
@@ -548,7 +548,7 @@ bool Game::iterator::Next()
 	}
 }
 
-bool Game::iterator::Prev()
+bool Game::iterator::prev()
 {
 	if (current == begin)
 	{

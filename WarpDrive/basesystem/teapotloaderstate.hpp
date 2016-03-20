@@ -1,42 +1,32 @@
-#ifndef TEAPOTLOADERSTATE_H
-#define TEAPOTLOADERSTATE_H
+#ifndef WD_TEAPOTLOADERSTATE_HPP_DEFINED
+#define WD_TEAPOTLOADERSTATE_HPP_DEFINED
+
+#include <vector>
 
 #include "basesystem/gamestate.hpp"
 #include "3dmaths/teapot.hpp"
-#include <vector>
 #include "display/camera.hpp"
-
 
 class TeapotLoaderState : public GameState
 {
 public:
 
-
 	TeapotLoaderState();
 
-    int Update() override;
-    void Draw() const override;
-    void Reset() override;
+    int update() override;
+    void draw() const override;
+    void reset() override;
     void onJoyButtonEvent(const SDL_JoyButtonEvent& e) override;
     void onKeyboardEvent(const SDL_KeyboardEvent& e) override;
     void onMouseButtonEvent(const SDL_MouseButtonEvent& e) override;
 
-
-
     ~TeapotLoaderState(){}
 
-
 private:
-
 
     std::vector<Sphere*> pots;
     Camera cam;
 
-
-
-
-
 };
 
-
-#endif //TEAPOTLOADERSTATE_H
+#endif //WD_TEAPOTLOADERSTATE_HPP_DEFINED

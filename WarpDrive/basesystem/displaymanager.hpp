@@ -1,5 +1,5 @@
-#ifndef DISPLAY_MANAGER_H
-#define DISPLAY_MANAGER_H
+#ifndef WD_DISPLAY_MANAGER_HPP_DEFINED
+#define WD_DISPLAY_MANAGER_HPP_DEFINED
 #ifdef _WIN32
     #include <windows.h>
 	#include "SDL/SDL.h"
@@ -29,7 +29,7 @@ private:	//this class is a singleton
 public:
 
 	static DisplayManager* instance();
-	static void clear();
+    static void clear() noexcept;
 
     ~DisplayManager();
 
@@ -38,26 +38,26 @@ public:
 	void setSize (int width, int height);
 	std::pair<int,int> getSize() const{ return std::pair<int,int>(w,h);} //returns (width,height)
 
-    SDL_Window* getScreen() const;
-    SDL_Renderer* getRenderer() const;
+    SDL_Window* Screen() const;
+    SDL_Renderer* Renderer() const;
 
     void Update();
 
     float getDtSecs() const;
 	float getMaxDT() const {return maxDT;}
 
-	void FullScreen(bool b = true);
-	void ToggleFS();
+    void setFullscreen(bool b = true);
+    void toggleFS();
 
-	void useOpengGL (bool b);
+    void useOpengGL (bool b) noexcept;
 	bool usingOpenGL () {return openGL;}
-	void clearDisplay();
-    void showStats(int updates, int frames);
-    void setTitle(std::string newTitle, int windowIndex = 1);
+    void clearDisplay() noexcept;
+    void showStats(int updates, int frames) noexcept;
+    void setTitle(std::string newTitle, int windowIndex = 1) noexcept;
 
 	void setBPP(int i);
 
-	void Init(bool Fullscreen = false, bool UsingOpenGL = false);
+    void init(bool Fullscreen = false, bool UsingOpenGL = false) noexcept;
 
     void updateMatrices();
 
@@ -70,9 +70,6 @@ public:
 	void applyMatrix (const Matrix44& mat);
 	void setToMatrix (const Matrix44& mat);
 	void clearMatrix ();
-
-
-
 
 private:
 
@@ -96,4 +93,4 @@ private:
 
 };
 
-#endif //DISPLAY_MANAGER_H
+#endif //WD_DISPLAY_MANAGER_HPP_DEFINED

@@ -1,18 +1,14 @@
-#ifndef FACTORY_H
-#define FACTORY_H
+#ifndef WD_FACTORY_HPP_DEFINED
+#define WD_FACTORY_HPP_DEFINED
 
 #include <map>
 #include <string>
 
 template <class Family, class Key = std::string>
-
-
-
-
-
 class Factory
 {
 typedef Family* (*Construc) ();
+
 private: //Each different factory is a Singleton
 	Factory(){}
 
@@ -49,13 +45,9 @@ public:
 
 private:
 
-	
-
 	std::map<Key,Construc> types;
 
 
 };
 
-
-
-#endif //FACTORY_H
+#endif //WD_FACTORY_HPP_DEFINED

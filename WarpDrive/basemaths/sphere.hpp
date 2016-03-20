@@ -1,7 +1,7 @@
-#ifndef BOUNDING_SPHERE_H
-#define BOUNDING_SPHERE_H
+#ifndef WD_BOUNDING_SPHERE_HPP_DEFINED
+#define WD_BOUNDING_SPHERE_HPP_DEFINED
 
-#include<memory>
+#include <memory>
 #include <GL/glu.h>
 
 
@@ -29,7 +29,7 @@ public:
     Sphere& operator=(const Sphere& other) noexcept;
     Sphere& operator=(Sphere&& other) noexcept;
 
-    void Draw() const noexcept;
+    void draw() const noexcept;
     void setPos(const Vec3f& pos) noexcept;
     void setPos(float X, float Y, float Z) noexcept;
     void setRadius(float R) noexcept;
@@ -63,4 +63,4 @@ private:
 };
 
 
-#endif //BOUNDING_SPHERE_H
+#endif //WD_BOUNDING_SPHERE_HPP_DEFINED
