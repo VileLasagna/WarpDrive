@@ -73,7 +73,7 @@ void Sprite::setCellTime(float secs)
 int Sprite::playAnimation(int i)
 {
 	i -= 1; //internally, indexes start at 0;
-    float dts = DisplayManager::instance()->getDtSecs(); //note: It does NOT update this value, this must be done before the "update round" for everything is done
+    float dts = DisplayManager::instance()->DtSecs(); //note: It does NOT update this value, this must be done before the "update round" for everything is done
 	dt += dts;
 	// Update velocity and position
     Vec2f u =  vel;

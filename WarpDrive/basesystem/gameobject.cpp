@@ -12,7 +12,7 @@ void GameObject::update()
             (*it)->update(this);
         }
 	}
-	float dt = DisplayManager::instance()->getDtSecs();
+	float dt = DisplayManager::instance()->DtSecs();
 	vel+= accel*dt;
 	pos+= vel*dt;
 }

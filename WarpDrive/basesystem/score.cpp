@@ -13,7 +13,7 @@ Score::Score()
 
 void Score::update()
 {
-	time += DisplayManager::instance()->getDtSecs();
+	time += DisplayManager::instance()->DtSecs();
 }
 
 void Score::Reset()

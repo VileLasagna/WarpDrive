@@ -33,7 +33,7 @@ void PanAndTiltEvent::update(GameObject* Target)
 	}
 	if(overTime)
 	{
-		float dt = DisplayManager::instance()->getDtSecs();
+		float dt = DisplayManager::instance()->DtSecs();
 		time -= dt;
 		if (pan != Vec3f(0,0,0))
 		{

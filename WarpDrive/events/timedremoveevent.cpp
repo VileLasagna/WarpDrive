@@ -9,7 +9,7 @@ TimedRemoveEvent::TimedRemoveEvent(float Time)
 
 void TimedRemoveEvent::update(GameObject* target)
 {
-	time -= DisplayManager::instance()->getDtSecs();
+	time -= DisplayManager::instance()->DtSecs();
 	if (time <= 0 && target)
 	{
 		target->KILL();

@@ -34,7 +34,7 @@ void glColorEvent::update(GameObject* )
 	}
 	else
 	{
-		float dt = DisplayManager::instance()->getDtSecs();
+		float dt = DisplayManager::instance()->DtSecs();
 		float rgb[4];
 		glGetFloatv(GL_CURRENT_COLOR,rgb);
 		r0 = rgb[0];

@@ -1,14 +1,17 @@
 #include "basesystem/displaymanager.hpp"
-#include "basesystem/stringproc.hpp"
 
 #include <assert.h>
+
+#include "basesystem/game.hpp"
+#include "basesystem/stringproc.hpp"
+
 
 DisplayManager::DisplayManager():
     mainWindow  (0),
     renderer    (0),
     gl_context  (0),
     dt          (0),
-    maxDT       (0.05f),
+    maxDT       (67),
     openGL      (false),
     bpp         (32),
     w           (640),
@@ -111,19 +114,23 @@ void DisplayManager::Flip()
 
 void DisplayManager::Update()
 {
-    static unsigned int oldms = SDL_GetTicks();
-    unsigned int ms = SDL_GetTicks();
-    dt = (static_cast<float>((ms - oldms))) / 1000.0f;
-    oldms = ms;
+    static Game::time lastCall = Game::instance()->now();
+    dt = Game::instance()->millisSince(lastCall);
 	if (dt > maxDT)
 	{
 		dt = maxDT;
 	}
+    lastCall = Game::instance()->now();
 }
 
-float DisplayManager::getDtSecs() const
+int64_t DisplayManager::Dt() const noexcept
 {
     return dt;
+}
+
+float DisplayManager::DtSecs() const noexcept
+{
+    return dt/1000.f;
 }
 
 

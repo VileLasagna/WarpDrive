@@ -44,7 +44,7 @@ void Camera::update()
 	}
     if(!WrpDrv::flEquals(orbitRadius, 0))
     {
-        time += DisplayManager::instance()->getDtSecs();
+        time += DisplayManager::instance()->DtSecs();
         //relativePos = Vec3f(orbitFactors.X()*orbitRadius*sin(time*(orbitPeriod*0.5f)),orbitFactors.Y()*orbitRadius*sin(time*(orbitPeriod*0.5f)),orbitFactors.Z()*orbitRadius*sin(time*(orbitPeriod*0.5f)));
         Vec3f direction = Vec3f(static_cast<float>( orbitFactors.X()*sin(time*(orbitPeriod*0.5f)) ),
                                 static_cast<float>( orbitFactors.Y()*sin(time*(orbitPeriod*0.5f)) ),

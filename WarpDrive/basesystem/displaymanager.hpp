@@ -33,7 +33,7 @@ public:
     ~DisplayManager();
 
     void Flip();
-	void setMaxDT(float mdt) {maxDT = mdt;}
+    void setMaxDT(int64_t mdt) {maxDT = mdt;}
 	void setSize (int width, int height);
 	std::pair<int,int> getSize() const{ return std::pair<int,int>(w,h);} //returns (width,height)
 
@@ -42,8 +42,9 @@ public:
 
     void Update();
 
-    float getDtSecs() const;
-	float getMaxDT() const {return maxDT;}
+    int64_t Dt() const noexcept;
+    float DtSecs() const noexcept;
+    float getMaxDT() const noexcept {return maxDT;}
 
     void setFullscreen(bool b = true);
     void toggleFS();
@@ -77,8 +78,8 @@ private:
     SDL_Window* mainWindow;
     SDL_Renderer* renderer;
     SDL_GLContext gl_context;
-    float dt;
-	float maxDT;
+    int64_t dt;
+    int64_t maxDT;
 	bool openGL;
 	int bpp;
 	int w;
