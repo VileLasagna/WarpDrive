@@ -124,8 +124,8 @@ SOURCES += \
     $$_PRO_FILE_PWD_/WarpDrive/physics/rdccollision.cpp             \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/util.cpp                  \
     $$_PRO_FILE_PWD_/WarpDrive/events/objectevent.cpp               \
-    $$_PRO_FILE_PWD_/WarpDrive/basesystem/gamestate.cpp \
-    $$PWD/events/timelinekey.cpp \
-    $$PWD/physics/collisionsystem.cpp
+    $$_PRO_FILE_PWD_/WarpDrive/basesystem/gamestate.cpp             \
+    $$_PRO_FILE_PWD_/WarpDrive/events/timelinekey.cpp               \
+    $$_PRO_FILE_PWD_/WarpDrive/physics/collisionsystem.cpp
 
 
