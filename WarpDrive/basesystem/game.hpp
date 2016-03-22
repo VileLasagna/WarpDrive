@@ -7,6 +7,8 @@
 #include <map>
 #include <set>
 #include <utility>
+#include <random>
+#include <chrono>
 
 #include "basesystem/err.hpp"
 #include "basesystem/stringproc.hpp"
@@ -31,6 +33,8 @@ private:	//This class is a singleton.
 
 public:
 
+    using time = std::chrono::steady_clock::time_point;
+
 	static Game* instance();
 
 	void Run();
@@ -53,6 +57,9 @@ public:
     void drawObjects();
     void updateObjects();
     size_t ObjIndex();
+
+    Game::time now() const;
+    int64_t millisSince(Game::time t) const;
 
 
 	Game operator= (const Game&) = delete;

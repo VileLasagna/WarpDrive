@@ -125,20 +125,20 @@ void Game::Clear()
 void Game::drawFPS()
 {
 
-    static std::chrono::steady_clock::time_point lastCall = std::chrono::steady_clock::now();
-    static std::chrono::milliseconds t = std::chrono::milliseconds::zero();
+    static Game::time lastCall = now();
+    static int64_t t = 0;
 
-    auto now = std::chrono::steady_clock::now();
-    t += std::chrono::duration_cast<std::chrono::milliseconds>(now - lastCall); // update time..
-    if (t.count()>= 1000) // if number of seconds has changed..
+    t += millisSince(lastCall); // update time..
+
+    if (t>= 1000) // if number of seconds has changed..
     {
 
-        t = std::chrono::milliseconds::zero();
+        t = 0;
         DisplayManager::instance()->showStats(updates, frames);
         frames = 0; // reset count for the new second
         updates = 0;
     }
-    lastCall = now;
+    lastCall = now();
 
 }
 
@@ -380,6 +380,16 @@ void Game::updateObjects()
 size_t Game::ObjIndex()
 {
     return objindex++;
+}
+
+Game::time Game::now() const
+{
+    return std::chrono::steady_clock::now();
+}
+
+int64_t Game::millisSince(Game::time t) const
+{
+    return (std::chrono::duration_cast<std::chrono::milliseconds>(now() - t)).count();
 }
 
 void Game::removeObject(Game::iterator it)
