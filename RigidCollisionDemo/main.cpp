@@ -11,7 +11,6 @@
 int main(/*int argc, char* argv[]*/)
 {
 
-    //glutInit(&argc, argv);
     DisplayManager::instance()->setSize(1280,728);
     DisplayManager::instance()->init(false,true);
     Game::instance()->addState(new LauncherState());
