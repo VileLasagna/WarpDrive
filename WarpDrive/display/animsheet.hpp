@@ -25,7 +25,7 @@ public:
 	std::vector<std::pair<Vec2<Vec2i>,int> > getAnims() const; //Returns a vector with the start and end of each animation (in order) for this sheet
 												// would've been an array, but the having a checkable size is important here
     int CellIndex(const Vec2i& cell) const; //returns the cell's number
-	virtual ~AnimSheet(){}
+    virtual ~AnimSheet();
 	
 	/*	Vec2<Vec2i> > allows for empty cells trailing after the end of an animation in a cell before
 	 *	the end of the sheet. Like the first animation ending in the 10th cell in a 15 cell wide sheet.

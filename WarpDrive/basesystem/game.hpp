@@ -65,7 +65,7 @@ public:
 
 	public:
 
-        iterator(std::string type = "", ObjIterator flag = ObjIterator::ALL);
+        iterator(std::string itType = "", ObjIterator flag = ObjIterator::ALL);
         bool next();
         bool prev();
         bool find(std::string key);
@@ -96,7 +96,7 @@ public:
 	void removeObject(Game::iterator it);
 	void removeObject(std::string type);
 	void addObject(GameObject* object);
-	void resetState(int i);
+    void resetState(unsigned int i);
 
 
 private:

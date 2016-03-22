@@ -47,7 +47,7 @@ bool Texture::createFromSDLSurface(SDL_Surface* surf)
 #pragma message "TODO - URGENT"
     //SDL_SetAlpha(surf,SDL_SRCALPHA|SDL_RLEACCEL,128);
     SDL_SetSurfaceAlphaMod(surf, 128);
-	unsigned char* data = (unsigned char*)surf->pixels;
+    unsigned char* data = static_cast<unsigned char*>(surf->pixels);
 	int width = surf->w;
 	int height = surf->h;
 

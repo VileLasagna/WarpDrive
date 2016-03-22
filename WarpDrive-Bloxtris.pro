@@ -17,8 +17,8 @@ CONFIG(debug, debug|release) \
 #QMAKE_CXX = clang++
 #QMAKE_CC = clang
 #QMAKE_CXXFLAGS += -std=c++14 #-stdlib=libstdc++
-QMAKE_CXXFLAGS += -std=c++14 #-Weverything
-QMAKE_CXXFLAGS += -Wno-c++98-compat -Wno-c++98-c++11-compat
+QMAKE_CXXFLAGS += -std=c++14 -Weverything
+QMAKE_CXXFLAGS += -Wno-c++98-compat -Wno-c++98-c++11-compat -Wno-padded -Wno-global-constructors -Wno-unused-member-function
 #QMAKE_CFLAGS += -stdlib=libstdc++
 #QMAKE_LINK = llvm-link
 #QMAKE_LFLAGS = -cppgen=program -v

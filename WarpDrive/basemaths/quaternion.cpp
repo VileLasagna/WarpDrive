@@ -17,20 +17,20 @@ Quaternion::Quaternion()
 }
 
 
-Quaternion::Quaternion(float degrees, float x, float y, float z)
+Quaternion::Quaternion(float degrees, float xVal, float yVal, float zVal)
 {
 	double angrad = degrees * 0.017453292519943295769236907684886; //*PI/(180)
-	w = (float)cos(angrad);
-	float s = (float)sin(angrad);
-	x = x*s;
-	y = y*s;
-	z = z*s;
+    w = static_cast<float>(cos(angrad));
+    float s = static_cast<float>(sin(angrad));
+    x = xVal*s;
+    y = yVal*s;
+    z = zVal*s;
 }
 
 Quaternion::Quaternion(float rad, Vec3f& axis)
 {
-	w = (float)cos(rad);
-	float s = (float)sin(rad);
+    w = static_cast<float>(cos(rad));
+    float s = static_cast<float>(sin(rad));
 	x = axis.X()*s;
 	y = axis.Y()*s;
 	z = axis.Z()*s;
@@ -132,10 +132,10 @@ Quaternion Slerp(const Quaternion& from, const Quaternion& to, float t)
     Quaternion res;
 
     // calculate final values
-    res.x = (float)(scale0 * (double)from.x + scale1 * (double)to1[0]);
-    res.y = (float)(scale0 * (double)from.y + scale1 * (double)to1[1]);
-    res.z = (float)(scale0 * (double)from.z + scale1 * (double)to1[2]);
-    res.w = (float)(scale0 * (double)from.w + scale1 * (double)to1[3]);
+    res.x = static_cast<float>(scale0 * static_cast<double>(from.x) + scale1 * static_cast<double>(to1[0]) );
+    res.y = static_cast<float>(scale0 * static_cast<double>(from.y) + scale1 * static_cast<double>(to1[1]) );
+    res.z = static_cast<float>(scale0 * static_cast<double>(from.z) + scale1 * static_cast<double>(to1[2]) );
+    res.w = static_cast<float>(scale0 * static_cast<double>(from.w) + scale1 * static_cast<double>(to1[3]) );
 
     return res;
 }
@@ -152,7 +152,7 @@ void Quaternion::normalise()
 	{
 		return;
 	}
-	f = sqrt(f);
+    f = static_cast<float>(sqrt(f));
 	w /= f;
 	x /= f;
 	y /= f;

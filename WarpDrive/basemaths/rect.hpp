@@ -3,7 +3,7 @@
 
 #include "display/rgbacolour.hpp"
 
-template <class T>
+template <typename T>
 class Rect
 {
 public:

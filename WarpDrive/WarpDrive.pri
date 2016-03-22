@@ -1,14 +1,13 @@
 include ($$_PRO_FILE_PWD_/WarpDrive/include/external.pri)
 
 HEADERS += \
-    $$_PRO_FILE_PWD_/WarpDrive/3dmaths/billboard.hpp              \
-    $$_PRO_FILE_PWD_/WarpDrive/3dmaths/glm.h                      \
+    $$_PRO_FILE_PWD_/WarpDrive/3dmaths/billboard.hpp                \
+    $$_PRO_FILE_PWD_/WarpDrive/3dmaths/glm.h                        \
     $$_PRO_FILE_PWD_/WarpDrive/3dmaths/glmesh.hpp                   \
     $$_PRO_FILE_PWD_/WarpDrive/3dmaths/glmint.hpp                   \
     $$_PRO_FILE_PWD_/WarpDrive/3dmaths/material.hpp                 \
     $$_PRO_FILE_PWD_/WarpDrive/3dmaths/model.hpp                    \
     $$_PRO_FILE_PWD_/WarpDrive/3dmaths/modelloader.hpp              \
-    $$_PRO_FILE_PWD_/WarpDrive/3dmaths/teapot.hpp                   \
     $$_PRO_FILE_PWD_/WarpDrive/3dmaths/vertex.hpp                   \
     $$_PRO_FILE_PWD_/WarpDrive/3dmaths/viewport.hpp                 \
     $$_PRO_FILE_PWD_/WarpDrive/basemaths/capsule.hpp                \
@@ -36,7 +35,6 @@ HEADERS += \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/memory.hpp                \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/score.hpp                 \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/stringproc.hpp            \
-    $$_PRO_FILE_PWD_/WarpDrive/basesystem/teapotloaderstate.hpp     \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/ttfmanager.hpp            \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/sdleventhandler.hpp       \
     $$_PRO_FILE_PWD_/WarpDrive/display/camera.hpp                   \
@@ -54,7 +52,6 @@ HEADERS += \
     $$_PRO_FILE_PWD_/WarpDrive/events/timeline.hpp                  \
     $$_PRO_FILE_PWD_/WarpDrive/events/timelinekey.hpp               \
     $$_PRO_FILE_PWD_/WarpDrive/events/tkaddevent.hpp                \
-    $$_PRO_FILE_PWD_/WarpDrive/events/tkdrawteapot.hpp              \
     $$_PRO_FILE_PWD_/WarpDrive/events/tkmoveobject.hpp              \
     $$_PRO_FILE_PWD_/WarpDrive/events/tkplaymusic.hpp               \
     $$_PRO_FILE_PWD_/WarpDrive/events/tkuseobject.hpp               \
@@ -70,7 +67,8 @@ HEADERS += \
     $$_PRO_FILE_PWD_/WarpDrive/display/texturesheet.hpp             \
     $$_PRO_FILE_PWD_/WarpDrive/basemaths/ray.hpp                    \
     $$_PRO_FILE_PWD_/WarpDrive/physics/bruteforcecollision.hpp      \
-    $$_PRO_FILE_PWD_/WarpDrive/physics/rdccollision.hpp
+    $$_PRO_FILE_PWD_/WarpDrive/physics/rdccollision.hpp             \
+    $$_PRO_FILE_PWD_/WarpDrive/basesystem/util.hpp
 
 
 SOURCES += \
@@ -101,7 +99,6 @@ SOURCES += \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/memory.cpp                \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/score.cpp                 \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/stringproc.cpp            \
-    $$_PRO_FILE_PWD_/WarpDrive/basesystem/teapotloaderstate.cpp     \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/ttfmanager.cpp            \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/sdleventhandler.cpp       \
     $$_PRO_FILE_PWD_/WarpDrive/display/camera.cpp                   \
@@ -124,6 +121,11 @@ SOURCES += \
     $$_PRO_FILE_PWD_/WarpDrive/display/texturesheet.cpp             \
     $$_PRO_FILE_PWD_/WarpDrive/basemaths/ray.cpp                    \
     $$_PRO_FILE_PWD_/WarpDrive/physics/bruteforcecollision.cpp      \
-    $$_PRO_FILE_PWD_/WarpDrive/physics/rdccollision.cpp
+    $$_PRO_FILE_PWD_/WarpDrive/physics/rdccollision.cpp             \
+    $$_PRO_FILE_PWD_/WarpDrive/basesystem/util.cpp                  \
+    $$_PRO_FILE_PWD_/WarpDrive/events/objectevent.cpp               \
+    $$_PRO_FILE_PWD_/WarpDrive/basesystem/gamestate.cpp \
+    $$PWD/events/timelinekey.cpp \
+    $$PWD/physics/collisionsystem.cpp
 
 

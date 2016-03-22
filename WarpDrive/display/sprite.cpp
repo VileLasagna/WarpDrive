@@ -19,7 +19,7 @@ Sprite::Sprite(const std::string& filename)
 		infile.open(filename.c_str());
 		assert(infile);
 		std::string line;
-		int st = 0;
+        unsigned int st = 0;
 		while (std::getline(infile, line))
 		{
 			if( StringProc::trim(&line) && (line.at(0) != '#') )
@@ -32,7 +32,9 @@ Sprite::Sprite(const std::string& filename)
 					std::vector <std::pair<Vec2<Vec2i>,int> > tempAnims = sheets[st]->getAnims();
 					for (unsigned int i = 0; i < tempAnims.size(); i++)
 					{
-						animations.push_back(std::pair<Vec3<Vec2i>,int>( Vec3<Vec2i> ( Vec2i(st,i), tempAnims[i].first.X() , tempAnims[i].first.Y() ), tempAnims[i].second  ));
+                        animations.push_back(std::pair<Vec3<Vec2i>,int>( Vec3<Vec2i> ( Vec2i(static_cast<int>(st),static_cast<int>(i)),
+                                                                                       tempAnims[i].first.X() , tempAnims[i].first.Y() ),
+                                                                         tempAnims[i].second  ));
 					}
 					st++;
 				}
@@ -51,7 +53,10 @@ Sprite::Sprite(const std::string& filename)
 		std::vector<std::pair<Vec2<Vec2i>,int> > tempAnims = sheets[0]->getAnims();
 		for (unsigned int i = 0; i < tempAnims.size(); i++)
 		{
-			animations.push_back( std::pair< Vec3<Vec2i>, int>( Vec3<Vec2i>(Vec2i(0,i), tempAnims[i].first.X() , tempAnims[i].first.Y() ), tempAnims[i].second ) );
+            animations.push_back( std::pair< Vec3<Vec2i>, int>( Vec3<Vec2i>(Vec2i(0,static_cast<int>(i)),
+                                                                            tempAnims[i].first.X() ,
+                                                                            tempAnims[i].first.Y() ),
+                                                                tempAnims[i].second ) );
 		}
 		this->setCellTime();
 
@@ -80,41 +85,41 @@ int Sprite::playAnimation(int i)
 		// Update bounding rect
 		rect = Rectf(
         pos.X(), 
-        pos.X() + sheets[animations[current.X()].first.X().X()]->CellSize().X(),
+        pos.X() + sheets[static_cast<size_t>(animations[ static_cast<size_t>(current.X()) ].first.X().X()) ]->CellSize().X(),
         pos.Y(),
-        pos.Y() + sheets[animations[current.X()].first.X().X()]->CellSize().Y());
-		if (currentCell != animations[i].first.Z())//not the last frame in the animation
+        pos.Y() + sheets[static_cast<size_t>(animations[static_cast<size_t>(current.X())].first.X().X())]->CellSize().Y());
+        if (currentCell != animations[static_cast<size_t>(i)].first.Z())//not the last frame in the animation
 		{
 			if (dt >= maxCellTime)
 			{
-			currentCell = sheets[animations[current.X()].first.X().X()]->nextSprite(currentCell);
-			current = Vec2i(current.X(),current.Y()+1);
-			dt = 0;
+                currentCell = sheets[ static_cast<size_t>(animations[static_cast<size_t>(current.X())].first.X().X()) ]->nextSprite(currentCell);
+                current = Vec2i(current.X(),current.Y()+1);
+                dt = 0;
 			}
 		}
 		else
 		{
-			if (animations[i].second != (-1)) //This animation transitions to another one
+            if (animations[static_cast<size_t>(i)].second != (-1)) //This animation transitions to another one
 			{
 						int numAnims = 0;
-						for (int j = 0; j < animations[i].first.X().X(); j++)
+                        for (int j = 0; j < animations[static_cast<size_t>(i)].first.X().X(); j++)
 						{
-							numAnims+= sheets[animations[j].first.X().X()]->getAnims().size();
+                            numAnims+= sheets[ static_cast<size_t>(animations[static_cast<size_t>(j)].first.X().X()) ]->getAnims().size();
 						}
-						current = Vec2i(animations[i].second+numAnims,0);
-						currentCell = animations[current.X()].first.Y();
+                        current = Vec2i(animations[ static_cast<size_t>(i)].second+numAnims,0);
+                        currentCell = animations[ static_cast<size_t>(current.X())].first.Y();
 						// Update bounding rect
 						rect = Rectf(
 						pos.X(), 
-                        pos.X() + sheets[animations[current.X()].first.X().X()]->CellSize().X(),
+                        pos.X() + sheets[ static_cast<size_t>(animations[ static_cast<size_t>(current.X()) ].first.X().X()) ]->CellSize().X(),
 						pos.Y(),
-                        pos.Y() + sheets[animations[current.X()].first.X().X()]->CellSize().Y());
-						sheets[animations[current.X()].first.X().X()]->setAlphaT(transpThreshold);
+                        pos.Y() + sheets[ static_cast<size_t>(animations[ static_cast<size_t>(current.X()) ].first.X().X()) ]->CellSize().Y());
+                        sheets[ static_cast<size_t>(animations[ static_cast<size_t>(current.X()) ].first.X().X()) ]->setAlphaT(transpThreshold);
 						dt = 0;
 			}
 			else
 			{
-				currentCell = animations[i].first.Y();
+                currentCell = animations[static_cast<size_t>(i)].first.Y();
 				current.setY(0);
 				dt = 0;
 			}
@@ -123,24 +128,24 @@ int Sprite::playAnimation(int i)
 	else
 	{//new animation
 		current = Vec2i(i,0);
-		currentCell = animations[i].first.Y();
+        currentCell = animations[static_cast<size_t>(i)].first.Y();
 		// Update bounding rect
 		rect = Rectf(
         pos.X(), 
-        pos.X() + sheets[animations[current.X()].first.X().X()]->CellSize().X(),
+        pos.X() + sheets[ static_cast<size_t>(animations[ static_cast<size_t>(current.X()) ].first.X().X()) ]->CellSize().X(),
         pos.Y(),
-        pos.Y() + sheets[animations[current.X()].first.X().X()]->CellSize().Y());
-		sheets[animations[current.X()].first.X().X()]->setAlphaT(transpThreshold);
+        pos.Y() + sheets[ static_cast<size_t>(animations[ static_cast<size_t>(current.X()) ].first.X().X()) ]->CellSize().Y());
+        sheets[ static_cast<size_t>(animations[ static_cast<size_t>(current.X()) ].first.X().X()) ]->setAlphaT(transpThreshold);
 		dt = 0;
 	}   
 	return current.X()+1;
 }
 
-void Sprite::setDrawAlpha(int alpha)
+void Sprite::setDrawAlpha(unsigned int alpha)
 {
 	for(unsigned int i = 0; i < sheets.size(); i++)
 	{
-        sheets[i]->setDrawAlpha(alpha);
+        sheets[i]->setDrawAlpha( static_cast<Uint8>(alpha) );
 	}
 }
 
@@ -155,12 +160,14 @@ void Sprite::setColourKey(const SDLRGBColour& tc)
 void Sprite::draw()
 {
 	if (current.X() == -1) {return;} //this method has been called before the sprite was updated for the first time. Ignore the mistake
-    int ax = sheets[animations[current.X()].first.X().X()]->Adjust().X();
-    int ay = sheets[animations[current.X()].first.X().X()]->Adjust().Y();
+    int ax = sheets[ static_cast<size_t>(animations[ static_cast<size_t>(current.X()) ].first.X().X()) ]->Adjust().X();
+    int ay = sheets[ static_cast<size_t>(animations[ static_cast<size_t>(current.X()) ].first.X().X()) ]->Adjust().Y();
 	Vec2i apos;//the position adjusted by any offset this sheet might have.
-	apos.setX( (int)pos.X() + ax);
-	apos.setY( (int)pos.Y() + ay);
-    sheets[animations[current.X()].first.X().X()]->blit(currentCell, (int)apos.X(), (int)apos.Y());
+    apos.setX( static_cast<int>(pos.X()) + ax);
+    apos.setY( static_cast<int>(pos.Y()) + ay);
+    sheets[ static_cast<size_t>(animations[ static_cast<size_t>(current.X()) ].first.X().X()) ]->blit(currentCell,
+                                                                                                      static_cast<int>(apos.X()),
+                                                                                                      static_cast<int>(apos.Y()) );
 }
 
 void Sprite::setPos(const Vec2f& p)
@@ -183,14 +190,14 @@ bool Sprite::pixCollision(const Sprite& other) const
 	{
         Rectf inter = intersection(other.Box());
 		 // Loop over region
-		int height = (int)(inter.Height());
-		int width = (int)(inter.Width());
+        int height = static_cast<int>(inter.Height());
+        int width = static_cast<int>(inter.Width());
 
-		int xOff = (int)(inter.MinX() - pos.X());
-        int xOffOther = (int)(inter.MinX() - other.Position().X());
+        int xOff = static_cast<int>(inter.MinX() - pos.X());
+        int xOffOther = static_cast<int>(inter.MinX() - other.Position().X());
 
-		int yOff = (int)(inter.MinY() - pos.Y());
-        int yOffOther = (int)(inter.MinY() - other.Position().Y());
+        int yOff = static_cast<int>(inter.MinY() - pos.Y());
+        int yOffOther = static_cast<int>(inter.MinY() - other.Position().Y());
 
 		for (int i = 0; i < height; i++)
 		{
@@ -198,7 +205,7 @@ bool Sprite::pixCollision(const Sprite& other) const
 			{
 				// If pixel in current cell at (i, j) is non-transparent
 				//  for both sprites, then they do intersect
-				bool thisIsTransparent = sheets[animations[current.X()].first.X().X()]->isPixTransparent(
+                bool thisIsTransparent = sheets[ static_cast<size_t>(animations[ static_cast<size_t>(current.X()) ].first.X().X()) ]->isPixTransparent(
 					currentCell, j + xOff, i + yOff);
                 bool otherIsTransparent = other.Sheet().isPixTransparent(
 					other.currentCell, j + xOffOther, i + yOffOther);
@@ -226,14 +233,14 @@ bool Sprite::pixCollision(const SDLImage& other) const
 	{
         Rectf inter = intersection(other.Box());
 		 // Loop over region
-		int height = (int)(inter.Height());
-		int width = (int)(inter.Width());
+        int height = static_cast<int>(inter.Height());
+        int width = static_cast<int>(inter.Width());
 
-		int xOff = (int)(inter.MinX() - pos.X());
-        int xOffOther = (int)(inter.MinX() - other.Position().X());
+        int xOff = static_cast<int>(inter.MinX() - pos.X());
+        int xOffOther = static_cast<int>(inter.MinX() - other.Position().X());
 
-		int yOff = (int)(inter.MinY() - pos.Y());
-        int yOffOther = (int)(inter.MinY() - other.Position().Y());
+        int yOff = static_cast<int>(inter.MinY() - pos.Y());
+        int yOffOther = static_cast<int>(inter.MinY() - other.Position().Y());
 
 		for (int i = 0; i < height; i++)
 		{
@@ -241,7 +248,7 @@ bool Sprite::pixCollision(const SDLImage& other) const
 			{
 				// If pixel in current cell at (i, j) is non-transparent
 				//  for both sprites, then they do intersect
-				bool thisIsTransparent = sheets[animations[current.X()].first.X().X()]->isPixTransparent(
+                bool thisIsTransparent = sheets[ static_cast<size_t>(animations[ static_cast<size_t>(current.X()) ].first.X().X()) ]->isPixTransparent(
 					currentCell, j + xOff, i + yOff);
 				bool otherIsTransparent = other.isPixTransparent(i+xOffOther,j+yOffOther);
 

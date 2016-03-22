@@ -2,9 +2,9 @@
 
 
 
-ManagedFile::ManagedFile(std::string filename)
+ManagedFile::ManagedFile(std::string file)
 {
-	this->filename = filename;
+    this->filename = file;
 	this->state = FileManager::instance()->Load(filename,this);
 }
 

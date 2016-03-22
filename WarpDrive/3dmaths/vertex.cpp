@@ -1,6 +1,6 @@
-
 #include "3dmaths/vertex.hpp"
 
+#include "basesystem/util.hpp"
 
 Vertex::Vertex(const Vec3f& p) noexcept
 {
@@ -46,7 +46,7 @@ Vertex::Vertex(const Vec3f& p, const Vec3f& norm, const Vec2f& uvcoords , const 
         specular = spec;
         Vertex::LastSpecular(&specular, true);
 	}
-	if (shinyness == -1)
+    if (WrpDrv::flEquals(shinyness, -1))
 	{
         Vertex::LastShiny(&shiny);
 	}

@@ -7,7 +7,7 @@
 
 //   PI/180
 
-constexpr float DEGTORAD = 0.017453292519943295769;
+constexpr float DEGTORAD = 0.017453292519943295769f;
 
 void Matrix44::setIdentity()
 {
@@ -33,9 +33,9 @@ Matrix44::Matrix44(float16& mat)
 
 Matrix44::Matrix44(GLdouble* mat)
 {
-    for(int i = 0; i < 16; i++)
+    for(size_t i = 0; i < 16; i++)
     {
-        elements[i] = mat[i];
+        elements[i] = static_cast<float>(mat[i]);
     }
 }
 
@@ -92,12 +92,12 @@ void Matrix44::setMatrix() const
 void Matrix44::setRotationRad(float radx, float rady, float radz)
 {
 	setIdentity();
-	float ch = cos(rady);
-	float cp = cos(radx);
-	float cb = cos(radz);
-	float sh = sin(rady);
-	float sp = sin(radx);
-	float sb = sin(radz);
+    float ch = static_cast<float>(cos(rady));
+    float cp = static_cast<float>(cos(radx));
+    float cb = static_cast<float>(cos(radz));
+    float sh = static_cast<float>(sin(rady));
+    float sp = static_cast<float>(sin(radx));
+    float sb = static_cast<float>(sin(radz));
 
 	elements[0] = (ch*cb)+(sh*sp*sb);
 	elements[1] = sb*cp;

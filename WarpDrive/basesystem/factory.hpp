@@ -4,7 +4,7 @@
 #include <map>
 #include <string>
 
-template <class Family, class Key = std::string>
+template <typename Family, class Key = std::string>
 class Factory
 {
 typedef Family* (*Construc) ();

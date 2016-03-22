@@ -9,7 +9,7 @@ class GOEvent
 public:
 
 	GOEvent(){finished = false;}
-	virtual ~GOEvent(){}
+    virtual ~GOEvent();
     bool Finished() {return finished;}
 	virtual void update(GameObject* target) = 0;
 	

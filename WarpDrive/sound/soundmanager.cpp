@@ -13,7 +13,7 @@ SoundManager::SoundManager()
 	SoundManager::hasInst(!SoundManager::hasInst()); //the internal call SHOULD return false unless things are being MADE to crash but...
 	if(SoundManager::soundQuality())
 	{
-		audio_rate = 11025*((int)pow((float)2,(int)SoundManager::soundQuality()-1));
+        audio_rate = 11025*(static_cast<int>(pow(2.f,SoundManager::soundQuality()-1)));
 	}
 	else
 	{
@@ -148,9 +148,9 @@ int SoundManager::TypeVolume(std::string type)
 	}
 }
 
-int SoundManager::FirstFreeChannel()
+unsigned int SoundManager::FirstFreeChannel()
 {
-	if(!SoundManager::soundQuality()){return -1;}
+    if(!SoundManager::soundQuality()){return ChannelOoB;}
 	for (unsigned int i = 0; i < channels.size(); i++)
 	{
 		if (!channels[i])
@@ -158,7 +158,7 @@ int SoundManager::FirstFreeChannel()
 			return i;
 		}
 	}
-	return -1;
+    return ChannelOoB;
 }
 
 void SoundManager::setTypeVolume(std::string type, int volume)
@@ -169,23 +169,23 @@ void SoundManager::setTypeVolume(std::string type, int volume)
 void SoundManager::playSound(SoundFX *FX)
 {
 	if(!SoundManager::soundQuality()){return;}
-    int c = FirstFreeChannel();
-	if (c < 0)
+    unsigned int c = FirstFreeChannel();
+    if (c == ChannelOoB)
 	{
 		if (autochannels)
 		{
-			c = channels.size();
+            c = static_cast<unsigned int>(channels.size());
 			auto j = channels.size();
-			auto i = Mix_AllocateChannels(channels.size()/2);
-			channels.resize(channels.size()+i);
+            auto i = Mix_AllocateChannels(static_cast<int>(channels.size()/2));
+            channels.resize(channels.size()+static_cast<unsigned int>(i));
 			while(j != channels.size())
 			{
-				Mix_Volume(j++,MIX_MAX_VOLUME/2);
+                Mix_Volume(static_cast<int>(j++),MIX_MAX_VOLUME/2);
 			}
 		}
 		else //stop the oldest non-priority sound being played
 		{
-			std::pair<int,unsigned int> drop;
+            std::pair<unsigned int,unsigned int> drop;
 			drop.first = 0;
 			drop.second = 0;
 			for(unsigned int i = 0; i<channels.size(); i++)
@@ -198,11 +198,11 @@ void SoundManager::playSound(SoundFX *FX)
 			}
 			if (drop.second == 0) //bastard set no-auto and made all sounds priority. DOH!
 			{	
-				srand(time(0)); //YES! We drop a channel at random. Why not?
+                srand( static_cast<unsigned int>(time(0)) ); //YES! We drop a channel at random. Why not?
 				Err::Notify("All SoundManager channels busy playing priority Sounds!");			
-				drop.first = ( (rand()*100)%channels.size());
+                drop.first = ( static_cast<unsigned int>( (rand()*100) ) % channels.size() ) ;
 			}
-			Mix_HaltChannel(drop.first);
+            Mix_HaltChannel(static_cast<int>(drop.first));
 			c = drop.first;
 		}
 	}
@@ -221,18 +221,18 @@ void SoundManager::playSound(SoundFX *FX)
 		v = MIX_MAX_VOLUME;
 		setTypeVolume(FX->Type(),v);
 	}
-	Mix_Volume(c, (v * ((FX->Volume()*2)/100) ) );
+    Mix_Volume(static_cast<int>(c), (v * ((FX->Volume()*2)/100) ) );
 	if (FX->Position())
 	{
-		Mix_SetPosition(c,FX->Position(),FX->Distance());
+        Mix_SetPosition(static_cast<int>(c), static_cast<Sint16>(FX->Position()), static_cast<Uint8>(FX->Distance()));
 	}
 	else
 	{
 		if(FX->Distance())
 		{
-			Mix_SetDistance(c,FX->Distance());
+            Mix_SetDistance( static_cast<int>(c), static_cast<Uint8>(FX->Distance()) );
 		}
-		Mix_SetPanning(c,255-(FX->Panning()),FX->Panning());
+        Mix_SetPanning(static_cast<int>(c), static_cast<Uint8>(255-(FX->Panning())), static_cast<Uint8>(FX->Panning()) );
 	}
 	channels[c] = FX;
 	FX->setChannel(c);
@@ -242,8 +242,8 @@ void SoundManager::cleanChannel(int i)
 {
 	if(!SoundManager::destructing()) //the destructor has s'more stuff to do
 	{
-		SoundManager::instance()->channels[i]->Finished();
-		SoundManager::instance()->channels[i] = 0;//This doesn't call HALT because channels stop on their own when the file ends
+        SoundManager::instance()->channels[static_cast<unsigned int>(i)]->Finished();
+        SoundManager::instance()->channels[static_cast<unsigned int>(i)] = 0;//This doesn't call HALT because channels stop on their own when the file ends
 	}
 }
 
@@ -275,11 +275,11 @@ void SoundManager::update()
 			channels[i]->addPlayed(dt);
             if(channels[i]->FadeOut() && (channels[i]->Played() >= channels[i]->FadeOutFrom()) )
 			{
-                Mix_FadeOutChannel(i,channels[i]->FadeOut());
+                Mix_FadeOutChannel( static_cast<int>(i), static_cast<int>(channels[i]->FadeOut()) );
 			}
             if(channels[i]->Halted())
 			{
-				Mix_HaltChannel(i);
+                Mix_HaltChannel(static_cast<int>(i));
 			}
 		}
 	}
@@ -289,10 +289,10 @@ void SoundManager::update()
 	}
 }
 
-void SoundManager::setMusicVolume(int i)
+void SoundManager::setMusicVolume(unsigned int i)
 {
 	if(!SoundManager::soundQuality()){return;}
-	musVolume = (int)(i*1.28);
+    musVolume = static_cast<Uint8>(i*1.28);
 	Mix_VolumeMusic(musVolume);
 }
 
@@ -343,10 +343,12 @@ bool SoundManager::PlayMusic()
     return fadeInMusic(0);
 }
 
-bool SoundManager::setMusicPosition(int ms)
+bool SoundManager::setMusicPosition(unsigned int ms)
 {
 	if(!SoundManager::soundQuality()){return 0;}
 	if(!music){return 0;}
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wswitch-enum"
 	switch(Mix_GetMusicType(music))
 	{
 	case MUS_MP3:
@@ -365,12 +367,13 @@ bool SoundManager::setMusicPosition(int ms)
 	case MUS_MOD:
 		{
 			//It IS supported by SDL_Mixer but I need some knowledge about the format to implement this
-		}
-	default:
+        }[[clang::fallthrough]];
+    default:
 		{
 			Err::Notify("Cannot change position of current music format!");
 		}
 	}
+#pragma clang diagnostic pop
 	return false;
 }
 
@@ -454,7 +457,7 @@ int SoundManager::MusicPlaying()
 	}
 }
 
-bool SoundManager::advanceMusic(int ms)
+bool SoundManager::advanceMusic(unsigned int ms)
 {
 	if(!SoundManager::soundQuality()){return 0;}
 	return setMusicPosition(musPos+ms);
@@ -551,7 +554,7 @@ bool SoundManager::applyQuality()
 		int i = SoundManager::soundQuality();
 		i-=1;
 		//LO_FI will generate 11Khz,MID 22 and HI 44;
-		int new_rate = 11025*((int)pow((float)2,i));
+        int new_rate = 11025*(static_cast<int>(pow(2.,i)) );
 		if( new_rate == audio_rate)
 		{
 			return true;
@@ -561,9 +564,9 @@ bool SoundManager::applyQuality()
 			Mix_HaltChannel(-1);
 			Mix_HaltMusic();
 			audio_rate = 0;
-			for(unsigned int i = 0; i < channels.size(); i++)
+            for(unsigned int j = 0; j < channels.size(); j++)
 			{
-				cleanChannel(i);
+                cleanChannel(static_cast<int>(j));
 			}
             int mus = MusicPlaying();
             bool muspause = pauseMusic();
@@ -575,10 +578,10 @@ bool SoundManager::applyQuality()
 			{
 				audio_rate = new_rate;
 				channels.resize(0);
-				for(int i = 0; i < Mix_AllocateChannels(-1); i++)
+                for(int j = 0; j < Mix_AllocateChannels(-1); j++)
 				{
 					channels.push_back(0);
-					Mix_Volume(i,MIX_MAX_VOLUME/2);
+                    Mix_Volume(j,MIX_MAX_VOLUME/2);
 				}
 				if(mus)
 				{

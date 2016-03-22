@@ -26,6 +26,9 @@
 //  If t > t1, the line is completely on the right.
 //  Otherwise the line is clipped; the new value for t1 is t.
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-prototypes"
+
 bool ClipAxis(
     float min, float max, float start, float direction, 
     float& t0, float& t1)
@@ -95,6 +98,8 @@ bool ClipAxis(
 
     return true;
 }
+
+#pragma clang diagnostic pop
 
 bool Clip(const LineSeg& ls, const AABBox& box, LineSeg* clipped) noexcept
 {

@@ -43,6 +43,7 @@ void Game::Run()
     {
 //        DisplayManager::instance()->Update(); //Get the time and all before everyone starts checking this kind of stuff
 //        Update();
+        //DisplayManager::instance()->
         draw();
         flip();
 //        //currentState = i;
@@ -55,7 +56,7 @@ void Game::Run()
 int Game::update()
 {
 	updates++;
-    currentState = states[currentState]->update();
+    currentState = states[static_cast<unsigned int>(currentState)]->update();
     return currentState;
 
 }
@@ -64,17 +65,20 @@ void Game::draw()
 {
 	DisplayManager::instance()->clearDisplay();
     DisplayManager::instance()->updateMatrices();
-
-    states[currentState]->draw();
+    if(currentState < 0)
+    {
+        return;
+    }
+    states[static_cast<unsigned int>(currentState)]->draw();
     if (fps)
 	{
 		drawFPS();
 	}
 }
 
-void Game::resetState(int i)
+void Game::resetState(unsigned int i)
 {
-	if (i < 0 || static_cast<size_t>(i) >= states.size())
+    if (static_cast<size_t>(i) >= states.size())
 	{
 		return;
 	}
@@ -398,13 +402,13 @@ void Game::addObject(GameObject *object)
 
 //Iterator definitions
 
-Game::iterator::iterator(std::string type, ObjIterator flag)
+Game::iterator::iterator(std::string itType, ObjIterator flag)
 {
 	mode = flag;
 	if (type.compare(""))
 	{
-        begin = Game::instance()->objects.equal_range(type).first;
-        end = Game::instance()->objects.equal_range(type).second;
+        begin = Game::instance()->objects.equal_range(itType).first;
+        end = Game::instance()->objects.equal_range(itType).second;
 	}
 	else
 	{

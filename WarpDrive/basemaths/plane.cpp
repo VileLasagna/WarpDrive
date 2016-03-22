@@ -29,7 +29,7 @@ Plane::Plane (float A, float B, float C, float D)
 	float sqmod = A*A+B*B+C*C;
 	if(sqmod > 1.00001 || sqmod < 0.999999)
 	{
-		float mod = sqrt(sqmod);
+        float mod = static_cast<float>(sqrt(sqmod));
 		A /= mod;
 		B /= mod;
 		C /= mod;
@@ -48,9 +48,9 @@ Plane::Plane (float A, float B, float C, float D)
     tex = nullptr;
 }
 
-void Plane::useTexture(Texture *tex, bool Tile)
+void Plane::useTexture(Texture *t, bool Tile)
 {
-    tex = tex;
+    tex = t;
 	tile = Tile;
 }
 
@@ -151,40 +151,18 @@ void Plane::drawNormal(bool b) noexcept
 void Plane::draw() const noexcept
 {
 
-	//glMatrixMode(GL_MODELVIEW);
-    float thetaZ = asin( dotProd(Vec3f(0,nY,nZ), Vec3f(0,0,1)) );
-    float thetaX = asin( dotProd(Vec3f(nX,nY,0), Vec3f(1,0,0)) );
+    //glMatrixMode(GL_MODELVIEW);
+    float thetaZ = static_cast<float>(asin( dotProd(Vec3f(0,nY,nZ), Vec3f(0,0,1)) ) );
+    float thetaX = static_cast<float>(asin( dotProd(Vec3f(nX,nY,0), Vec3f(1,0,0)) ) );
 
 	Matrix44 rot;
 
 	rot.setRotationRad(0,thetaZ,-thetaX);
 
-	//Vec3f RN = crossProd(Vec3f(Nx,Ny,Nz), Vec3f(0,1,0));
-    GLfloat pink[] = {1,0,1};
-	//glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,pink);
-	//glBegin(GL_LINES);
-	//	glVertex3f(0,0,0);
-	//	glVertex3f(RN.X()*3, RN.Y()*3,RN.Z()*3);
-	//glEnd();
-//    pink[0] = colour.X();
-//    pink[1] = colour.Y();
-//    pink[2] = colour.Z();
-    //glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,pink);
-
-	//Quaternion quat(acos(dotProd(RN,Vec3f(0,1,0))), RN);
-	//quat.Normalise();
-	//
-
-	//float m[16];
-	//quat.ToMatrix(m);
-	//Does not load identity so the plane is drawn relative to the LOCAL orientation!!!
-
 	glPushMatrix();
 
 		glTranslatef(origin.X(),origin.Y(),origin.Z()); //Drawing by Local
 		glMultMatrixf(rot.Elements().data());
-		//glMultMatrixf(m);
-		//glTranslatef(0,D,0); //Drawing by world
 
 		if (showNormal)
 		{
@@ -203,10 +181,8 @@ void Plane::draw() const noexcept
 
         glTranslatef(-cellSize*drawnCells.first/2,0,-cellSize*drawnCells.second/2);
 		glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,128);
-	
-		//float colour[3] = {Colour.X(),Colour.Y(),Colour.Z()};
-		float colour[3] = {1,1,1};
-		glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, colour);
+        GLfloat cl[3] = {colour.R(),colour.G(),colour.B()};
+        glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, cl);
         float texStepX = 1.0f/drawnCells.first;
         float texStepY = 1.0f/drawnCells.second;
 

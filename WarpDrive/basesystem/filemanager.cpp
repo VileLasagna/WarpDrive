@@ -16,12 +16,15 @@ void FileManager::clear()
 
 std::string FileManager::BasePath(const std::string &path)
 {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wexit-time-destructors"
 	static std::string bp = "";
 	if (path.compare("")) //path != ""
 	{
 		bp = path;
 	}
 	return bp;
+#pragma clang diagnostic pop
 }
 
 std::string FileManager::getBasePath()

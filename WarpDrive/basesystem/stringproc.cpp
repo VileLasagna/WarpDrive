@@ -1,7 +1,9 @@
-
 #include "basesystem/stringproc.hpp"
+
 #include <assert.h>
 #include <cmath>
+
+#include "basesystem/util.hpp"
 
 
 bool StringProc::trim(std::string *s)
@@ -62,7 +64,7 @@ int StringProc::parseInt(const std::string& s)
 
 Vec2i StringProc::parseVec2i(const std::string& s)
 {
-	int pos = s.find(",");
+    size_t pos = s.find(",");
 	int vx = parseInt(s.substr(0,pos));
 	int vy = parseInt(s.substr(pos + 1)); 
 	Vec2i ret(vx,vy);
@@ -216,9 +218,9 @@ std::string StringProc::intToString(int i)
 		do
 		{
 			int m = M-1;
-			int S = std::abs((a % ((int)pow(10,(float)M))) - (a % ((int)pow(10,(float)m)) ) );
+            int S = std::abs(a % ( static_cast<int>( pow(10,(static_cast<float>(M))) ) ) - (a % (static_cast<int>( pow(10,static_cast<float>(m))) ) ) );
 			other = ret;
-			ret = getNumChar(  (S/( (int)pow(10,(float)m)) )  );
+            ret = getNumChar(  (S/( static_cast<int>( pow(10,static_cast<float>(m))) )) );
 			ret.append(other);
 			M++;
 		}
@@ -235,16 +237,16 @@ std::string StringProc::getNumChar(int i)
 {
 	switch(i)
 	{
-	case 0: { return "0"; break; }
-	case 1: { return "1"; break; }
-	case 2: { return "2"; break; }
-	case 3: { return "3"; break; }
-	case 4: { return "4"; break; }
-	case 5: { return "5"; break; }
-	case 6: { return "6"; break; }
-	case 7: { return "7"; break; }
-	case 8: { return "8"; break; }
-	case 9: { return "9"; break; }
+    case 0: { return "0"; }
+    case 1: { return "1"; }
+    case 2: { return "2"; }
+    case 3: { return "3"; }
+    case 4: { return "4"; }
+    case 5: { return "5"; }
+    case 6: { return "6"; }
+    case 7: { return "7"; }
+    case 8: { return "8"; }
+    case 9: { return "9"; }
 	default:{ assert(0); break;  }
 	}
 	return "";
@@ -252,9 +254,9 @@ std::string StringProc::getNumChar(int i)
 
 float StringProc::parseFloat(const std::string &s)
 {
-	int pos = s.find(".");
+    size_t pos = s.find(".");
 	bool neg = false; 
-	int start = 0;
+    size_t start = 0;
 	if (s.at(0) == '-')
 	{
 		neg = true;
@@ -262,8 +264,8 @@ float StringProc::parseFloat(const std::string &s)
 	}
 	std::string first = s.substr(start,pos);
 	std::string second = s.substr(pos + 1);
-	float vx = (float) parseInt(first);
-	float vy = (float) parseInt(second); 
+    float vx = static_cast<float>(parseInt(first));
+    float vy = static_cast<float>(parseInt(second));
 	float ret = vx + (vy/10*(second.length()) );
 	if (neg)
 	{
@@ -277,13 +279,13 @@ std::string StringProc::floatToString(float f)
 	float first, second, third, fourth;
 	second = std::modf(f,&first);
 	third = 0; fourth = 1;
-	while (fourth != 0)
+    while (WrpDrv::flEquals(fourth, 0.f))
 	{
 		fourth = std::modf(second, &third);
 		second *= 10;
 	}
 	bool neg = f<0;
-	std::string ret = intToString(std::abs(first)) + "." + intToString(std::abs(third));
+    std::string ret = intToString(std::abs(static_cast<int>(first))) + "." + intToString(std::abs(static_cast<int>(third)));
 	if (neg)
 	{
 	return "-"+ret;

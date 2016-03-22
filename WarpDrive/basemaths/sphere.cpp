@@ -15,8 +15,8 @@ Sphere::Sphere() noexcept:
     {}
 
 
-Sphere::Sphere(const Vec3f& centre, float r) noexcept:
-    centre(centre),
+Sphere::Sphere(const Vec3f& pos, float r) noexcept:
+    centre(pos),
     radius(r),
 	colour(GLRGBColour(1,1,1)),
     wireframe(true),

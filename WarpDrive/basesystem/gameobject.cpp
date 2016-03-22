@@ -1,6 +1,7 @@
 #include "basesystem/gameobject.hpp"
-#include "basesystem/game.hpp"
 
+#include "basesystem/game.hpp"
+#include "basesystem/util.hpp"
 
 void GameObject::update()
 {
@@ -18,6 +19,7 @@ void GameObject::update()
 
 GameObject::GameObject()
 {
+    radius = 0;
     index = Game::instance()->ObjIndex();
 }
 
@@ -29,7 +31,7 @@ AABBox GameObject::BoundingBox() const noexcept
                        pos.Y() - dimensions.Y()/2, pos.Y() + dimensions.Y()/2 ,
                        pos.Z() - dimensions.Z()/2, pos.Z() + dimensions.Z()/2 );
     }
-    if(radius != 0)
+    if(WrpDrv::flEquals(radius, 0.f))
     {
         return AABBox( pos.X() - radius, pos.X() + radius ,
                        pos.Y() - radius, pos.Y() + radius ,

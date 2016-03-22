@@ -7,11 +7,11 @@ SoundFX::SoundFX(SDL_RWops* source)
 	chunk = Mix_LoadWAV_RW(source, 1);
 	volume = 128;
 	loop = 0;
-	channel = -1;
+    channel = SoundManager::ChannelOoB;
 	panning = 128;
 	played = 0;
 	fadeOut = 0;
-	fadeOutFrom = -1;
+    fadeOutFrom = 0;
 	fadeIn = 0;
 	distance = 0;
 	position = 0;

@@ -33,7 +33,7 @@ AnimSheet::AnimSheet(std::string filename)
 			if( StringProc::trim(&line) && (line.at(0) != '#') )
 			{
 				Vec2i v = StringProc::parseVec2i(line);
-				animations[v.X()-1].second = (v.Y()-1);//vector indexes start at 0 and file indexes start at 1
+                animations[ static_cast<size_t>(v.X()-1) ].second = (v.Y()-1);//vector indexes start at 0 and file indexes start at 1
 			}
 		}
 	}
@@ -68,8 +68,12 @@ void AnimSheet::loadseq(const std::string& s)
 	case 3:
 		{
 			anims = StringProc::parseInt(s);
-			lengths = new int[anims];
-			animations.reserve(anims);//cut away some of the overhead introduced by vector
+            if(lengths != nullptr)
+            {
+                delete[] lengths;
+            }
+            lengths = new int[ static_cast<size_t>(anims) ];
+            animations.reserve( static_cast<size_t>(anims) );//cut away some of the overhead introduced by vector
 			for(int i = 0; i < anims; i++)
 			{
 				std::pair<std::vector<Vec2i>, int> v;
@@ -89,18 +93,18 @@ void AnimSheet::loadseq(const std::string& s)
 			}
 			else
 			{
-				int atAnim = ((pass-4)/2); //the current animation index
+                size_t atAnim = static_cast<size_t>(((pass-4)/2)); //the current animation index
 				Vec2i endPos = StringProc::parseVec2i(s);
 				Vec2i current = startPos;
 				lengths[atAnim] = (numCells.X() - startPos.X() + 1) + ((endPos.Y() - startPos.Y() - 1)*numCells.X()) + endPos.X();
-				animations[atAnim].first.reserve(lengths[atAnim]);//again, cutting overhead forced upon the program by C++'s clumsy array management
+                animations[atAnim].first.reserve( static_cast<size_t>(lengths[atAnim]) );
 				for (int i = 0; i < lengths[atAnim]; i++)
 				{
 					animations[atAnim].first.push_back(Vec2i(0,0));
 				}
-				for(int i = 0; i < lengths[atAnim]; i++)
+                for(int i = 0; i < lengths[atAnim]; i++)
 				{
-					animations[atAnim].first[i] = current;
+                    animations[atAnim].first[ static_cast<size_t>(i) ] = current;
 					current = nextSprite(current);
 				}
 			}
@@ -154,6 +158,8 @@ int AnimSheet::CellIndex(const Vec2i &cell) const
 		tc = nextSprite(tc);
 		i++;
 	}
-	return i;
+    return i;
 }
 
+AnimSheet::~AnimSheet()
+{}

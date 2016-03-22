@@ -28,7 +28,7 @@ void SDLImage::setColourKey(const SDLRGBColour& tc)
     SDL_SetColorKey(
         surface,
         SDL_TRUE | SDL_RLEACCEL,
-        SDL_MapRGB(surface->format, tc.R(), tc.G(), tc.B()));
+        SDL_MapRGB(surface->format, static_cast<unsigned char>(tc.R()), static_cast<unsigned char>(tc.G()), static_cast<unsigned char>(tc.B())));
     image = SDL_CreateTextureFromSurface(DisplayManager::instance()->Renderer(), surface);
 
 }
@@ -41,13 +41,13 @@ SDLImage::~SDLImage()
 	
 }
 
-void SDLImage::blit(int x, int y)
+void SDLImage::blit(int xPos, int yPos)
 {
-	this->x = x;
-	this->y = y;
+    this->x = xPos;
+    this->y = yPos;
     SDL_Rect dest;
-    dest.x = x;
-    dest.y = y;
+    dest.x = xPos;
+    dest.y = yPos;
     SDL_RenderCopy(DisplayManager::instance()->Renderer(), image, 0, &dest );
 }
 
@@ -61,33 +61,33 @@ Vec2f SDLImage::Position() const
 	return Vec2f(x,y);
 }
 
-void SDLImage::setDrawAlpha(int i)
+void SDLImage::setDrawAlpha(Uint8 i)
 {
     SDL_SetTextureAlphaMod(image, i);
 }
 
-unsigned int SDLImage::PixelColour(int x, int y) const
+unsigned int SDLImage::PixelColour(int atX, int atY) const
 {
 	unsigned char* c = 
-        (unsigned char*) surface->pixels +
-        (y * surface->pitch) +
-        (x * surface->format->BytesPerPixel);
+        static_cast<unsigned char*>(surface->pixels) +
+        (atY * surface->pitch) +
+        (atX * surface->format->BytesPerPixel);
 
 	unsigned int r = 0;
     if (surface->format->BytesPerPixel == 3)
     {
-        r = c[0] + (c[1] << 8) + (c[2] << 16);
+        r = static_cast<unsigned int>(c[0] + (c[1] << 8) + (c[2] << 16));
     }
     else if (surface->format->BytesPerPixel == 4)
     {
-        r = c[0] + (c[1] << 8) + (c[2] << 16) + (c[3] << 24);
+        r = static_cast<unsigned int>(c[0] + (c[1] << 8) + (c[2] << 16) + (c[3] << 24));
     }
     return r;
 }
 
-bool SDLImage::isPixTransparent(int x, int y) const
+bool SDLImage::isPixTransparent(int atX, int atY) const
 {
-    unsigned int r = PixelColour(x, y);
+    unsigned int r = PixelColour(atX, atY);
 
     if (surface->format->BytesPerPixel <= 3)
     {

@@ -32,7 +32,7 @@ public:
 	void setLoop(int i) {loop = i;}
 
     unsigned int FadeIn() const {return fadeIn;}//fadeIn and fadeOut are the time, in miliseconds, that this sound should fade
-	void setFadeIn(int milis) {fadeIn = milis;}
+    void setFadeIn(unsigned int milis) {fadeIn = milis;}
     unsigned int FadeOut() const {return fadeOut;}
 	void setFadeOut(unsigned int milis) {fadeOut = milis;}
 	void setFadeOutFrom(unsigned int pos) {fadeOutFrom = pos;} //this can't be set automatically. It's from when, in miliseconds, the sound should start fading out
@@ -50,7 +50,7 @@ public:
     bool ReverseStereo() const {return reverseStereo;}
 	void setReverseStereo(bool b) {reverseStereo = b;}
 
-	int getChannel() const {return channel;}
+    unsigned int getChannel() const {return channel;}
 	
 	Mix_Chunk* getChunk(){return chunk;} 
 	
@@ -79,14 +79,14 @@ private:
     void finish(){finished = true;}
 	void freeChunk(); //This is a safeguard against a possible coding mistake.
 	void rewind() {played = 0; finished = false;}
-	void addPlayed(int i) {played+=i;} //register that the sound has advanced i miliseconds (needed for planning fade-outs)
-	void setChannel(int i) {channel = i;}//You better don't mess with this. It's used by SoundManager
+    void addPlayed(unsigned int i) {played+=i;} //register that the sound has advanced i miliseconds (needed for planning fade-outs)
+    void setChannel(unsigned int i) {channel = i;}//You better don't mess with this. It's used by SoundManager
 
 
 	std::string type;
 	int volume;
 	int loop;
-	int channel;
+    unsigned int channel;
 	int panning;
 	unsigned int played; //ms already played in the file
 	unsigned int fadeOut; //miliseconds to fade out.

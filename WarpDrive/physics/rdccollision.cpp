@@ -118,10 +118,10 @@ void RDCCollision::BruteForce(std::vector<GameObject*> group) noexcept
     }
 }
 
-RDCCollision::EdgeVec RDCCollision::SortedBoundaries(RDCCollision::Axis a, std::vector<GameObject*> objs) const
+RDCCollision::EdgeVec RDCCollision::SortedBoundaries(RDCCollision::Axis a, std::vector<GameObject*> group) const
 {
     EdgeVec edges;
-    for(GameObject* o: objs)
+    for(GameObject* o: group)
     {
         EdgeInfo min;
         auto sizes = o->Dimensions();

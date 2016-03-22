@@ -81,7 +81,6 @@ void Material::use(Faces f) const noexcept
     case Faces::FRONT:          mode = GL_FRONT;break;
     case Faces::BACK:           mode = GL_BACK;break;
     case Faces::FRONT_AND_BACK: mode = GL_FRONT_AND_BACK;break;
-    default:                    mode = GL_FRONT;assert(0);break;
 	}
 	glMaterialfv(mode,GL_AMBIENT,av);
 	glMaterialfv(mode,GL_DIFFUSE,dv);
@@ -92,8 +91,8 @@ void Material::use(Faces f) const noexcept
 void Material::useDefault() noexcept
 {
 
-	float av[] = {0.2,0.2,0.2};
-	float dv[] = {0.8,0.8,0.8};
+    float av[] = {0.2f,0.2f,0.2f};
+    float dv[] = {0.8f,0.8f,0.8f};
 	float sv[] = {0,0,0};
 	glMaterialfv(GL_FRONT_AND_BACK,GL_AMBIENT,av);
 	glMaterialfv(GL_FRONT_AND_BACK,GL_DIFFUSE,dv);

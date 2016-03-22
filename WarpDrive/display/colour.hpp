@@ -2,6 +2,7 @@
 #define WD_COLOUR_HPP_DEFINED
 
 #include "basemaths/vec4.hpp"
+#include "basesystem/util.hpp"
 
 class Colour
 {
@@ -29,9 +30,9 @@ public:
 	void setG(float f) {b = f;}
 	void setA(float f) {a = f;}
 
-	bool operator== (const Colour& b) const
+    bool operator== (const Colour& other) const
     {
-        return ( (R() == b.R()) && (G() == b.G()) && (B() == b.B()) && (A() == b.A()));
+        return ( WrpDrv::flEquals(R(),other.R()) && WrpDrv::flEquals(G(),other.G()) && WrpDrv::flEquals(B(), other.B()) && WrpDrv::flEquals(A(), other.A()));
     }
 
 private:

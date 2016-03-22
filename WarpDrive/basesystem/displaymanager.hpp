@@ -16,10 +16,7 @@
 
 struct SDL_Surface;
 
-namespace Matrix
-{
-    enum Matrix{MODELVIEW = 0, PROJECTION = 1, TEXTURE = 2, NONE = -1};
-}
+
 class DisplayManager
 {
 private:	//this class is a singleton
@@ -27,6 +24,8 @@ private:	//this class is a singleton
 		DisplayManager(const DisplayManager& ) = delete;
 		DisplayManager operator= (const DisplayManager& ) = delete;
 public:
+
+    enum class Matrix{MODELVIEW = 0, PROJECTION = 1, TEXTURE = 2, NONE = -1};
 
 	static DisplayManager* instance();
     static void clear() noexcept;
@@ -52,7 +51,7 @@ public:
     void useOpengGL (bool b) noexcept;
 	bool usingOpenGL () {return openGL;}
     void clearDisplay() noexcept;
-    void showStats(int updates, int frames) noexcept;
+    void showStats(unsigned int updates, unsigned int frames) noexcept;
     void setTitle(std::string newTitle, int windowIndex = 1) noexcept;
 
 	void setBPP(int i);
@@ -66,7 +65,7 @@ public:
     const GLint* Viewport() const noexcept{return viewport;}
     Matrix44 TextureMatrix();
 
-	void setMatrixMode(Matrix::Matrix type);
+    void setMatrixMode(DisplayManager::Matrix type);
 	void applyMatrix (const Matrix44& mat);
 	void setToMatrix (const Matrix44& mat);
 	void clearMatrix ();

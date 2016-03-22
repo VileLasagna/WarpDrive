@@ -1,19 +1,21 @@
 #include "display/camera.hpp"
-#include "basemaths/sphere.hpp"
+
 #ifdef WIN32
     #include <windows.h>
 #endif //WIN32
-#include <GL/glu.h>
-#include<math.h>
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wreorder"
+#include<math.h>
+#include <GL/glu.h>
+
+#include "basesystem/util.hpp"
+
+#include "basemaths/sphere.hpp"
 
 Camera::Camera():
 	up(Vec3f(0,1,0)),
 	targetObj(0),
+    relativePos(),
 	orbitFactors(1,0,1),
-	relativePos(),
 	orbitRadius(0),
 	orbitPeriod(1),
 	time(0)
@@ -26,10 +28,10 @@ void Camera::update()
 {
 
     GameObject::update();
-	if(targetObj)
+    if(targetObj != nullptr)
 	{
         target = targetObj->Position();
-        if(orbitRadius == 0)
+        if(WrpDrv::flEquals(orbitRadius,0))
         {
             pos = target + relativePos;
         }
@@ -40,11 +42,13 @@ void Camera::update()
     /*	vel += accel*DisplayManager::instance()->getDtSecs();
         pos += vel*DisplayManager::instance()->getDtSecs();*/
 	}
-    if(orbitRadius != 0)
+    if(!WrpDrv::flEquals(orbitRadius, 0))
     {
         time += DisplayManager::instance()->getDtSecs();
         //relativePos = Vec3f(orbitFactors.X()*orbitRadius*sin(time*(orbitPeriod*0.5f)),orbitFactors.Y()*orbitRadius*sin(time*(orbitPeriod*0.5f)),orbitFactors.Z()*orbitRadius*sin(time*(orbitPeriod*0.5f)));
-        Vec3f direction = Vec3f(orbitFactors.X()*sin(time*(orbitPeriod*0.5f)),   orbitFactors.Y()*sin(time*(orbitPeriod*0.5f)),   orbitFactors.Z()*cos(time*(orbitPeriod*0.5f)));
+        Vec3f direction = Vec3f(static_cast<float>( orbitFactors.X()*sin(time*(orbitPeriod*0.5f)) ),
+                                static_cast<float>( orbitFactors.Y()*sin(time*(orbitPeriod*0.5f)) ),
+                                static_cast<float>( orbitFactors.Z()*cos(time*(orbitPeriod*0.5f)) ) );
         direction.normalise();
         relativePos = direction * orbitRadius;
         pos = target+relativePos;
@@ -79,7 +83,7 @@ Ray Camera::traceRay(int x, int y) const noexcept
 
     gluUnProject(x,view[3] - y, 0 , model, proj, view, &worldX, &worldY, &worldZ);
 
-    return Ray( LineSeg(pos, Vec3f(worldX,worldY,worldZ) ) );
+    return Ray( LineSeg(pos, Vec3f(static_cast<float>(worldX),static_cast<float>(worldY),static_cast<float>(worldZ) ) ) );
 
 }
 
@@ -120,6 +124,4 @@ void Camera::orbit(float X, float Y, float Z, float radius, float periodSecs)
     orbitRadius = radius;
     orbitPeriod = periodSecs;
 }
-
-#pragma clang diagnostic pop
 

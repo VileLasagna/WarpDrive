@@ -17,7 +17,6 @@
 
 #endif //_WIN32
 
-//#include "SoundFX.h"
 class SoundFX;
 
 class SoundManager
@@ -28,6 +27,8 @@ private:	//this class is a singleton
 	SoundManager();
 
 public:
+
+    constexpr static unsigned int ChannelOoB = 256;
 
 	~SoundManager();
 
@@ -44,14 +45,14 @@ public:
 	int loadMusic(const std::string& filename); //0 == error, 1 == OK, 2 == Music on Hold (for fadeOut to end);
 	void setMusicLoop(int i) {musLoops = i;} //number of times to loop the music. -1 = forever, 0 plays once
     int MusicLooping() const {return musLoops;}
-	void setMusicVolume(int i); //volume from 0 to 100%
+    void setMusicVolume(unsigned int i); //volume from 0 to 100%
     int MusicVolume() const {return musVolume/128;}
     bool pauseMusic(bool b = false); //returns the current state and, if the argument is true, pauses the playback (and returns true. duh!)
     void resumeMusic();
 	bool PlayMusic(); //false = Error
     bool fadeInMusic(int ms); //Same as PlayMusic, but the Music fades in through ms miliseconds
-	bool setMusicPosition(int ms); //sets the music position to (you'll never guess) ms miliseconds from the start! returns true if OK
-    bool advanceMusic(int ms); //Advances the music ms milis from where it should be right now. a return of false means and error
+    bool setMusicPosition(unsigned int ms); //sets the music position to (you'll never guess) ms miliseconds from the start! returns true if OK
+    bool advanceMusic(unsigned int ms); //Advances the music ms milis from where it should be right now. a return of false means and error
     bool haltMusic(int ms = 0); //Halts the music, fading out for ms miliseconds;
     int MusicPlaying(); //0 = not, 1 = yes, 2 = yes, but it's paused
 	
@@ -75,8 +76,8 @@ protected:
 
 	bool applyQuality();
 	static bool hasInst(bool b = false);
-    int FirstFreeChannel();
-	static void cleanChannel(int i); //to be hooked up and called automatically by Mix_ChannelFinished
+    unsigned int FirstFreeChannel();
+    static void cleanChannel(int i); //to be hooked up and called automatically by Mix_ChannelFinished
 	//static void cleanMusic();
 	int mem;
 	std::map<std::string,int> soundTypes; //the pairedvalue is the volume at which that kind of sound will be played.

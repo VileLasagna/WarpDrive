@@ -32,7 +32,7 @@ std::pair<bool, Vec3f> LineSeg::intersects(const LineSeg& ) const
 float LineSeg::sqDistToPoint ( const Vec3f& p) const
 { 
 	Vec3f M = p1-p0; 
-	if (M.sqMod() == 0) //p1 == p0
+    if (WrpDrv::flEquals(M.sqMod(), 0)) //p1 == p0
 	{
 		return (p-p1).sqMod();
 	}

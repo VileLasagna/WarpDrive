@@ -49,8 +49,8 @@ private:
 		bool isBin;
 		bool readOnly; 
 
-		streamStatus(std::fstream* fs = 0, int i = 0, bool binary = false, bool readOnly = false): 
-				stream(fs), refs(i), isBin(binary), readOnly(readOnly){}
+        streamStatus(std::fstream* fs = 0, int i = 0, bool binary = false, bool rdOnly = false):
+                stream(fs), refs(i), isBin(binary), readOnly(rdOnly){}
 	};
 	friend class ManagedFile;
 

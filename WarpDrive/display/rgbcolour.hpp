@@ -19,7 +19,7 @@ protected:
     T r,g,b;
 };
 
-using SDLRGBColour = RGBColour<unsigned int>;
+using SDLRGBColour = RGBColour<unsigned short>;
 using GLRGBColour = RGBColour<float>;
 
 #endif //WD_SDL_COLOUR_HPP_DEFINED

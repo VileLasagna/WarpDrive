@@ -8,7 +8,7 @@ PanAndTiltEvent::PanAndTiltEvent(float Time, Vec3f Pan, Vec3f Tilt)
 	pan = Pan;
 	tilt = Tilt;
 	time = Time;
-	if (time)
+    if (!WrpDrv::flEquals(time, 0.f))
 	{
 		overTime = true;
 		panNudge = pan/time;
@@ -44,7 +44,7 @@ void PanAndTiltEvent::update(GameObject* Target)
 			std::pair<bool, Vec3f> currentTarget = C->Target();
 			if(currentTarget.first)
 			{
-				C->setTarget((GameObject*)0);
+                C->setTarget(nullptr);
 			}
 			C->setTarget(currentTarget.second + (tiltNudge*dt));
 		}

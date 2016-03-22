@@ -10,7 +10,7 @@ class TKMoveObject: public TimelineKey
 public:
 
 	TKMoveObject
-		(float Time = -0.01 , //by default it comes right after the last added key
+        (float Time = -0.01f , //by default it comes right after the last added key
 		std::string ObjName = "", //The name or Type of the object/objects you want to influence
 		bool UniqueID = true, //if this is true you are referring to a single object, else you want to alter all objects of a specific type
 		bool ChangePos = false, 

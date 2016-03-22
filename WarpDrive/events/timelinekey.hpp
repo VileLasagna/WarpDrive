@@ -22,7 +22,7 @@ public:
 	{
 		time = t;
 	}
-	virtual ~TimelineKey() = default;
+    virtual ~TimelineKey();
 
 protected:
 

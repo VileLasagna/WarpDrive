@@ -67,7 +67,7 @@ void DisplayManager::toggleFS()
 	setVideo();
 }
 
-void DisplayManager::showStats(int updates, int frames) noexcept
+void DisplayManager::showStats(unsigned int updates, unsigned int frames) noexcept
 {
     if(!mainWindow)
     {
@@ -75,7 +75,8 @@ void DisplayManager::showStats(int updates, int frames) noexcept
     }
     else
     {
-        std::string title = "Warp Drive :: UPS: "+ StringProc::intToString(updates)+"  FPS: "+StringProc::intToString(frames);
+        std::string title = "Warp Drive :: UPS: "+ StringProc::intToString( static_cast<int>(updates) )
+                          + "  FPS: "+StringProc::intToString( static_cast<int>(frames) );
         SDL_SetWindowTitle(mainWindow, title.c_str());
     }
 }
@@ -112,7 +113,7 @@ void DisplayManager::Update()
 {
     static unsigned int oldms = SDL_GetTicks();
     unsigned int ms = SDL_GetTicks();
-    dt = ((float)(ms - oldms)) / 1000.0f;
+    dt = (static_cast<float>((ms - oldms))) / 1000.0f;
     oldms = ms;
 	if (dt > maxDT)
 	{

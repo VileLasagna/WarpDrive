@@ -24,7 +24,8 @@ void AABBox::ensureContains(float x, float y, float z) noexcept
     zmin = zmin <= z ? zmin : z;
     zmax = zmax >= z ? zmax : z;
 }
-
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-prototypes"
 void DrawLine(const Vec3f& v1, const Vec3f& v2)
 {
     glDisable(GL_TEXTURE_2D);
@@ -34,6 +35,7 @@ void DrawLine(const Vec3f& v1, const Vec3f& v2)
     glEnd();
     glEnable(GL_TEXTURE_2D);
 }
+#pragma clang diagnostic pop
 
 void AABBox::draw() const
 {

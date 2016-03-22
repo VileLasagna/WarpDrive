@@ -13,7 +13,7 @@ glColorEvent::glColorEvent(float Time, float Red, float Green, float Blue)
 	r0 = rgb[0];
 	g0 = rgb[1];
 	b0 = rgb[2];
-	if(time)
+    if(!WrpDrv::flEquals(time, 0.f))
 	{
 		rStep = (r - r0)/time;
 		gStep = (g - g0)/time;
@@ -27,7 +27,7 @@ void glColorEvent::update(GameObject* )
 	{
 		return;
 	}
-	if (!time)
+    if (time <= 0)
 	{
 		glColor3f(r,g,b);
 		finished = true;

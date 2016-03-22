@@ -26,13 +26,13 @@ public:
 
 	void setColourKey(const SDLRGBColour& tc = SDLRGBColour(0,255,255));//default = Pure Cyan
 
-    void blit(int x = 0, int y = 0);
+    void blit(int xPos = 0, int yPos = 0);
 
-	void setAlphaT(int i = 128) {alphaT = i;}
-	void setDrawAlpha(int i);
-	bool isPixTransparent(int x, int y) const;
+    void setAlphaT(unsigned int i = 128) {alphaT = i;}
+    void setDrawAlpha(Uint8 i);
+    bool isPixTransparent(int atX, int atY) const;
     SDL_Texture* Texture() {return image;}
-    unsigned int PixelColour(int x, int y) const;
+    unsigned int PixelColour(int atX, int atY) const;
     Rectf Box() const;
     Vec2f Position()const;
 

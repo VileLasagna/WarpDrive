@@ -10,7 +10,7 @@ class TKUseObject: public TimelineKey
 {
 public:
 
-	TKUseObject(float Time = -0.01, bool Activate = true, bool Draw = true, const std::string& Obj = "", bool isUniqueName = false);
+    TKUseObject(float Time = -0.01f, bool Activate = true, bool Draw = true, const std::string& Obj = "", bool isUniqueName = false);
 	~TKUseObject(){}
 	void trigger();
 

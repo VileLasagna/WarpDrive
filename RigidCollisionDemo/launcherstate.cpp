@@ -30,7 +30,7 @@ LauncherState::LauncherState()
     float Z = 6000;
 
    // construct a trivial random generator engine from a time-based seed:
-    unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+    auto seed = std::chrono::system_clock::now().time_since_epoch().count();
     std::default_random_engine generator (seed);
     std::uniform_real_distribution<double> rand(-1.,1.);
 
@@ -41,7 +41,7 @@ LauncherState::LauncherState()
         {
             Ball* b0 = new Ball();
             b0->setRadius(30);
-            b0->setPos(Vec3f(minX+( (X/numRows)*row),1500+(rand(generator)*500),minZ+( (Z/numRows)*column)));
+            b0->setPos(Vec3f(minX+( (X/numRows)*row),1500+static_cast<float>((rand(generator)*500)),minZ+( (Z/numRows)*column)));
             b0->setVel(Vec3f(0,0,0));
             Game::instance()->addObject(b0);
         }
@@ -77,7 +77,7 @@ void LauncherState::reset()
     glViewport(0,0,DisplayManager::instance()->getSize().first,DisplayManager::instance()->getSize().second);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(60.0, (float)(DisplayManager::instance()->getSize().first)/(float)(DisplayManager::instance()->getSize().second), 0.1, 10000.0);
+    gluPerspective(60.0, static_cast<float>(DisplayManager::instance()->getSize().first)/static_cast<float>(DisplayManager::instance()->getSize().second), 0.1, 10000.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
@@ -104,7 +104,7 @@ int LauncherState::update()
 
     Game::instance()->updateObjects();
 
-    //brute.Update(Game::iterator(/*"Ball",ObjIterator::ALL*/));
+//    //brute.update(Game::iterator(/*"Ball",ObjIterator::ALL*/));
     rdc.update(Game::iterator(/*"Ball",ObjIterator::ALL*/));
     cam.update();
 
