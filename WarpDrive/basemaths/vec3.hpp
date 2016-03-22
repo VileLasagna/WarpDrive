@@ -2,15 +2,16 @@
 #define WD_VEC3_HPP_DEFINED
 
 #include "basemaths/vec2.hpp"
+#include "basesystem/util.hpp"
 
 
-template <class T>
+template <typename T>
 class Vec3
 {
 public:
 
 	constexpr explicit Vec3() : x(0), y(0), z(0) {}
-	constexpr explicit Vec3(T x, T y, T z): x{x}, y{y}, z{z} {}
+    constexpr explicit Vec3(T xVal, T yVal, T zVal): x{xVal}, y{yVal}, z{zVal} {}
 	constexpr explicit Vec3 (const Vec2<T>& ref): x{ref.X()}, y{ref.Y()}, z{0} {}
 	constexpr Vec3 (const Vec3<T>& ref): x{ref.X()}, y{ref.Y()}, z{ref.Z()} {}
 	Vec3& operator= (const Vec3<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = ref.Z(); return *this;}
@@ -64,27 +65,16 @@ public:
 		return x*x+y*y+z*z;
 	}
 
-	T mod() const
-	{
-		T sqm = this->sqMod();
-		void* p = &sqm;
-		if(typeid(T) == typeid(double))
-		{
-		   return sqrt( *((double*) p));
-		}
-		if(typeid(T) == typeid(long double))
-		{
-		   return sqrt( *((long double*) p));
-		}
-		if ( ( typeid(T) == typeid(float) ) || ( typeid(T) == typeid(int) ) || ( typeid(T) == typeid(long) ) || ( typeid(T) == typeid(short) ) )
-		{
-		   return sqrt( *((float*) p));
-		}
-		else
-		{
-		   return 0; //sqrt will probably make no sense on this type.
-		}
-	}
+    T mod()
+    {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wfloat-conversion"
+#pragma clang diagnostic ignored "-Wconversion"
+
+        return sqrt(sqMod());
+
+#pragma clang diagnostic pop
+    }
 
     Vec3<T>& normalise()
 	{
@@ -105,7 +95,7 @@ protected:
 
 };
 
-template <class T>
+template <typename T>
 constexpr Vec3<T> operator+(const Vec3<T>& a, const Vec3<T>& b)
 {
     Vec3<T> res = a;
@@ -113,7 +103,7 @@ constexpr Vec3<T> operator+(const Vec3<T>& a, const Vec3<T>& b)
     return res;
 }
 
-template <class T>
+template <typename T>
 constexpr Vec3<T> operator*(const Vec3<T>&a, T f)
 {
     Vec3<T> res = a;
@@ -121,7 +111,7 @@ constexpr Vec3<T> operator*(const Vec3<T>&a, T f)
     return res;
 }
 
-template <class T>
+template <typename T>
 constexpr Vec3<T> operator/(const Vec3<T>&a, T f)
 {
     Vec3<T> res = a;
@@ -129,44 +119,46 @@ constexpr Vec3<T> operator/(const Vec3<T>&a, T f)
     return res;
 }
 
-template <class T>
+template <typename T>
 constexpr bool operator == (const Vec3<T>&a, const Vec3<T>& b)
 {
-	return ( (a.X()==b.X())&&(a.Y()==b.Y())&&(a.Z()==b.Z()) );
+    return ( WrpDrv::flEquals(a.X(),b.X()) &&
+             WrpDrv::flEquals(a.Y(),b.Y()) &&
+             WrpDrv::flEquals(a.Z(),b.Z()) );
 }
 
-template <class T>
+template <typename T>
 constexpr bool operator != (const Vec3<T>&a, const Vec3<T>& b)
 {
 	return !(a==b);
 }
 
-template <class T>
+template <typename T>
 constexpr Vec3<T> operator- (const Vec3<T>& v)
 {
 	Vec3<T> ret( -(v.X()), -(v.Y()), -(v.Z()) );
 	return ret;
 }
 
-template <class T>
+template <typename T>
 constexpr Vec3<T> operator- (const Vec3<T>& a, const Vec3<T>& b)
 {
 	return Vec3<T>(a.X() - b.X(), a.Y()-b.Y(), a.Z() - b.Z());
 }
 
-template <class T>
+template <typename T>
 constexpr static Vec3<T> crossProd (const Vec3<T>& a, const Vec3<T>& b)
 {
 	return Vec3<T>(a.Y()*b.Z() - a.Z()*b.Y(), a.Z()*b.X() - a.X()*b.Z(), a.X()*b.Y() - a.Y()*b.X());
 }
 
-template <class T>
+template <typename T>
 constexpr static T dotProd (const Vec3<T>& a, const Vec3<T>& b)
 {
 	return a.X()*b.X() + a.Y()*b.Y() + a.Z()*b.Z();
 }
 
-template <class T>
+template <typename T>
 static Vec3<T> triNormal(const Vec3<T>& a, const Vec3<T>& b, const Vec3<T>& c)
 {
 	//TODO: winding checks and tuning.
@@ -180,7 +172,7 @@ static Vec3<T> triNormal(const Vec3<T>& a, const Vec3<T>& b, const Vec3<T>& c)
 }
 
 
-template <class T>
+template <typename T>
 static Vec3<T> triNormal(const Vec3<T>* v)
 {
 	return triNormal(v[0],v[1],v[2]);

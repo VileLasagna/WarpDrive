@@ -5,16 +5,16 @@
 #include "basemaths/vec3.hpp"
 
 
-template <class T>
+template <typename T>
 class Vec4
 {
 public:
 
 	constexpr Vec4() : x(0), y(0), z(0), w(1) {}
-	constexpr Vec4(T x, T y, T z, T w): x{x}, y{y}, z{z}, w{w} {}
+    constexpr Vec4(T xVal, T yVal, T zVal, T wVal): x{xVal}, y{yVal}, z{zVal}, w{wVal} {}
 	constexpr Vec4 (const Vec2<T>& ref): x{ref.X()}, y{ref.Y()}, z{0}, w{1} {}
 	constexpr Vec4 (const Vec3<T>& ref): x{ref.X()}, y{ref.Y()}, z{ref.Z()}, w{1} {}
-	constexpr Vec4& operator= (const Vec4<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = ref.Z(); this->w = ref.W(); return *this;}
+//	constexpr Vec4& operator= (const Vec4<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = ref.Z(); this->w = ref.W(); return *this;}
 
 	constexpr T X() const { return x; }
 	constexpr T Y() const { return y; }
@@ -63,27 +63,18 @@ public:
 		}
 	}
 
-	T mod() const
-	{
-		T sqm = this->sqMod();
-		void* p = &sqm;
-		if(typeid(T) == typeid(double))
-		{
-		   return sqrt( *((double*) p));
-		}
-		if(typeid(T) == typeid(long double))
-		{
-		   return sqrt( *((long double*) p));
-		}
-		if ( ( typeid(T) == typeid(float) ) || ( typeid(T) == typeid(int) ) || ( typeid(T) == typeid(long) ) || ( typeid(T) == typeid(short) ) )
-		{
-		   return sqrt( *((float*) p));
-		}
-		else
-		{
-		   return 0; //sqrt will probably make no sense on this type.
-		}
-	}
+    T mod()
+    {
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wfloat-conversion"
+#pragma clang diagnostic ignored "-Wconversion"
+
+        return sqrt(sqMod());
+
+#pragma clang diagnostic pop
+
+    }
 
 	void normalise()
 	{
@@ -95,7 +86,7 @@ public:
 
 	constexpr Vec3<T> toVec3()
 	{
-		if (w == 1)
+        if (WrpDrv::flEquals(w, 1))
 		{
 			return Vec3<T>(x,y,z);
 		}
@@ -115,7 +106,7 @@ protected:
 
 };
 
-template <class T>
+template <typename T>
 constexpr Vec4<T> operator+(const Vec4<T>& a, const Vec4<T>& b)
 {
 	Vec4<T> res = a;
@@ -123,7 +114,7 @@ constexpr Vec4<T> operator+(const Vec4<T>& a, const Vec4<T>& b)
 	return res;
 }
 
-template <class T>
+template <typename T>
 constexpr Vec4<T> operator*(const Vec4<T>&a, T f)
 {
 	Vec4<T> res = a;
@@ -131,7 +122,7 @@ constexpr Vec4<T> operator*(const Vec4<T>&a, T f)
 	return res;
 }
 
-template <class T>
+template <typename T>
 constexpr bool operator == (const Vec4<T>&a, const Vec4<T>& b)
 {
 	if ( a.W() == b.W())
@@ -144,20 +135,20 @@ constexpr bool operator == (const Vec4<T>&a, const Vec4<T>& b)
 	}
 }
 
-template <class T>
+template <typename T>
 constexpr bool operator != (const Vec4<T>&a, const Vec4<T>& b)
 {
 	return !(a==b);
 }
 
-template <class T>
+template <typename T>
 constexpr Vec4<T> operator- (const Vec4<T>& v)
 {
 	Vec4<T> ret(-(v.X()), -(v.Y()), -(v.Z()), v.W());
 	return ret;
 }
 
-template <class T>
+template <typename T>
 constexpr Vec4<T> operator- (const Vec4<T>& a, const Vec4<T>& b)
 {
 	Vec4<T> ret;
@@ -172,7 +163,7 @@ constexpr Vec4<T> operator- (const Vec4<T>& a, const Vec4<T>& b)
 	return ret;
 }
 
-template <class T>
+template <typename T>
 constexpr Vec4<T> crossProd (const Vec4<T>& a, const Vec4<T>& b)
 {
 	Vec4<T> ret;
@@ -190,7 +181,7 @@ constexpr Vec4<T> crossProd (const Vec4<T>& a, const Vec4<T>& b)
 	return ret;
 }
 
-template <class T>
+template <typename T>
 constexpr T dotProd (const Vec4<T>& a, const Vec4<T>& b)
 {
 	if(a.W() == b.W())
@@ -203,7 +194,7 @@ constexpr T dotProd (const Vec4<T>& a, const Vec4<T>& b)
 	}
 }
 
-template <class T>
+template <typename T>
 Vec4<T> triNormal(const Vec4<T>& v1, const Vec4<T>& v2, const Vec4<T>& v3)
 {
 	Vec3<T> v [3] = {v1.toVec3(), v2.toVec3(), v3.toVec3()};
@@ -211,7 +202,7 @@ Vec4<T> triNormal(const Vec4<T>& v1, const Vec4<T>& v2, const Vec4<T>& v3)
 	return Vec4<T>(triNormal(v));
 }
 
-template <class T>
+template <typename T>
 Vec4<T> triNormal(const Vec4<T>* v)
 {
 	return Vec3<T>::triNormal(v[0],v[1],v[2]);
