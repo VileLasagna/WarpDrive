@@ -23,7 +23,7 @@ private:
 
 	int current;
 	std::set<int> TopTen;
-	float time;
+    int64_t time;
 	Billboard quad;
 	SDLTTF* font;
 	Texture* display;

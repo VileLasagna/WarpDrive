@@ -53,9 +53,9 @@ protected:
 	Vec2i current; //(animation, frame)
 	Vec2i currentCell;
 	Rectf rect;
-	float dt;
+    int64_t dt;
 	std::vector<std::pair< Vec3<Vec2i>, int > > animations; //{ (sheet, animation) , (startframe) , (endframe) } {animatiom to which it links to}
-	float maxCellTime;
+    int64_t maxCellTime;
 	unsigned int transpThreshold; //pixels with alpha above this value count for collision;
 
 };

@@ -9,13 +9,13 @@ class TimedRemoveEvent:public GOEvent
 
 public:
 
-	TimedRemoveEvent(float Time = 5);
+    TimedRemoveEvent(int64_t Time = 5);
 	~TimedRemoveEvent(){}
     void update(GameObject* target) override;
 
 private:
 
-	float time;
+    int64_t time;
 };
 
 #endif //WD_TIMED_REMOVE_EVENT_HPP_DEFINED

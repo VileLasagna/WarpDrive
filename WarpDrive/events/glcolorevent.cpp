@@ -2,7 +2,7 @@
 #include "events/glcolorevent.hpp"
 #include "basesystem/displaymanager.hpp"
 
-glColorEvent::glColorEvent(float Time, float Red, float Green, float Blue)
+glColorEvent::glColorEvent(int64_t Time, float Red, float Green, float Blue)
 {
 	time = Time;
 	r = Red;
@@ -13,7 +13,7 @@ glColorEvent::glColorEvent(float Time, float Red, float Green, float Blue)
 	r0 = rgb[0];
 	g0 = rgb[1];
 	b0 = rgb[2];
-    if(!WrpDrv::flEquals(time, 0.f))
+    if(time > 0)
 	{
 		rStep = (r - r0)/time;
 		gStep = (g - g0)/time;
@@ -34,13 +34,13 @@ void glColorEvent::update(GameObject* )
 	}
 	else
 	{
-		float dt = DisplayManager::instance()->DtSecs();
+        auto dt = DisplayManager::instance()->Dt();
 		float rgb[4];
 		glGetFloatv(GL_CURRENT_COLOR,rgb);
 		r0 = rgb[0];
 		g0 = rgb[1];
 		b0 = rgb[2];
-		glColor3f((r0+rStep*dt),(g0+gStep*dt),(b0+bStep*dt));
+        glColor3f((r0+rStep*dt),(g0+gStep*dt),(b0+bStep*dt));
 		time -= dt;
 		if (time <= 0)
 		{

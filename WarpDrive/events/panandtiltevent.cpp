@@ -3,16 +3,16 @@
 #include "basesystem/displaymanager.hpp"
 
 
-PanAndTiltEvent::PanAndTiltEvent(float Time, Vec3f Pan, Vec3f Tilt)
+PanAndTiltEvent::PanAndTiltEvent(int64_t Time, Vec3f Pan, Vec3f Tilt)
 {
 	pan = Pan;
 	tilt = Tilt;
 	time = Time;
-    if (!WrpDrv::flEquals(time, 0.f))
+    if (time > 0)
 	{
 		overTime = true;
-		panNudge = pan/time;
-		tiltNudge = tilt/time;
+        panNudge = pan/static_cast<float>(time);
+        tiltNudge = tilt/static_cast<float>(time);
 	}
 	else
 	{
@@ -33,11 +33,11 @@ void PanAndTiltEvent::update(GameObject* Target)
 	}
 	if(overTime)
 	{
-		float dt = DisplayManager::instance()->DtSecs();
+        auto dt = DisplayManager::instance()->Dt();
 		time -= dt;
 		if (pan != Vec3f(0,0,0))
 		{
-			C->setPos(C->Position() + ( panNudge*dt));
+            C->setPos(C->Position() + ( panNudge*static_cast<float>(dt)));
 		}
 		if(tilt != Vec3f(0,0,0))
 		{
@@ -46,7 +46,7 @@ void PanAndTiltEvent::update(GameObject* Target)
 			{
                 C->setTarget(nullptr);
 			}
-			C->setTarget(currentTarget.second + (tiltNudge*dt));
+            C->setTarget(currentTarget.second + (tiltNudge*static_cast<float>(dt)) );
 		}
 		if (time<= 0)
 		{

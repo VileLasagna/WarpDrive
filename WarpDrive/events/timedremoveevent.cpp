@@ -1,7 +1,7 @@
 #include "events/timedremoveevent.hpp"
 #include "basesystem/displaymanager.hpp"
 
-TimedRemoveEvent::TimedRemoveEvent(float Time)
+TimedRemoveEvent::TimedRemoveEvent(int64_t Time)
 {
 	time = Time;
 }
@@ -9,8 +9,8 @@ TimedRemoveEvent::TimedRemoveEvent(float Time)
 
 void TimedRemoveEvent::update(GameObject* target)
 {
-	time -= DisplayManager::instance()->DtSecs();
-	if (time <= 0 && target)
+    time -= DisplayManager::instance()->Dt();
+    if (time <= 0 && (target != nullptr) )
 	{
 		target->KILL();
 	}

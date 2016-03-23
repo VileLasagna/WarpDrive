@@ -66,19 +66,19 @@ Sprite::Sprite(const std::string& filename)
 
 void Sprite::setCellTime(float secs)
 {
-	maxCellTime = secs;
+    maxCellTime = static_cast<int64_t>(secs * 1000);
 }
 
 
 int Sprite::playAnimation(int i)
 {
 	i -= 1; //internally, indexes start at 0;
-    float dts = DisplayManager::instance()->DtSecs(); //note: It does NOT update this value, this must be done before the "update round" for everything is done
+    auto dts = DisplayManager::instance()->Dt();
 	dt += dts;
 	// Update velocity and position
     Vec2f u =  vel;
-    vel += accel * dts;
-    pos += (vel + u) * (dts * 0.5f);
+    vel += accel * (dts * 0.001f);
+    pos += (vel + u) * (dts * 0.5f * 0.001f );
 	
 	if (i == current.X())
 	{

@@ -32,7 +32,7 @@ private:
 	};
 	std::multiset<TimelineKey*, MyCompare> keys;
 
-	float time;
+    int64_t time;
 
     std::multiset<TimelineKey*,MyCompare>::iterator nextKey;
 	TimelineKey* lastAdded;

@@ -23,7 +23,7 @@ void Timeline::load(const std::string& )
 void Timeline::update()
 {
 
-	time += DisplayManager::instance()->DtSecs();
+    time += DisplayManager::instance()->Dt();
     if(nextKey == keys.end())
 	{
 		return;
