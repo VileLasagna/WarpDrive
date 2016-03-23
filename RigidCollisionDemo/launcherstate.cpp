@@ -4,8 +4,6 @@
 #endif //WIN32
 #include "GL/glu.h"
 #include <string>
-#include <random>
-#include <chrono>
 
 #include "WarpDrive/basemaths/sphere.hpp"
 #include "WarpDrive/basesystem/game.hpp"
@@ -28,12 +26,7 @@ LauncherState::LauncherState()
     float minZ = -3000;
     float X = 6000;
     float Z = 6000;
-
-   // construct a trivial random generator engine from a time-based seed:
-    auto seed = std::chrono::system_clock::now().time_since_epoch().count();
-    std::default_random_engine generator (seed);
-    std::uniform_real_distribution<double> rand(-1.,1.);
-
+    Game::instance()->quickSeedRNG();
     size_t numRows = 20;
     for(size_t row = 0; row < numRows; row++)
     {
@@ -41,7 +34,7 @@ LauncherState::LauncherState()
         {
             Ball* b0 = new Ball();
             b0->setRadius(30);
-            b0->setPos(Vec3f(minX+( (X/numRows)*row),1500+static_cast<float>((rand(generator)*500)),minZ+( (Z/numRows)*column)));
+            b0->setPos(Vec3f(minX+( (X/numRows)*row),1500+static_cast<float>(( (Game::instance()->RNGrange(200)-100) *10)),minZ+( (Z/numRows)*column)));
             b0->setVel(Vec3f(0,0,0));
             Game::instance()->addObject(b0);
         }

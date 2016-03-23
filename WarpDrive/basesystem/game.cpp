@@ -2,10 +2,12 @@
 
 #include <future>
 #include <chrono>
+#include <ctime>
 
 Game::Game()
 {
 	DisplayManager::instance(); //to grant that call to SDLInit_Everything
+    rng = std::mt19937_64();
 	currentState = 0;
 	frames = 0;
 	updates = 0;
@@ -125,7 +127,7 @@ void Game::Clear()
 void Game::drawFPS()
 {
 
-    static Game::time lastCall = now();
+    static Game::time_t lastCall = now();
     static int64_t t = 0;
 
     t += millisSince(lastCall); // update time..
@@ -382,14 +384,34 @@ size_t Game::ObjIndex()
     return objindex++;
 }
 
-Game::time Game::now() const
+Game::time_t Game::now() const
 {
     return std::chrono::steady_clock::now();
 }
 
-int64_t Game::millisSince(Game::time t) const
+int64_t Game::millisSince(Game::time_t t) const
 {
     return (std::chrono::duration_cast<std::chrono::milliseconds>(now() - t)).count();
+}
+
+void Game::seedRNG(unsigned int newSeed)
+{
+    rng.seed(newSeed);
+}
+
+void Game::quickSeedRNG()
+{
+    rng.seed(static_cast<decltype(rng)::result_type>(time(0)) );
+}
+
+uint_fast64_t Game::RNG() const
+{
+    return rng();
+}
+
+uint_fast64_t Game::RNGrange(uint ceiling) const
+{
+    return rng()%ceiling;
 }
 
 void Game::removeObject(Game::iterator it)

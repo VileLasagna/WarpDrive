@@ -33,7 +33,7 @@ private:	//This class is a singleton.
 
 public:
 
-    using time = std::chrono::steady_clock::time_point;
+    using time_t = std::chrono::steady_clock::time_point;
 
 	static Game* instance();
 
@@ -58,8 +58,18 @@ public:
     void updateObjects();
     size_t ObjIndex();
 
-    Game::time now() const;
-    int64_t millisSince(Game::time t) const;
+    Game::time_t now() const;
+    int64_t millisSince(Game::time_t t) const;
+
+    void seedRNG(unsigned int newSeed);
+    /**
+     * @brief quickSeedRNG
+     *
+     * Seeds the RNG with a random time-based seed
+     */
+    void quickSeedRNG();
+    uint_fast64_t RNG() const;
+    uint_fast64_t RNGrange(uint ceiling) const;
 
 
 	Game operator= (const Game&) = delete;
@@ -116,6 +126,7 @@ private:
     void flip();
     void drawFPS();
 //	CollisionSystem* CS;
+    mutable std::mt19937_64 rng;
 	std::vector<GameState*> states; //Note: State 0 is ALWAYS the program starting point
     ObjectMap objects;
 	std::map<std::string,bool> drawnTypes;

@@ -1,9 +1,11 @@
 #include "sound/soundmanager.hpp"
-#include "basesystem/err.hpp"
+
 #include <time.h>
 #include <math.h>
-#include "sound/soundfx.hpp"
 
+#include "sound/soundfx.hpp"
+#include "basesystem/err.hpp"
+#include "basesystem/game.hpp"
 
 
 SoundManager::SoundManager()
@@ -198,9 +200,9 @@ void SoundManager::playSound(SoundFX *FX)
 			}
 			if (drop.second == 0) //bastard set no-auto and made all sounds priority. DOH!
 			{	
-                srand( static_cast<unsigned int>(time(0)) ); //YES! We drop a channel at random. Why not?
+                //YES! We drop a channel at random. Why not?
 				Err::Notify("All SoundManager channels busy playing priority Sounds!");			
-                drop.first = ( static_cast<unsigned int>( (rand()*100) ) % channels.size() ) ;
+                drop.first = ( static_cast<unsigned int>(Game::instance()->RNGrange( static_cast<unsigned int>(channels.size())) ) );
 			}
             Mix_HaltChannel(static_cast<int>(drop.first));
 			c = drop.first;

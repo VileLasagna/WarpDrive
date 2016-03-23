@@ -114,7 +114,7 @@ void DisplayManager::Flip()
 
 void DisplayManager::Update()
 {
-    static Game::time lastCall = Game::instance()->now();
+    static Game::time_t lastCall = Game::instance()->now();
     dt = Game::instance()->millisSince(lastCall);
 	if (dt > maxDT)
 	{
