@@ -14,7 +14,7 @@ public:
     void update() override;
     void draw() const override;
 
-    void setRadius(float f) { body.setRadius(f); radius = f; dimensions = Vec3f{f*2,f*2,f*2};}
+    void setRadius(float f) { body.setRadius(f); radius = f; dimensions = Vec3f{f*2,f*2,f*2}; mass = f*density;}
     void setColour(GLRGBColour colour) noexcept;
 
     ~Ball() = default;
