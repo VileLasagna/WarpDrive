@@ -13,6 +13,7 @@ DisplayManager::DisplayManager():
     dt          (0),
     maxDT       (67),
     openGL      (false),
+    vsync       (false),
     bpp         (32),
     w           (640),
     h           (480),
@@ -187,6 +188,19 @@ void DisplayManager::setVideo()
     }
 }
 
+void DisplayManager::applyVsync()
+{
+    if(vsync)
+    {
+        SDL_GL_SetSwapInterval(1);
+    }
+    else
+    {
+        SDL_GL_SetSwapInterval(0);
+
+    }
+}
+
 void DisplayManager::setBPP(int i)
 {
 	bpp = i;
@@ -204,7 +218,19 @@ void DisplayManager::useOpengGL(bool b) noexcept
 	{
 		openGL = false;
         videoFlags =  0/*DL_HWSURFACE | SDL_DOUBLEBUF | SDL_ASYNCBLIT */| fullscreen;
-	}
+    }
+}
+
+void DisplayManager::setVsync(bool v) noexcept
+{
+    vsync = v;
+    applyVsync();
+}
+
+void DisplayManager::toggleVsync() noexcept
+{
+    vsync = !vsync;
+    applyVsync();
 }
 
 void DisplayManager::init(bool Fullscreen, bool UsingOpenGL) noexcept
@@ -220,6 +246,7 @@ void DisplayManager::init(bool Fullscreen, bool UsingOpenGL) noexcept
     {
         gl_context = SDL_GL_CreateContext(mainWindow);
         SDL_GL_MakeCurrent(mainWindow, gl_context);
+        applyVsync();
     }
     assert(mainWindow);
 }

@@ -50,7 +50,10 @@ public:
     void toggleFS();
 
     void useOpengGL (bool b) noexcept;
-	bool usingOpenGL () {return openGL;}
+    bool usingOpenGL () const noexcept  {return openGL;}
+    bool Vsync() const noexcept {return vsync;}
+    void setVsync( bool v) noexcept;
+    void toggleVsync() noexcept;
     void clearDisplay() noexcept;
     void showStats(unsigned int updates, unsigned int frames) noexcept;
     void setTitle(std::string newTitle, int windowIndex = 1) noexcept;
@@ -74,6 +77,7 @@ public:
 private:
 
 	void setVideo();
+    void applyVsync();
 
     SDL_Window* mainWindow;
     SDL_Renderer* renderer;
@@ -81,6 +85,7 @@ private:
     int64_t dt;
     int64_t maxDT;
 	bool openGL;
+    bool vsync;
 	int bpp;
 	int w;
 	int h;
