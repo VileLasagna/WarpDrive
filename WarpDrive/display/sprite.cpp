@@ -1,10 +1,9 @@
-
 #include "display/sprite.hpp"
+
 #include <algorithm>
 
 
 Sprite::Sprite(const std::string& filename)
-
 {
 	vel = Vec2f(0,0);
 	accel = Vec2f(0,0);
@@ -68,7 +67,6 @@ void Sprite::setCellTime(float secs)
 {
     maxCellTime = static_cast<int64_t>(secs * 1000);
 }
-
 
 int Sprite::playAnimation(int i)
 {
