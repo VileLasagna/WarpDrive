@@ -5,7 +5,7 @@
 #include "WarpDrive/display/camera.hpp"
 #include "WarpDrive/basemaths/plane.hpp"
 #include "WarpDrive/basemaths/lineseg.hpp"
-#include "WarpDrive/physics/bruteforcecollision.hpp"
+#include "WarpDrive/physics/bruteforcecollisioncheck.hpp"
 #include "WarpDrive/physics/rdccollision.hpp"
 
 #include "ball.hpp"
@@ -38,7 +38,7 @@ private:
 
     Camera cam;
     Plane floor;
-    BruteForceCollision brute;
+    BruteForceCheck brute;
     RDCCollision rdc;
 
 };

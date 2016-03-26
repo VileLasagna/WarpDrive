@@ -1,11 +1,11 @@
-#include "bruteforcecollision.hpp"
+#include "bruteforcecollisioncheck.hpp"
 
-BruteForceCollision::BruteForceCollision()
+BruteForceCheck::BruteForceCheck()
 {
 
 }
 
-void BruteForceCollision::update(Game::iterator it)
+void BruteForceCheck::update(Game::iterator it)
 {
     if(it.isEmpty())
     {

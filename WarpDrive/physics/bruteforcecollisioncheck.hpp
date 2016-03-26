@@ -3,12 +3,12 @@
 
 #include "physics/collisionsystem.hpp"
 
-class BruteForceCollision : public CollisionSystem
+class BruteForceCheck : public CollisionSystem
 {
 
 public:
 
-    BruteForceCollision();
+    BruteForceCheck();
 
     // CollisionSystem interface
 public:
