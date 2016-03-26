@@ -42,8 +42,12 @@ LauncherState::LauncherState()
 
     Game::instance()->addDrawnType("Ball");
     Game::instance()->addActiveType("Ball");
-    brute.load("Ball", "Ball", &LauncherState::ballsTouchedSoGay);
-    rdc.load("Ball", "Ball", &LauncherState::ballsTouchedSoGay);
+//    brute.load("Ball", "Ball", &LauncherState::ballsTouchedSoGay);
+//    rdc.load("Ball", "Ball", &LauncherState::ballsTouchedSoGay);
+    brute.load("Ball", "Ball", [](GameObject* a, GameObject* b){ dynamic_cast<Ball*>(a)->setColour(GLRGBColour(0.8f,0.2f,0.7f));
+                                                                 dynamic_cast<Ball*>(b)->setColour(GLRGBColour(0.8f,0.2f,0.7f));});
+    rdc.load("Ball", "Ball", [](GameObject* a, GameObject* b){ dynamic_cast<Ball*>(a)->setColour(GLRGBColour(0.8f,0.2f,0.7f));
+                                                               dynamic_cast<Ball*>(b)->setColour(GLRGBColour(0.8f,0.2f,0.7f));});
 
 }
 

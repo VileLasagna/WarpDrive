@@ -3,6 +3,7 @@
 
 #include <string>
 #include <map>
+#include <functional>
 
 #include "basesystem/game.hpp"
 #include "basesystem/gameobject.hpp"
@@ -77,9 +78,10 @@ private:
 //    }
 //}
 
-typedef void (*func)(GameObject*, GameObject*);
+//typedef void (*func)(GameObject*, GameObject*);
 
 using ObjPair = std::pair<GameObject*,GameObject*>;
+using CollisionHandler = std::function<void(GameObject*, GameObject*)>;
 
 class CollisionSystem
 {
@@ -88,19 +90,19 @@ public:
 
     virtual ~CollisionSystem();
 	virtual void update(Game::iterator it) = 0; //Just to not forget how to go around this
-    void load(CollisionPair cp,func f)
+    void load(CollisionPair cp, CollisionHandler f)
 	{
 		handlers[cp] = f;
 	}
 
-    void load(std::string t1, std::string t2, func f)
+    void load(std::string t1, std::string t2, CollisionHandler f)
     {
         load (CollisionPair(t1,t2),f);
     }
 
     protected:
 
-		std::map<CollisionPair,func> handlers;
+        std::map<CollisionPair,CollisionHandler> handlers;
 
 };
 
