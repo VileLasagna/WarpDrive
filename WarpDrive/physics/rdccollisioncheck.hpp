@@ -11,7 +11,7 @@
 
 #include "basesystem/util.hpp"
 
-class RDCCollision : public CollisionSystem
+class RDCcheck : public CollisionSystem
 {
 
     static constexpr size_t RDCLimit = 10;
@@ -21,11 +21,11 @@ public:
     enum class Axis{X,Y,Z,NONE};
 
 
-    RDCCollision();
+    RDCcheck();
 
     void update(Game::iterator it);
 
-    ~RDCCollision() = default;
+    ~RDCcheck() = default;
 
 private:
 
@@ -49,12 +49,12 @@ private:
                                                                   ||                  !(obj == other.obj  ); }
     };
 
-    using EdgeVec = std::vector<RDCCollision::EdgeInfo>;
+    using EdgeVec = std::vector<RDCcheck::EdgeInfo>;
 
-    void RDC (RDCCollision::Axis a1, RDCCollision::Axis a2, RDCCollision::Axis a3, std::vector<GameObject*> group) noexcept;
+    void RDC (RDCcheck::Axis a1, RDCcheck::Axis a2, RDCcheck::Axis a3, std::vector<GameObject*> group) noexcept;
     void BruteForce(std::vector<GameObject*> group) noexcept;
 
-    EdgeVec SortedBoundaries(RDCCollision::Axis a, std::vector<GameObject*> group) const;
+    EdgeVec SortedBoundaries(RDCcheck::Axis a, std::vector<GameObject*> group) const;
 
     std::vector<ObjPair> pairs;
     std::vector<GameObject*> objs;

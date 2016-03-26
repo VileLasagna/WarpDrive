@@ -1,13 +1,13 @@
-#include "rdccollision.hpp"
+#include "rdccollisioncheck.hpp"
 
 #include <algorithm>
 
-RDCCollision::RDCCollision()
+RDCcheck::RDCcheck()
 {
 
 }
 
-void RDCCollision::update(Game::iterator it)
+void RDCcheck::update(Game::iterator it)
 {
     pairs.clear();
     objs.clear();
@@ -31,7 +31,7 @@ void RDCCollision::update(Game::iterator it)
 
 }
 
-void RDCCollision::RDC(RDCCollision::Axis a1, RDCCollision::Axis a2, RDCCollision::Axis a3, std::vector<GameObject*> group) noexcept
+void RDCcheck::RDC(RDCcheck::Axis a1, RDCcheck::Axis a2, RDCcheck::Axis a3, std::vector<GameObject*> group) noexcept
 {
     if(group.size() <= RDCLimit || a1 == Axis::NONE)
     {
@@ -95,7 +95,7 @@ void RDCCollision::RDC(RDCCollision::Axis a1, RDCCollision::Axis a2, RDCCollisio
     }
 }
 
-void RDCCollision::BruteForce(std::vector<GameObject*> group) noexcept
+void RDCcheck::BruteForce(std::vector<GameObject*> group) noexcept
 {
     GameObject* obj;
     for(size_t i = 0; i < group.size(); i++)
@@ -118,7 +118,7 @@ void RDCCollision::BruteForce(std::vector<GameObject*> group) noexcept
     }
 }
 
-RDCCollision::EdgeVec RDCCollision::SortedBoundaries(RDCCollision::Axis a, std::vector<GameObject*> group) const
+RDCcheck::EdgeVec RDCcheck::SortedBoundaries(RDCcheck::Axis a, std::vector<GameObject*> group) const
 {
     EdgeVec edges;
     for(GameObject* o: group)
@@ -128,9 +128,9 @@ RDCCollision::EdgeVec RDCCollision::SortedBoundaries(RDCCollision::Axis a, std::
         auto val = sizes.X();
         auto pos = o->Position();
         auto centre = pos.X();
-        if (a != RDCCollision::Axis::X)
+        if (a != RDCcheck::Axis::X)
         {
-            if(a == RDCCollision::Axis::Y)
+            if(a == RDCcheck::Axis::Y)
             {
                 val = sizes.Y();
                 centre = pos.Y();

@@ -67,7 +67,7 @@ HEADERS += \
     $$_PRO_FILE_PWD_/WarpDrive/display/texturesheet.hpp             \
     $$_PRO_FILE_PWD_/WarpDrive/basemaths/ray.hpp                    \
     $$_PRO_FILE_PWD_/WarpDrive/physics/bruteforcecollisioncheck.hpp \
-    $$_PRO_FILE_PWD_/WarpDrive/physics/rdccollision.hpp             \
+    $$_PRO_FILE_PWD_/WarpDrive/physics/rdccollisioncheck.hpp        \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/util.hpp \
     $$PWD/physics/rbpcollision.hpp
 
@@ -122,7 +122,7 @@ SOURCES += \
     $$_PRO_FILE_PWD_/WarpDrive/display/texturesheet.cpp             \
     $$_PRO_FILE_PWD_/WarpDrive/basemaths/ray.cpp                    \
     $$_PRO_FILE_PWD_/WarpDrive/physics/bruteforcecollisioncheck.cpp \
-    $$_PRO_FILE_PWD_/WarpDrive/physics/rdccollision.cpp             \
+    $$_PRO_FILE_PWD_/WarpDrive/physics/rdccollisioncheck.cpp        \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/util.cpp                  \
     $$_PRO_FILE_PWD_/WarpDrive/events/objectevent.cpp               \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/gamestate.cpp             \
