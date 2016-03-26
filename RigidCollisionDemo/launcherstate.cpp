@@ -34,7 +34,7 @@ LauncherState::LauncherState()
         for(size_t column = 0; column < numRows; column++)
         {
             Ball* b0 = new Ball();
-            b0->setRadius(30);
+            b0->setRadius(10+(Game::instance()->RNGrange(50)));
             b0->setPos(Vec3f(minX+( (X/numRows)*row),1500+static_cast<float>(( (Game::instance()->RNGrange(200)-100) *10)),minZ+( (Z/numRows)*column)));
             b0->setVel(Vec3f(0,0,0));
             Game::instance()->addObject(b0);
