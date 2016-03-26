@@ -8,6 +8,7 @@ class Ball : public GameObject
 {
 public:
 
+
     Ball(Vec3f Position = Vec3f(0,0,0), Vec3f velocity = Vec3f(0,0,0));
 
     void update() override;
@@ -19,6 +20,10 @@ public:
     ~Ball() = default;
 
 private:
+
+    static constexpr float gravity = 296.f;
+    static constexpr float density = 1;
+
 
     Sphere body;
 

@@ -3,15 +3,15 @@
 
 Ball::Ball(Vec3f position, Vec3f velocity)
 {
-    static constexpr float gravity = 296.f;
     pos = position;
     vel = velocity;
-    accel = Vec3f(0,-gravity,0);
+    accel = Vec3f(0,-Ball::gravity, 0);
     body.setPos(pos);
     body.setRadius(10);
     body.setWireframe(false);
     type = "Ball";
     radius = body.Radius();
+    mass = radius*Ball::density;
 }
 
 void Ball::update()
@@ -31,6 +31,7 @@ void Ball::update()
             //body.setColour(0.3f, 0.3f, 0.3f);
             vel.setX(vel.X()*friction);
             vel.setZ(vel.Z()*friction);
+
         }
         else
         {
@@ -40,13 +41,18 @@ void Ball::update()
             vel.setZ(vel.Z()*friction);
         }
     }
+    else
+    {
+        accel = Vec3f(0,-Ball::gravity,0);
+
+    }
 
 }
 
 void Ball::draw() const
 {
     //getSphere().Draw();
-    BoundingBox().draw();
+    //BoundingBox().draw();
     body.draw();
 }
 
