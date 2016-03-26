@@ -24,9 +24,10 @@ public:
     virtual bool load(ManagedFile* ) {return true;}
     virtual const char* Type() const {return type.c_str();}
 
-	virtual void setVel(const Vec3f& v) { vel = v;}
-	virtual void setPos(const Vec3f& p) { pos = p;}
-	virtual void setAcc(const Vec3f& a) { accel = a;}
+    virtual void setVel (const Vec3f& v) { vel = v;}
+    virtual void setPos (const Vec3f& p) { pos = p;}
+    virtual void setAcc (const Vec3f& a) { accel = a;}
+    virtual void setMass(const float m)  { mass = m;}
 
 	virtual void setName(const std::string& s) { name = s;}
     virtual void setName(std::string&& s) { name = s;}
@@ -56,6 +57,7 @@ public:
     virtual Vec3f Dimensions() const noexcept {return dimensions;}
     virtual float Radius() const noexcept {return radius;}
     virtual std::string Name() const noexcept {return name;}
+    virtual float Mass() const noexcept {return mass;}
     size_t Index() const noexcept {return index;}
 	bool isDead() {return removeMe;}
 	void KILL() {removeMe = true;}
@@ -66,6 +68,7 @@ protected:
 	Vec3f vel;
 	Vec3f pos;
 	Vec3f accel;
+    float mass;
     float radius;
     Vec3f dimensions;
 	std::string name;

@@ -18,10 +18,18 @@ void GameObject::update()
 }
 
 GameObject::GameObject()
-{
-    radius = 0;
-    index = Game::instance()->ObjIndex();
-}
+   :index{Game::instance()->ObjIndex()},
+    vel{Vec3f(0,0,0)},
+    pos{Vec3f(0,0,0)},
+    accel{Vec3f(0,0,0)},
+    mass{-1.f},
+    radius{0},
+    dimensions{Vec3f(0,0,0)},
+    name{""},
+    type{"Object"},
+    events{},
+    removeMe{false}
+{}
 
 AABBox GameObject::BoundingBox() const noexcept
 {
