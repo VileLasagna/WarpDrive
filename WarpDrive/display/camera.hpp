@@ -6,7 +6,6 @@
 #endif //WIN32
 
 #include <utility>
-#include <GL/gl.h>
 
 #include "basemaths/vec3.hpp"
 #include "basemaths/ray.hpp"
