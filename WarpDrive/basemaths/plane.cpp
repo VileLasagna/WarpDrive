@@ -1,9 +1,12 @@
+#include "basemaths/plane.hpp"
+
 #ifdef WIN32
     #include <windows.h>
 #endif //WIN32
 
+
+#include <GL/glew.h>
 #include <SDL2/SDL_opengl.h>
-#include "basemaths/plane.hpp"
 #include "basemaths/matrix44.hpp"
 #include "basemaths/quaternion.hpp"
 #include <GL/glu.h>

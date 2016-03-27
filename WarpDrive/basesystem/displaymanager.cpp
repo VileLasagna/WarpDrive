@@ -1,6 +1,7 @@
 #include "basesystem/displaymanager.hpp"
 
 #include <assert.h>
+#include <iostream>
 
 #include "basesystem/game.hpp"
 #include "basesystem/stringproc.hpp"
@@ -244,9 +245,17 @@ void DisplayManager::init(bool Fullscreen, bool UsingOpenGL) noexcept
     }
     else
     {
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+        SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
         gl_context = SDL_GL_CreateContext(mainWindow);
         SDL_GL_MakeCurrent(mainWindow, gl_context);
         applyVsync();
+        glewExperimental = GL_TRUE;
+        if (glewInit() != GLEW_OK)
+        {
+           std::cout << "Failed to initialize GLEW" << std::endl;
+        }
     }
     assert(mainWindow);
 }
