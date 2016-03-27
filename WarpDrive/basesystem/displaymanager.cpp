@@ -124,7 +124,7 @@ void DisplayManager::Update()
     lastCall = Game::instance()->now();
 }
 
-int64_t DisplayManager::Dt() const noexcept
+float DisplayManager::Dt() const noexcept
 {
     return dt;
 }

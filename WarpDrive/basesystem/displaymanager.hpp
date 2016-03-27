@@ -42,7 +42,7 @@ public:
 
     void Update();
 
-    int64_t Dt() const noexcept;
+    float Dt() const noexcept;
     float DtSecs() const noexcept;
     float getMaxDT() const noexcept {return maxDT;}
 
@@ -82,7 +82,7 @@ private:
     SDL_Window* mainWindow;
     SDL_Renderer* renderer;
     SDL_GLContext gl_context;
-    int64_t dt;
+    float dt;
     int64_t maxDT;
 	bool openGL;
     bool vsync;

@@ -98,7 +98,7 @@ void Camera::use() const
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	gluLookAt(pos.X(),pos.Y(),pos.Z(),target.X(),target.Y(),target.Z(),up.X(),up.Y(),up.Z());
-    DisplayManager::instance()->updateMatrices();
+    //DisplayManager::instance()->updateMatrices();
 	//TODO: Auto turning around, Needs rotation member in GameObject;
 }
 

@@ -59,7 +59,7 @@ public:
     size_t ObjIndex();
 
     Game::time_t now() const;
-    int64_t millisSince(Game::time_t t) const;
+    float millisSince(Game::time_t t) const;
 
     void seedRNG(unsigned int newSeed);
     /**

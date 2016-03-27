@@ -15,7 +15,7 @@ public:
 
 private:
 
-    int64_t time;
+    float time;
 };
 
 #endif //WD_TIMED_REMOVE_EVENT_HPP_DEFINED

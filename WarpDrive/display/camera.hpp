@@ -43,7 +43,7 @@ private:
     Vec3f orbitFactors;
     float orbitRadius;
     float orbitPeriod;
-    int64_t time;
+    float time;
 
 };
 

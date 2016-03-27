@@ -128,13 +128,11 @@ void Game::drawFPS()
 {
 
     static Game::time_t lastCall = now();
-    static int64_t t = 0;
+    static float t = 0;
 
     t += millisSince(lastCall); // update time..
-
     if (t>= 1000) // if number of seconds has changed..
     {
-
         t = 0;
         DisplayManager::instance()->showStats(updates, frames);
         frames = 0; // reset count for the new second
@@ -389,9 +387,9 @@ Game::time_t Game::now() const
     return std::chrono::steady_clock::now();
 }
 
-int64_t Game::millisSince(Game::time_t t) const
+float Game::millisSince(Game::time_t t) const
 {
-    return (std::chrono::duration_cast<std::chrono::milliseconds>(now() - t)).count();
+    return ((std::chrono::duration_cast<std::chrono::nanoseconds>(now() - t)).count())/1000000.f;
 }
 
 void Game::seedRNG(unsigned int newSeed)
