@@ -149,7 +149,10 @@ int GLShader::Program() const noexcept
 
 GLShader::~GLShader()
 {
-    glDeleteProgram(program);
+    if(initialised)
+    {
+        glDeleteProgram(program);
+    }
 }
 
 void GLShader::assemble()
