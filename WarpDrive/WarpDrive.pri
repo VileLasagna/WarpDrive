@@ -68,9 +68,9 @@ HEADERS += \
     $$_PRO_FILE_PWD_/WarpDrive/basemaths/ray.hpp                    \
     $$_PRO_FILE_PWD_/WarpDrive/physics/bruteforcecollisioncheck.hpp \
     $$_PRO_FILE_PWD_/WarpDrive/physics/rdccollisioncheck.hpp        \
-    $$_PRO_FILE_PWD_/WarpDrive/basesystem/util.hpp \
-    $$PWD/physics/rbpcollision.hpp \
-    $$PWD/display/glshader.hpp
+    $$_PRO_FILE_PWD_/WarpDrive/basesystem/util.hpp                  \
+    $$_PRO_FILE_PWD_/WarpDrive/physics/rbpcollision.hpp             \
+    $$_PRO_FILE_PWD_/WarpDrive/display/glshader.hpp
 
 
 SOURCES += \
@@ -128,8 +128,8 @@ SOURCES += \
     $$_PRO_FILE_PWD_/WarpDrive/events/objectevent.cpp               \
     $$_PRO_FILE_PWD_/WarpDrive/basesystem/gamestate.cpp             \
     $$_PRO_FILE_PWD_/WarpDrive/events/timelinekey.cpp               \
-    $$_PRO_FILE_PWD_/WarpDrive/physics/collisionsystem.cpp \
-    $$PWD/physics/rbpcollision.cpp \
-    $$PWD/display/glshader.cpp
+    $$_PRO_FILE_PWD_/WarpDrive/physics/collisionsystem.cpp          \
+    $$_PRO_FILE_PWD_/WarpDrive/physics/rbpcollision.cpp             \
+    $$_PRO_FILE_PWD_/WarpDrive/display/glshader.cpp
 
 
