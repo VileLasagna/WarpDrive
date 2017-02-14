@@ -1,6 +1,6 @@
 #include "basemaths/sphere.hpp"
 #ifdef WIN32
-    #include <windows.h>
+    #include <Windows.h>
 #endif //WIN32
 #include <math.h>
 #include <assert.h>

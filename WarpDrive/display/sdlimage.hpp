@@ -1,13 +1,11 @@
 #ifndef WD_SDL_IMAGE_HPP_DEFINED
 #define WD_SDL_IMAGE_HPP_DEFINED
 
-#ifdef _WIN32
+#ifdef WIN32
     #include <windows.h>
-    #include <SDL2/SDL.h>
-#else
-	#include <SDL2/SDL.h>
 #endif //_WIN32
 
+#include <SDL2/SDL.h>
 #include <string>
 
 #include "display/rgbcolour.hpp"

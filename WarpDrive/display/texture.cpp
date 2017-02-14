@@ -1,14 +1,12 @@
 #include "display/texture.hpp"
 #include "basesystem/err.hpp"
 #ifdef WIN32
-    #include <windows.h>
+    #include <Windows.h>
 #endif //WIN32
 #include <GL/glu.h>
-#ifdef _WIN32
-	#include <SDL2/SDL_Image.h>
-#else
-	#include <SDL2/SDL_image.h>
-#endif //_WIN32
+
+#include <SDL2/SDL_image.h>
+
 #include <assert.h>
 
 Texture::Texture():

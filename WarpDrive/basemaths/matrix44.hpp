@@ -4,6 +4,11 @@
 #include <array>
 
 #include "basemaths/vec4.hpp"
+
+#ifdef WIN32
+    #include <Windows.h>
+#endif //WIN32
+
 #include <GL/gl.h>
 
 

@@ -2,7 +2,7 @@
 #define WD_TEXTURE_HPP_DEFINED
 
 #ifdef WIN32
-    #include <windows.h>
+    #include <Windows.h>
 #endif //WIN32
 
 #include <string>

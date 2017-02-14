@@ -7,15 +7,8 @@
 #include <vector>
 #include <set>
 #include <cstdio>
-#ifdef _WIN32
-	#include <SDL2/SDL_mixer.h>
-	#include <SDL2/SDL.h>
-#else
-
-	#include <SDL2/SDL_mixer.h>
-	#include <SDL2/SDL.h>
-
-#endif //_WIN32
+#include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL.h>
 
 class SoundFX;
 

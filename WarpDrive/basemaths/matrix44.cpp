@@ -1,7 +1,7 @@
 
 #include "basemaths/matrix44.hpp"
-#ifdef _WIN32
-	#include <windows.h>
+#ifdef WIN32
+    #include <Windows.h>
 #endif //WIN32
 #include <GL/gl.h>
 

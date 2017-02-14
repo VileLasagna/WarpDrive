@@ -1,6 +1,10 @@
 #ifndef WD_BOUNDING_SPHERE_HPP_DEFINED
 #define WD_BOUNDING_SPHERE_HPP_DEFINED
 
+#ifdef WIN32
+    #include <Windows.h>
+#endif //WIN32
+
 #include <memory>
 #include <GL/glu.h>
 

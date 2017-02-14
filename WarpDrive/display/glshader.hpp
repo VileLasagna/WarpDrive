@@ -1,6 +1,10 @@
 #ifndef GLSHADER_HPP
 #define GLSHADER_HPP
 
+#ifdef WIN32
+    #include <Windows.h>
+#endif //WIN32
+
 #include <GL/glew.h>
 #include <string>
 

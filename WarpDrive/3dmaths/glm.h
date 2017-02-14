@@ -19,7 +19,7 @@
 #include <OpenGL/glu.h>
 #else
 #ifdef WIN32
-    #include <windows.h>
+    #include <Windows.h>
 #endif //WIN32
 #include <GL/gl.h>
 #include <GL/glu.h>

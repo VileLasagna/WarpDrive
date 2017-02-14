@@ -2,7 +2,7 @@
 #include "3dmaths/material.hpp"
 #include <assert.h>
 #ifdef WIN32
-    #include <windows.h>
+    #include <Windows.h>
 #endif //WIN32
 #include <GL/glu.h>
 

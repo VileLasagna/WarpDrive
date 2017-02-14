@@ -4,7 +4,6 @@
 #include <string>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL.h>
-
 #include "soundmanager.hpp"
 /*
  *	Objects of this class are used to play different sounds in the sound manager class.

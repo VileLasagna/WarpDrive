@@ -1,16 +1,15 @@
 #ifndef WD_DISPLAY_MANAGER_HPP_DEFINED
 #define WD_DISPLAY_MANAGER_HPP_DEFINED
 
+#ifdef WIN32
+    #include <Windows.h>
+#endif //WIN32
+
 #include <GL/glew.h>
 
-#ifdef _WIN32
-    #include <windows.h>
-	#include "SDL/SDL.h"
-	#include "SDL/SDL_opengl.h"
-#else
-	#include <SDL2/SDL.h>
-	#include <SDL2/SDL_opengl.h>
-#endif //WIN32
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_opengl.h>
+
 
 #include <utility>
 #include <GL/glu.h>

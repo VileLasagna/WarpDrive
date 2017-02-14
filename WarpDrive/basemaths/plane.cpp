@@ -1,7 +1,7 @@
 #include "basemaths/plane.hpp"
 
 #ifdef WIN32
-    #include <windows.h>
+    #include <Windows.h>
 #endif //WIN32
 
 
