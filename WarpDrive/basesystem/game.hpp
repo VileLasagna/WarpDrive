@@ -69,7 +69,7 @@ public:
      */
     void quickSeedRNG();
     uint_fast64_t RNG() const;
-    uint_fast64_t RNGrange(uint ceiling) const;
+    uint_fast64_t RNGrange(unsigned int ceiling) const;
 
 
 	Game operator= (const Game&) = delete;

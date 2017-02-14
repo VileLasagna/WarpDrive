@@ -15,7 +15,7 @@ Game::Game()
     objindex = 0;
     goFactory = Factory<GameObject>::instance();
 #ifdef _DEBUG
-	FPS = true;
+    fps = true;
 #else
     fps = false;
 #endif
@@ -30,28 +30,36 @@ Game::~Game()
 
 void Game::Run()
 {
-    //int i = 0;
-    std::future<void> up = std::async(std::launch::async, [](Game* g)
-                                                          { while(g->CurrentState() != -1)
-                                                            { DisplayManager::instance()->Update();
-                                                              g->update();
-                                                            } }, this);
-//    std::future<void> dr = std::async(std::launch::async, [](Game* g)
-//                                                          { while(g->CurrentState() != -1)
-//                                                            { g->Draw();
-//                                                              g->Flip();
-//                                                            } }, this);
+#ifdef WIN32
+
     while(currentState != -1)
     {
-//        DisplayManager::instance()->Update(); //Get the time and all before everyone starts checking this kind of stuff
-//        Update();
-        //DisplayManager::instance()->
+        update();
+
         draw();
         flip();
-//        //currentState = i;
+
     }
-    //dr.get();
-    //up.get();
+#else
+
+//    std::future<void> up = std::async(std::launch::async, [](Game* g)
+//                                                          { while(g->CurrentState() != -1)
+//                                                            { DisplayManager::instance()->Update();
+//                                                              g->update();
+//                                                            } }, this);
+    std::future<void> dr = std::async(std::launch::async, [](Game* g)
+                                                          { while(g->CurrentState() != -1)
+                                                            { g->draw();
+                                                              g->flip();
+                                                            } }, this);
+    while(currentState != -1)
+    {
+
+        draw();
+        flip();
+
+    }
+#endif
 
 }
 
@@ -182,7 +190,7 @@ bool Game::addActiveTypes(const std::set<std::string> &types)
     return ret;
 }
 
-bool Game::addActiveType(const std::__cxx11::string& type)
+bool Game::addActiveType(const std::string& type)
 {
     bool ret = false;
 
@@ -407,7 +415,7 @@ uint_fast64_t Game::RNG() const
     return rng();
 }
 
-uint_fast64_t Game::RNGrange(uint ceiling) const
+uint_fast64_t Game::RNGrange(unsigned int ceiling) const
 {
     return rng()%ceiling;
 }
