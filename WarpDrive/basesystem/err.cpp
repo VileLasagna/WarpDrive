@@ -1,17 +1,18 @@
 #include "basesystem/err.hpp"
 #ifdef WIN32
-#include <windows.h>
-#else //Non-Windows platform
-    #include <iostream>
+    #include <Windows.h>
 #endif
+
+#include <iostream>
+
 
 void Err::Report(const std::string& s)
 {
-#ifdef WIN32
-	MessageBoxA(0, s.c_str(), "OH NO!", 0);
-#else
+//#ifdef WIN32
+//	MessageBoxA(0, s.c_str(), "OH NO!", 0);
+//#else
 	std::cout << s << "\n";
-#endif
+//#endif
 }
 
 Err* Err::instance()
