@@ -1,10 +1,10 @@
 
 
 SOURCES += \
-        $$_PRO_FILE_PWD_/RigidCollisionDemo/main.cpp \
-    $$PWD/launcherstate.cpp \
-    $$PWD/ball.cpp
+        $$_PRO_FILE_PWD_/RigidCollisionDemo/main.cpp            \
+        $$_PRO_FILE_PWD_/RigidCollisionDemo/launcherstate.cpp   \
+        $$_PRO_FILE_PWD_/RigidCollisionDemo/ball.cpp
 
 HEADERS += \
-    $$PWD/launcherstate.hpp \
-    $$PWD/ball.hpp
+        $$_PRO_FILE_PWD_/RigidCollisionDemo/launcherstate.hpp  \
+        $$_PRO_FILE_PWD_/RigidCollisionDemo/ball.hpp

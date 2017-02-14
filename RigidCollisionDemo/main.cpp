@@ -1,14 +1,13 @@
 
 #ifdef WIN32
-    #include <windows.h>
+    #include <Windows.h>
 #endif //WIN32
 
 #include "basesystem/displaymanager.hpp"
 #include "basesystem/game.hpp"
 #include "launcherstate.hpp"
 
-
-int main(/*int argc, char* argv[]*/)
+int main(int argc, char* argv[])
 {
 
     DisplayManager::instance()->setSize(1280,728);
