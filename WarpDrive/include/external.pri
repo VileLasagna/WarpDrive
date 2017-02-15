@@ -8,77 +8,78 @@ DEPENDPATH += \
 
 win32 \
 {
-    HEADERS += \
+
+#    HEADERS += \
 #        $$_PRO_FILE_PWD_/WarpDrive/include/GL/glut.h                      \
 #        $$_PRO_FILE_PWD_/WarpDrive/include/GL/freeglut.h                  \
 #        $$_PRO_FILE_PWD_/WarpDrive/include/GL/freeglut_ext.h              \
 #        $$_PRO_FILE_PWD_/WarpDrive/include/GL/freeglut_std.h              \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/begin_code.h               \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/close_code.h               \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL.h                      \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_assert.h               \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_atomic.h               \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_audio.h                \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_bits.h                 \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_blendmode.h            \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_clipboard.h            \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_config.h               \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_cpuinfo.h              \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_endian.h               \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_error.h                \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_events.h               \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_gamecontroller.h       \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_gesture.h              \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_haptic.h               \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_hints.h                \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_image.h                \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_joystick.h             \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_keyboard.h             \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_keycode.h              \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_loadso.h               \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_log.h                  \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_main.h                 \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_messagebox.h           \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_mixer.h                \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_mouse.h                \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_mutex.h                \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_name.h                 \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_opengl.h               \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_opengles.h             \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_opengles2.h            \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_pixels.h               \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_platform.h             \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_power.h                \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_quit.h                 \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_rect.h                 \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_render.h               \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_revision.h             \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_rwops.h                \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_scancode.h             \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_shape.h                \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_stdinc.h               \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_surface.h              \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_system.h               \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_syswm.h                \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test.h                 \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_assert.h          \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_common.h          \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_compare.h         \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_crc32.h           \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_font.h            \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_fuzzer.h          \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_harness.h         \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_images.h          \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_log.h             \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_md5.h             \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_random.h          \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_thread.h               \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_timer.h                \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_touch.h                \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_ttf.h                  \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_types.h                \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_version.h              \
-        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_video.h
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/begin_code.h               \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/close_code.h               \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL.h                      \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_assert.h               \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_atomic.h               \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_audio.h                \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_bits.h                 \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_blendmode.h            \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_clipboard.h            \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_config.h               \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_cpuinfo.h              \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_endian.h               \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_error.h                \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_events.h               \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_gamecontroller.h       \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_gesture.h              \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_haptic.h               \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_hints.h                \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_image.h                \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_joystick.h             \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_keyboard.h             \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_keycode.h              \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_loadso.h               \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_log.h                  \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_main.h                 \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_messagebox.h           \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_mixer.h                \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_mouse.h                \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_mutex.h                \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_name.h                 \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_opengl.h               \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_opengles.h             \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_opengles2.h            \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_pixels.h               \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_platform.h             \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_power.h                \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_quit.h                 \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_rect.h                 \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_render.h               \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_revision.h             \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_rwops.h                \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_scancode.h             \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_shape.h                \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_stdinc.h               \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_surface.h              \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_system.h               \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_syswm.h                \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test.h                 \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_assert.h          \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_common.h          \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_compare.h         \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_crc32.h           \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_font.h            \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_fuzzer.h          \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_harness.h         \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_images.h          \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_log.h             \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_md5.h             \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_test_random.h          \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_thread.h               \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_timer.h                \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_touch.h                \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_ttf.h                  \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_types.h                \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_version.h              \
+#        $$_PRO_FILE_PWD_/WarpDrive/include/SDL/SDL_video.h
 
 
     LIBS += \
@@ -110,7 +111,7 @@ win32 \
 
 
 
-    dlls.path = $$DESTDIR
+    dlls.path = $$target.path
     dlls.files += \
         $$_PRO_FILE_PWD_/WarpDrive/lib/freeglut.dll              \
         $$_PRO_FILE_PWD_/WarpDrive/lib/libFLAC-8.dll             \
@@ -124,6 +125,7 @@ win32 \
         $$_PRO_FILE_PWD_/WarpDrive/lib/libvorbis-0.dll           \
         $$_PRO_FILE_PWD_/WarpDrive/lib/libvorbisfile-3.dll       \
         $$_PRO_FILE_PWD_/WarpDrive/lib/libwebp-4.dll             \
+        $$_PRO_FILE_PWD_/WarpDrive/lib/glew32.dll                \
         $$_PRO_FILE_PWD_/WarpDrive/lib/SDL2.dll                  \
         $$_PRO_FILE_PWD_/WarpDrive/lib/SDL2_image.dll            \
         $$_PRO_FILE_PWD_/WarpDrive/lib/SDL2_mixer.dll            \
@@ -131,39 +133,54 @@ win32 \
         $$_PRO_FILE_PWD_/WarpDrive/lib/smpeg2.dll                \
         $$_PRO_FILE_PWD_/WarpDrive/lib/zlib1.dll
 
+    INCLUDEPATH +=  $$_PRO_FILE_PWD_/WarpDrive/include
+
+
+
+    LIBS += -L$$_PRO_FILE_PWD_/WarpDrive/lib/                   \
+            -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf           \
+            -lSDL2_gfx -lSDL2_mixer -lOpenGL32                  \
+            -lfreeglut -lglew32 -lGlU32
+
+    INCLUDEPATH += $$_PRO_FILE_PWD_/WarpDrive/include
+    DEPENDPATH += $$_PRO_FILE_PWD_/WarpDrive/include $$_PRO_FILE_PWD_/WarpDrive/lib/
+
+
 
 
     VCREDISTPATH = "Redefine me"
 
     CONFIG(release, debug|release)
     {
-        VCREDISTPATH = "C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\VC\\redist\\x64\\Microsoft.VC110.CRT"
+        VCREDISTPATH = "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\redist\\x64\\Microsoft.VC140.CRT"
     }
 
     CONFIG(debug, debug|release)
     {
-        VCREDISTPATH = "C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\VC\\redist\\Debug_NonRedist\\x64\\Microsoft.VC110.DebugCRT"
+        VCREDISTPATH = "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\redist\\Debug_NonRedist\\x64\\Microsoft.VC140.DebugCRT"
     }
 
 
-    message($$VCREDISTPATH)
+    #message($$VCREDISTPATH)
 
 
 
     CONFIG(debug, debug|release)
     {
     dlls.files += \
-                $$VCREDISTPATH\\msvcp110d.dll       \
-                $$VCREDISTPATH\\msvcr110d.dll       \
-                $$VCREDISTPATH\\vccorlib110d.dll
+                $$VCREDISTPATH\\msvcp140d.dll       \
+                $$VCREDISTPATH\\msvcr140d.dll       \
+                $$VCREDISTPATH\\vccorlib140d.dll    \
+                $$VCREDISTPATH\\vcruntime140d.dl
     }
 
     CONFIG(release, debug|release)
     {
     dlls.files += \
-                $$VCREDISTPATH\\msvcp110.dll       \
-                $$VCREDISTPATH\\msvcr110.dll       \
-                $$VCREDISTPATH\\vccorlib110.dll
+                $$VCREDISTPATH\\msvcp140.dll        \
+                $$VCREDISTPATH\\msvcr140.dll        \
+                $$VCREDISTPATH\\vccorlib140.dll     \
+                $$VCREDISTPATH\\vcruntime140.dll
     }
 
     INSTALLS += dlls
