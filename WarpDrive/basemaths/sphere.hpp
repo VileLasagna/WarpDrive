@@ -14,7 +14,7 @@
 
 //Forward Declarations
 class GLUquadric;
-auto gluQuadDeleter = [](GLUquadric* p){gluDeleteQuadric(p);};
+static std::function<void(GLUquadric*)> gluQuadDeleter = [](GLUquadric* p){gluDeleteQuadric(p);};
 using ptr_GLUquad = std::unique_ptr<GLUquadric,decltype(gluQuadDeleter)>;
 
 class Sphere
