@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
 {
 
     //glutInit(&argc, argv);
-    DisplayManager::instance()->setSize(1280,728);
+    DisplayManager::instance()->setSize(800,600);
     DisplayManager::instance()->init(false,true);
     Game::instance()->addState(new GLDemoState());
 
