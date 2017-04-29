@@ -91,6 +91,9 @@ void SDLEventHandler::onWindowEvent(const SDL_WindowEvent& e)
         case SDL_WINDOWEVENT_MOVED:
             onWindowMoved(e);
             break;
+        case SDL_WINDOWEVENT_RESIZED:
+            onWindowResized(e);
+            break;
         case SDL_WINDOWEVENT_SIZE_CHANGED:
             onWindowResized(e);
             break;
@@ -117,6 +120,12 @@ void SDLEventHandler::onWindowEvent(const SDL_WindowEvent& e)
             break;
         case SDL_WINDOWEVENT_CLOSE:
             onWindowCloseRequest(e);
+            break;
+        case SDL_WINDOWEVENT_TAKE_FOCUS:
+            //TODO: NOT IMPLEMENTED
+            break;
+        case SDL_WINDOWEVENT_HIT_TEST:
+            //TODO: NOT IMPLEMENTED
             break;
     default:
         // Unexpected event type!
