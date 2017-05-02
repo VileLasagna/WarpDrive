@@ -5,7 +5,6 @@
     #include <Windows.h>
 #endif //WIN32
 #include <GL/gl.h>
-#include "glm.h"
 
 class GLMesh
 {
@@ -20,13 +19,13 @@ public:
 	GLMesh();
 	GLMesh(const char* objfile, bool Textured = true, bool Smooth = true, bool TwoSidedPolys = false);
     bool load(const char* objfile, bool Textured = true, bool Smooth = true, bool TwoSidedPolys = false);
-	bool setSize(float f) {glmUnitize(mesh); glmScale(mesh,f); return true;}
+    bool setSize(float f);
     void draw() const;
 	~GLMesh();
 
 private:
-
-	GLMmodel* mesh;
+    //GLMmodel
+    void* mesh;
 	GLuint flags;
 
 

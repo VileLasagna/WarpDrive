@@ -1,5 +1,6 @@
 #include "glmesh.hpp"
 
+#include "glm.h"
 
 
 GLMesh::GLMesh()
@@ -61,12 +62,19 @@ bool GLMesh::load(const char *objfile, bool Textured, bool Smooth , bool TwoSide
 	return true;
 }
 
+bool GLMesh::setSize(float f)
+{
+    glmUnitize( reinterpret_cast<GLMmodel*>(mesh) );
+    glmScale(reinterpret_cast<GLMmodel*>(mesh),f);
+    return true;
+}
+
 void GLMesh::draw() const
 {
-	glmDraw(mesh, flags);
+    glmDraw(reinterpret_cast<GLMmodel*>(mesh), flags);
 }
 
 GLMesh::~GLMesh()
 {
-	glmDelete(mesh);
+    glmDelete(reinterpret_cast<GLMmodel*>(mesh));
 }
