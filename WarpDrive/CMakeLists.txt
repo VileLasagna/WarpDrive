@@ -1,83 +1,122 @@
 cmake_minimum_required(VERSION 3.7)
 project(WarpDrive)
 
-set(WARPDRIVE_HEADERS   ${WARPDRIVE_HEADERS}
-                        3dmaths/billboard.hpp
-                        3dmaths/glm.h
-                        3dmaths/glmesh.hpp
-                        3dmaths/glmint.h
-                        3dmaths/material.hpp
-                        3dmaths/model.hpp
-                        3dmaths/modelloader.hpp
-                        3dmaths/vertex.hpp
-                        3dmaths/viewport.hpp
-                        
-                        basemaths/capsule.hpp
-                        basemaths/cliplinesegbox.hpp
-                        basemaths/frustrum.hpp
-                        basemaths/lineseg.hpp
-                        basemaths/matrix44.hpp
-                        basemaths/plane.hpp
-                        basemaths/quaternion.hpp
-                        basemaths/rect.hpp
-                        basemaths/sphere.hpp
-                        basemaths/tri.hpp
-                        basemaths/vec2.hpp
-                        basemaths/vec3.hpp
-                        basemaths/vec4.hpp
-                        basemaths/ray.hpp
-                        
-                        basesystem/configloader.hpp
-                        basesystem/displaymanager.hpp
-                        basesystem/err.hpp
-                        basesystem/factory.hpp
-                        basesystem/filemanager.hpp
-                        basesystem/game.hpp
-                        basesystem/gameobject.hpp
-                        basesystem/gamestate.hpp
-                        basesystem/managedfile.hpp
-                        basesystem/memory.hpp
-                        basesystem/score.hpp
-                        basesystem/stringproc.hpp
-                        basesystem/ttfmanager.hpp
-                        basesystem/sdleventhandler.hpp
-                        basesystem/sdlfontmanager.hpp
-                        basesystem/util.hpp
-                        
-                        display/camera.hpp
-                        display/colour.hpp
-                        display/sdlimage.hpp
-                        display/rgbacolour.hpp
-                        display/rgbcolour.hpp
-                        display/sdlttf.hpp
-                        display/texture.hpp
-                        display/sprite.hpp
-                        display/texturesheet.hpp
-                        display/glshader.hpp
-                        display/animsheet.hpp
-                        
-                        events/glcolorevent.hpp
-                        events/objectevent.hpp
-                        events/panandtiltevent.hpp
-                        events/timedmoveevent.hpp
-                        events/timedremoveevent.hpp
-                        events/timeline.hpp
-                        events/timelinekey.hpp
-                        events/tkaddevent.hpp
-                        events/tkmoveobject.hpp
-                        events/tkplaymusic.hpp
-                        events/tkuseobject.hpp
-                        
-                        physics/alignedboundingbox.hpp
-                        physics/collisionsystem.hpp
-                        physics/octree.hpp
-                        physics/voxelgrid.hpp
-                        physics/bruteforcecollisioncheck.hpp
-                        physics/rdccollisioncheck.hpp
-                        physics/rbpcollision.hpp
-                        
-                        sound/soundfx.hpp
-                        sound/soundmanager.hpp
+
+#[[
+Separating into groups like this is pretty awkward/overkill, yeah however
+I don't want to use install(DIRECTORY ... FILE_MATCHING_PATTERN *.hpp)
+The reasoning behind this is that it would prevent me from having private
+headers using that name scheme and ultimately make the deployment more finicky
+]]
+
+set(WARPDRIVE_HEADERS_3DMATHS   ${WARPDRIVE_HEADERS_3DMATHS}
+                                3dmaths/billboard.hpp
+                                3dmaths/glmesh.hpp
+                                3dmaths/material.hpp
+                                3dmaths/model.hpp
+                                3dmaths/modelloader.hpp
+                                3dmaths/vertex.hpp
+                                3dmaths/viewport.hpp
+)
+
+set(WARPDRIVE_HEADERS_BASEMATHS ${WARPDRIVE_HEADERS_BASEMATHS}
+
+                                basemaths/capsule.hpp
+                                basemaths/cliplinesegbox.hpp
+                                basemaths/frustrum.hpp
+                                basemaths/lineseg.hpp
+                                basemaths/matrix44.hpp
+                                basemaths/plane.hpp
+                                basemaths/quaternion.hpp
+                                basemaths/rect.hpp
+                                basemaths/sphere.hpp
+                                basemaths/tri.hpp
+                                basemaths/vec2.hpp
+                                basemaths/vec3.hpp
+                                basemaths/vec4.hpp
+                                basemaths/ray.hpp
+)
+
+set(WARPDRIVE_HEADERS_SYSTEM   ${WARPDRIVE_HEADERS_SYSTEM}
+
+                                basesystem/configloader.hpp
+                                basesystem/displaymanager.hpp
+                                basesystem/err.hpp
+                                basesystem/factory.hpp
+                                basesystem/filemanager.hpp
+                                basesystem/game.hpp
+                                basesystem/gameobject.hpp
+                                basesystem/gamestate.hpp
+                                basesystem/managedfile.hpp
+                                basesystem/memory.hpp
+                                basesystem/score.hpp
+                                basesystem/stringproc.hpp
+                                basesystem/ttfmanager.hpp
+                                basesystem/sdleventhandler.hpp
+                                basesystem/sdlfontmanager.hpp
+                                basesystem/util.hpp
+)
+
+set(WARPDRIVE_HEADERS_DISPLAY   ${WARPDRIVE_HEADERS_DISPLAY}
+
+                                display/camera.hpp
+                                display/colour.hpp
+                                display/sdlimage.hpp
+                                display/rgbacolour.hpp
+                                display/rgbcolour.hpp
+                                display/sdlttf.hpp
+                                display/texture.hpp
+                                display/sprite.hpp
+                                display/texturesheet.hpp
+                                display/glshader.hpp
+                                display/animsheet.hpp
+)
+
+set(WARPDRIVE_HEADERS_EVENTS   ${WARPDRIVE_HEADERS_EVENTS}
+
+                                events/glcolorevent.hpp
+                                events/objectevent.hpp
+                                events/panandtiltevent.hpp
+                                events/timedmoveevent.hpp
+                                events/timedremoveevent.hpp
+                                events/timeline.hpp
+                                events/timelinekey.hpp
+                                events/tkaddevent.hpp
+                                events/tkmoveobject.hpp
+                                events/tkplaymusic.hpp
+                                events/tkuseobject.hpp
+)
+
+set(WARPDRIVE_HEADERS_PHYSICS   ${WARPDRIVE_HEADERS_PHYSICS}
+
+                                physics/alignedboundingbox.hpp
+                                physics/collisionsystem.hpp
+                                physics/octree.hpp
+                                physics/voxelgrid.hpp
+                                physics/bruteforcecollisioncheck.hpp
+                                physics/rdccollisioncheck.hpp
+                                physics/rbpcollision.hpp
+)
+
+set(WARPDRIVE_HEADERS_SOUND   ${WARPDRIVE_HEADERS_SOUND}
+
+                                sound/soundfx.hpp
+                                sound/soundmanager.hpp
+)
+
+set(WARPDRIVE_HEADERS_PUBLIC    ${WARPDRIVE_HEADERS_3DMATHS}
+                                ${WARPDRIVE_HEADERS_BASEMATHS}
+                                ${WARPDRIVE_HEADERS_SYSTEM}
+                                ${WARPDRIVE_HEADERS_DISPLAY}
+                                ${WARPDRIVE_HEADERS_EVENTS}
+                                ${WARPDRIVE_HEADERS_PHYSICS}
+                                ${WARPDRIVE_HEADERS_SOUND}
+)
+
+set(WARPDRIVE_HEADERS_PRIVATE   ${WARPDRIVE_HEADERS_PRIVATE}
+
+                                3dmaths/glm.h
+                                3dmaths/glmint.h
 )
 
 set(WARPDRIVE_SOURCES   ${WARPDRIVE_SOURCES}
@@ -146,7 +185,7 @@ set(WARPDRIVE_SOURCES   ${WARPDRIVE_SOURCES}
                         sound/soundmanager.cpp
         )
 
-add_library(${PROJECT_NAME} ${WARPDRIVE_HEADERS} ${WARPDRIVE_SOURCES})
+add_library(${PROJECT_NAME} ${WARPDRIVE_HEADERS_PUBLIC} ${WARPDRIVE_HEADERS_PRIVATE} ${WARPDRIVE_SOURCES})
 target_compile_features(${PROJECT_NAME} PUBLIC
                                             cxx_constexpr
                                             cxx_relaxed_constexpr
