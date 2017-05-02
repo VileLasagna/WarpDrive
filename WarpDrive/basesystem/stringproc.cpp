@@ -1,9 +1,9 @@
-#include "basesystem/stringproc.hpp"
+#include "WarpDrive/basesystem/stringproc.hpp"
 
 #include <assert.h>
 #include <cmath>
 
-#include "basesystem/util.hpp"
+#include "WarpDrive/basesystem/util.hpp"
 
 
 bool StringProc::trim(std::string *s)

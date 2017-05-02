@@ -7,9 +7,9 @@
 #include <fstream>
 #include <ios>
 
-#include "basesystem/stringproc.hpp"
-#include "basemaths/vec2.hpp"
-#include "basesystem/err.hpp"
+#include "WarpDrive/basesystem/stringproc.hpp"
+#include "WarpDrive/basemaths/vec2.hpp"
+#include "WarpDrive/basesystem/err.hpp"
 
 class ManagedFile;
 

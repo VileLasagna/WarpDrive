@@ -1,10 +1,10 @@
 #ifndef WD_MODEL_HPP_DEFINED
 #define WD_MODEL_HPP_DEFINED
 
-#include "3dmaths/vertex.hpp"
-#include "display/texture.hpp"
-#include "basesystem/gameobject.hpp"
-#include "3dmaths/modelloader.hpp"
+#include "WarpDrive/3dmaths/vertex.hpp"
+#include "WarpDrive/display/texture.hpp"
+#include "WarpDrive/basesystem/gameobject.hpp"
+#include "WarpDrive/3dmaths/modelloader.hpp"
 
 #include <string>
 #include <vector>

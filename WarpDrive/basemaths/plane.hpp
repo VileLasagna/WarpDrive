@@ -3,8 +3,8 @@
 
 #include <utility>
 
-#include "basemaths/vec3.hpp"
-#include "display/texture.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
+#include "WarpDrive/display/texture.hpp"
 
 class Plane
 {

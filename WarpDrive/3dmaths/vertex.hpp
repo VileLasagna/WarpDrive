@@ -2,7 +2,7 @@
 #define WD_VERTEX_HPP_DEFINED
 
 
-#include "display/colour.hpp"
+#include "WarpDrive/display/colour.hpp"
 
 
 class Vertex

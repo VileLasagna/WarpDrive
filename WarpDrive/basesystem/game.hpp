@@ -10,14 +10,14 @@
 #include <random>
 #include <chrono>
 
-#include "basesystem/err.hpp"
-#include "basesystem/stringproc.hpp"
-#include "basesystem/displaymanager.hpp"
-#include "basesystem/gamestate.hpp"
-#include "basesystem/ttfmanager.hpp"
-#include "basesystem/gameobject.hpp"
-#include "basesystem/factory.hpp"
-#include "basesystem/configloader.hpp"
+#include "WarpDrive/basesystem/err.hpp"
+#include "WarpDrive/basesystem/stringproc.hpp"
+#include "WarpDrive/basesystem/displaymanager.hpp"
+#include "WarpDrive/basesystem/gamestate.hpp"
+#include "WarpDrive/basesystem/ttfmanager.hpp"
+#include "WarpDrive/basesystem/gameobject.hpp"
+#include "WarpDrive/basesystem/factory.hpp"
+#include "WarpDrive/basesystem/configloader.hpp"
 
 enum class ObjIterator : short {ALL = 0, ACTIVE = 1, DRAWN = 2};
 

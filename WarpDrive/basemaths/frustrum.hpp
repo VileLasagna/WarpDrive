@@ -2,8 +2,8 @@
 #define WD_FRUSTRUM_HPP_DEFINED
 
 
-#include "basemaths/matrix44.hpp"
-#include "physics/alignedboundingbox.hpp"
+#include "WarpDrive/basemaths/matrix44.hpp"
+#include "WarpDrive/physics/alignedboundingbox.hpp"
 
 class Frustrum
 {

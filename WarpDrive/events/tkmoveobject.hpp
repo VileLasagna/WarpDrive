@@ -2,8 +2,8 @@
 #define WD_TK_MOVE_OBJECT_HPP_DEFINED
 
 #include <string>
-#include "events/timelinekey.hpp"
-#include "basemaths/vec3.hpp"
+#include "WarpDrive/events/timelinekey.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
 
 class TKMoveObject: public TimelineKey
 {

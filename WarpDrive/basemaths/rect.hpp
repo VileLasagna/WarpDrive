@@ -1,7 +1,7 @@
 #ifndef WD_RECT_HPP_DEFINED
 #define WD_RECT_HPP_DEFINED
 
-#include "display/rgbacolour.hpp"
+#include "WarpDrive/display/rgbacolour.hpp"
 
 template <typename T>
 class Rect

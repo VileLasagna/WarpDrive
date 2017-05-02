@@ -3,8 +3,8 @@
 
 #include <cstdint>
 
-#include "events/objectevent.hpp"
-#include "basemaths/vec3.hpp"
+#include "WarpDrive/events/objectevent.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
 
 class PanAndTiltEvent: public GOEvent
 {

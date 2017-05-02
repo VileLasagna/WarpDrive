@@ -1,6 +1,6 @@
-#include "events/timedmoveevent.hpp"
-#include "basesystem/gameobject.hpp"
-#include "basesystem/displaymanager.hpp"
+#include "WarpDrive/events/timedmoveevent.hpp"
+#include "WarpDrive/basesystem/gameobject.hpp"
+#include "WarpDrive/basesystem/displaymanager.hpp"
 
 
 

@@ -4,9 +4,9 @@
 #include <vector>
 #include <array>
 
-#include "basesystem/gamestate.hpp"
-#include "display/camera.hpp"
-#include "display/glshader.hpp"
+#include "WarpDrive/basesystem/gamestate.hpp"
+#include "WarpDrive/display/camera.hpp"
+#include "WarpDrive/display/glshader.hpp"
 
 class GLDemoState : public GameState
 {

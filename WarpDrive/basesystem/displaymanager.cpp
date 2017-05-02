@@ -1,10 +1,10 @@
-#include "basesystem/displaymanager.hpp"
+#include "WarpDrive/basesystem/displaymanager.hpp"
 
 #include <assert.h>
 #include <iostream>
 
-#include "basesystem/game.hpp"
-#include "basesystem/stringproc.hpp"
+#include "WarpDrive/basesystem/game.hpp"
+#include "WarpDrive/basesystem/stringproc.hpp"
 
 
 DisplayManager::DisplayManager():

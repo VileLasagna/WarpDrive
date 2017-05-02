@@ -1,6 +1,6 @@
-#include "physics/alignedboundingbox.hpp"
-#include "basemaths/vec3.hpp"
-#include "basemaths/cliplinesegbox.hpp"
+#include "WarpDrive/physics/alignedboundingbox.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
+#include "WarpDrive/basemaths/cliplinesegbox.hpp"
 #ifdef WIN32
     #include <Windows.h>
 #endif //WIN32

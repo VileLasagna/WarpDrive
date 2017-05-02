@@ -7,9 +7,9 @@
 
 #include <utility>
 
-#include "basemaths/vec3.hpp"
-#include "basemaths/ray.hpp"
-#include "basesystem/gameobject.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
+#include "WarpDrive/basemaths/ray.hpp"
+#include "WarpDrive/basesystem/gameobject.hpp"
 
 class Camera: public GameObject
 {

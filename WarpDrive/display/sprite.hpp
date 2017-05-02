@@ -5,12 +5,12 @@
 #include <vector>
 #include <string>
 
-#include "basemaths/vec2.hpp"
-#include "basemaths/vec3.hpp"
-#include "display/animsheet.hpp"
-#include "basesystem/stringproc.hpp"
-#include "basemaths/rect.hpp"
-#include "basesystem/displaymanager.hpp"
+#include "WarpDrive/basemaths/vec2.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
+#include "WarpDrive/display/animsheet.hpp"
+#include "WarpDrive/basesystem/stringproc.hpp"
+#include "WarpDrive/basemaths/rect.hpp"
+#include "WarpDrive/basesystem/displaymanager.hpp"
 
 class Sprite
 {

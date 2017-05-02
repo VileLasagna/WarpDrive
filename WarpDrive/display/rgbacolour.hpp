@@ -1,7 +1,7 @@
 #ifndef WD_SDLRGBACOLOUR_HPP_DEFINED
 #define WD_SDLRGBACOLOUR_HPP_DEFINED
 
-#include "display/rgbcolour.hpp"
+#include "WarpDrive/display/rgbcolour.hpp"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wconversion"

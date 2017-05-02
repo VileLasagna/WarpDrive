@@ -9,8 +9,8 @@
 #include <GL/glu.h>
 
 
-#include "basemaths/vec3.hpp"
-#include "display/rgbcolour.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
+#include "WarpDrive/display/rgbcolour.hpp"
 
 //Forward Declarations
 class GLUquadric;

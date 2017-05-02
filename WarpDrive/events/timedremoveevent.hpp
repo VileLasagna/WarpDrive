@@ -1,8 +1,8 @@
 #ifndef WD_TIMED_REMOVE_EVENT_HPP_DEFINED
 #define WD_TIMED_REMOVE_EVENT_HPP_DEFINED
 
-#include "events/objectevent.hpp"
-#include "basesystem/gameobject.hpp"
+#include "WarpDrive/events/objectevent.hpp"
+#include "WarpDrive/basesystem/gameobject.hpp"
 
 class TimedRemoveEvent:public GOEvent
 {

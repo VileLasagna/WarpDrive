@@ -1,11 +1,11 @@
-#include "sound/soundmanager.hpp"
+#include "WarpDrive/sound/soundmanager.hpp"
 
 #include <time.h>
 #include <math.h>
 
-#include "sound/soundfx.hpp"
-#include "basesystem/err.hpp"
-#include "basesystem/game.hpp"
+#include "WarpDrive/sound/soundfx.hpp"
+#include "WarpDrive/basesystem/err.hpp"
+#include "WarpDrive/basesystem/game.hpp"
 
 
 SoundManager::SoundManager()

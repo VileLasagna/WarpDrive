@@ -8,10 +8,10 @@
 #include <SDL2/SDL.h>
 #include <string>
 
-#include "display/rgbcolour.hpp"
-#include "basesystem/displaymanager.hpp"
-#include "basemaths/rect.hpp"
-#include "basemaths/vec2.hpp"
+#include "WarpDrive/display/rgbcolour.hpp"
+#include "WarpDrive/basesystem/displaymanager.hpp"
+#include "WarpDrive/basemaths/rect.hpp"
+#include "WarpDrive/basemaths/vec2.hpp"
 
 class SDLImage
 {

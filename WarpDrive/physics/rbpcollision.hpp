@@ -1,7 +1,7 @@
 #ifndef RBPCOLLISION_HPP
 #define RBPCOLLISION_HPP
 
-#include "basesystem/gameobject.hpp"
+#include "WarpDrive/basesystem/gameobject.hpp"
 
 /**
  * @brief Class for simulating simple Rigid Body Physics

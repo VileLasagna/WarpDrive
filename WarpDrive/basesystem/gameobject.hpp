@@ -3,13 +3,13 @@
 
 #include <vector>
 
-#include "basesystem/filemanager.hpp"
-#include "basesystem/managedfile.hpp"
-#include "basesystem/displaymanager.hpp"
-#include "basemaths/vec3.hpp"
-#include "basemaths/sphere.hpp"
-#include "physics/alignedboundingbox.hpp"
-#include "events/objectevent.hpp"
+#include "WarpDrive/basesystem/filemanager.hpp"
+#include "WarpDrive/basesystem/managedfile.hpp"
+#include "WarpDrive/basesystem/displaymanager.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
+#include "WarpDrive/basemaths/sphere.hpp"
+#include "WarpDrive/physics/alignedboundingbox.hpp"
+#include "WarpDrive/events/objectevent.hpp"
 
 class GameObject
 {

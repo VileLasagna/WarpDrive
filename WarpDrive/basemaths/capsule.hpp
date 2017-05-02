@@ -1,9 +1,9 @@
 #ifndef WD_CAPSULE_SHAPE_HPP_DEFINED
 #define WD_CAPSULE_SHAPE_HPP_DEFINED
 
-#include "basemaths/sphere.hpp"
-#include "basemaths/lineseg.hpp"
-#include "basemaths/vec3.hpp"
+#include "WarpDrive/basemaths/sphere.hpp"
+#include "WarpDrive/basemaths/lineseg.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
 
 
 class Capsule

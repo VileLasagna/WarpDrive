@@ -1,8 +1,8 @@
 #ifndef WD_RAY_HPP_DEFINED
 #define WD_RAY_HPP_DEFINED
 
-#include "basemaths/vec3.hpp"
-#include "basemaths/lineseg.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
+#include "WarpDrive/basemaths/lineseg.hpp"
 
 
 class Ray

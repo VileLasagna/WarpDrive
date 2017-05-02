@@ -3,8 +3,8 @@
     #include <windows.h>
 #endif //WIN32
 
-#include "basesystem/displaymanager.hpp"
-#include "basesystem/game.hpp"
+#include "WarpDrive/basesystem/displaymanager.hpp"
+#include "WarpDrive/basesystem/game.hpp"
 #include "gldemostate.hpp"
 
 

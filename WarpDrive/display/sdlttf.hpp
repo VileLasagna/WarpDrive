@@ -4,8 +4,8 @@
 #include <string>
 #include <SDL2/SDL_ttf.h>
 
-#include "basesystem/displaymanager.hpp"
-#include "display/texture.hpp"
+#include "WarpDrive/basesystem/displaymanager.hpp"
+#include "WarpDrive/display/texture.hpp"
 
 class SDLTTF
 {

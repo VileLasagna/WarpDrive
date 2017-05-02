@@ -1,4 +1,4 @@
-#include "basemaths/plane.hpp"
+#include "WarpDrive/basemaths/plane.hpp"
 
 #ifdef WIN32
     #include <Windows.h>
@@ -7,8 +7,8 @@
 
 #include <GL/glew.h>
 #include <SDL2/SDL_opengl.h>
-#include "basemaths/matrix44.hpp"
-#include "basemaths/quaternion.hpp"
+#include "WarpDrive/basemaths/matrix44.hpp"
+#include "WarpDrive/basemaths/quaternion.hpp"
 #include <GL/glu.h>
 
 Plane::Plane()

@@ -1,10 +1,10 @@
 #ifndef WD_SCORE_HPP_DEFINED
 #define WD_SCORE_HPP_DEFINED
 
-#include "basesystem/gameobject.hpp"
-#include "3dmaths/billboard.hpp"
-#include "display/texture.hpp"
-#include "display/sdlttf.hpp"
+#include "WarpDrive/basesystem/gameobject.hpp"
+#include "WarpDrive/3dmaths/billboard.hpp"
+#include "WarpDrive/display/texture.hpp"
+#include "WarpDrive/display/sdlttf.hpp"
 #include <set>
 
 class Score:public GameObject

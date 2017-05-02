@@ -1,8 +1,8 @@
-#include "basesystem/score.hpp"
-#include "basesystem/game.hpp"
-#include "basesystem/displaymanager.hpp"
-#include "basesystem/ttfmanager.hpp"
-#include "basesystem/stringproc.hpp"
+#include "WarpDrive/basesystem/score.hpp"
+#include "WarpDrive/basesystem/game.hpp"
+#include "WarpDrive/basesystem/displaymanager.hpp"
+#include "WarpDrive/basesystem/ttfmanager.hpp"
+#include "WarpDrive/basesystem/stringproc.hpp"
 
 
 Score::Score()

@@ -1,5 +1,5 @@
-#include "sound/soundfx.hpp"
-#include "basesystem/err.hpp"
+#include "WarpDrive/sound/soundfx.hpp"
+#include "WarpDrive/basesystem/err.hpp"
 
 
 SoundFX::SoundFX(SDL_RWops* source)

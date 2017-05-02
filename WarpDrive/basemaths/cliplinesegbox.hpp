@@ -1,8 +1,8 @@
 #ifndef WD_CLIP_LINE_SEG_BOX_HPP_DEFINED
 #define WD_CLIP_LINE_SEG_BOX_HPP_DEFINED
 
-#include "basemaths/lineseg.hpp"
-#include "physics/alignedboundingbox.hpp"
+#include "WarpDrive/basemaths/lineseg.hpp"
+#include "WarpDrive/physics/alignedboundingbox.hpp"
 
 // Clips the given line segment against the given bounding box.
 // Returns false if the line is completely clipped; returns true

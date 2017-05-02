@@ -2,7 +2,7 @@
 #ifndef WD_MATERIAL_HPP_DEFINED
 #define WD_MATERIAL_HPP_DEFINED
 
-#include "basemaths/vec3.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
 
 
 class Material

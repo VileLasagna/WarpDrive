@@ -1,9 +1,9 @@
 #ifndef WD_TIMED_MOVE_EVENT_HPP_DEFINED
 #define WD_TIMED_MOVE_EVENT_HPP_DEFINED
 
-#include "events/objectevent.hpp"
-#include "basesystem/displaymanager.hpp"
-#include "basemaths/vec3.hpp"
+#include "WarpDrive/events/objectevent.hpp"
+#include "WarpDrive/basesystem/displaymanager.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
 
 class TimedMoveEvent: public GOEvent
 {

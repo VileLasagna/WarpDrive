@@ -3,9 +3,9 @@
 
 #include <string>
 
-#include "basesystem/game.hpp"
-#include "events/timelinekey.hpp"
-#include "sound/soundmanager.hpp"
+#include "WarpDrive/basesystem/game.hpp"
+#include "WarpDrive/events/timelinekey.hpp"
+#include "WarpDrive/sound/soundmanager.hpp"
 
 class TKPlayMusic: public TimelineKey
 {

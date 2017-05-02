@@ -1,4 +1,4 @@
-#include "display/sdlimage.hpp"
+#include "WarpDrive/display/sdlimage.hpp"
 #ifdef _WIN32
 	#include <SDL2/SDL_Image.h>
 #else
