@@ -1,6 +1,8 @@
 #include "WarpDrive/sound/soundfx.hpp"
 #include "WarpDrive/basesystem/err.hpp"
 
+#include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL.h>
 
 SoundFX::SoundFX(SDL_RWops* source)
 {

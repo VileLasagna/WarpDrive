@@ -5,6 +5,7 @@
 #include "WarpDrive/3dmaths/billboard.hpp"
 #include "WarpDrive/display/texture.hpp"
 #include "WarpDrive/display/sdlttf.hpp"
+
 #include <set>
 
 class Score:public GameObject

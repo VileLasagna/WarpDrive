@@ -7,10 +7,10 @@
 #include <vector>
 #include <set>
 #include <cstdio>
-#include <SDL2/SDL_mixer.h>
-#include <SDL2/SDL.h>
 
 class SoundFX;
+struct SDL_RWops;
+using Mix_Music = struct _Mix_Music;
 
 class SoundManager
 {
@@ -79,7 +79,7 @@ protected:
 	std::vector<SoundFX*> channels; //A pointer to an effect currently being played at [channel] or NULL if the channel is free
 	Mix_Music* music;
 	int musLoops;
-	Uint8 musVolume;
+    uint8_t musVolume;
 	unsigned int musPos;
     std::string musicOnQueue;
     std::string currentMusic;

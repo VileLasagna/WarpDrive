@@ -2,10 +2,13 @@
 #define WD_SDLTTF_HPP_DEFINED
 
 #include <string>
-#include <SDL2/SDL_ttf.h>
 
 #include "WarpDrive/basesystem/displaymanager.hpp"
 #include "WarpDrive/display/texture.hpp"
+#include "WarpDrive/display/rgbacolour.hpp"
+
+using TTF_Font = struct _TTF_Font;
+struct SDL_Color;
 
 class SDLTTF
 {
@@ -20,7 +23,7 @@ public:
 private:
 
 	TTF_Font* font;
-	SDL_Colour colour; //standard = white
+    SDL_Color* color; //standard = white
 };
 
 #endif //WD_SDLTTF_HPP_DEFINED

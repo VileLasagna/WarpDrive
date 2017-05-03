@@ -1,6 +1,9 @@
 #include <assert.h>
 #include "WarpDrive/display/sdlttf.hpp"
 
+#include <SDL2/SDL_pixels.h>
+#include <SDL2/SDL_ttf.h>
+
 struct FontInitialiser
 {
 	FontInitialiser()
@@ -10,16 +13,9 @@ struct FontInitialiser
 };
 
 SDLTTF::SDLTTF()
-{
-    // First call to this ctor will call initialisation function
-	//...NO! Cause I moved it to the manager.
-	//static FontInitialiser fi;
-	SDL_Colour c = {255,255,255,255};
-	//SDL_Colour c = {0,0,0,255};
-	colour = c;
-
-	font = 0;
-}
+   :color{new SDL_Colour{255,255,255,255}},
+    font{nullptr}
+{}
 
 SDLTTF::~SDLTTF()
 {
@@ -27,6 +23,10 @@ SDLTTF::~SDLTTF()
 	{
 		TTF_CloseFont(font);
 	}
+    if(color)
+    {
+        delete color;
+    }
 }
 
 bool SDLTTF::load(const std::string& fontFileName, int pointSize)
@@ -43,7 +43,7 @@ void SDLTTF::draw(const std::string& text, Texture* target) const
 	SDL_Surface* pSurface = TTF_RenderText_Blended(
 		font, 
 		text.c_str(), 
-		colour);
+        *color);
 
     target->createFromSDLSurface(pSurface);
 

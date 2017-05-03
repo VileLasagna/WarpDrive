@@ -3,6 +3,9 @@
 #include <time.h>
 #include <math.h>
 
+#include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL.h>
+
 #include "WarpDrive/sound/soundfx.hpp"
 #include "WarpDrive/basesystem/err.hpp"
 #include "WarpDrive/basesystem/game.hpp"

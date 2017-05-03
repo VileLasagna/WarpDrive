@@ -139,11 +139,11 @@ int Sprite::playAnimation(int i)
 	return current.X()+1;
 }
 
-void Sprite::setDrawAlpha(unsigned int alpha)
+void Sprite::setDrawAlpha(uint8_t alpha)
 {
 	for(unsigned int i = 0; i < sheets.size(); i++)
 	{
-        sheets[i]->setDrawAlpha( static_cast<Uint8>(alpha) );
+        sheets[i]->setDrawAlpha( static_cast<uint8_t>(alpha) );
 	}
 }
 

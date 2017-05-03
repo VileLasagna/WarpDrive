@@ -2,6 +2,8 @@
 #include "WarpDrive/basesystem/sdleventhandler.hpp"
 #include "WarpDrive/basesystem/displaymanager.hpp"
 
+#include <SDL2/SDL.h>
+
 void SDLEventHandler::update()
 {
 	SDL_Event event;

@@ -7,17 +7,15 @@
 
 #include <GL/glew.h>
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_opengl.h>
-
-
 #include <utility>
 #include <GL/glu.h>
 #include "WarpDrive/basemaths/matrix44.hpp"
 #include <string>
 
 struct SDL_Surface;
-
+struct SDL_Window;
+struct SDL_Renderer;
+using SDL_GLContext = void*;
 
 class DisplayManager
 {
@@ -95,8 +93,8 @@ private:
     GLdouble* projection;
     GLint* viewport;
 
-	Uint32 fullscreen;
-	Uint32 videoFlags;
+    uint32_t fullscreen;
+    uint32_t videoFlags;
 
 };
 

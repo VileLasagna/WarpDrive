@@ -2,6 +2,7 @@
 #define WD_TK_MOVE_OBJECT_HPP_DEFINED
 
 #include <string>
+
 #include "WarpDrive/events/timelinekey.hpp"
 #include "WarpDrive/basemaths/vec3.hpp"
 

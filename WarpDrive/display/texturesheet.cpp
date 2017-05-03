@@ -1,6 +1,10 @@
 #include "WarpDrive/display/texturesheet.hpp"
 #include <assert.h>
 
+#include<SDL2/SDL_surface.h>
+#include<SDL2/SDL_rect.h>
+#include<SDL2/SDL_render.h>
+
 TextureSheet::TextureSheet()
 {
     numCells = Vec2i(0,0);
