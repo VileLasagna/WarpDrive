@@ -27,7 +27,7 @@ private:
     float time;
 	Billboard quad;
 	SDLTTF* font;
-	Texture* display;
+    WDTexture* display;
 };
 
 #endif //WD_SCORE_HPP_DEFINED

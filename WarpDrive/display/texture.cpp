@@ -10,11 +10,11 @@
 
 #include <assert.h>
 
-Texture::Texture():
+WDTexture::WDTexture():
 	textureId{0},
 	initialized{false} {}
 
-bool Texture::loadTexture(const std::string& filename)
+bool WDTexture::loadTexture(const std::string& filename)
 {
 
 	SDL_Surface* surf = IMG_Load(filename.c_str());
@@ -26,7 +26,7 @@ bool Texture::loadTexture(const std::string& filename)
     return true;
 }
 
-bool Texture::createFromSDLSurface(SDL_Surface* surf)
+bool WDTexture::createFromSDLSurface(SDL_Surface* surf)
 {
 	glGenTextures(1, &textureId);
 	glBindTexture(GL_TEXTURE_2D, textureId);
@@ -101,7 +101,7 @@ bool Texture::createFromSDLSurface(SDL_Surface* surf)
 	return true;
 }
 
-Texture::~Texture()
+WDTexture::~WDTexture()
 {
     if (initialized)
     {
@@ -109,14 +109,14 @@ Texture::~Texture()
     }
 }
 
-void Texture::useThisTexture()
+void WDTexture::useThisTexture()
 {
 	glEnable(GL_TEXTURE_2D);
 
     glBindTexture(GL_TEXTURE_2D, textureId);
 }
 
-void Texture::useNoTexture()
+void WDTexture::useNoTexture()
 {
 	glDisable(GL_TEXTURE_2D);
 }

@@ -12,12 +12,12 @@
 
 struct SDL_Surface;
 
-class Texture
+class WDTexture
 {
 public:
 
-    Texture();
-	~Texture();
+    WDTexture();
+    ~WDTexture();
 
     bool loadTexture(const std::string& filename);
     bool createFromSDLSurface(SDL_Surface* surf);

@@ -36,7 +36,7 @@ bool SDLTTF::load(const std::string& fontFileName, int pointSize)
 	return (font != 0);
 }
 
-void SDLTTF::draw(const std::string& text, Texture* target) const
+void SDLTTF::draw(const std::string& text, WDTexture* target) const
 {
 	assert(font);
 

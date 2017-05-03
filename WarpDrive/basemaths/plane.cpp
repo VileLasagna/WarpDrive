@@ -51,7 +51,7 @@ Plane::Plane (float A, float B, float C, float D)
     tex = nullptr;
 }
 
-void Plane::useTexture(Texture *t, bool Tile)
+void Plane::useTexture(WDTexture *t, bool Tile)
 {
     tex = t;
 	tile = Tile;

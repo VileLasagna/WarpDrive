@@ -25,7 +25,7 @@ public:
 private:
 
 	std::vector<Vertex> VertexData;
-	std::vector<Texture> Tex;
+	std::vector<WDTexture> Tex;
 
 };
 

@@ -17,7 +17,7 @@ public:
 	~SDLTTF();
 
     bool load(const std::string& fontFileName, int pointSize);
-    void draw(const std::string& text, Texture* target) const;
+    void draw(const std::string& text, WDTexture* target) const;
 	//void setColour( int r, int g, int b);
 
 private:
