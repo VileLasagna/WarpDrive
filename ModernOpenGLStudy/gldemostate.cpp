@@ -13,10 +13,11 @@
 
 
 GLDemoState::GLDemoState():
-    vertices{new GLfloat[18]{    // Positions         // Colors
-                                0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // Bottom Right
-                               -0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // Bottom Left
-                                0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // Top
+    vertices{new GLfloat[32]{    // Positions         // Colors         //UVs
+                                0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // Top Right
+                                0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // Bottom Right
+                               -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // Bottom Left
+                               -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // Top Left
                             }},
     indices{new GLuint[6]{  // Note that we start from 0!
                           0, 1, 3,   // First Triangle
@@ -27,6 +28,7 @@ GLDemoState::GLDemoState():
     ret = self;
     reset();
 
+    tex.loadTexture("yaranaika.jpeg");
     shaderProgram.loadVertex("verttest1.vert");
     shaderProgram.loadFragment("fragtest1.frag");
 
@@ -41,7 +43,7 @@ GLDemoState::GLDemoState():
     glBindVertexArray(VAO);
         // 2. Copy our vertices array in a buffer for OpenGL to use
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*18, vertices , GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*32, vertices , GL_STATIC_DRAW);
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*6, indices, GL_STATIC_DRAW);
@@ -49,11 +51,14 @@ GLDemoState::GLDemoState():
 
         // 3. Then set our vertex attributes pointers
         //positions
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), static_cast<GLvoid*>(0) );
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), static_cast<GLvoid*>(0) );
         glEnableVertexAttribArray(0);
         //colour
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(GLfloat), reinterpret_cast<GLvoid*>(3 * sizeof(GLfloat)) );
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), reinterpret_cast<GLvoid*>(3 * sizeof(GLfloat)) );
         glEnableVertexAttribArray(1);
+        //UVs
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), reinterpret_cast<GLvoid*>(6 * sizeof(GLfloat)) );
+        glEnableVertexAttribArray(2);
 
     //4. Unbind the VAO
     glBindVertexArray(0);
@@ -83,10 +88,11 @@ void GLDemoState::draw() const
 //    glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 
     shaderProgram.use();
+    tex.useThisTexture();
     glBindVertexArray(VAO);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    //glDrawArrays(GL_TRIANGLES, 0, 4);
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
 
 
@@ -125,151 +131,6 @@ void GLDemoState::onKeyboardEvent(const SDL_KeyboardEvent &e)
     }
     else
     {
-//        auto velocity = 20.f;
-//        auto v = cam.Velocity();
-
-
-//        if (e.keysym.sym == SDLK_LEFT)
-//        {
-//            if(e.type == SDL_KEYDOWN)
-//            {
-//                cam.setVel( Vec3f(velocity, v.Y(), v.Z()) );
-//            }
-//            else
-//            {
-//                if(e.type == SDL_KEYUP)
-//                {
-//                    cam.setVel( Vec3f(0, v.Y(), v.Z()) );
-//                }
-//            }
-//        }
-//        if (e.keysym.sym == SDLK_RIGHT)
-//        {
-//            if(e.type == SDL_KEYDOWN)
-//            {
-//                cam.setVel( Vec3f(-velocity, v.Y(), v.Z()) );
-//            }
-//            else
-//            {
-//                if(e.type == SDL_KEYUP)
-//                {
-//                    cam.setVel( Vec3f(0, v.Y(), v.Z()) );
-//                }
-//            }
-//        }
-//        if (e.keysym.sym == SDLK_DOWN)
-//        {
-//            if(e.type == SDL_KEYDOWN)
-//            {
-//                cam.setVel( Vec3f(v.X(), -velocity, v.Z()) );
-//            }
-//            else
-//            {
-//                if(e.type == SDL_KEYUP)
-//                {
-//                    cam.setVel(Vec3f(v.X(), 0, v.Z()));
-//                }
-//            }
-//        }
-//        if (e.keysym.sym == SDLK_UP)
-//        {
-//            if(e.type == SDL_KEYDOWN)
-//            {
-//                cam.setVel( Vec3f(v.X(), velocity, v.Z()) );
-//            }
-//            else
-//            {
-//                if(e.type == SDL_KEYUP)
-//                {
-//                    cam.setVel(Vec3f(v.X(), 0, v.Z()) );
-//                }
-//            }
-//        }
-
-//        if (e.keysym.sym == SDLK_a)
-//        {
-//            if(e.type == SDL_KEYDOWN)
-//            {
-//                cam.setVel( Vec3f(-velocity, v.Y(), v.Z()) );
-//            }
-//            else
-//            {
-//                if(e.type == SDL_KEYUP)
-//                {
-//                    cam.setVel( Vec3f(0, v.Y(), v.Z()) );
-//                }
-//            }
-//        }
-//        if (e.keysym.sym == SDLK_d)
-//        {
-//            if(e.type == SDL_KEYDOWN)
-//            {
-//                cam.setVel( Vec3f(velocity, v.Y(), v.Z()) );
-//            }
-//            else
-//            {
-//                if(e.type == SDL_KEYUP)
-//                {
-//                    cam.setVel( Vec3f(0, v.Y(), v.Z()) );
-//                }
-//            }
-//        }
-//        if (e.keysym.sym == SDLK_s)
-//        {
-//            if(e.type == SDL_KEYDOWN)
-//            {
-//                cam.setVel( Vec3f(v.X(), v.Y(), -velocity) );
-//            }
-//            else
-//            {
-//                if(e.type == SDL_KEYUP)
-//                {
-//                    cam.setVel(Vec3f(v.X(), v.Y(), 0));
-//                }
-//            }
-//        }
-//        if (e.keysym.sym == SDLK_w)
-//        {
-//            if(e.type == SDL_KEYDOWN)
-//            {
-//                cam.setVel( Vec3f(v.X(), v.Y(), velocity) );
-//            }
-//            else
-//            {
-//                if(e.type == SDL_KEYUP)
-//                {
-//                    cam.setVel(Vec3f(v.X(), v.Y(), 0));
-//                }
-//            }
-//        }
-//        if (e.keysym.sym == SDLK_q)
-//        {
-//            if(e.type == SDL_KEYDOWN)
-//            {
-//                cam.setVel( Vec3f(v.X(), -velocity, v.Z()) );
-//            }
-//            else
-//            {
-//                if(e.type == SDL_KEYUP)
-//                {
-//                    cam.setVel(Vec3f(v.X(), 0, v.Z()));
-//                }
-//            }
-//        }
-//        if (e.keysym.sym == SDLK_e)
-//        {
-//            if(e.type == SDL_KEYDOWN)
-//            {
-//                cam.setVel( Vec3f(v.X(), velocity, v.Z()) );
-//            }
-//            else
-//            {
-//                if(e.type == SDL_KEYUP)
-//                {
-//                    cam.setVel(Vec3f(v.X(), 0, v.Z()));
-//                }
-//            }
-//        }
 
     }
 }

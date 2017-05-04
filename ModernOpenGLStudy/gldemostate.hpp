@@ -7,6 +7,7 @@
 #include "WarpDrive/basesystem/gamestate.hpp"
 #include "WarpDrive/display/camera.hpp"
 #include "WarpDrive/display/glshader.hpp"
+#include "WarpDrive/display/texture.hpp"
 
 class GLDemoState : public GameState
 {
@@ -33,6 +34,7 @@ private:
     GLuint VAO;
     GLuint VBO;
     GLuint EBO;
+    WDTexture tex;
 
 };
 
