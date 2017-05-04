@@ -12,21 +12,22 @@
 
 WDTexture::WDTexture():
 	textureId{0},
-	initialized{false} {}
+    initialized{false}
+{}
 
-bool WDTexture::loadTexture(const std::string& filename)
+bool WDTexture::loadTexture(const std::string& filename, bool unflipY)
 {
 
 	SDL_Surface* surf = IMG_Load(filename.c_str());
-	
-	createFromSDLSurface(surf);
+
+    createFromSDLSurface(surf, unflipY);
 
     SDL_FreeSurface(surf);
 
     return true;
 }
 
-bool WDTexture::createFromSDLSurface(SDL_Surface* surf)
+bool WDTexture::createFromSDLSurface(SDL_Surface* surf, bool flipY)
 {
 	glGenTextures(1, &textureId);
 	glBindTexture(GL_TEXTURE_2D, textureId);
@@ -46,9 +47,24 @@ bool WDTexture::createFromSDLSurface(SDL_Surface* surf)
 #pragma message "TODO - URGENT"
     //SDL_SetAlpha(surf,SDL_SRCALPHA|SDL_RLEACCEL,128);
     SDL_SetSurfaceAlphaMod(surf, 128);
+    unsigned char* flipped = nullptr;
     unsigned char* data = static_cast<unsigned char*>(surf->pixels);
-	int width = surf->w;
-	int height = surf->h;
+    int width = surf->w;
+    int height = surf->h;
+    if(flipY)
+    {
+        flipped = new unsigned char[static_cast<size_t>(width * height * surf->format->BytesPerPixel)];
+        for(int row = (height-1); row >= 0; row --)
+        {
+            for(int column = 0; column < surf->pitch ; column ++ )
+            {
+                flipped[(surf->pitch *row)+column] =
+                        static_cast<unsigned char*>(surf->pixels)[(surf->pitch*((height-1) - row)) + column] ;
+            }
+        }
+        data = flipped;
+    }
+
 
     if (surf->format->BytesPerPixel == 3)
     {
@@ -98,6 +114,11 @@ bool WDTexture::createFromSDLSurface(SDL_Surface* surf)
 		Err::Log("Surface depth invalid while creating Texture");
         assert(0);
     }
+    if(flipped)
+    {
+        delete[] flipped;
+        flipped = nullptr;
+    }
 	return true;
 }
 
@@ -109,7 +130,7 @@ WDTexture::~WDTexture()
     }
 }
 
-void WDTexture::useThisTexture()
+void WDTexture::useThisTexture() const
 {
 	glEnable(GL_TEXTURE_2D);
 
