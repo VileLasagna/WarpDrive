@@ -29,6 +29,7 @@ GLDemoState::GLDemoState():
     reset();
 
 	tex.loadTexture("assets/yaranaika.jpeg");
+    tex2.loadTexture("assets/konodio.jpeg");
 	shaderProgram.loadVertex("shaders/verttest1.vert");
 	shaderProgram.loadFragment("shaders/fragtest1.frag");
 
@@ -79,8 +80,8 @@ void GLDemoState::draw() const
 //    };
 
     Game::instance()->drawObjects();
-//    static float t = 0;
-//    t+= DisplayManager::instance()->Dt();
+    static float t = 0;
+    t+= DisplayManager::instance()->Dt();
 
 //    GLfloat greenValue = ( (sin((t/1000)*6.28) /2 ) + 0.5);
 //    GLint vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
@@ -88,7 +89,16 @@ void GLDemoState::draw() const
 //    glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
 
     shaderProgram.use();
+    glActiveTexture(GL_TEXTURE0);
     tex.useThisTexture();
+    glUniform1i(glGetUniformLocation(shaderProgram.Program(), "ourTex"), 0);
+
+    glActiveTexture(GL_TEXTURE1);
+    tex2.useThisTexture();
+    glUniform1i(glGetUniformLocation(shaderProgram.Program(), "otherTex"), 1);
+
+    glUniform1f(glGetUniformLocation(shaderProgram.Program(), "factor"), sin(t/7));
+
     glBindVertexArray(VAO);
     //glDrawArrays(GL_TRIANGLES, 0, 4);
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);

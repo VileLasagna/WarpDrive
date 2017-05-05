@@ -34,7 +34,7 @@ private:
     GLuint VAO;
     GLuint VBO;
     GLuint EBO;
-    WDTexture tex;
+    WDTexture tex, tex2;
 
 };
 
