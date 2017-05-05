@@ -6,8 +6,8 @@
     #include <Windows.h>
 #endif //WIN32
 
-#include "basemaths/vec2.hpp"
-#include "display/camera.hpp"
+#include "WarpDrive/basemaths/vec2.hpp"
+#include "WarpDrive/display/camera.hpp"
 #include <GL/gl.h>
 //TODO:  Source File to be written
 

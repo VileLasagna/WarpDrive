@@ -1,8 +1,8 @@
 #ifndef WD_COLOUR_HPP_DEFINED
 #define WD_COLOUR_HPP_DEFINED
 
-#include "basemaths/vec4.hpp"
-#include "basesystem/util.hpp"
+#include "WarpDrive/basemaths/vec4.hpp"
+#include "WarpDrive/basesystem/util.hpp"
 
 class Colour
 {

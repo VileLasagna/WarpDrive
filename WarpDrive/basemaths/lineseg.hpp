@@ -2,7 +2,7 @@
 #define WD_LINE_SEGMENT_HPP_DEFINED
 
 
-#include "basemaths/vec3.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
 
 #include <utility>
 

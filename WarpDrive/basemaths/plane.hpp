@@ -3,8 +3,8 @@
 
 #include <utility>
 
-#include "basemaths/vec3.hpp"
-#include "display/texture.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
+#include "WarpDrive/display/texture.hpp"
 
 class Plane
 {
@@ -21,7 +21,7 @@ public:
     void rotateAroundOrigin(const Vec3f& angles);
     void translate(const Vec3f& dist)  noexcept;
 	void setDrawn(int X, int Y, float size);
-	void useTexture(Texture* tex, bool Tile = false); //0 Disables (DOES NOT FREE TEXTURE IN USE!)
+	void useTexture(WDTexture* tex, bool Tile = false); //0 Disables (DOES NOT FREE TEXTURE IN USE!)
 
     void setNormal(const Vec3f& N);
     void setColour(const Vec3f& rgb) noexcept;
@@ -47,7 +47,7 @@ protected:
     Vec3f origin;
 	bool drawWire;
 	bool showNormal;
-    Texture* tex;
+    WDTexture* tex;
 	bool tile;
 
 };

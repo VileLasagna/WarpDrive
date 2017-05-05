@@ -1,8 +1,8 @@
 #ifndef WD_VOXEL_GRID_HPP_DEFINED
 #define WD_VOXEL_GRID_HPP_DEFINED
 
-#include "basemaths/vec3.hpp"
-#include "physics/collisionsystem.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
+#include "WarpDrive/physics/collisionsystem.hpp"
 
 class VoxelGrid: public CollisionSystem
 {

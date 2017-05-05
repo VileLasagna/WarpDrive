@@ -3,3 +3,6 @@
 *.user
 /.project
 /bin
+/.idea/*
+/cmake-build*/*
+/redist/*

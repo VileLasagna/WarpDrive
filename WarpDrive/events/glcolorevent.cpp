@@ -1,6 +1,6 @@
 
-#include "events/glcolorevent.hpp"
-#include "basesystem/displaymanager.hpp"
+#include "WarpDrive/events/glcolorevent.hpp"
+#include "WarpDrive/basesystem/displaymanager.hpp"
 
 glColorEvent::glColorEvent(int64_t Time, float Red, float Green, float Blue)
 {

@@ -6,7 +6,7 @@
 #endif //WIN32
 
 #include <cmath>
-#include "basemaths/quaternion.hpp"
+#include "WarpDrive/basemaths/quaternion.hpp"
 
 Quaternion::Quaternion()
 {

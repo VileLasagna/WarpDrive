@@ -1,4 +1,7 @@
-#include "display/sdlimage.hpp"
+#include "WarpDrive/display/sdlimage.hpp"
+
+#include <SDL2/SDL.h>
+
 #ifdef _WIN32
 	#include <SDL2/SDL_Image.h>
 #else
@@ -61,7 +64,7 @@ Vec2f SDLImage::Position() const
 	return Vec2f(x,y);
 }
 
-void SDLImage::setDrawAlpha(Uint8 i)
+void SDLImage::setDrawAlpha(uint8_t i)
 {
     SDL_SetTextureAlphaMod(image, i);
 }

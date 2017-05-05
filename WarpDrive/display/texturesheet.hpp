@@ -1,9 +1,9 @@
 #ifndef WD_TEXTURE_SHEET_HPP_DEFINED
 #define WD_TEXTURE_SHEET_HPP_DEFINED
 
-#include "display/sdlimage.hpp"
-#include "basemaths/vec2.hpp"
-#include "basesystem/displaymanager.hpp"
+#include "WarpDrive/display/sdlimage.hpp"
+#include "WarpDrive/basemaths/vec2.hpp"
+#include "WarpDrive/basesystem/displaymanager.hpp"
 
 class TextureSheet : public SDLImage
 {

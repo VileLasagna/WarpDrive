@@ -9,12 +9,12 @@
 #include <GL/glu.h>
 
 
-#include "basemaths/vec3.hpp"
-#include "display/rgbcolour.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
+#include "WarpDrive/display/rgbcolour.hpp"
 
 //Forward Declarations
 class GLUquadric;
-auto gluQuadDeleter = [](GLUquadric* p){gluDeleteQuadric(p);};
+static std::function<void(GLUquadric*)> gluQuadDeleter = [](GLUquadric* p){gluDeleteQuadric(p);};
 using ptr_GLUquad = std::unique_ptr<GLUquadric,decltype(gluQuadDeleter)>;
 
 class Sphere

@@ -7,20 +7,22 @@
 
 #include <string>
 
-#include <SDL2/SDL.h>
 #include <GL/glew.h>
 #include <GL/gl.h>
 
-class Texture
+struct SDL_Surface;
+
+class WDTexture
 {
 public:
 
-    Texture();
-	~Texture();
+    WDTexture();
+    ~WDTexture();
 
-    bool loadTexture(const std::string& filename);
-    bool createFromSDLSurface(SDL_Surface* surf);
-    void useThisTexture();
+    ///params unflipY "unmirrors" the image for use in OpenGL
+    bool loadTexture(const std::string& filename, bool unflipY = true);
+    bool createFromSDLSurface(SDL_Surface* surf, bool flipY = false);
+    void useThisTexture() const;
     static void useNoTexture();
 
 private:

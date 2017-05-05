@@ -7,9 +7,9 @@
 #include <vector>
 #include <iostream>
 
-#include "display/texturesheet.hpp"
-#include "basemaths/vec2.hpp"
-#include "basesystem/stringproc.hpp"
+#include "WarpDrive/display/texturesheet.hpp"
+#include "WarpDrive/basemaths/vec2.hpp"
+#include "WarpDrive/basesystem/stringproc.hpp"
 
 class AnimSheet : public TextureSheet
 

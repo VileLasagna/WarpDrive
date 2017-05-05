@@ -3,14 +3,14 @@
     #include <Windows.h>
 #endif //WIN32
 
-#include "basesystem/displaymanager.hpp"
-#include "basesystem/game.hpp"
+#include "WarpDrive/basesystem/displaymanager.hpp"
+#include "WarpDrive/basesystem/game.hpp"
 #include "launcherstate.hpp"
 
 int main(int argc, char* argv[])
 {
 
-    DisplayManager::instance()->setSize(1280,728);
+    DisplayManager::instance()->setSize(800,600);
     DisplayManager::instance()->init(false,true);
     Game::instance()->addState(new LauncherState());
 

@@ -6,9 +6,9 @@
 #include <map>
 #include <utility>
 
-#include "basesystem/filemanager.hpp"
-#include "basesystem/managedfile.hpp"
-#include "basesystem/game.hpp"
+#include "WarpDrive/basesystem/filemanager.hpp"
+#include "WarpDrive/basesystem/managedfile.hpp"
+#include "WarpDrive/basesystem/game.hpp"
 
 class ConfigLoader
 {

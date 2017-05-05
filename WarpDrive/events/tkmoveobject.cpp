@@ -1,5 +1,5 @@
-#include "events/tkmoveobject.hpp"
-#include "basesystem/game.hpp"
+#include "WarpDrive/events/tkmoveobject.hpp"
+#include "WarpDrive/basesystem/game.hpp"
 
 
 TKMoveObject::TKMoveObject(float Time, std::string ObjName, bool UniqueID, bool ChangePos, bool ChangeVel, bool ChangeAccel, const Vec3f &Pos, const Vec3f &Vel, const Vec3f &Accel)

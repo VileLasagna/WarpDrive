@@ -1,6 +1,6 @@
-#include "basesystem/filemanager.hpp"
-#include "basesystem/managedfile.hpp"
-#include "basesystem/stringproc.hpp"
+#include "WarpDrive/basesystem/filemanager.hpp"
+#include "WarpDrive/basesystem/managedfile.hpp"
+#include "WarpDrive/basesystem/stringproc.hpp"
 
 
 FileManager* FileManager::instance()

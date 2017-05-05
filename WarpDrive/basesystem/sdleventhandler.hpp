@@ -1,7 +1,22 @@
 #ifndef WD_EVENT_HANDLER_HPP_DEFINED
 #define WD_EVENT_HANDLER_HPP_DEFINED
 
-#include <SDL2/SDL.h>
+#include <SDL2/SDL_events.h>
+
+//TODO: This is not this simple, as gamestates write their own logic so....
+//maybe implement intermediary types? Either that or provide a chopped-up version
+//of SDL_Events... have to give this some thought cause I still like the idea of
+//completely "hiding" the SDL headers away
+
+//union SDL_Event;
+//struct SDL_KeyboardEvent;
+//struct SDL_MouseMotionEvent;
+//struct SDL_MouseButtonEvent;
+//struct SDL_JoyAxisEvent;
+//struct SDL_JoyBallEvent;
+//struct SDL_JoyHatEvent;
+//struct SDL_JoyButtonEvent;
+//struct SDL_WindowEvent;
 
 class SDLEventHandler
 {

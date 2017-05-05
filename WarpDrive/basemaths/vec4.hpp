@@ -1,8 +1,8 @@
 #ifndef WD_VEC4_HPP_DEFINED
 #define WD_VEC4_HPP_DEFINED
 
-#include "basemaths/vec2.hpp"
-#include "basemaths/vec3.hpp"
+#include "WarpDrive/basemaths/vec2.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
 
 
 template <typename T>

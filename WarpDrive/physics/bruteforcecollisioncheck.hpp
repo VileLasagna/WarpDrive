@@ -1,7 +1,7 @@
 #ifndef WD_BRUTEFORCECOLLISION_HPP_DEFINED
 #define WD_BRUTEFORCECOLLISION_HPP_DEFINED
 
-#include "physics/collisionsystem.hpp"
+#include "WarpDrive/physics/collisionsystem.hpp"
 
 class BruteForceCheck : public CollisionSystem
 {

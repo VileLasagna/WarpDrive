@@ -5,8 +5,8 @@
 #include <math.h>
 #include <string>
 
-#include "basemaths/vec2.hpp"
-#include "basemaths/vec3.hpp"
+#include "WarpDrive/basemaths/vec2.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
 
 class StringProc //String Processing class
 {

@@ -1,6 +1,6 @@
-#include "events/panandtiltevent.hpp"
-#include "display/camera.hpp"
-#include "basesystem/displaymanager.hpp"
+#include "WarpDrive/events/panandtiltevent.hpp"
+#include "WarpDrive/display/camera.hpp"
+#include "WarpDrive/basesystem/displaymanager.hpp"
 
 
 PanAndTiltEvent::PanAndTiltEvent(int64_t Time, Vec3f Pan, Vec3f Tilt)

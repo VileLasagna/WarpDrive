@@ -5,12 +5,12 @@
 #include <vector>
 #include <string>
 
-#include "basemaths/vec2.hpp"
-#include "basemaths/vec3.hpp"
-#include "display/animsheet.hpp"
-#include "basesystem/stringproc.hpp"
-#include "basemaths/rect.hpp"
-#include "basesystem/displaymanager.hpp"
+#include "WarpDrive/basemaths/vec2.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
+#include "WarpDrive/display/animsheet.hpp"
+#include "WarpDrive/basesystem/stringproc.hpp"
+#include "WarpDrive/basemaths/rect.hpp"
+#include "WarpDrive/basesystem/displaymanager.hpp"
 
 class Sprite
 {
@@ -39,7 +39,7 @@ public:
 	bool pixCollision(const SDLImage& other) const;
 	Rectf intersection(const Rectf& box) const; //though this should live in Rect.h, Templates make it dangerous to be there
     void setTransp(unsigned int i = 128) {transpThreshold = i;}
-    void setDrawAlpha(unsigned int i);
+    void setDrawAlpha(uint8_t i);
     const AnimSheet& Sheet() const { return *sheets[static_cast<unsigned int>(animations[static_cast<unsigned int>(current.X())].first.X().X())];}
 	void setColourKey(const SDLRGBColour& tc = SDLRGBColour(0,255,255));
 

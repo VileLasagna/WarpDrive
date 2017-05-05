@@ -1,6 +1,7 @@
-#include "basesystem/ttfmanager.hpp"
-#include "basesystem/err.hpp"
+#include "WarpDrive/basesystem/ttfmanager.hpp"
+#include "WarpDrive/basesystem/err.hpp"
 
+#include <SDL2/SDL_ttf.h>
 
 TTFManager* TTFManager::instance()
 {

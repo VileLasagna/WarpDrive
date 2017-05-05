@@ -1,4 +1,4 @@
-#include "display/camera.hpp"
+#include "WarpDrive/display/camera.hpp"
 
 #ifdef WIN32
     #include <Windows.h>
@@ -7,9 +7,9 @@
 #include <math.h>
 #include <GL/glu.h>
 
-#include "basesystem/util.hpp"
+#include "WarpDrive/basesystem/util.hpp"
 
-#include "basemaths/sphere.hpp"
+#include "WarpDrive/basemaths/sphere.hpp"
 
 Camera::Camera():
 	up(Vec3f(0,1,0)),

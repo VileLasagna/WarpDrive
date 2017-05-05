@@ -1,8 +1,8 @@
 #ifndef WD_TIMELINE_KEY_ADD_EVENT_HPP_DEFINED
 #define WD_TIMELINE_KEY_ADD_EVENT_HPP_DEFINED
 
-#include "events/timelinekey.hpp"
-#include "basesystem/gameobject.hpp"
+#include "WarpDrive/events/timelinekey.hpp"
+#include "WarpDrive/basesystem/gameobject.hpp"
 
 class TKAddEvent: public TimelineKey
 {

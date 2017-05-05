@@ -1,8 +1,8 @@
 #ifndef WD_ALIGNEDBBOX_HPP_DEFINED
 #define WD_ALIGNEDBBOX_HPP_DEFINED
 
-#include "basemaths/vec3.hpp"
-#include "basemaths/capsule.hpp"
+#include "WarpDrive/basemaths/vec3.hpp"
+#include "WarpDrive/basemaths/capsule.hpp"
 
 class AABBox
 {

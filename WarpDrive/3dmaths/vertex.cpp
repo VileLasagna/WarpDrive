@@ -1,6 +1,6 @@
-#include "3dmaths/vertex.hpp"
+#include "WarpDrive/3dmaths/vertex.hpp"
 
-#include "basesystem/util.hpp"
+#include "WarpDrive/basesystem/util.hpp"
 
 Vertex::Vertex(const Vec3f& p) noexcept
 {

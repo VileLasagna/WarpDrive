@@ -1,7 +1,7 @@
 #ifndef WD_TRI_HPP_DEFINED
 #define WD_TRI_HPP_DEFINED
 
-#include "3dmaths/vertex.hpp"
+#include "WarpDrive/3dmaths/vertex.hpp"
 
 class Tri
 {

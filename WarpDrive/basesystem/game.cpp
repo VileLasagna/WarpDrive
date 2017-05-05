@@ -1,4 +1,4 @@
-#include "basesystem/game.hpp"
+#include "WarpDrive/basesystem/game.hpp"
 
 #include <future>
 #include <chrono>
@@ -42,19 +42,14 @@ void Game::Run()
     }
 #else
 
-//    std::future<void> up = std::async(std::launch::async, [](Game* g)
-//                                                          { while(g->CurrentState() != -1)
-//                                                            { DisplayManager::instance()->Update();
-//                                                              g->update();
-//                                                            } }, this);
-    std::future<void> dr = std::async(std::launch::async, [](Game* g)
+    std::future<void> up = std::async(std::launch::async, [](Game* g)
                                                           { while(g->CurrentState() != -1)
-                                                            { g->draw();
-                                                              g->flip();
+                                                            { DisplayManager::instance()->Update();
+                                                              g->update();
                                                             } }, this);
+
     while(currentState != -1)
     {
-
         draw();
         flip();
 

@@ -1,6 +1,6 @@
-#include "3dmaths/model.hpp"
-#include "basesystem/stringproc.hpp"
-#include "basesystem/err.hpp"
+#include "WarpDrive/3dmaths/model.hpp"
+#include "WarpDrive/basesystem/stringproc.hpp"
+#include "WarpDrive/basesystem/err.hpp"
 #include <map>
 
 

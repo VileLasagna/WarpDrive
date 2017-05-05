@@ -1,4 +1,4 @@
-#include "basemaths/plane.hpp"
+#include "WarpDrive/basemaths/plane.hpp"
 
 #ifdef WIN32
     #include <Windows.h>
@@ -7,8 +7,8 @@
 
 #include <GL/glew.h>
 #include <SDL2/SDL_opengl.h>
-#include "basemaths/matrix44.hpp"
-#include "basemaths/quaternion.hpp"
+#include "WarpDrive/basemaths/matrix44.hpp"
+#include "WarpDrive/basemaths/quaternion.hpp"
 #include <GL/glu.h>
 
 Plane::Plane()
@@ -51,7 +51,7 @@ Plane::Plane (float A, float B, float C, float D)
     tex = nullptr;
 }
 
-void Plane::useTexture(Texture *t, bool Tile)
+void Plane::useTexture(WDTexture *t, bool Tile)
 {
     tex = t;
 	tile = Tile;

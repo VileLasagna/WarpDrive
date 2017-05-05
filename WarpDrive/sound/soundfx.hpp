@@ -2,9 +2,8 @@
 #define WD_SOUND_FX_HPP_DEFINED
 
 #include <string>
-#include <SDL2/SDL_mixer.h>
-#include <SDL2/SDL.h>
-#include "soundmanager.hpp"
+
+#include "WarpDrive/sound/soundmanager.hpp"
 /*
  *	Objects of this class are used to play different sounds in the sound manager class.
  *	As this version, SoundManager uses SDL to manage sounds so that, although you can 
@@ -16,6 +15,9 @@
  *	What it DOES manage is the real in-disk source of these objects, so you don't have to 
  *	worry about loading and closing files and whatnot.
  */
+
+struct Mix_Chunk;
+
 
 class SoundFX
 {
@@ -40,8 +42,8 @@ public:
     unsigned int Played() const {return played;}//returns the estimate position on the file
 	
 
-    Uint8 Distance() const {return distance;}
-	void setDistance (Uint8 i) {distance = i;} //0 unregisters effect. 255 is the farthest possible (but still audible)
+    uint8_t Distance() const {return distance;}
+    void setDistance (uint8_t i) {distance = i;} //0 unregisters effect. 255 is the farthest possible (but still audible)
 
     int Position() const {return position;} //this is an angle relative to what should be your "front"
 	void setPosition(int deg) {position = deg;} //This is an angle! (0 = front, 90 = right)
@@ -91,7 +93,7 @@ private:
 	unsigned int fadeOut; //miliseconds to fade out.
 	unsigned int fadeOutFrom; //time (in ms) from which the sound should start fading.
 	unsigned int fadeIn;	//ms to fade in.
-	Uint8 distance;
+    uint8_t distance;
 	int position; //0 is directly in front. Angle increases clockwise (90 is right, 270 is left)
 	bool reverseStereo;
 	bool priority; //true means high proprity when cancelling channels to allocate more sounds;

@@ -2,10 +2,13 @@
 #define WD_SDLTTF_HPP_DEFINED
 
 #include <string>
-#include <SDL2/SDL_ttf.h>
 
-#include "basesystem/displaymanager.hpp"
-#include "display/texture.hpp"
+#include "WarpDrive/basesystem/displaymanager.hpp"
+#include "WarpDrive/display/texture.hpp"
+#include "WarpDrive/display/rgbacolour.hpp"
+
+using TTF_Font = struct _TTF_Font;
+struct SDL_Color;
 
 class SDLTTF
 {
@@ -14,13 +17,13 @@ public:
 	~SDLTTF();
 
     bool load(const std::string& fontFileName, int pointSize);
-    void draw(const std::string& text, Texture* target) const;
+    void draw(const std::string& text, WDTexture* target) const;
 	//void setColour( int r, int g, int b);
 
 private:
 
 	TTF_Font* font;
-	SDL_Colour colour; //standard = white
+    SDL_Color* color; //standard = white
 };
 
 #endif //WD_SDLTTF_HPP_DEFINED
