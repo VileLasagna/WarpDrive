@@ -28,9 +28,9 @@ GLDemoState::GLDemoState():
     ret = self;
     reset();
 
-    tex.loadTexture("yaranaika.jpeg");
-    shaderProgram.loadVertex("verttest1.vert");
-    shaderProgram.loadFragment("fragtest1.frag");
+	tex.loadTexture("assets/yaranaika.jpeg");
+	shaderProgram.loadVertex("shaders/verttest1.vert");
+	shaderProgram.loadFragment("shaders/fragtest1.frag");
 
 
     glGenVertexArrays(1, &VAO);

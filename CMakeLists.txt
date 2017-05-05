@@ -42,3 +42,24 @@ endif()
 add_subdirectory("WarpDrive")
 #add_subdirectory("RigidCollisionDemo")
 add_subdirectory("ModernOpenGLStudy")
+
+set(CPACK_PACKAGE_NAME "Warp Drive")
+set(CPACK_PACKAGE_NAME "WarpDrive_Installer")
+set(CPACK_PACKAGE_VENDOR "Vile Lasagna")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Warp Drive - Game engine built on SDL2 and demos")
+
+
+set(CPACK_GENERATOR "STGZ")
+set(CPACK_COMPONENTS_ALL WarpDrive OpenGLStudy)
+set(CPACK_COMPONENT_WARPDRIVE_DISPLAY_NAME "Warp Drive")
+set(CPACK_COMPONENT_OPENGLSTUDY_DISPLAY_NAME "GL Shader demo")
+
+set(CPACK_COMPONENT_WARPDRIVE_DESCRIPTION
+    "Install the lib and header files for the Warp Drive engine")
+set(CPACK_COMPONENT_OPENGLSTUDY_DESCRIPTION
+    "An in-progress Open GL Shader demo")
+
+#Always last
+include(CPack)
+include(CPackIFW)
+
