@@ -4,6 +4,8 @@
 #include <fstream>
 #include <sstream>
 
+#include "WarpDrive/basesystem/err.hpp"
+
 GLShader::GLShader()
    :program{0},
     vertID{0},
@@ -33,7 +35,7 @@ bool GLShader::loadVertex(std::string path)
 {
     if(initialised || vertLoaded)
     {
-        std::cout << "ERROR::SHADER::VERTEX::SHADER_ALREADY_LOADED" << std::endl;
+        Err::log("ERROR::SHADER::VERTEX::SHADER_ALREADY_LOADED");
         return false;
     }
 
@@ -51,7 +53,7 @@ bool GLShader::loadVertex(std::string path)
     }
     catch (std::ifstream::failure e)
     {
-        std::cout << "ERROR::SHADER::VERTEX::FILE_NOT_SUCCESFULLY_READ" << std::endl;
+        Err::log("ERROR::SHADER::VERTEX::FILE_NOT_SUCCESFULLY_READ");
     }
     const GLchar* glsrc = src.c_str();
     GLint success = 0;
@@ -65,7 +67,9 @@ bool GLShader::loadVertex(std::string path)
     if(success == 0)
     {
         glGetShaderInfoLog(vertID, 512, NULL, info);
-        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << info << std::endl;
+        std::string error("ERROR::SHADER::VERTEX::COMPILATION_FAILED\n");
+        error.append(info);
+        Err::notify(error);
         return false;
     }
     else
@@ -83,7 +87,7 @@ bool GLShader::loadFragment(std::string path)
 {
     if(initialised || fragLoaded)
     {
-        std::cout << "ERROR::SHADER::FRAGMENT::SHADER_ALREADY_LOADED" << std::endl;
+        Err::log("ERROR::SHADER::FRAGMENT::SHADER_ALREADY_LOADED");
         return false;
     }
 
@@ -101,7 +105,7 @@ bool GLShader::loadFragment(std::string path)
     }
     catch (std::ifstream::failure e)
     {
-        std::cout << "ERROR::SHADER::FRAGMENT::FILE_NOT_SUCCESFULLY_READ" << std::endl;
+        Err::notify("ERROR::SHADER::FRAGMENT::FILE_NOT_SUCCESFULLY_READ");
     }
     const GLchar* glsrc = src.c_str();
     GLint success = 0;
@@ -115,7 +119,9 @@ bool GLShader::loadFragment(std::string path)
     if(success == 0)
     {
         glGetShaderInfoLog(fragID, 512, NULL, info);
-        std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << info << std::endl;
+        std::string error("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n");
+        error.append(info);
+        Err::notify(error);
         return false;
     }
     else
@@ -169,7 +175,9 @@ void GLShader::assemble()
     if (!success)
     {
         glGetProgramInfoLog(program, 512, NULL, info);
-        std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << info << std::endl;
+        std::string error ("ERROR::SHADER::PROGRAM::LINKING_FAILED\n");
+        error.append(info);
+        Err::notify(error);
     }
     else
     {
