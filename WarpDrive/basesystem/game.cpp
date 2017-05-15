@@ -23,7 +23,15 @@ Game::Game()
 
 Game::~Game()
 {
-	Err::Flush();
+    if(errorLogFile.empty())
+    {
+        Err::flush();
+    }
+    else
+    {
+        Err::flush(errorLogFile);
+
+    }
 	DisplayManager::clear();
 	TTFManager::clear();
 }
@@ -235,6 +243,11 @@ bool Game::removeActiveType(const std::string &type)
     activeTypes[type] = false;
 
     return ret;
+}
+
+void Game::setLogFileName(const std::string &name)
+{
+    errorLogFile = name;
 }
 
 bool Game::setDrawnTypes(const std::set<std::string> &types)

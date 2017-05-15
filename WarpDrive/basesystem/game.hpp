@@ -54,6 +54,7 @@ public:
     bool addActiveType(const std::string& type);//returns true if it made any changes
 	bool removeActiveTypes(const std::set<std::string>& types);//returns true if it made any changes
     bool removeActiveType(const std::string& type);//returns true if it made any changes
+    void setLogFileName(const std::string& name);
     void drawObjects();
     void updateObjects();
     size_t ObjIndex();
@@ -138,6 +139,7 @@ private:
 	unsigned int updates;
 	unsigned int minFPS;
     size_t objindex;
+    std::string errorLogFile;
 	
 };
 
