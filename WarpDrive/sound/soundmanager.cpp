@@ -32,7 +32,7 @@ SoundManager::SoundManager()
 	{
 		if(Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers) != 0) 
 		{
-			Err::Report(std::string("Unable to initialize audio: ") + Mix_GetError());
+			Err::report(std::string("Unable to initialize audio: ") + Mix_GetError());
 		}
 		Mix_ChannelFinished(&SoundManager::cleanChannel);
 		for(int i = 0; i < Mix_AllocateChannels(-1); i++)
@@ -134,7 +134,7 @@ SDL_RWops* SoundManager::loadSound(const std::string &filename)
 	SDL_RWops* ret = SDL_RWFromFile(filename.c_str(), "rb");
 	if (!ret)
 	{
-		Err::Report("UNable to load Sound File:" + filename);
+		Err::report("UNable to load Sound File:" + filename);
 	}
 	return ret;
 }
@@ -204,7 +204,7 @@ void SoundManager::playSound(SoundFX *FX)
 			if (drop.second == 0) //bastard set no-auto and made all sounds priority. DOH!
 			{	
                 //YES! We drop a channel at random. Why not?
-				Err::Notify("All SoundManager channels busy playing priority Sounds!");			
+				Err::notify("All SoundManager channels busy playing priority Sounds!");			
                 drop.first = ( static_cast<unsigned int>(Game::instance()->RNGrange( static_cast<unsigned int>(channels.size())) ) );
 			}
             Mix_HaltChannel(static_cast<int>(drop.first));
@@ -375,7 +375,7 @@ bool SoundManager::setMusicPosition(unsigned int ms)
         }[[clang::fallthrough]];
     default:
 		{
-			Err::Notify("Cannot change position of current music format!");
+			Err::notify("Cannot change position of current music format!");
 		}
 	}
 #pragma clang diagnostic pop
@@ -416,7 +416,7 @@ int SoundManager::loadMusic(const std::string& filename)
 	}
 	else
 	{
-		Err::Notify("Couldn't load music file: " +filename);
+		Err::notify("Couldn't load music file: " +filename);
 		return 0;
 	}
 }

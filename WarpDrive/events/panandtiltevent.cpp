@@ -29,7 +29,7 @@ void PanAndTiltEvent::update(GameObject* Target)
 	Camera* C = dynamic_cast<Camera*> (Target);
 	if( (Target && (!C)) )
 	{
-		Err::Notify("PandAndTiltEvent not attached to a Camera");
+		Err::notify("PandAndTiltEvent not attached to a Camera");
 	}
 	if(overTime)
 	{

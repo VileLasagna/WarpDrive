@@ -51,7 +51,7 @@ FMCODE FileManager::Load	(const std::string& filename, ManagedFile* src, bool Re
 		}
 		if (files[filename].stream->fail())
 		{
-			Err::Report("Unable to open file: "+filename);
+			Err::report("Unable to open file: "+filename);
             return FMCODE::FM_FAIL; //program should've already crashed, though
 		}
 	}
@@ -74,7 +74,7 @@ FMCODE FileManager::LoadBin	(const std::string& filename, ManagedFile* src, bool
 		}
 		if (files[filename].stream->fail())
 		{
-			Err::Report("Unable to open file: "+filename);
+			Err::report("Unable to open file: "+filename);
             return FMCODE::FM_FAIL; //program should've already crashed, though
 		}
 	}
@@ -168,7 +168,7 @@ void FileManager::Close(const std::string &filename)
 	std::map<std::string, streamStatus>::iterator it = files.find(filename);
 	if (it == files.end())
 	{
-		Err::Notify("Error closing file:" + filename);
+		Err::notify("Error closing file:" + filename);
 	}
 	else
 	{

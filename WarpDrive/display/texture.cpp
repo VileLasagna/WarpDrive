@@ -39,7 +39,7 @@ bool WDTexture::createFromSDLSurface(SDL_Surface* surf, bool flipY)
 
 	if (!surf)
 	{
-		Err::Log("Surface pointer invalid while creating Texture");
+		Err::log("Surface pointer invalid while creating Texture");
 		return false;
 	}
 
@@ -111,7 +111,7 @@ bool WDTexture::createFromSDLSurface(SDL_Surface* surf, bool flipY)
     else
     {
         // Unexpected format
-		Err::Log("Surface depth invalid while creating Texture");
+		Err::log("Surface depth invalid while creating Texture");
         assert(0);
     }
     if(flipped)

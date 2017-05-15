@@ -22,7 +22,7 @@ void TKMoveObject::trigger()
 		Game::iterator it(name);
 		if (it.isEmpty())
 		{
-			Err::Notify("TKMoveObject couldn't find objects of type: "+name);
+			Err::notify("TKMoveObject couldn't find objects of type: "+name);
 		}
 		else
 		{
@@ -49,7 +49,7 @@ void TKMoveObject::trigger()
 		Game::iterator it;
 		if(!(it.seekName(name)))
 		{
-			Err::Notify("TKMoveObject couldn't find specific Object: "+name);
+			Err::notify("TKMoveObject couldn't find specific Object: "+name);
 		}
 		else
 		{

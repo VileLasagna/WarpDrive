@@ -30,7 +30,7 @@ bool ConfigLoader::loadFile(std::string filename)
 	ManagedFile file(filename);
     if (file.getState() == FMCODE::FM_FAIL)
 	{	
-		Err::Notify("Could not open ConfigFile: "+filename);
+		Err::notify("Could not open ConfigFile: "+filename);
 		return false;
 	}
 	else
