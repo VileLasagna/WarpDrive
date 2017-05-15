@@ -16,6 +16,7 @@ int main(int argc, char* argv[])
     DisplayManager::instance()->init(false,true);
     Game::instance()->addState(new GLDemoState());
 
+    Game::instance()->setLogFileName("GLDemo.err");
     Game::instance()->showFPS(true);
     Game::instance()->Run();
 
