@@ -26,23 +26,22 @@ void Err::clear()
 	delete Err::instance();
 }
 
-void Err::Log(const std::string& error)
+void Err::log(const std::string& error)
 {
-	time_t at;
-	time(&at);
-	struct tm* tiem = new tm;
-	std::string s = "At ";			//TODO: Windows throws some deprecation warning in hopes we'll all make our code
-	//std::string st = asctime(tiem);	// non-portable because of something silly such as this. Regardless, I should
-	//s.append(st);					// make an ifdef here and put that in case the platform IS windows. But the docs
-	//s.append(" -> ");				// are so bad that I don't want to look at it right now.	
-	
+    std::string s = "At ";
+    auto t = std::time(nullptr);
+    auto tm = *std::localtime(&t);
+    std::array<char,80> timestr;
+    strftime(timestr.data(), timestr.max_size(),"%Y-%m-%d.%H:%M:%S", &tm);
+    s.append( timestr.data() );
+    s.append(" -> ");
 	s.append(error);
-	s+= "\n";
+    s += "\n";
 	Err::instance()->errlog.push_back(s);
-	delete tiem;
+    std::cerr << s;
 }
 
-void Err::Flush(const std::string &file)
+void Err::flush(const std::string &file)
 {
 	std::fstream out(file.c_str(), std::fstream::out|std::fstream::app);
 	out << '\n';
