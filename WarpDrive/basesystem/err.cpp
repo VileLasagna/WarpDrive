@@ -1,18 +1,18 @@
 #include "WarpDrive/basesystem/err.hpp"
-#ifdef WIN32
-    #include <Windows.h>
-#endif
+
+#include <SDL2/SDL_messagebox.h>
 
 #include <iostream>
+#include <chrono>
+#include <array>
 
 
-void Err::Report(const std::string& s)
+void Err::report(const std::string& s)
 {
-//#ifdef WIN32
-//	MessageBoxA(0, s.c_str(), "OH NO!", 0);
-//#else
-	std::cout << s << "\n";
-//#endif
+    SDL_ShowSimpleMessageBox( SDL_MESSAGEBOX_ERROR,
+                              "Warp Drive error",
+                              s.c_str(),
+                              NULL);
 }
 
 Err* Err::instance()
@@ -54,12 +54,13 @@ void Err::flush(const std::string &file)
 	Err::clear();
 }
 
-void Err::Notify(const std::string& error)
+void Err::notify(const std::string& error)
 {
-#ifdef _DEBUG
-	Err::Report(error);
+    Err::log(error);
+#ifndef NDEBUG
+    Err::report(error);
 #endif
-	Err::Log(error);
+
 }
 	
 
