@@ -12,7 +12,7 @@ public:
     Vertex(const Vec3f& pos = Vec3f(0,0,0))noexcept;
     Vertex(const Vec3f& pos, const Vec3f& normal,
            const Vec2f& uv = Vec2f(0,0),
-           const Colour& diffuse = Colour(-1,-1,-1,-1),
+           const Colour& diffuse = Colour(-1.0f,-1.0f,-1.0f,-1.0f),
            const Colour& ambient = Colour(-1.0f,-1.0f,-1.0f,-1.0f),
            const Colour& specular = Colour(-1.0f,-1.0f,-1.0f,-1.0f),
            float shinyness = -1) noexcept;
