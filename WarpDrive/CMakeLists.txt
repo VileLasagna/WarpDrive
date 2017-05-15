@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.8)
 project(WarpDrive)
 
 option(DEVELOPMENT_DEPLOY "Deploy to ./redist instead of to the system" ON)
@@ -6,7 +6,7 @@ option(DEVELOPMENT_DEPLOY "Deploy to ./redist instead of to the system" ON)
 set(WarpDrive_VERSION 0.7)
 
 if(NOT EXTERNAL_ROOT)
-    set(EXTERNAL_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/redist")
+    set(EXTERNAL_ROOT "${CMAKE_CURRENT_DIR}/redist")
 endif(NOT EXTERNAL_ROOT)
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
@@ -29,11 +29,11 @@ if ( (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif()
 
 # create -config.cmake stuff
-if (UNIX) # varies config location depending on platform
-    set(WarpDrive_INSTALL_DIR "lib/WarpDrive/cmake" CACHE STRING "Where WarpDrive-config.cmake and companions will be installed")
-elseif(WIN32)
-    set(WarpDrive_INSTALL_DIR "cmake"  CACHE STRING "Where WarpDrive-config.cmake and companions will be installed")
-elseif(APPLE)
+if (NOT APPLE) # varies config location depending on platform
+    set(WarpDrive_INSTALL_DIR "lib/cmake/WarpDrive" CACHE STRING "Where WarpDrive-config.cmake and companions will be installed")
+else(NOT APPLE)
+    # This is merely a placeholder. I don't know how this works on Apple's system
+    # And I don't have the hardware or interest of sorting it out myself for now (sorry?)
     set(WarpDrive_INSTALL_DIR "cmake" CACHE STRING "Where WarpDrive-config.cmake and companions will be installed")
 endif()
 
@@ -47,27 +47,8 @@ add_custom_target(WrpDrvInternal SOURCES ${WARPDRIVE_HEADERS_PRIVATE} )
 
 
 
-add_library(${PROJECT_NAME} ${WARPDRIVE_HEADERS_PUBLIC} ${WARPDRIVE_HEADERS_PRIVATE} ${WARPDRIVE_SOURCES})
-target_compile_features(${PROJECT_NAME} PUBLIC
-                                            cxx_constexpr
-                                            cxx_relaxed_constexpr
-                                            cxx_auto_type
-                                            cxx_decltype
-                                            cxx_deleted_functions
-                                            cxx_defaulted_move_initializers
-                                            cxx_explicit_conversions
-                                            cxx_lambdas
-                                            cxx_lambda_init_captures
-                                            cxx_generic_lambdas
-                                            cxx_noexcept
-                                            cxx_rvalue_references
-                                            cxx_return_type_deduction
-                                            cxx_strong_enums
-                                            cxx_nullptr
-                                            cxx_uniform_initialization
-                                            cxx_override
-                            )
 add_library(${PROJECT_NAME} ${WARPDRIVE_SOURCES})
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_14 )
 
 find_package(SDL2)
 

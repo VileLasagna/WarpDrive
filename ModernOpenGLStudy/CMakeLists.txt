@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.8)
 project(ModernGLStudy)
 
 set(GLSTUDY_SOURCES    ${GLSTUDY_SOURCES}
@@ -23,13 +23,6 @@ add_custom_target(Assets SOURCES ${GLSTUDY_ASSETS})
 
 add_executable(${PROJECT_NAME} ${GLSTUDY_SOURCES} ${GLSTUDY_HEADERS})
 add_dependencies(${PROJECT_NAME} WarpDrive)
-#install(FILES ${GLSTUDY_SHADERS} ${GLSTUDY_ASSETS} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-#install(FILES ${GLSTUDY_SHADERS}
-#       DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/shaders)
-
-#install(FILES ${GLSTUDY_ASSETS}
-#           DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/assets)
-
 
 target_link_libraries(${PROJECT_NAME} WarpDrive)
 
