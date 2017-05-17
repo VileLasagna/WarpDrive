@@ -15,13 +15,11 @@ public:
     void draw(); //TODO: Draw functions must all accumulate to a batch that Game eventually sends out to OpenGL at the end of the Draw Loop
 
 
-	
-
 private:
 
-	Vertex A;
-	Vertex B;
-	Vertex C;
+    Vertex A;
+    Vertex B;
+    Vertex C;
     Vec3f normal;
 
 

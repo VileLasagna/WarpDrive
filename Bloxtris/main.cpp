@@ -1,14 +1,3 @@
-//#include "Game.h"
-//
-//
-//int main(int numargs, char** args)
-//{
-//
-//
-//
-//	return 0;
-//}
-
 #ifdef WIN32
     #include <windows.h>
 #endif //WIN32
@@ -32,8 +21,8 @@ int main(int argc, char* argv[])
 {
 
     //glutInit(&argc, argv);
-	DisplayManager::instance()->setSize(1280,728);
-	DisplayManager::instance()->Init(false,true);
+    DisplayManager::instance()->setSize(1280,728);
+    DisplayManager::instance()->Init(false,true);
     Game::instance()->addState(new Splash);
     Game::instance()->addState(new MainGS);
     Game::instance()->addState(new GOScreen);
@@ -41,10 +30,9 @@ int main(int argc, char* argv[])
     //Game::instance()->addState(new TeapotLoaderState());
 
     Game::instance()->showFPS();
-	Game::instance()->Run();
-	
+    Game::instance()->Run();
+
     Game::instance()->Clear();
 
-        
     return 0;
 }

@@ -20,7 +20,7 @@ public:
 
     virtual void update() = 0;
     virtual void draw() const = 0;
-	virtual ~GameObject() = default;
+    virtual ~GameObject() = default;
     virtual bool load(ManagedFile* ) {return true;}
     virtual const char* Type() const {return type.c_str();}
 
@@ -29,24 +29,24 @@ public:
     virtual void setAcc (const Vec3f& a) { accel = a;}
     virtual void setMass(const float m)  { mass = m;}
 
-	virtual void setName(const std::string& s) { name = s;}
+    virtual void setName(const std::string& s) { name = s;}
     virtual void setName(std::string&& s) { name = s;}
 
     virtual void setType(const std::string& s) { type = s;}
     virtual void setType(std::string&& s) { type = s;} //for organizing groups of objects
-															//TODO: Should be separate from type and also indexed in Game::iterator
-	virtual void addEvent(GOEvent* e) {events.push_back(e);}
-	virtual void clearEvents()
-	{
-	   /*
-		for (std::vector<GOEvent*>::iterator it = events.begin(); it != events.end(); it++)
-		{
-		  GOEvent* e = *it;
-		  delete e;
-		}
-	   */
-		events.clear();
-	}
+                            //TODO: Should be separate from type and also indexed in Game::iterator
+    virtual void addEvent(GOEvent* e) {events.push_back(e);}
+    virtual void clearEvents()
+    {
+       /*
+        for (std::vector<GOEvent*>::iterator it = events.begin(); it != events.end(); it++)
+        {
+          GOEvent* e = *it;
+          delete e;
+        }
+       */
+        events.clear();
+    }
 
     virtual AABBox BoundingBox() const noexcept;
     virtual Sphere BoundingSphere() const noexcept;
@@ -59,22 +59,22 @@ public:
     virtual std::string Name() const noexcept {return name;}
     virtual float Mass() const noexcept {return mass;}
     size_t Index() const noexcept {return index;}
-	bool isDead() {return removeMe;}
-	void KILL() {removeMe = true;}
+    bool isDead() {return removeMe;}
+    void KILL() {removeMe = true;}
 
 protected:
 
     size_t index;
-	Vec3f vel;
-	Vec3f pos;
-	Vec3f accel;
+    Vec3f vel;
+    Vec3f pos;
+    Vec3f accel;
     float mass;
     float radius;
     Vec3f dimensions;
-	std::string name;
-	std::string type;
-	std::vector<GOEvent*> events;
-	bool removeMe;
+    std::string name;
+    std::string type;
+    std::vector<GOEvent*> events;
+    bool removeMe;
 
 };
 

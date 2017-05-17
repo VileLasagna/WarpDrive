@@ -10,19 +10,19 @@ class Splash:public GameState
 {
 public:
 
-	Splash();
-	int Update();
-	void Draw();
-	void Reset();
+    Splash();
+    int Update();
+    void Draw();
+    void Reset();
 
 private:
 
-	void onKeyboardEvent(const SDL_KeyboardEvent& e);
-	void onJoyButtonEvent(const SDL_JoyButtonEvent&e);
+    void onKeyboardEvent(const SDL_KeyboardEvent& e);
+    void onJoyButtonEvent(const SDL_JoyButtonEvent&e);
 
-	Texture* T;
-	Billboard bg;
-	float demotimer;
+    Texture* T;
+    Billboard bg;
+    float demotimer;
 
 };
 

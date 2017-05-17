@@ -6,14 +6,13 @@
 
 void TimedMoveEvent::update(GameObject* target)
 {
-	if (time <= 0)
-	{
-		finished = true;
-		return;
-	}
+    if (time <= 0)
+    {
+        finished = true;
+        return;
+    }
     auto dt = DisplayManager::instance()->Dt();
-	time -= dt;
+    time -= dt;
     Vec3f nudge = vel*(dt*0.001f);
-	target->setPos( nudge + (target->Position()) );
-
+    target->setPos( nudge + (target->Position()) );
 }

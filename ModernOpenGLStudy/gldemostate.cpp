@@ -8,6 +8,7 @@
 #include <GL/glu.h>
 
 #include "WarpDrive/basesystem/game.hpp"
+#include "WarpDrive/3dmaths/vertex.hpp"
 
 #include <iostream>
 
@@ -28,14 +29,19 @@ GLDemoState::GLDemoState():
     ret = self;
     reset();
 
-	tex.loadTexture("assets/yaranaika.jpeg");
+    tex.loadTexture("assets/yaranaika.jpeg");
     tex2.loadTexture("assets/konodio.jpeg");
-	shaderProgram.loadVertex("shaders/verttest1.vert");
-	shaderProgram.loadFragment("shaders/fragtest1.frag");
+    shaderProgram.loadVertex("shaders/verttest1.vert");
+    shaderProgram.loadFragment("shaders/fragtest1.frag");
+
+    std::cout << "Sizeof float: " << sizeof(float) <<std::endl;
+    std::cout << "Sizeof Vec3f: " << sizeof(Vec3f) << std::endl;
+    std::cout << "Sizeof Vec2f: " << sizeof(Vec2f) << std::endl;
+    std::cout << "Sizeof Colour: " << sizeof(Colour) << std::endl;
+    std::cout << "Sizeof Vertex: " << sizeof(Vertex) << std::endl;
 
 
     glGenVertexArrays(1, &VAO);
-
     glGenBuffers(1, &VBO);
     glGenBuffers(1, &EBO);
 

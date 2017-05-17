@@ -7,14 +7,14 @@ class Quaternion
 {
 public:
 
-	Quaternion();
- 
-	Quaternion(float degrees, float x, float y, float z);
-	Quaternion(float degress, Vec3f& axis);
+    Quaternion();
+
+    Quaternion(float degrees, float x, float y, float z);
+    Quaternion(float degress, Vec3f& axis);
 
     void normalise();
 
-	void Identity();
+    void Identity();
     // Convert to column-major Matrix
     void toMatrix(float matrix[16]) const;
 
@@ -24,11 +24,11 @@ public:
 
     friend Quaternion operator*(const Quaternion& q1, const Quaternion& q2);
 
-	Quaternion operator *= (const Quaternion other) { *this = (*this) * other; return *this;}
+    Quaternion operator *= (const Quaternion other) { *this = (*this) * other; return *this;}
 
 private:
 
-	float sqMod();
+    float sqMod();
 
     float w;
     float x;

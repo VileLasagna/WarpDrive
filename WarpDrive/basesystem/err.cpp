@@ -17,13 +17,13 @@ void Err::report(const std::string& s)
 
 Err* Err::instance()
 {
-	static Err* inst = new Err();
-	return inst;
+    static Err* inst = new Err();
+    return inst;
 }
 
 void Err::clear()
 {
-	delete Err::instance();
+    delete Err::instance();
 }
 
 void Err::log(const std::string& error)
@@ -35,23 +35,23 @@ void Err::log(const std::string& error)
     strftime(timestr.data(), timestr.max_size(),"%Y-%m-%d.%H:%M:%S", &tm);
     s.append( timestr.data() );
     s.append(" -> ");
-	s.append(error);
+    s.append(error);
     s += "\n";
-	Err::instance()->errlog.push_back(s);
+    Err::instance()->errlog.push_back(s);
     std::cerr << s;
 }
 
 void Err::flush(const std::string &file)
 {
-	std::fstream out(file.c_str(), std::fstream::out|std::fstream::app);
-	out << '\n';
-	Err* e = Err::instance();
-	for(std::list<std::string>::iterator it = e->errlog.begin(); it != e->errlog.end(); it++)
-	{
-		out << *it << "\n";
-	}
-	out.close();
-	Err::clear();
+    std::fstream out(file.c_str(), std::fstream::out|std::fstream::app);
+    out << '\n';
+    Err* e = Err::instance();
+    for(std::list<std::string>::iterator it = e->errlog.begin(); it != e->errlog.end(); it++)
+    {
+        out << *it << "\n";
+    }
+    out.close();
+    Err::clear();
 }
 
 void Err::notify(const std::string& error)
@@ -62,5 +62,3 @@ void Err::notify(const std::string& error)
 #endif
 
 }
-	
-

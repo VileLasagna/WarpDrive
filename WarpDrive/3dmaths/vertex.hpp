@@ -1,9 +1,7 @@
 #ifndef WD_VERTEX_HPP_DEFINED
 #define WD_VERTEX_HPP_DEFINED
 
-
 #include "WarpDrive/display/colour.hpp"
-
 
 class Vertex
 {
@@ -32,7 +30,7 @@ private:
     static void LastDiffuse(Colour* v, bool set = false)  noexcept;
     static void LastSpecular(Colour* v, bool set = false)  noexcept;
     static void LastShiny(float* f, bool set = false)  noexcept;
-	
+
     Vec3f pos;
     Vec3f normal;
     Vec2f uv;
@@ -41,8 +39,6 @@ private:
     Colour specular;
     float shiny;
 
-
 };
-
 
 #endif //WD_VERTEX_HPP_DEFINED

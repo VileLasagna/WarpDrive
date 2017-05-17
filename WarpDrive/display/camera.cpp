@@ -12,13 +12,13 @@
 #include "WarpDrive/basemaths/sphere.hpp"
 
 Camera::Camera():
-	up(Vec3f(0,1,0)),
-	targetObj(0),
+    up(Vec3f(0,1,0)),
+    targetObj(0),
     relativePos(),
-	orbitFactors(1,0,1),
-	orbitRadius(0),
-	orbitPeriod(1),
-	time(0)
+    orbitFactors(1,0,1),
+    orbitRadius(0),
+    orbitPeriod(1),
+    time(0)
 {
      type = "Camera";
      removeMe = false;
@@ -29,19 +29,19 @@ void Camera::update()
 
     GameObject::update();
     if(targetObj != nullptr)
-	{
+    {
         target = targetObj->Position();
         if(WrpDrv::flEquals(orbitRadius,0))
         {
             pos = target + relativePos;
         }
 
-	}
-	else
-	{
-    /*	vel += accel*DisplayManager::instance()->getDtSecs();
+    }
+    else
+    {
+        /*vel += accel*DisplayManager::instance()->getDtSecs();
         pos += vel*DisplayManager::instance()->getDtSecs();*/
-	}
+    }
     if(!WrpDrv::flEquals(orbitRadius, 0))
     {
         time += DisplayManager::instance()->Dt();
@@ -57,12 +57,12 @@ void Camera::update()
 
 void Camera::setTarget(const Vec3f& targetPos)
 {
-	target = targetPos;
+    target = targetPos;
 }
 
 void Camera::setTarget(const GameObject *targetObject)
 {
-	targetObj = targetObject;
+    targetObj = targetObject;
 }
 
 void Camera::setRelativePos(const Vec3f &Relative)
@@ -89,33 +89,33 @@ Ray Camera::traceRay(int x, int y) const noexcept
 
 void Camera::draw() const
 {
-	//insert code HERE
-	//TODO: A wireframe camera like those in Maya would be awesome
+    //insert code HERE
+    //TODO: A wireframe camera like those in Maya would be awesome
 }
 
 void Camera::use() const
 {
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	gluLookAt(pos.X(),pos.Y(),pos.Z(),target.X(),target.Y(),target.Z(),up.X(),up.Y(),up.Z());
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    gluLookAt(pos.X(),pos.Y(),pos.Z(),target.X(),target.Y(),target.Z(),up.X(),up.Y(),up.Z());
     //DisplayManager::instance()->updateMatrices();
-	//TODO: Auto turning around, Needs rotation member in GameObject;
+    //TODO: Auto turning around, Needs rotation member in GameObject;
 }
 
 std::pair<bool, Vec3f> Camera::Target() const
 {
-	std::pair<bool, Vec3f> ret;
-	if (targetObj)
-	{
-		ret.first = true;
+    std::pair<bool, Vec3f> ret;
+    if (targetObj)
+    {
+        ret.first = true;
         ret.second = targetObj->Position();
-	}
-	else
-	{
-		ret.first = false;
-		ret.second = target;
-	}
-	return ret;
+    }
+    else
+    {
+        ret.first = false;
+        ret.second = target;
+    }
+    return ret;
 }
 
 void Camera::orbit(float X, float Y, float Z, float radius, float periodSecs)
@@ -124,4 +124,3 @@ void Camera::orbit(float X, float Y, float Z, float radius, float periodSecs)
     orbitRadius = radius;
     orbitPeriod = periodSecs;
 }
-

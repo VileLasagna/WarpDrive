@@ -1,5 +1,3 @@
-
-
 #include "WarpDrive/basesystem/memory.hpp"
 
 
@@ -10,14 +8,14 @@ static int depth = 0;
 void* operator new(size_t size)
 {
 
-	void* mem = malloc(size);
-	depth++;
-	if (depth == 1)
-	{
+    void* mem = malloc(size);
+    depth++;
+    if (depth == 1)
+    {
         //MemManager::instance()->Alloc(new MemPack(mem,size));
-	}
-	depth--;
-	return mem;
+    }
+    depth--;
+    return mem;
 
 }
 
@@ -25,20 +23,20 @@ void* operator new(size_t size)
 void operator delete(void* p)
 {
 
-	if(p)
-	{
-		MemManager::instance()->Remove(p);
-		free(p);
-	}
+    if(p)
+    {
+        MemManager::instance()->Remove(p);
+        free(p);
+    }
 }
 
 
 MemPack::MemPack(void *address, size_t size, std::string file, int line)
 {
-	add = address;
-	length = size;
-	source = file;
-	ln = line;
+    add = address;
+    length = size;
+    source = file;
+    ln = line;
 }
 
 MemManager::MemManager()
@@ -48,23 +46,23 @@ MemManager::MemManager()
 
 MemManager* MemManager::instance()
 {
-	static MemManager* inst = 0;
-	if (!inst)
-	{
-		inst = new MemManager();
-	}
-	return inst;
+    static MemManager* inst = 0;
+    if (!inst)
+    {
+        inst = new MemManager();
+    }
+    return inst;
 }
 
 void MemManager::Clear()
 {
-	delete instance();
+    delete instance();
 }
 
 bool MemManager::Alloc(MemPack &m)
 {
-	allocmap.insert(std::pair<const void*,MemPack>(m.getAddress(),m));
-	return true;
+    allocmap.insert(std::pair<const void*,MemPack>(m.getAddress(),m));
+    return true;
 }
 
 bool MemManager::Remove(void *address)

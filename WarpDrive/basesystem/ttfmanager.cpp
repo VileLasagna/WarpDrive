@@ -5,24 +5,24 @@
 
 TTFManager* TTFManager::instance()
 {
-	static TTFManager* inst = new TTFManager();
-	return inst;
+    static TTFManager* inst = new TTFManager();
+    return inst;
 }
 
 void TTFManager::clear()
 {
-	delete (instance());
+    delete (instance());
 }
 
 TTFManager::TTFManager()
 {
-	TTF_Init();
+    TTF_Init();
 }
 
 TTFManager::~TTFManager()
 {
 
-	TTF_Quit();
+    TTF_Quit();
 }
 
 SDLTTF* TTFManager::getFont(
@@ -37,7 +37,7 @@ SDLTTF* TTFManager::getFont(
         pFont = new SDLTTF();
         if (!pFont->load(fontName, pointSize))
         {
-			Err::report("Couldn't load font! " + fontName);
+            Err::report("Couldn't load font! " + fontName);
             return 0;
         }
 
@@ -46,4 +46,3 @@ SDLTTF* TTFManager::getFont(
 
     return pFont;
 }
-

@@ -27,8 +27,8 @@ public:
 
 private:
 
-	GLuint textureId;
-	bool initialized;
+    GLuint textureId;
+    bool initialized;
 };
 
 #endif //WD_TEXTURE_HPP_DEFINED

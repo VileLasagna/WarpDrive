@@ -9,8 +9,8 @@ class VoxelGrid: public CollisionSystem
 
 public:
 
-	VoxelGrid();
-	VoxelGrid(float Cellsize, int WorldSize);
+    VoxelGrid();
+    VoxelGrid(float Cellsize, int WorldSize);
 
 };
 

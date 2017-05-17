@@ -15,8 +15,8 @@ public:
     Capsule(const Vec3f& A, const Vec3f& B, float r) noexcept;
     Capsule(const Sphere& S, const Vec3f& path) noexcept;
 
-	bool Collides( const Sphere& S) const;
-	bool Collides( const Capsule& C) const;
+    bool Collides( const Sphere& S) const;
+    bool Collides( const Capsule& C) const;
     float Radius() const noexcept {return R;}
     LineSeg Path()const noexcept {return path;}
 
@@ -24,7 +24,7 @@ public:
 private:
 
     LineSeg path;
-	float R;
+    float R;
 
 };
 

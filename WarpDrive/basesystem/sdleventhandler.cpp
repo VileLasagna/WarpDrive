@@ -6,43 +6,43 @@
 
 void SDLEventHandler::update()
 {
-	SDL_Event event;
-	while (SDL_PollEvent(&event))
-	{
-		handleEvent(event);
-	}
+    SDL_Event event;
+    while (SDL_PollEvent(&event))
+    {
+        handleEvent(event);
+    }
 }
 
 void SDLEventHandler::handleEvent(const SDL_Event& e)
 {
-	switch (e.type)
-	{
-	case SDL_KEYDOWN:
-	case SDL_KEYUP:
-		onKeyboardEvent(e.key);
-		break;
+    switch (e.type)
+    {
+    case SDL_KEYDOWN:
+    case SDL_KEYUP:
+        onKeyboardEvent(e.key);
+        break;
 
-	case SDL_MOUSEMOTION:
-		onMouseMotionEvent(e.motion);
-		break;
+    case SDL_MOUSEMOTION:
+        onMouseMotionEvent(e.motion);
+        break;
 
-	case SDL_MOUSEBUTTONDOWN:
-	case SDL_MOUSEBUTTONUP:
-		onMouseButtonEvent(e.button);
-		break;
+    case SDL_MOUSEBUTTONDOWN:
+    case SDL_MOUSEBUTTONUP:
+        onMouseButtonEvent(e.button);
+        break;
 
-	case SDL_QUIT:
-		onQuitEvent();
-		break;
+    case SDL_QUIT:
+        onQuitEvent();
+        break;
 
-	case SDL_JOYAXISMOTION:
-		onJoyAxisEvent(e.jaxis);
-		break;
+    case SDL_JOYAXISMOTION:
+        onJoyAxisEvent(e.jaxis);
+        break;
 
-	case SDL_JOYBUTTONDOWN:
-	case SDL_JOYBUTTONUP:
-		onJoyButtonEvent(e.jbutton);
-		break;
+    case SDL_JOYBUTTONDOWN:
+    case SDL_JOYBUTTONUP:
+        onJoyButtonEvent(e.jbutton);
+        break;
 
     case SDL_JOYHATMOTION:
         onJoyHatEvent(e.jhat);
@@ -55,11 +55,11 @@ void SDLEventHandler::handleEvent(const SDL_Event& e)
         onWindowEvent(e.window);
         break;
 
-	default:
+    default:
         // Unexpected event type!
         //assert(0);
-		break;
-	}
+        break;
+    }
 }
 
 void SDLEventHandler::onQuitEvent()

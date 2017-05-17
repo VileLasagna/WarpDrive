@@ -9,7 +9,7 @@
 Sphere::Sphere() noexcept:
     centre(Vec3f(0,0,0)),
     radius(0),
-	colour(GLRGBColour(1,1,1)),
+    colour(GLRGBColour(1,1,1)),
     wireframe(true),
     quadric(initQuadric())
     {}
@@ -18,7 +18,7 @@ Sphere::Sphere() noexcept:
 Sphere::Sphere(const Vec3f& pos, float r) noexcept:
     centre(pos),
     radius(r),
-	colour(GLRGBColour(1,1,1)),
+    colour(GLRGBColour(1,1,1)),
     wireframe(true),
     quadric(initQuadric())
     {}
@@ -26,7 +26,7 @@ Sphere::Sphere(const Vec3f& pos, float r) noexcept:
 Sphere::Sphere(float centreX, float centreY, float centreZ, float R) noexcept:
     centre{Vec3f{centreX,centreY,centreZ}},
     radius{R},
-	colour{GLRGBColour{1,1,1}},
+    colour{GLRGBColour{1,1,1}},
     wireframe(true),
     quadric(initQuadric())
 {}

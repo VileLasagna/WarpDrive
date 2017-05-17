@@ -34,5 +34,4 @@ private:
     DataType type;
 };
 
-
 #endif //WD_VERTEXBUF_DEFINED

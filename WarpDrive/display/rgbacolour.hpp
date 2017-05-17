@@ -22,7 +22,7 @@ public:
     constexpr T R() const {return r;}
     constexpr T G() const {return g;}
     constexpr T B() const {return b;}
-	constexpr T A() const {return a;}
+    constexpr T A() const {return a;}
 
     operator RGBColour<T>() { return RGBColour<T>(r,g,b);}
 

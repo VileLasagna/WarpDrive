@@ -11,13 +11,13 @@ private:	//this class is a singleton
 
 public:
 
-	static TTFManager* instance();
+    static TTFManager* instance();
     SDLTTF* getFont(const std::string& fontName, int pointSize);
-	static void clear();
-	~TTFManager();
+    static void clear();
+    ~TTFManager();
 
-	TTFManager operator= (const TTFManager&) = delete;
-	TTFManager (const TTFManager&) = delete;
+    TTFManager operator= (const TTFManager&) = delete;
+    TTFManager (const TTFManager&) = delete;
 
 private:
     typedef std::pair<std::string, int> FP; // font name/size pair

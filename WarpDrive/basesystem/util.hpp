@@ -9,6 +9,4 @@ namespace WrpDrv
     bool flEquals(double f1, double f2);
 }
 
-
-
 #endif // WD_UTIL_HPP_DEFINED

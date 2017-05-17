@@ -5,13 +5,13 @@
 
 void GameObject::update()
 {
-	for(std::vector<GOEvent*>::iterator it = events.begin(); it != events.end(); it++)
-	{
+    for(std::vector<GOEvent*>::iterator it = events.begin(); it != events.end(); it++)
+    {
         if(!( (*it)->Finished()))
         {
             (*it)->update(this);
         }
-	}
+    }
     auto dt = DisplayManager::instance()->Dt();
     vel+= accel*(dt*0.001f);
     pos+= vel*(dt*0.001f);
@@ -49,6 +49,6 @@ AABBox GameObject::BoundingBox() const noexcept
 }
 
 Sphere GameObject::BoundingSphere() const noexcept
-{   
+{
     return Sphere(pos, radius);
 }

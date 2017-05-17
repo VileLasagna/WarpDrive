@@ -15,15 +15,15 @@ class Camera: public GameObject
 {
 public:
 
-	Camera();
+    Camera();
     void update() override;
     void draw() const override;
     void use() const;
 
-	void setTarget(const Vec3f& targetPos);
-	void setTarget(const GameObject* targetObject);
+    void setTarget(const Vec3f& targetPos);
+    void setTarget(const GameObject* targetObject);
     std::pair<bool, Vec3f> Target() const;
-	void setRelativePos(const Vec3f& Relative); //Relative Position to a targeted Object
+    void setRelativePos(const Vec3f& Relative); //Relative Position to a targeted Object
     Vec3f RelativePos() const {return relativePos;}
 
     Ray traceRay(int x, int y) const noexcept;
@@ -35,10 +35,10 @@ public:
 
 private:
 
-	Vec3f up;
-	const GameObject* targetObj;
-	Vec3f target;
-	Vec3f relativePos;
+    Vec3f up;
+    const GameObject* targetObj;
+    Vec3f target;
+    Vec3f relativePos;
     Vec3f orbitFactors;
     float orbitRadius;
     float orbitPeriod;

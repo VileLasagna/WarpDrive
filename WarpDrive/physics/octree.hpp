@@ -50,13 +50,13 @@ public:
     virtual void draw();
     void addChild(Octree*);
 
-	~OctreeComposite()
-	{
-		for(int i = 0; i < children.size(); i++)
-		{
-			delete children[i];
-		}
-	}
+    ~OctreeComposite()
+    {
+        for(int i = 0; i < children.size(); i++)
+        {
+            delete children[i];
+        }
+    }
 
 private:
 

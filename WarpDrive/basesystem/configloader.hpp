@@ -13,7 +13,7 @@
 class ConfigLoader
 {
 private: //This class is a singleton
-	ConfigLoader(){}
+    ConfigLoader(){}
 
 public:
 
@@ -24,16 +24,16 @@ public:
     std::pair<bool,std::string> Value(std::string key) noexcept;
 
 
-	ConfigLoader(const ConfigLoader& ) = delete;
-	ConfigLoader operator=(ConfigLoader& ) = delete;
+    ConfigLoader(const ConfigLoader& ) = delete;
+    ConfigLoader operator=(ConfigLoader& ) = delete;
 
-	~ConfigLoader() = default;
+    ~ConfigLoader() = default;
 
 
 private:
 
 
-	std::map<std::string, std::string> values;
+    std::map<std::string, std::string> values;
 
 
 

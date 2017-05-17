@@ -18,10 +18,10 @@ public:
 
 private:
 
-	Err(){}
-	static Err* instance();
-	static void clear();
-	std::list<std::string> errlog;
+    Err(){}
+    static Err* instance();
+    static void clear();
+    std::list<std::string> errlog;
 
 };
 

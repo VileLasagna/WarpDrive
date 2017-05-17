@@ -27,15 +27,15 @@ DisplayManager::DisplayManager():
     fullscreen  (0),
     videoFlags  (0)
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
+    SDL_Init(SDL_INIT_EVERYTHING);
     //videoFlags = 0/*SDL_HWSURFACE | SDL_DOUBLEBUF | SDL_ASYNCBLIT*/;
 
-	int numJs = SDL_NumJoysticks();
-	for (int i = 0; i < numJs; i++)
-	{
-		SDL_JoystickOpen(i);
-	}
-	SDL_JoystickEventState(SDL_ENABLE);
+    int numJs = SDL_NumJoysticks();
+    for (int i = 0; i < numJs; i++)
+    {
+        SDL_JoystickOpen(i);
+    }
+    SDL_JoystickEventState(SDL_ENABLE);
    
 
 }
@@ -46,33 +46,33 @@ DisplayManager::~DisplayManager()
     delete[] modelview;
     delete[] projection;
     delete[] viewport;
-	SDL_Quit();
+    SDL_Quit();
 }
 
 void DisplayManager::setFullscreen(bool b)
-	{
-	if (b)
-	{
-		fullscreen = SDL_WINDOW_FULLSCREEN_DESKTOP;
-	}
-	else
-	{
-		fullscreen = 0;
-	}
+    {
+    if (b)
+    {
+        fullscreen = SDL_WINDOW_FULLSCREEN_DESKTOP;
+    }
+    else
+    {
+        fullscreen = 0;
+    }
 }
 
 
 void DisplayManager::toggleFS()
 {
-	if (fullscreen)
-	{
-		fullscreen = 0;
-	}
-	else
-	{
+    if (fullscreen)
+    {
+        fullscreen = 0;
+    }
+    else
+    {
         fullscreen = SDL_WINDOW_FULLSCREEN_DESKTOP;
-	}
-	setVideo();
+    }
+    setVideo();
 }
 
 void DisplayManager::showStats(unsigned int updates, unsigned int frames) noexcept
@@ -107,24 +107,24 @@ SDL_Renderer* DisplayManager::Renderer() const
 
 void DisplayManager::Flip()
 {
-	if(openGL)
-	{
+    if(openGL)
+    {
         SDL_GL_SwapWindow(mainWindow);
-	}
-	else
-	{
+    }
+    else
+    {
         SDL_RenderPresent(renderer);
-	}
+    }
 }
 
 void DisplayManager::Update()
 {
     static Game::time_t lastCall = Game::instance()->now();
     dt = Game::instance()->millisSince(lastCall);
-	if (dt > maxDT)
-	{
-		dt = maxDT;
-	}
+    if (dt > maxDT)
+    {
+        dt = maxDT;
+    }
     lastCall = Game::instance()->now();
 }
 
@@ -141,25 +141,25 @@ float DisplayManager::DtSecs() const noexcept
 
 DisplayManager* DisplayManager::instance()
 {
-	static DisplayManager* inst = 0;
-	if (!inst)
-	{
-		inst = new DisplayManager;
-	}
-	return inst;
+    static DisplayManager* inst = 0;
+    if (!inst)
+    {
+        inst = new DisplayManager;
+    }
+    return inst;
 }
 
 void DisplayManager::clear() noexcept
 {
-	delete(DisplayManager::instance());
-	//yeah, I know this might end up initialising this unnecessarily
-	//but I couldn't really find an alternative
+    delete(DisplayManager::instance());
+    //yeah, I know this might end up initialising this unnecessarily
+    //but I couldn't really find an alternative
 }
 
 void DisplayManager::setSize(int width, int height)
 {
-	w = width;
-	h = height;
+    w = width;
+    h = height;
     if(mainWindow)
     {
 
@@ -207,20 +207,20 @@ void DisplayManager::applyVsync()
 
 void DisplayManager::setBPP(int i)
 {
-	bpp = i;
-	setVideo();
+    bpp = i;
+    setVideo();
 }
 
 void DisplayManager::useOpengGL(bool b) noexcept
 {
-	if (b)
-	{
-		openGL = true;
+    if (b)
+    {
+        openGL = true;
         videoFlags = SDL_WINDOW_OPENGL | fullscreen;
-	}
-	else
-	{
-		openGL = false;
+    }
+    else
+    {
+        openGL = false;
         videoFlags =  0/*DL_HWSURFACE | SDL_DOUBLEBUF | SDL_ASYNCBLIT */| fullscreen;
     }
 }
@@ -240,8 +240,8 @@ void DisplayManager::toggleVsync() noexcept
 void DisplayManager::init(bool Fullscreen, bool UsingOpenGL) noexcept
 {
     setFullscreen(Fullscreen);
-	useOpengGL(UsingOpenGL);
-	setVideo();
+    useOpengGL(UsingOpenGL);
+    setVideo();
     if(!openGL)
     {
         renderer = SDL_CreateRenderer(mainWindow, -1, 0);
@@ -272,8 +272,8 @@ void DisplayManager::updateMatrices()
 
 void DisplayManager::clearDisplay() noexcept
 {
-	if(openGL)
-	{
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	}
+    if(openGL)
+    {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    }
 }

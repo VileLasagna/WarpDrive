@@ -18,12 +18,12 @@ class SDLImage
 {
 public:
     SDLImage();
-    
-	virtual ~SDLImage();
+
+    virtual ~SDLImage();
 
     bool load(const std::string& filename);
 
-	void setColourKey(const SDLRGBColour& tc = SDLRGBColour(0,255,255));//default = Pure Cyan
+    void setColourKey(const SDLRGBColour& tc = SDLRGBColour(0,255,255));//default = Pure Cyan
 
     void blit(int xPos = 0, int yPos = 0);
 
@@ -40,8 +40,8 @@ protected:
 
     SDL_Texture* image;
     SDL_Surface* surface;
-	unsigned int alphaT; //The threshold above which a pixel is considered transparent. default 128 (50%)
-	int x,y;
+    unsigned int alphaT; //The threshold above which a pixel is considered transparent. default 128 (50%)
+    int x,y;
 };
 
 #endif //WD_SDL_IMAGE_HPP_DEFINED

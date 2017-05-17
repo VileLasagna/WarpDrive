@@ -48,7 +48,7 @@ public:
     float Radius()       const noexcept {return radius;}
     GLRGBColour Colour() const noexcept {return colour;}
     bool Wireframe()     const noexcept {return wireframe;}
-	~Sphere() = default;
+    ~Sphere() = default;
 
 
 private:
@@ -56,7 +56,7 @@ private:
 
     Vec3f centre;
     float radius;
-	GLRGBColour colour;
+    GLRGBColour colour;
     bool wireframe;
 
     ptr_GLUquad quadric;

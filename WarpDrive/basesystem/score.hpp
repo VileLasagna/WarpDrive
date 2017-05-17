@@ -11,22 +11,22 @@
 class Score:public GameObject
 {
 public:
-	Score();
+    Score();
     void update() override;
     void draw()const override;
     const char* Type() const override {return "score";}
-	void add(int points);
+    void add(int points);
     //void load() override;
-	void save();
-	void Reset();
+    void save();
+    void Reset();
 
 private:
 
-	int current;
-	std::set<int> TopTen;
+    int current;
+    std::set<int> TopTen;
     float time;
-	Billboard quad;
-	SDLTTF* font;
+    Billboard quad;
+    SDLTTF* font;
     WDTexture* display;
 };
 

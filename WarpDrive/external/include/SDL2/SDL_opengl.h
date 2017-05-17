@@ -166,21 +166,21 @@ extern "C" {
 /*
  * Datatypes
  */
-typedef unsigned int	GLenum;
-typedef unsigned char	GLboolean;
-typedef unsigned int	GLbitfield;
-typedef void		GLvoid;
-typedef signed char	GLbyte;		/* 1-byte signed */
-typedef short		GLshort;	/* 2-byte signed */
-typedef int		GLint;		/* 4-byte signed */
-typedef unsigned char	GLubyte;	/* 1-byte unsigned */
-typedef unsigned short	GLushort;	/* 2-byte unsigned */
-typedef unsigned int	GLuint;		/* 4-byte unsigned */
-typedef int		GLsizei;	/* 4-byte signed */
-typedef float		GLfloat;	/* single precision float */
-typedef float		GLclampf;	/* single precision float in [0,1] */
-typedef double		GLdouble;	/* double precision float */
-typedef double		GLclampd;	/* double precision float in [0,1] */
+typedef unsigned int    GLenum;
+typedef unsigned char   GLboolean;
+typedef unsigned int    GLbitfield;
+typedef void            GLvoid;
+typedef signed char     GLbyte;     /* 1-byte signed */
+typedef short           GLshort;    /* 2-byte signed */
+typedef int             GLint;      /* 4-byte signed */
+typedef unsigned char   GLubyte;    /* 1-byte unsigned */
+typedef unsigned short  GLushort;   /* 2-byte unsigned */
+typedef unsigned int    GLuint;     /* 4-byte unsigned */
+typedef int             GLsizei;    /* 4-byte signed */
+typedef float           GLfloat;    /* single precision float */
+typedef float           GLclampf;   /* single precision float in [0,1] */
+typedef double          GLdouble;   /* double precision float */
+typedef double          GLclampd;   /* double precision float in [0,1] */
 
 
 
@@ -189,18 +189,18 @@ typedef double		GLclampd;	/* double precision float in [0,1] */
  */
 
 /* Boolean values */
-#define GL_FALSE				0
-#define GL_TRUE					1
+#define GL_FALSE                0
+#define GL_TRUE                 1
 
 /* Data types */
-#define GL_BYTE					0x1400
-#define GL_UNSIGNED_BYTE			0x1401
-#define GL_SHORT				0x1402
-#define GL_UNSIGNED_SHORT			0x1403
-#define GL_INT					0x1404
-#define GL_UNSIGNED_INT				0x1405
-#define GL_FLOAT				0x1406
-#define GL_2_BYTES				0x1407
+#define GL_BYTE                 0x1400
+#define GL_UNSIGNED_BYTE        0x1401
+#define GL_SHORT                0x1402
+#define GL_UNSIGNED_SHORT       0x1403
+#define GL_INT                  0x1404
+#define GL_UNSIGNED_INT         0x1405
+#define GL_FLOAT                0x1406
+#define GL_2_BYTES              0x1407
 #define GL_3_BYTES				0x1408
 #define GL_4_BYTES				0x1409
 #define GL_DOUBLE				0x140A

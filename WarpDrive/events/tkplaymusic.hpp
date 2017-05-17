@@ -12,25 +12,25 @@ class TKPlayMusic: public TimelineKey
 
 public:
 
-	TKPlayMusic(float Time = 0, const std::string& Filename = "", int FadeIn = 0)
-	{
-		time = Time;
-		filename = Filename; 
+    TKPlayMusic(float Time = 0, const std::string& Filename = "", int FadeIn = 0)
+    {
+        time = Time;
+        filename = Filename;
         if(filename != "") {SoundManager::instance()->loadMusic(filename.c_str());}
-		fadein = FadeIn;
-	}
-	void trigger()
-	{
-		if(filename != "")
-		{
+        fadein = FadeIn;
+    }
+    void trigger()
+    {
+        if(filename != "")
+        {
             SoundManager::instance()->fadeInMusic(fadein);
-		}
-	}
+        }
+    }
 
 protected:
 
-	std::string filename;
-	int fadein;
+    std::string filename;
+    int fadein;
 
 };
 

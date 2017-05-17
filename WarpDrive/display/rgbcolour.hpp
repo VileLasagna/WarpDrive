@@ -11,9 +11,9 @@ public:
                                 g{green},
                                 b{blue} {}
 
-	constexpr T R() const{ return r; }
-	constexpr T G() const{ return g; }
-	constexpr T B() const{ return b; }
+    constexpr T R() const{ return r; }
+    constexpr T G() const{ return g; }
+    constexpr T B() const{ return b; }
 
 protected:
     T r,g,b;

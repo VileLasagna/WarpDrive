@@ -4,16 +4,13 @@
 class Model;
 
 class ModelLoader
-	//base class for various data format loaders.
+    //base class for various data format loaders.
 {
 public:
 
-	 //static bool Load(Model* m, const char* filename) = 0;
+    //static bool Load(Model* m, const char* filename) = 0;
 
 
 };
-
-
-
 
 #endif //WD_MODEL_LOADER_HPP_DEFINED

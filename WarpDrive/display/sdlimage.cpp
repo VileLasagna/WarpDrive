@@ -3,9 +3,9 @@
 #include <SDL2/SDL.h>
 
 #ifdef _WIN32
-	#include <SDL2/SDL_Image.h>
+    #include <SDL2/SDL_Image.h>
 #else
-	#include <SDL2/SDL_image.h>
+    #include <SDL2/SDL_image.h>
 #endif //_WIN32
 #include <assert.h>
 
@@ -13,9 +13,9 @@ SDLImage::SDLImage()
 {
     image = 0;
     surface = 0;
-	setAlphaT();
-	x = 0;
-	y = 0;
+    setAlphaT();
+    x = 0;
+    y = 0;
 }
 
 bool SDLImage::load(const std::string& filename)
@@ -38,10 +38,10 @@ void SDLImage::setColourKey(const SDLRGBColour& tc)
 
 SDLImage::~SDLImage()
 {
-	
+
     SDL_FreeSurface(surface);
     SDL_DestroyTexture(image);
-	
+
 }
 
 void SDLImage::blit(int xPos, int yPos)
@@ -61,7 +61,7 @@ Rectf SDLImage::Box() const
 
 Vec2f SDLImage::Position() const
 {
-	return Vec2f(x,y);
+    return Vec2f(x,y);
 }
 
 void SDLImage::setDrawAlpha(uint8_t i)
@@ -71,12 +71,12 @@ void SDLImage::setDrawAlpha(uint8_t i)
 
 unsigned int SDLImage::PixelColour(int atX, int atY) const
 {
-	unsigned char* c = 
+    unsigned char* c =
         static_cast<unsigned char*>(surface->pixels) +
         (atY * surface->pitch) +
         (atX * surface->format->BytesPerPixel);
 
-	unsigned int r = 0;
+    unsigned int r = 0;
     if (surface->format->BytesPerPixel == 3)
     {
         r = static_cast<unsigned int>(c[0] + (c[1] << 8) + (c[2] << 16));

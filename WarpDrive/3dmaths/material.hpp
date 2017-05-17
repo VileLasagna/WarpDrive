@@ -24,17 +24,17 @@ public:
     void setSpecular(Vec3f v) noexcept;
     void setSpecular(float r, float g, float b) noexcept;
     void setShiny(float f) noexcept;
-	
+
     void use(Faces f = Faces::FRONT) const noexcept; //0 = front, 1 = back, 2 = front+back
 
     static void useDefault() noexcept;
 
 private:
 
-	Vec3f ambient;
-	Vec3f diffuse;
-	Vec3f specular;
-	float shiny;
+    Vec3f ambient;
+    Vec3f diffuse;
+    Vec3f specular;
+    float shiny;
 
 };
 

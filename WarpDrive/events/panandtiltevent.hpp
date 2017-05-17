@@ -12,13 +12,13 @@ class PanAndTiltEvent: public GOEvent
 public:
 
     PanAndTiltEvent(int64_t Time = 0, Vec3f Pan = Vec3f(), Vec3f Tilt = Vec3f());
-	void update(GameObject* target);
+    void update(GameObject* target);
 
 protected:
 
-	Vec3f pan, tilt, panNudge, tiltNudge;
+    Vec3f pan, tilt, panNudge, tiltNudge;
     int64_t time;
-	bool overTime;
+    bool overTime;
 
 };
 

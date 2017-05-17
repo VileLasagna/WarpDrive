@@ -3,9 +3,7 @@
 #include <algorithm>
 
 RDCcheck::RDCcheck()
-{
-
-}
+{}
 
 void RDCcheck::update(Game::iterator it)
 {

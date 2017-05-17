@@ -12,24 +12,23 @@ class GLMesh
 private:
 
     GLMesh operator=(const GLMesh& ref);
-	GLMesh(const GLMesh& ref);
+    GLMesh(const GLMesh& ref);
 
 public:
 
-	GLMesh();
-	GLMesh(const char* objfile, bool Textured = true, bool Smooth = true, bool TwoSidedPolys = false);
+    GLMesh();
+    GLMesh(const char* objfile, bool Textured = true, bool Smooth = true, bool TwoSidedPolys = false);
     bool load(const char* objfile, bool Textured = true, bool Smooth = true, bool TwoSidedPolys = false);
     bool setSize(float f);
     void draw() const;
-	~GLMesh();
+    ~GLMesh();
 
 private:
     //GLMmodel
     void* mesh;
-	GLuint flags;
+    GLuint flags;
 
 
 };
-
 
 #endif //WD_GLMESH_HPP_DEFINED

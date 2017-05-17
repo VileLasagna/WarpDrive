@@ -6,10 +6,10 @@
 
 struct FontInitialiser
 {
-	FontInitialiser()
-	{
-		TTF_Init();
-	}
+    FontInitialiser()
+    {
+        TTF_Init();
+    }
 };
 
 SDLTTF::SDLTTF()
@@ -19,10 +19,10 @@ SDLTTF::SDLTTF()
 
 SDLTTF::~SDLTTF()
 {
-	if (font)
-	{
-		TTF_CloseFont(font);
-	}
+    if (font)
+    {
+        TTF_CloseFont(font);
+    }
     if(color)
     {
         delete color;
@@ -31,31 +31,31 @@ SDLTTF::~SDLTTF()
 
 bool SDLTTF::load(const std::string& fontFileName, int pointSize)
 {
-	font = TTF_OpenFont(fontFileName.c_str(), pointSize);
-	assert(font);
-	return (font != 0);
+    font = TTF_OpenFont(fontFileName.c_str(), pointSize);
+    assert(font);
+    return (font != 0);
 }
 
 void SDLTTF::draw(const std::string& text, WDTexture* target) const
 {
-	assert(font);
+    assert(font);
 
-	SDL_Surface* pSurface = TTF_RenderText_Blended(
-		font, 
-		text.c_str(), 
+    SDL_Surface* pSurface = TTF_RenderText_Blended(
+        font,
+        text.c_str(),
         *color);
 
     target->createFromSDLSurface(pSurface);
 
-	//SDL_Rect dest;
-	/*dest.x = x;
-	dest.y = y;
-	SDL_BlitSurface(pSurface, 0, DisplayManager::instance()->getScreen(), &dest);*/
-	SDL_FreeSurface(pSurface);
+    //SDL_Rect dest;
+    /*dest.x = x;
+    dest.y = y;
+    SDL_BlitSurface(pSurface, 0, DisplayManager::instance()->getScreen(), &dest);*/
+    SDL_FreeSurface(pSurface);
 }
 
 //void SDLTTF::setColour( int r, int g, int b)
 //{
-//	SDL_Colour c = { r , g , b , 255};
-//	colour = c;
+//    SDL_Colour c = { r , g , b , 255};
+//    colour = c;
 //}

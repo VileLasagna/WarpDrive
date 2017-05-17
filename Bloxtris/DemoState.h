@@ -10,23 +10,20 @@ class DemoState: public GameState
 {
 public:
 
-	DemoState();
-	void Draw();
-	int Update();
-	void Reset();
+    DemoState();
+    void Draw();
+    int Update();
+    void Reset();
 
 private:
 
-	Timeline* demo;
-	float timer;
-	Texture* Splash;
+    Timeline* demo;
+    float timer;
+    Texture* Splash;
 
-
-	void onKeyboardEvent(const SDL_KeyboardEvent& e);
-	void onJoyButtonEvent(const SDL_JoyButtonEvent& e);
+    void onKeyboardEvent(const SDL_KeyboardEvent& e);
+    void onJoyButtonEvent(const SDL_JoyButtonEvent& e);
 
 };
-
-
 
 #endif //DEMO_STATE_H

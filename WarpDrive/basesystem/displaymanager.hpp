@@ -19,23 +19,23 @@ using SDL_GLContext = void*;
 
 class DisplayManager
 {
-private:	//this class is a singleton
-		DisplayManager();
-		DisplayManager(const DisplayManager& ) = delete;
-		DisplayManager operator= (const DisplayManager& ) = delete;
+private:    //this class is a singleton
+        DisplayManager();
+        DisplayManager(const DisplayManager& ) = delete;
+        DisplayManager operator= (const DisplayManager& ) = delete;
 public:
 
     enum class Matrix{MODELVIEW = 0, PROJECTION = 1, TEXTURE = 2, NONE = -1};
 
-	static DisplayManager* instance();
+    static DisplayManager* instance();
     static void clear() noexcept;
 
     ~DisplayManager();
 
     void Flip();
     void setMaxDT(int64_t mdt) {maxDT = mdt;}
-	void setSize (int width, int height);
-	std::pair<int,int> getSize() const{ return std::pair<int,int>(w,h);} //returns (width,height)
+    void setSize (int width, int height);
+    std::pair<int,int> getSize() const{ return std::pair<int,int>(w,h);} //returns (width,height)
 
     SDL_Window* Screen() const;
     SDL_Renderer* Renderer() const;
@@ -58,7 +58,7 @@ public:
     void showStats(unsigned int updates, unsigned int frames) noexcept;
     void setTitle(std::string newTitle, int windowIndex = 1) noexcept;
 
-	void setBPP(int i);
+    void setBPP(int i);
 
     void init(bool Fullscreen = false, bool UsingOpenGL = false) noexcept;
 
@@ -70,13 +70,13 @@ public:
     Matrix44 TextureMatrix();
 
     void setMatrixMode(DisplayManager::Matrix type);
-	void applyMatrix (const Matrix44& mat);
-	void setToMatrix (const Matrix44& mat);
-	void clearMatrix ();
+    void applyMatrix (const Matrix44& mat);
+    void setToMatrix (const Matrix44& mat);
+    void clearMatrix ();
 
 private:
 
-	void setVideo();
+    void setVideo();
     void applyVsync();
 
     SDL_Window* mainWindow;
@@ -84,11 +84,11 @@ private:
     SDL_GLContext gl_context;
     float dt;
     int64_t maxDT;
-	bool openGL;
+    bool openGL;
     bool vsync;
-	int bpp;
-	int w;
-	int h;
+    int bpp;
+    int w;
+    int h;
     GLdouble* modelview;
     GLdouble* projection;
     GLint* viewport;

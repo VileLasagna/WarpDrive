@@ -15,33 +15,33 @@
 //{
 //public:
 
-//	MemPack(void* address = 0, size_t size = 0, std::string file = "", int line = 0);
-//	const void* getAddress() const {return add;}
-//	const size_t getSize() const {return length;}
-//	const std::string getSource() const {return source;}
-//	int getLine() const {return ln;}
+//    MemPack(void* address = 0, size_t size = 0, std::string file = "", int line = 0);
+//    const void* getAddress() const {return add;}
+//    const size_t getSize() const {return length;}
+//    const std::string getSource() const {return source;}
+//    int getLine() const {return ln;}
 
 //private:
 
-//	void* add;
-//	size_t length;
-//	std::string source;
-//	int ln;
+//    void* add;
+//    size_t length;
+//    std::string source;
+//    int ln;
 //};
 
 //class MemManager
 //{
 //public:
-	
-//	static MemManager* MemManager::instance();
-//	bool MemManager::Alloc(MemPack& m);
-//	bool MemManager::Remove(void* address);
-//	static void MemManager::Clear();
+
+//    static MemManager* MemManager::instance();
+//    bool MemManager::Alloc(MemPack& m);
+//    bool MemManager::Remove(void* address);
+//    static void MemManager::Clear();
 
 //private:
 
-//	MemManager();
-//	std::map<const void*,MemPack> allocmap;
+//    MemManager();
+//    std::map<const void*,MemPack> allocmap;
 
 //};
 

@@ -2,7 +2,7 @@
 
 #include <assert.h>
 #ifdef WIN32
-	#define _USE_MATH_DEFINES
+    #define _USE_MATH_DEFINES
 #endif //WIN32
 
 #include <cmath>
@@ -10,16 +10,16 @@
 
 Quaternion::Quaternion()
 {
-	w = 1;
-	x = 0;
-	y = 0;
-	z = 0;
+    w = 1;
+    x = 0;
+    y = 0;
+    z = 0;
 }
 
 
 Quaternion::Quaternion(float degrees, float xVal, float yVal, float zVal)
 {
-	double angrad = degrees * 0.017453292519943295769236907684886; //*PI/(180)
+    double angrad = degrees * 0.017453292519943295769236907684886; //*PI/(180)
     w = static_cast<float>(cos(angrad));
     float s = static_cast<float>(sin(angrad));
     x = xVal*s;
@@ -31,18 +31,18 @@ Quaternion::Quaternion(float rad, Vec3f& axis)
 {
     w = static_cast<float>(cos(rad));
     float s = static_cast<float>(sin(rad));
-	x = axis.X()*s;
-	y = axis.Y()*s;
-	z = axis.Z()*s;
+    x = axis.X()*s;
+    y = axis.Y()*s;
+    z = axis.Z()*s;
 }
 
 
 void Quaternion::Identity()
 {
-	w = 1;
-	x = 0;
-	y = 0;
-	z = 0;
+    w = 1;
+    x = 0;
+    y = 0;
+    z = 0;
 }
 
 void Quaternion::toMatrix(float pMatrix[16]) const
@@ -50,24 +50,24 @@ void Quaternion::toMatrix(float pMatrix[16]) const
     assert(pMatrix);
 
     // First row
-    pMatrix[ 0] = 1.0f - 2.0f * ( y * y + z * z ); 
+    pMatrix[ 0] = 1.0f - 2.0f * ( y * y + z * z );
     pMatrix[ 1] = 2.0f * (x * y + z * w);
     pMatrix[ 2] = 2.0f * (x * z - y * w);
-    pMatrix[ 3] = 0.0f;  
+    pMatrix[ 3] = 0.0f;
     // Second row
-    pMatrix[ 4] = 2.0f * ( x * y - z * w );  
-    pMatrix[ 5] = 1.0f - 2.0f * ( x * x + z * z ); 
-    pMatrix[ 6] = 2.0f * (z * y + x * w );  
-    pMatrix[ 7] = 0.0f;  
+    pMatrix[ 4] = 2.0f * ( x * y - z * w );
+    pMatrix[ 5] = 1.0f - 2.0f * ( x * x + z * z );
+    pMatrix[ 6] = 2.0f * (z * y + x * w );
+    pMatrix[ 7] = 0.0f;
     // Third row
     pMatrix[ 8] = 2.0f * ( x * z + y * w );
     pMatrix[ 9] = 2.0f * ( y * z - x * w );
-    pMatrix[10] = 1.0f - 2.0f * ( x * x + y * y );  
-    pMatrix[11] = 0.0f;  
+    pMatrix[10] = 1.0f - 2.0f * ( x * x + y * y );
+    pMatrix[11] = 0.0f;
     // Fourth row
-    pMatrix[12] = 0;  
-    pMatrix[13] = 0;  
-    pMatrix[14] = 0;  
+    pMatrix[12] = 0;
+    pMatrix[13] = 0;
+    pMatrix[14] = 0;
     pMatrix[15] = 1.0f;
     // Now pMatrix[] is a 4x4 homogeneous matrix that can be applied to an OpenGL Matrix
 }
@@ -95,14 +95,14 @@ Quaternion Slerp(const Quaternion& from, const Quaternion& to, float t)
 
     // adjust signs (if necessary)
     if (cosom < 0)
-    { 
+    {
         cosom = -cosom; 
         to1[0] = - to.x;
         to1[1] = - to.y;
         to1[2] = - to.z;
         to1[3] = - to.w;
-    } 
-    else  
+    }
+    else
     {
         to1[0] = to.x;
         to1[1] = to.y;
@@ -120,9 +120,9 @@ Quaternion Slerp(const Quaternion& from, const Quaternion& to, float t)
         sinom = sin(omega);
         scale0 = sin((1.0 - t) * omega) / sinom;
         scale1 = sin(t * omega) / sinom;
-    } 
-    else 
-    {        
+    }
+    else
+    {
         // "from" and "to" quaternions are very close 
         //  ... so we can do a linear interpolation
         scale0 = 1.0 - t;
@@ -142,19 +142,19 @@ Quaternion Slerp(const Quaternion& from, const Quaternion& to, float t)
 
 float Quaternion::sqMod()
 {
-	return (w*w)+(x*x)+(y*y)+(z*z);
+    return (w*w)+(x*x)+(y*y)+(z*z);
 }
 
 void Quaternion::normalise()
 {
-	float f = this->sqMod();
-	if (f > 0.999999999999999 && f < 1.000000000000001) //f == 1 with some decent precision range
-	{
-		return;
-	}
+    float f = this->sqMod();
+    if (f > 0.999999999999999 && f < 1.000000000000001) //f == 1 with some decent precision range
+    {
+        return;
+    }
     f = static_cast<float>(sqrt(f));
-	w /= f;
-	x /= f;
-	y /= f;
-	z /= f;
+    w /= f;
+    x /= f;
+    y /= f;
+    z /= f;
 }

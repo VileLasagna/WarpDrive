@@ -12,7 +12,7 @@ class glColorEvent: public GOEvent
 public:
 
     glColorEvent(int64_t Time = 0, float Red = 1, float Green = 1, float Blue = 1);
-	~glColorEvent(){}
+    ~glColorEvent(){}
     void update(GameObject* target) override;
 
 private:

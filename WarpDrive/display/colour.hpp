@@ -6,9 +6,9 @@
 
 class Colour
 {
-	//Class to define a Colour
-	//R,G,B and A go from 0 to 1
-	//Alpha 1 is 100% opaque
+    //Class to define a Colour
+    //R,G,B and A go from 0 to 1
+    //Alpha 1 is 100% opaque
 public:
 
     Colour() noexcept: r(1),g(1),b(1),a(1){}
@@ -25,10 +25,10 @@ public:
     void RGBA(float* dest) const {dest[0] = r; dest[1] = g; dest[2] = b; dest[3] = a;}
     Vec4f RGBA() const {return Vec4f(r,g,b,a);}
 
-	void setR(float f) {r = f;}
-	void setB(float f) {g = f;}
-	void setG(float f) {b = f;}
-	void setA(float f) {a = f;}
+    void setR(float f) {r = f;}
+    void setB(float f) {g = f;}
+    void setG(float f) {b = f;}
+    void setA(float f) {a = f;}
 
     bool operator== (const Colour& other) const
     {
@@ -37,7 +37,7 @@ public:
 
 private:
 
-	float r,g,b,a;
+    float r,g,b,a;
 
 };
 

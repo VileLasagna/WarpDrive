@@ -12,39 +12,39 @@
 #include <GL/glu.h>
 
 Plane::Plane()
-{ 
+{
     nX = 0;
     nY = 0;
     nZ = 0;
     d = 0;
     drawnCells = std::pair<int,int>(2,2);
-	cellSize = 1; 
-	colour = Vec3f(0,1,0);
-	drawWire = true;
-	origin = Vec3f();
+    cellSize = 1;
+    colour = Vec3f(0,1,0);
+    drawWire = true;
+    origin = Vec3f();
     d0 = d;
-	showNormal = 0;
+    showNormal = 0;
     tex = nullptr;
 }
 
 Plane::Plane (float A, float B, float C, float D)
 {
-	float sqmod = A*A+B*B+C*C;
-	if(sqmod > 1.00001 || sqmod < 0.999999)
-	{
+    float sqmod = A*A+B*B+C*C;
+    if(sqmod > 1.00001 || sqmod < 0.999999)
+    {
         float mod = static_cast<float>(sqrt(sqmod));
-		A /= mod;
-		B /= mod;
-		C /= mod;
-	}
+        A /= mod;
+        B /= mod;
+        C /= mod;
+    }
     nX = A;
     nY = B;
     nZ = C;
     d = D;
     drawnCells = std::pair<int,int>(2,2);
-	cellSize = 1; 
-	colour = Vec3f(0,1,0);
-	drawWire = true;
+    cellSize = 1;
+    colour = Vec3f(0,1,0);
+    drawWire = true;
     origin = Vec3f(nX*D,nY*D,nZ*D);
     d0 = D;
     showNormal = false;
@@ -54,19 +54,19 @@ Plane::Plane (float A, float B, float C, float D)
 void Plane::useTexture(WDTexture *t, bool Tile)
 {
     tex = t;
-	tile = Tile;
+    tile = Tile;
 }
 
 Plane::Plane (const Vec3f& Normal, float Distance) 
-{ 
+{
     nX = Normal.X();
     nY = Normal.Y();
     nZ = Normal.Z();
     d = Distance;
     drawnCells = std::pair<int,int>(2,2);
-	cellSize = 1;
-	colour = Vec3f(0,1,0);
-	drawWire = true;
+    cellSize = 1;
+    colour = Vec3f(0,1,0);
+    drawWire = true;
     origin = Vec3f(nX*d,nY*d,nZ*d);
     d0 = d;
     showNormal = false;
@@ -74,15 +74,15 @@ Plane::Plane (const Vec3f& Normal, float Distance)
 }
 
 Plane::Plane (const Vec3f& P1, const Vec3f& P2, const Vec3f& P3) 
-{     
-	Vec3f N = triNormal(P1,P2,P3);
+{
+    Vec3f N = triNormal(P1,P2,P3);
     nX = N.X();
     nY = N.Y();
     nZ = N.Z();
     d = dotProd(P1, N);
     drawnCells = std::pair<int,int>(2,2);
-	cellSize = 1;
-	drawWire = true;
+    cellSize = 1;
+    drawWire = true;
     origin = Vec3f(nX*d,nY*d,nZ*d);
     d0 = d;
     showNormal = false;
@@ -91,32 +91,32 @@ Plane::Plane (const Vec3f& P1, const Vec3f& P2, const Vec3f& P3)
 
 void Plane::setNormal(const Vec3f& N)
 {
-	//This function is for "rotating" the plane around the origin of the WORLD
-	float M = N.sqMod();
-	if(M > 1.0000001 || M < 0.9999999)
-		//check if N is normalised and do so if it isn't.
-	{
-		Vec3f norm = N;
-		norm.normalise();
+    //This function is for "rotating" the plane around the origin of the WORLD
+    float M = N.sqMod();
+    if(M > 1.0000001 || M < 0.9999999)
+        //check if N is normalised and do so if it isn't.
+    {
+        Vec3f norm = N;
+        norm.normalise();
         nX = norm.X();
         nY = norm.Y();
         nZ = norm.Z();
-	}
-	else
-	{
+    }
+    else
+    {
         nX = N.X();
         nY = N.Y();
         nZ = N.Z();
-	}
+    }
 }
 
 void Plane::rotateAroundOrigin(const Vec3f &angles)
 {
-	Matrix44 rot;
-	rot.setRotation(angles.X(), angles.Y(), angles.Z());
+    Matrix44 rot;
+    rot.setRotation(angles.X(), angles.Y(), angles.Z());
     Vec3f newNorm = Vec3f(nX,nY,nZ);
-	newNorm = (Matrix44::multiply(rot,Vec4f(newNorm))).toVec3();
-	Vec3f Norm = newNorm;
+    newNorm = (Matrix44::multiply(rot,Vec4f(newNorm))).toVec3();
+    Vec3f Norm = newNorm;
     d = d0*dotProd(Norm,newNorm);
     nX = newNorm.X();
     nY = newNorm.Y();
@@ -126,29 +126,29 @@ void Plane::rotateAroundOrigin(const Vec3f &angles)
 
 void Plane::drawAsWireframe(bool b) noexcept
 {
-	drawWire = b;
+    drawWire = b;
 }
 
 void Plane::setDrawn(int X, int Y, float size)
 {
     drawnCells.first = X;
     drawnCells.second = Y;
-	cellSize = size;
+    cellSize = size;
 }
 
 void Plane::setColour(const Vec3f &rgb) noexcept
 {
-	colour = rgb;
+    colour = rgb;
 }
 
 void Plane::setColour(float r, float g, float b) noexcept
 {
-	colour = Vec3f(r,g,b);
+    colour = Vec3f(r,g,b);
 }
 
 void Plane::drawNormal(bool b) noexcept
 {
-	showNormal = b;
+    showNormal = b;
 
 }
 void Plane::draw() const noexcept
@@ -158,32 +158,32 @@ void Plane::draw() const noexcept
     float thetaZ = static_cast<float>(asin( dotProd(Vec3f(0,nY,nZ), Vec3f(0,0,1)) ) );
     float thetaX = static_cast<float>(asin( dotProd(Vec3f(nX,nY,0), Vec3f(1,0,0)) ) );
 
-	Matrix44 rot;
+    Matrix44 rot;
 
-	rot.setRotationRad(0,thetaZ,-thetaX);
+    rot.setRotationRad(0,thetaZ,-thetaX);
 
-	glPushMatrix();
+    glPushMatrix();
 
-		glTranslatef(origin.X(),origin.Y(),origin.Z()); //Drawing by Local
-		glMultMatrixf(rot.Elements().data());
+        glTranslatef(origin.X(),origin.Y(),origin.Z()); //Drawing by Local
+        glMultMatrixf(rot.Elements().data());
 
-		if (showNormal)
-		{
-			glDisable(GL_LIGHTING);
-			glEnable(GL_COLOR);
-			glColor3f(1,1,1);
-			glBegin(GL_LINES);
+        if (showNormal)
+        {
+            glDisable(GL_LIGHTING);
+            glEnable(GL_COLOR);
+            glColor3f(1,1,1);
+            glBegin(GL_LINES);
 
-				glVertex3f(0,0,0);
+                glVertex3f(0,0,0);
                 glVertex3f(nX*60,nY*60,nZ*60);
 
             glEnd();
-			glDisable(GL_COLOR);
-			glEnable(GL_LIGHTING);
-		}
+            glDisable(GL_COLOR);
+            glEnable(GL_LIGHTING);
+        }
 
         glTranslatef(-cellSize*drawnCells.first/2,0,-cellSize*drawnCells.second/2);
-		glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,128);
+        glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,128);
         GLfloat cl[3] = {colour.R(),colour.G(),colour.B()};
         glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, cl);
         float texStepX = 1.0f/drawnCells.first;
@@ -296,7 +296,7 @@ void Plane::draw() const noexcept
             }
         }
 
-		glColor3f(1,1,1);
-	glPopMatrix();
+        glColor3f(1,1,1);
+    glPopMatrix();
 
 }

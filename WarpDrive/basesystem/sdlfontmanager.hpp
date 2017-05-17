@@ -14,13 +14,13 @@ private:	//this class is a singleton
 public:
 
     static SDLFontManager* instance() noexcept;
-	SDLTTF* getFont(const std::string& fontName, int pointSize);
-	static void clear();
+    SDLTTF* getFont(const std::string& fontName, int pointSize);
+    static void clear();
 
-	SDLFontManager operator= (const SDLFontManager&) = delete;
-	SDLFontManager (const SDLFontManager&) = delete;
+    SDLFontManager operator= (const SDLFontManager&) = delete;
+    SDLFontManager (const SDLFontManager&) = delete;
 
-	~SDLFontManager() = default;
+    ~SDLFontManager() = default;
 
 private:
 

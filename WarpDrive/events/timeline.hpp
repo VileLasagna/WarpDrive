@@ -10,32 +10,32 @@ class Timeline
 {
 
 public:
-	
-	Timeline();
-	
+
+    Timeline();
+
     void load(const std::string& file);
-	void addKey(TimelineKey* key);
+    void addKey(TimelineKey* key);
     void update();
     void reset();
     bool Finished()const {return (nextKey == keys.end());}
 
-	~Timeline();
+    ~Timeline();
 
 private:
 
-	struct MyCompare
-	{
-		bool operator()(TimelineKey* p1, TimelineKey* p2)
-		{
+    struct MyCompare
+    {
+        bool operator()(TimelineKey* p1, TimelineKey* p2)
+        {
             return p1->Time()< p2->Time();
-		}
-	};
-	std::multiset<TimelineKey*, MyCompare> keys;
+        }
+    };
+    std::multiset<TimelineKey*, MyCompare> keys;
 
     int64_t time;
 
     std::multiset<TimelineKey*,MyCompare>::iterator nextKey;
-	TimelineKey* lastAdded;
+    TimelineKey* lastAdded;
 };
 
 #endif //WD_TIMELINE_HPP_DEFINED

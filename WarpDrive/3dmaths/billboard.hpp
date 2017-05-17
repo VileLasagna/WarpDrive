@@ -17,9 +17,9 @@ public:
 
 private:
 
-	float size;
-	Vec3f pos;
-	bool absUp;
+    float size;
+    Vec3f pos;
+    bool absUp;
 
 };
 

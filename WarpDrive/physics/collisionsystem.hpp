@@ -13,22 +13,22 @@ class CollisionPair
 
 public:
 
-	CollisionPair (std::string t1, std::string t2)
-	{
-		if (t1 < t2)
-		{
-			fst = t1;
-			snd = t2;
-		}
-		else
-		{
-			fst = t2;
-			snd = t1;
-		}
-	}
+    CollisionPair (std::string t1, std::string t2)
+    {
+        if (t1 < t2)
+        {
+            fst = t1;
+            snd = t2;
+        }
+        else
+        {
+            fst = t2;
+            snd = t1;
+        }
+    }
 
-	const std::string& first() const {return fst;}
-	const std::string& second() const {return snd;}
+    const std::string& first() const {return fst;}
+    const std::string& second() const {return snd;}
 
     bool operator< (const CollisionPair& comp) const
     {
@@ -53,7 +53,7 @@ public:
 
 private:
 
-	std::string fst, snd;
+    std::string fst, snd;
 
 };
 
@@ -89,11 +89,11 @@ class CollisionSystem
 public:
 
     virtual ~CollisionSystem();
-	virtual void update(Game::iterator it) = 0; //Just to not forget how to go around this
+    virtual void update(Game::iterator it) = 0; //Just to not forget how to go around this
     void load(CollisionPair cp, CollisionHandler f)
-	{
-		handlers[cp] = f;
-	}
+    {
+        handlers[cp] = f;
+    }
 
     void load(std::string t1, std::string t2, CollisionHandler f)
     {

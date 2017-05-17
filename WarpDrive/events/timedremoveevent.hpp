@@ -10,7 +10,7 @@ class TimedRemoveEvent:public GOEvent
 public:
 
     TimedRemoveEvent(int64_t Time = 5);
-	~TimedRemoveEvent(){}
+    ~TimedRemoveEvent(){}
     void update(GameObject* target) override;
 
 private:

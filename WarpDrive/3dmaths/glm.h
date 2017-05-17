@@ -27,7 +27,7 @@
 
 #define GLM_MAX_SHININESS 100.0 /* for Poser */
 #define GLM_MAX_TEXTURE_SIZE 0 /* must be a power of 2 (i.e. 1024).
-				  0 means no limit. */
+                                0 means no limit. */
 
 #ifndef M_PI
 #define M_PI 3.14159265f
@@ -67,7 +67,7 @@ typedef struct _GLMmaterial
       width;
   unsigned char* image;
   char *t_filename;
-  GLuint t_id[1];	
+  GLuint t_id[1];
 #endif
 } GLMmaterial;
 
@@ -86,7 +86,7 @@ typedef struct _GLMtriangle {
 typedef struct _GLMtexture {
   char *name;
   GLuint id;                    /* OpenGL texture ID */
-  GLfloat width;		/* width and height for texture coordinates */
+  GLfloat width;        /* width and height for texture coordinates */
   GLfloat height;
 } GLMtexture;
 

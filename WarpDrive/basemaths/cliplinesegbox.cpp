@@ -36,7 +36,7 @@ bool ClipAxis(
     if (direction > 0)
     {
         // Moving right
-	   auto t = (min - start) / direction;
+       auto t = (min - start) / direction;
         if (t > t1)
         {
             return false; // completely clipped
@@ -49,7 +49,7 @@ bool ClipAxis(
     else if (direction < 0)
     {
         // Moving left
-	   auto t = (min - start) / direction;
+       auto t = (min - start) / direction;
         if (t < t0)
         {
             return false;
@@ -69,7 +69,7 @@ bool ClipAxis(
     if (direction > 0)
     {
         // Moving right
-	   auto t = (max - start) / direction;
+       auto t = (max - start) / direction;
         if (t < t0)
         {
             return false;
@@ -81,7 +81,7 @@ bool ClipAxis(
     }
     else if (direction < 0)
     {
-	   auto t = (max - start) / direction;
+       auto t = (max - start) / direction;
         if (t > t1)
         {
             return false;

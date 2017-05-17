@@ -6,27 +6,27 @@ class TimelineKey
 
 public:
 
-	TimelineKey(){}
-	TimelineKey(float T)
-	{
-		time = T;
-	}
+    TimelineKey(){}
+    TimelineKey(float T)
+    {
+        time = T;
+    }
     virtual void trigger() = 0;
 
     float Time() const
-	{
-		return time;
-	}
-	
-	void setTime(float t)
-	{
-		time = t;
-	}
+    {
+        return time;
+    }
+
+    void setTime(float t)
+    {
+        time = t;
+    }
     virtual ~TimelineKey();
 
 protected:
 
-	float time;
+    float time;
 };
 
 #endif //WD_TIMELINE_KEY_HPP_DEFINED

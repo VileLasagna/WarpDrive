@@ -8,13 +8,13 @@ class TKGridCommand: public TimelineKey
 {
 public:
 
-	TKGridCommand( float Time = 0, Grid* G = 0, int command = 0); //0 = left, 1 = right, 2 = spin, 3 = drop
-	void Trigger();
+    TKGridCommand( float Time = 0, Grid* G = 0, int command = 0); //0 = left, 1 = right, 2 = spin, 3 = drop
+    void Trigger();
 
 private:
 
-	Grid* GD;
-	int c;
+    Grid* GD;
+    int c;
 
 };
 

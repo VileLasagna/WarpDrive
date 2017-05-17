@@ -11,16 +11,15 @@ class TimedMoveEvent: public GOEvent
 public:
 
     TimedMoveEvent(int64_t Time = 0, const Vec3f& Distance = Vec3f(0,0,0) ) { time = Time; dist = Distance; vel = dist/static_cast<float>(time);}
-	~TimedMoveEvent() {}
+    ~TimedMoveEvent() {}
 
     void update(GameObject* target) override;
 
 protected:
 
     int64_t time;
-	Vec3f dist;
-	Vec3f vel;
-
+    Vec3f dist;
+    Vec3f vel;
 
 };
 

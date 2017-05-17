@@ -4,13 +4,13 @@
 
 SDLFontManager* SDLFontManager::instance() noexcept
 {
-	static SDLFontManager* inst = new SDLFontManager();
-	return inst;
+    static SDLFontManager* inst = new SDLFontManager();
+    return inst;
 }
 
 void SDLFontManager::clear()
 {
-	delete (instance());
+    delete (instance());
 }
 
 
@@ -26,7 +26,7 @@ SDLTTF* SDLFontManager::getFont(
         pFont = new SDLTTF();
         if (!pFont->load(fontName, pointSize))
         {
-			Err::report("Couldn't load font! " + fontName);
+            Err::report("Couldn't load font! " + fontName);
             return 0;
         }
 
@@ -35,5 +35,3 @@ SDLTTF* SDLFontManager::getFont(
 
     return pFont;
 }
-
-

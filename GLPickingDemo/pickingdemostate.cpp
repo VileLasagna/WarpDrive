@@ -210,7 +210,7 @@ void TeapotLoaderState::onMouseButtonEvent(const SDL_MouseButtonEvent &e)
 
         if (res == GL_FALSE)
         {
-		  //assert(0);
+                  //assert(0);
         }
 
         glPointSize(10);
