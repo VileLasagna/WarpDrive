@@ -13,7 +13,7 @@ template <typename T> class RGBAColour
 {
 public:
 
-    constexpr RGBAColour(	T red   = 0,
+    constexpr RGBAColour(   T red   = 0,
                             T green = 0,
                             T blue  = 0,
                             T alpha = 255 ):

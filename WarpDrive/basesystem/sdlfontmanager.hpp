@@ -8,7 +8,7 @@
 class SDLFontManager
 {
 
-private:	//this class is a singleton
+private:    //this class is a singleton
     SDLFontManager() {}
 
 public:

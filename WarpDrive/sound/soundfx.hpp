@@ -92,7 +92,7 @@ private:
     unsigned int played; //ms already played in the file
     unsigned int fadeOut; //miliseconds to fade out.
     unsigned int fadeOutFrom; //time (in ms) from which the sound should start fading.
-    unsigned int fadeIn;	//ms to fade in.
+    unsigned int fadeIn;    //ms to fade in.
     uint8_t distance;
     int position; //0 is directly in front. Angle increases clockwise (90 is right, 270 is left)
     bool reverseStereo;

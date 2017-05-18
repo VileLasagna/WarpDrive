@@ -29,15 +29,15 @@ public:
     static void setBasePath(const std::string& path);
     static std::string getBasePath();
 
-    FMCODE Load		(const std::string& filename, ManagedFile* src, bool ReadOnly = false);
-    FMCODE LoadBin	(const std::string& filename, ManagedFile* src, bool ReadOnly = false);
-    FMCODE getInt	(ManagedFile* src, int* dest);
-    FMCODE getFloat	(ManagedFile* src, float* dest);
+    FMCODE Load     (const std::string& filename, ManagedFile* src, bool ReadOnly = false);
+    FMCODE LoadBin  (const std::string& filename, ManagedFile* src, bool ReadOnly = false);
+    FMCODE getInt   (ManagedFile* src, int* dest);
+    FMCODE getFloat (ManagedFile* src, float* dest);
     FMCODE getLine  (ManagedFile* src, std::string* dest);
     FMCODE getVec2i (ManagedFile* src, Vec2i* dest);
 
-#ifdef _SDL_H	//Should be done, but I'm not going there for now
-	//FMCODE getRWops (ManagedFile* src, SDL_RWops* dest) {dest = SDL_RWFromFile(filename.c_str(), "rb");}
+#ifdef _SDL_H   //Should be done, but I'm not going there for now
+    //FMCODE getRWops (ManagedFile* src, SDL_RWops* dest) {dest = SDL_RWFromFile(filename.c_str(), "rb");}
 #endif
 
 private:

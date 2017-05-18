@@ -11,7 +11,7 @@ class TeapotLoaderState : public GameState
 {
 public:
 
-	TeapotLoaderState();
+    TeapotLoaderState();
 
     int update() override;
     void draw() const override;

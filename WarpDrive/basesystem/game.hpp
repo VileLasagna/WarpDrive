@@ -78,7 +78,7 @@ public:
 
     ~Game();
 
-    class iterator	//iterator class to the GameObjectCollection
+    class iterator  //iterator class to the GameObjectCollection
 {
 
     public:

@@ -45,9 +45,9 @@ public:
 
 protected:
 
-    Vec2f vel;		//unit: Pixels/Second
-    Vec2f accel;	//Speed, Acceleration and Position refer to screen movement and have nothing to do with world position
-    Vec2f pos;		//All this are floats for smoothness purposes. The decimal part is cropped when drawing
+    Vec2f vel;      //unit: Pixels/Second
+    Vec2f accel;    //Speed, Acceleration and Position refer to screen movement and have nothing to do with world position
+    Vec2f pos;      //All this are floats for smoothness purposes. The decimal part is cropped when drawing
     std::vector<AnimSheet*> sheets;
     Vec2i baseSize;
     Vec2i current; //(animation, frame)

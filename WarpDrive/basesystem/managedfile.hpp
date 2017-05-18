@@ -9,8 +9,8 @@ public:
 
     ManagedFile(std::string filename);
 
-    FMCODE getInt	(int* dest);
-    FMCODE getFloat	(float* dest);
+    FMCODE getInt   (int* dest);
+    FMCODE getFloat (float* dest);
     FMCODE getLine  (std::string* dest);
     FMCODE getVec2i (Vec2i* dest);
     FMCODE getState() const {return state;}

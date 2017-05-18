@@ -173,10 +173,10 @@ constexpr Vec4<T> crossProd (const Vec4<T>& a, const Vec4<T>& b)
     }
     else
     {
-        ret = Vec4<T>(	(a.Y()/a.W())*(b.Z()/b.W()) - (a.Z()/a.W())*(b.Y()/b.W()),
-                    (a.Z()/a.W())*(b.X()/b.W()) - (a.X()/a.W())*(b.Z()/b.W()),
-                    (a.X()/a.W())*(b.Y()/b.W()) - (a.Y()/a.W())*(b.X()/b.W()),
-                    a.W());
+        ret = Vec4<T>(  (a.Y()/a.W())*(b.Z()/b.W()) - (a.Z()/a.W())*(b.Y()/b.W()),
+                        (a.Z()/a.W())*(b.X()/b.W()) - (a.X()/a.W())*(b.Z()/b.W()),
+                        (a.X()/a.W())*(b.Y()/b.W()) - (a.Y()/a.W())*(b.X()/b.W()),
+                        a.W());
     }
     return ret;
 }

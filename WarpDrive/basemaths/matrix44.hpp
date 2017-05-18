@@ -16,7 +16,7 @@ using float16 = std::array<float,16>;
 
 /**
  * @brief The Matrix44 class represents a 4 by 4 matrix. It is represented in "OpenGL style",
- *		left to right, top to bottom. So elements [5] is the second collumn in the second row
+ *      left to right, top to bottom. So elements [5] is the second collumn in the second row
  */
 
 class Matrix44
@@ -40,8 +40,8 @@ public:
 
     const float16& Elements() const {return elements;}
 
-    void applyMatrix() const;	//Apply this to the current Display Matrix
-    void setMatrix() const;		//SET the current Display Matrix to be THIS
+    void applyMatrix() const;   //Apply this to the current Display Matrix
+    void setMatrix() const;     //SET the current Display Matrix to be THIS
 
     void getModelview();
     void getProjection();

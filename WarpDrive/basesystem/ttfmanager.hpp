@@ -6,7 +6,7 @@
 
 class TTFManager
 {
-private:	//this class is a singleton
+private:    //this class is a singleton
     TTFManager();
 
 public:
