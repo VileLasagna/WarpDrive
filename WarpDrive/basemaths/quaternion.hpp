@@ -3,7 +3,7 @@
 
 #include "WarpDrive/basemaths/vec3.hpp"
 
-class Quaternion  
+class Quaternion
 {
 public:
 

@@ -4,7 +4,6 @@
     #include <Windows.h>
 #endif //WIN32
 
-
 #include <GL/glew.h>
 #include <SDL2/SDL_opengl.h>
 #include "WarpDrive/basemaths/matrix44.hpp"
@@ -57,7 +56,7 @@ void Plane::useTexture(WDTexture *t, bool Tile)
     tile = Tile;
 }
 
-Plane::Plane (const Vec3f& Normal, float Distance) 
+Plane::Plane (const Vec3f& Normal, float Distance)
 {
     nX = Normal.X();
     nY = Normal.Y();
@@ -73,7 +72,7 @@ Plane::Plane (const Vec3f& Normal, float Distance)
     tex = nullptr;
 }
 
-Plane::Plane (const Vec3f& P1, const Vec3f& P2, const Vec3f& P3) 
+Plane::Plane (const Vec3f& P1, const Vec3f& P2, const Vec3f& P3)
 {
     Vec3f N = triNormal(P1,P2,P3);
     nX = N.X();

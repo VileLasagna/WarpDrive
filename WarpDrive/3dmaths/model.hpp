@@ -9,7 +9,7 @@
 #include <string>
 #include <vector>
 
-//typedef bool (*LoaderFunction) (); 
+//typedef bool (*LoaderFunction) ();
 
 class Model:public GameObject
 {

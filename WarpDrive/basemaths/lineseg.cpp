@@ -1,11 +1,9 @@
 #include "WarpDrive/basemaths/lineseg.hpp"
 
-
 #ifdef WIN32
     #include <Windows.h>
 #endif //WIN32
 #include <GL/glu.h>
-
 
 void LineSeg::draw() noexcept
 {
@@ -15,8 +13,8 @@ void LineSeg::draw() noexcept
     glEnd();
 }
 
-bool LineSeg::parallel(const LineSeg& other) const 
-{ 
+bool LineSeg::parallel(const LineSeg& other) const
+{
     Vec3f thisNorm = p1-p0;
     Vec3f otherNorm = other.End() - other.Start();
     thisNorm.normalise();
@@ -35,7 +33,7 @@ std::pair<bool, Vec3f> LineSeg::intersects(const LineSeg& ) const
 }
 
 float LineSeg::sqDistToPoint ( const Vec3f& p) const
-{ 
+{
     Vec3f M = p1-p0;
     if (WrpDrv::flEquals(M.sqMod(), 0)) //p1 == p0
     {

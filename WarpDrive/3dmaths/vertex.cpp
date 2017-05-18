@@ -97,7 +97,7 @@ void Vertex::LastNormal(Vec3f *v, bool set) noexcept
         *v = normal;
     }
 }
- 
+
 void Vertex::LastShiny(float *f, bool set) noexcept
 {
     static float shiny = 100;

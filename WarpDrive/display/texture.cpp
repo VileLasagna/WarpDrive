@@ -79,7 +79,7 @@ bool WDTexture::createFromSDLSurface(SDL_Surface* surf, bool flipY)
             data);
 
         gluBuild2DMipmaps(
-            GL_TEXTURE_2D,  
+            GL_TEXTURE_2D,
             GL_RGB,
             width,
             height,

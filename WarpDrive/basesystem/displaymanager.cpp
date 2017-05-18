@@ -9,7 +9,6 @@
 #include "WarpDrive/basesystem/game.hpp"
 #include "WarpDrive/basesystem/stringproc.hpp"
 
-
 DisplayManager::DisplayManager():
     mainWindow  (0),
     renderer    (0),
@@ -36,10 +35,7 @@ DisplayManager::DisplayManager():
         SDL_JoystickOpen(i);
     }
     SDL_JoystickEventState(SDL_ENABLE);
-   
-
 }
-
 
 DisplayManager::~DisplayManager()
 {
@@ -60,7 +56,6 @@ void DisplayManager::setFullscreen(bool b)
         fullscreen = 0;
     }
 }
-
 
 void DisplayManager::toggleFS()
 {
@@ -138,7 +133,6 @@ float DisplayManager::DtSecs() const noexcept
     return dt/1000.f;
 }
 
-
 DisplayManager* DisplayManager::instance()
 {
     static DisplayManager* inst = 0;
@@ -162,11 +156,8 @@ void DisplayManager::setSize(int width, int height)
     h = height;
     if(mainWindow)
     {
-
         SDL_SetWindowSize(mainWindow, w, h);
-
     }
-
 }
 
 void DisplayManager::setVideo()
@@ -201,7 +192,6 @@ void DisplayManager::applyVsync()
     else
     {
         SDL_GL_SetSwapInterval(0);
-
     }
 }
 

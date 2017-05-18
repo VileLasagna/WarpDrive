@@ -26,7 +26,7 @@ TTFManager::~TTFManager()
 }
 
 SDLTTF* TTFManager::getFont(
-    const std::string& fontName, 
+    const std::string& fontName,
     int pointSize)
 {
     FP fp = std::make_pair(fontName, pointSize);
@@ -40,9 +40,7 @@ SDLTTF* TTFManager::getFont(
             Err::report("Couldn't load font! " + fontName);
             return 0;
         }
-
         fmap[fp] = pFont;
     }
-
     return pFont;
 }

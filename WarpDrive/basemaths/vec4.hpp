@@ -14,7 +14,7 @@ public:
     constexpr Vec4(T xVal, T yVal, T zVal, T wVal): x{xVal}, y{yVal}, z{zVal}, w{wVal} {}
     constexpr Vec4 (const Vec2<T>& ref): x{ref.X()}, y{ref.Y()}, z{0}, w{1} {}
     constexpr Vec4 (const Vec3<T>& ref): x{ref.X()}, y{ref.Y()}, z{ref.Z()}, w{1} {}
-  ..//constexpr Vec4& operator= (const Vec4<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = ref.Z(); this->w = ref.W(); return *this;}
+    //constexpr Vec4& operator= (const Vec4<T>& ref) {this->x = ref.X(); this->y = ref.Y(); this->z = ref.Z(); this->w = ref.W(); return *this;}
 
     constexpr T X() const { return x; }
     constexpr T Y() const { return y; }

@@ -1,5 +1,3 @@
-
-
 #include <assert.h>
 #ifdef WIN32
     #define _USE_MATH_DEFINES
@@ -15,7 +13,6 @@ Quaternion::Quaternion()
     y = 0;
     z = 0;
 }
-
 
 Quaternion::Quaternion(float degrees, float xVal, float yVal, float zVal)
 {
@@ -35,7 +32,6 @@ Quaternion::Quaternion(float rad, Vec3f& axis)
     y = axis.Y()*s;
     z = axis.Z()*s;
 }
-
 
 void Quaternion::Identity()
 {
@@ -96,7 +92,7 @@ Quaternion Slerp(const Quaternion& from, const Quaternion& to, float t)
     // adjust signs (if necessary)
     if (cosom < 0)
     {
-        cosom = -cosom; 
+        cosom = -cosom;
         to1[0] = - to.x;
         to1[1] = - to.y;
         to1[2] = - to.z;
@@ -113,7 +109,7 @@ Quaternion Slerp(const Quaternion& from, const Quaternion& to, float t)
     // calculate coefficients
 
     static const double DELTA = 0.001;
-    if ( (1.0 - cosom) > DELTA ) 
+    if ( (1.0 - cosom) > DELTA )
     {
         // standard case (slerp)
         omega = acos(cosom);
@@ -123,7 +119,7 @@ Quaternion Slerp(const Quaternion& from, const Quaternion& to, float t)
     }
     else
     {
-        // "from" and "to" quaternions are very close 
+        // "from" and "to" quaternions are very close
         //  ... so we can do a linear interpolation
         scale0 = 1.0 - t;
         scale1 = t;

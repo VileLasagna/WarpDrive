@@ -2,7 +2,6 @@
 
 #include <algorithm>
 
-
 Sprite::Sprite(const std::string& filename)
 {
     vel = Vec2f(0,0);
@@ -82,7 +81,7 @@ int Sprite::playAnimation(int i)
     {
         // Update bounding rect
         rect = Rectf(
-        pos.X(), 
+        pos.X(),
         pos.X() + sheets[static_cast<size_t>(animations[ static_cast<size_t>(current.X()) ].first.X().X()) ]->CellSize().X(),
         pos.Y(),
         pos.Y() + sheets[static_cast<size_t>(animations[static_cast<size_t>(current.X())].first.X().X())]->CellSize().Y());
@@ -174,8 +173,6 @@ void Sprite::setPos(const Vec2f& p)
     rect = Rectf(pos.X(), pos.X()+baseSize.X(), pos.Y(), pos.Y()+baseSize.Y());
 }
 
-
-    
 bool Sprite::pixCollision(const Sprite& other) const
 {
     // If bounding rectangles do not intersect, sprites
