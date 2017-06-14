@@ -8,6 +8,7 @@
 #include "WarpDrive/display/camera.hpp"
 #include "WarpDrive/display/glshader.hpp"
 #include "WarpDrive/display/texture.hpp"
+#include "WarpDrive/display/vertexarray.hpp"
 
 class GLDemoState : public GameState
 {
@@ -28,12 +29,13 @@ private:
 
     std::vector<Sphere*> spheres;
     Camera cam;
-    GLfloat* vertices;
-    GLuint* indices;
+    VertexArray VAO;
+//    GLfloat* vertices;
+//    GLuint* indices;
     GLShader shaderProgram;
-    GLuint VAO;
-    GLuint VBO;
-    GLuint EBO;
+//    GLuint VAO;
+//    GLuint VBO;
+//    GLuint EBO;
     WDTexture tex, tex2;
 
 };

@@ -1,6 +1,6 @@
 #version 330 core
 
-in vec3 ourColor;
+in vec4 ourColor;
 in vec2 TexCoord;
 
 out vec4 color;
@@ -11,6 +11,7 @@ uniform float factor;
 
 void main()
 {
-    //color = vec4(ourColor, 1.0f);
-    color = mix(texture(ourTex, TexCoord), texture(otherTex, TexCoord), factor );
+    //color = ourColor;
+    //color = mix(texture(ourTex, TexCoord), texture(otherTex, TexCoord), factor );
+    color = texture(ourTex, TexCoord);
 }
