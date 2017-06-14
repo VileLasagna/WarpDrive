@@ -42,12 +42,11 @@ set(INCLUDE_INSTALL_DIR include)
 
 include("WarpDriveSources.cmake")
 
-add_custom_target(WrpDrvHeaders SOURCES ${WARPDRIVE_HEADERS_PUBLIC} )
-add_custom_target(WrpDrvInternal SOURCES ${WARPDRIVE_HEADERS_PRIVATE} )
+#QtCreator is getting lost witht includes in headers so.. eh... Leaving this like this for now ¬¬
+#add_custom_target(WrpDrvHeaders SOURCES ${WARPDRIVE_HEADERS_PUBLIC} )
+#add_custom_target(WrpDrvInternal SOURCES ${WARPDRIVE_HEADERS_PRIVATE} )
 
-
-
-add_library(${PROJECT_NAME} ${WARPDRIVE_SOURCES})
+add_library(${PROJECT_NAME} ${WARPDRIVE_SOURCES} ${WARPDRIVE_HEADERS_PUBLIC} ${WARPDRIVE_HEADERS_PRIVATE})
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_14 )
 
 find_package(SDL2)
