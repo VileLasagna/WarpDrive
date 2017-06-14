@@ -6,6 +6,7 @@
 #endif //WIN32
 
 #include <memory>
+#include <functional>
 #include <GL/glu.h>
 
 
