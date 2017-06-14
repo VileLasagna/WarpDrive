@@ -21,8 +21,6 @@ set(WARPDRIVE_HEADERS_3DMATHS   ${WARPDRIVE_HEADERS_3DMATHS}
                                 3dmaths/material.hpp
                                 3dmaths/model.hpp
                                 3dmaths/modelloader.hpp
-                                3dmaths/vertex.hpp
-                                3dmaths/vertexbuffer.hpp
                                 3dmaths/viewport.hpp
 )
 
@@ -77,7 +75,9 @@ set(WARPDRIVE_HEADERS_DISPLAY   ${WARPDRIVE_HEADERS_DISPLAY}
                                 display/sprite.hpp
                                 display/texture.hpp
                                 display/texturesheet.hpp
+                                display/vertex.hpp
                                 display/vertexarray.hpp
+                                display/vertexbuffer.hpp
 )
 
 set(WARPDRIVE_HEADERS_EVENTS   ${WARPDRIVE_HEADERS_EVENTS}
@@ -132,8 +132,6 @@ set(WARPDRIVE_SOURCES   ${WARPDRIVE_SOURCES}
                         3dmaths/glmesh.cpp
                         3dmaths/material.cpp
                         3dmaths/model.cpp
-                        3dmaths/vertex.cpp
-                        3dmaths/vertexbuffer.cpp
                         3dmaths/glm.c
                         3dmaths/glm_util.c
                         3dmaths/glmimg.c
@@ -173,7 +171,9 @@ set(WARPDRIVE_SOURCES   ${WARPDRIVE_SOURCES}
                         display/texture.cpp
                         display/sprite.cpp
                         display/texturesheet.cpp
+                        display/vertex.cpp
                         display/vertexarray.cpp
+                        display/vertexbuffer.cpp
 
                         events/glcolorevent.cpp
                         events/objectevent.cpp

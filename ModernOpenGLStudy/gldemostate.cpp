@@ -8,7 +8,8 @@
 #include <GL/glu.h>
 
 #include "WarpDrive/basesystem/game.hpp"
-#include "WarpDrive/3dmaths/vertex.hpp"
+#include "WarpDrive/display/vertex.hpp"
+
 
 #include <iostream>
 

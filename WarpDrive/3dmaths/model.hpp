@@ -1,7 +1,7 @@
 #ifndef WD_MODEL_HPP_DEFINED
 #define WD_MODEL_HPP_DEFINED
 
-#include "WarpDrive/3dmaths/vertex.hpp"
+#include "WarpDrive/display/vertex.hpp"
 #include "WarpDrive/display/texture.hpp"
 #include "WarpDrive/basesystem/gameobject.hpp"
 #include "WarpDrive/3dmaths/modelloader.hpp"

@@ -1,4 +1,4 @@
-#include "WarpDrive/3dmaths/vertex.hpp"
+#include "WarpDrive/display/vertex.hpp"
 
 #include "WarpDrive/basesystem/util.hpp"
 
@@ -11,7 +11,7 @@ Vertex::Vertex(const Vec3f& p) noexcept
     Vertex::LastShiny( &shiny );
 }
 
-Vertex::Vertex(const Vec3f& p, const Vec3f& norm, const Vec2f& uvcoords , const Colour& diff, const Colour& amb, const Colour& spec, float shinyness) noexcept
+Vertex::Vertex(const Vec3f& p, const Vec3f& norm, const Vec2f& uvcoords , const Colour& amb, const Colour& diff, const Colour& spec, float shinyness) noexcept
 {
     pos = p;
     normal = norm;
