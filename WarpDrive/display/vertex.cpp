@@ -18,16 +18,7 @@ Vertex::Vertex(const Vec3f& p, const Vec3f& norm, const Vec2f& uvcoords , const 
     Vertex::LastNormal(&normal, true);
     uv = uvcoords;
     Colour def(-1.0f,-1.0f,-1.0f,-1.0f);
-    if (diffuse == def)
-    {
-        Vertex::LastDiffuse(&diffuse);
-    }
-    else
-    {
-        diffuse = diff;
-        Vertex::LastDiffuse(&diffuse, true);
-    }
-    if (ambient == def)
+    if (amb == def)
     {
         Vertex::LastAmbient(&ambient);
     }
@@ -37,7 +28,17 @@ Vertex::Vertex(const Vec3f& p, const Vec3f& norm, const Vec2f& uvcoords , const 
         Vertex::LastAmbient(&ambient, true);
     }
 
-    if (specular == def )
+    if (diff == def)
+    {
+        Vertex::LastDiffuse(&diffuse);
+    }
+    else
+    {
+        diffuse = diff;
+        Vertex::LastDiffuse(&diffuse, true);
+    }
+
+    if (spec == def )
     {
         Vertex::LastSpecular(&specular);
     }
@@ -46,6 +47,7 @@ Vertex::Vertex(const Vec3f& p, const Vec3f& norm, const Vec2f& uvcoords , const 
         specular = spec;
         Vertex::LastSpecular(&specular, true);
     }
+
     if (WrpDrv::flEquals(shinyness, -1))
     {
         Vertex::LastShiny(&shiny);
@@ -59,16 +61,16 @@ Vertex::Vertex(const Vec3f& p, const Vec3f& norm, const Vec2f& uvcoords , const 
 
 }
 
-void Vertex::LastAmbient(Colour *v, bool set) noexcept
+void Vertex::LastAmbient(Colour* v, bool set) noexcept
 {
-    static Colour Ambient(0.1f,0.1f,0.1f);
+    static Colour ambient(0.1f,0.1f,0.1f);
     if (set)
     {
-        Ambient = *v;
+        ambient = *v;
     }
     else
     {
-        *v = Ambient;
+        *v = ambient;
     }
 }
 

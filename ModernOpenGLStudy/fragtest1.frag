@@ -12,6 +12,7 @@ uniform float factor;
 void main()
 {
     //color = ourColor;
-    //color = mix(texture(ourTex, TexCoord), texture(otherTex, TexCoord), factor );
-    color = texture(ourTex, TexCoord);
+    //color = texture(ourTex, TexCoord) * ourColor;
+    color = mix(texture(ourTex, TexCoord), texture(otherTex, TexCoord), factor ) * ourColor;
+    //color = texture(ourTex, TexCoord);
 }

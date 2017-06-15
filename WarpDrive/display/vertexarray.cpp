@@ -75,36 +75,45 @@ void VertexArray::bind()
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, static_cast<GLsizeiptr>(sizeof(unsigned int)*indices.size()),
                      indices.data(), static_cast<GLenum>(type));
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wold-style-cast"
+
 
         //glVertexAttribPointer(index, size, type, normalized,
         //                      stride, first   );
         //Position
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
                               21 * sizeof(GLfloat), nullptr);
+        glEnableVertexAttribArray(0);
+
         //Normal
         glVertexAttribPointer(1, 3, GL_FLOAT, GL_TRUE,
-                              21 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+                              21 * sizeof(GLfloat), reinterpret_cast<GLvoid*>(3 * sizeof(GLfloat)) );
+        glEnableVertexAttribArray(1);
+
         //UV
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_TRUE,
-                              21 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE,
+                              21 * sizeof(GLfloat), reinterpret_cast<GLvoid*>(6 * sizeof(GLfloat)) );
+        glEnableVertexAttribArray(2);
+
         //Ambient Colour
-        glVertexAttribPointer(3, 4, GL_FLOAT, GL_TRUE,
-                              21 * sizeof(GLfloat), (GLvoid*)(8 * sizeof(GLfloat)));
+        glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE,
+                              21 * sizeof(GLfloat), reinterpret_cast<GLvoid*>(8 * sizeof(GLfloat)) );
+        glEnableVertexAttribArray(3);
+
         //Diffuse Colour
-        glVertexAttribPointer(4, 4, GL_FLOAT, GL_TRUE,
-                              21 * sizeof(GLfloat), (GLvoid*)(12 * sizeof(GLfloat)));
+        glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE,
+                              21 * sizeof(GLfloat), reinterpret_cast<GLvoid*>(12 * sizeof(GLfloat)) );
+        glEnableVertexAttribArray(4);
+
         //Specular Colour
-        glVertexAttribPointer(5, 4, GL_FLOAT, GL_TRUE,
-                              21 * sizeof(GLfloat), (GLvoid*)(16 * sizeof(GLfloat)));
+        glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE,
+                              21 * sizeof(GLfloat), reinterpret_cast<GLvoid*>(16 * sizeof(GLfloat)) );
+        glEnableVertexAttribArray(5);
+
         //Shyniness
         glVertexAttribPointer(6, 1, GL_FLOAT, GL_FALSE,
-                              21 * sizeof(GLfloat), (GLvoid*)(20 * sizeof(GLfloat)));
+                              21 * sizeof(GLfloat), reinterpret_cast<GLvoid*>(20 * sizeof(GLfloat)) );
+        glEnableVertexAttribArray(6);
 
-#pragma clang diagnostic pop
-
-        glEnableVertexAttribArray(0);
 
     glBindVertexArray(0);
 

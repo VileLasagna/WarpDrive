@@ -32,7 +32,10 @@ public:
 
     bool operator== (const Colour& other) const
     {
-        return ( WrpDrv::flEquals(R(),other.R()) && WrpDrv::flEquals(G(),other.G()) && WrpDrv::flEquals(B(), other.B()) && WrpDrv::flEquals(A(), other.A()));
+        return ( WrpDrv::flEquals(R(),other.R()) &&
+                 WrpDrv::flEquals(G(),other.G()) &&
+                 WrpDrv::flEquals(B(), other.B()) &&
+                 WrpDrv::flEquals(A(), other.A()));
     }
 
 private:
