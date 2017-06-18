@@ -1,8 +1,11 @@
 
 #include "WarpDrive/basemaths/matrix44.hpp"
+#include "WarpDrive/basesystem/err.hpp"
+
 #ifdef WIN32
     #include <Windows.h>
 #endif //WIN32
+
 #include <GL/gl.h>
 
 //   PI/180
@@ -32,6 +35,14 @@ Matrix44::Matrix44(float16& mat)
 }
 
 Matrix44::Matrix44(GLdouble* mat)
+{
+    for(size_t i = 0; i < 16; i++)
+    {
+        elements[i] = static_cast<float>(mat[i]);
+    }
+}
+
+Matrix44::Matrix44(GLfloat *mat)
 {
     for(size_t i = 0; i < 16; i++)
     {
@@ -92,12 +103,12 @@ void Matrix44::setMatrix() const
 void Matrix44::setRotationRad(float radx, float rady, float radz)
 {
     setIdentity();
-    float ch = static_cast<float>(cos(rady));
-    float cp = static_cast<float>(cos(radx));
-    float cb = static_cast<float>(cos(radz));
-    float sh = static_cast<float>(sin(rady));
-    float sp = static_cast<float>(sin(radx));
-    float sb = static_cast<float>(sin(radz));
+    float ch = static_cast<float>( cos(static_cast<double>(rady)) );
+    float cp = static_cast<float>( cos(static_cast<double>(radx)) );
+    float cb = static_cast<float>( cos(static_cast<double>(radz)) );
+    float sh = static_cast<float>( sin(static_cast<double>(rady)) );
+    float sp = static_cast<float>( sin(static_cast<double>(radx)) );
+    float sb = static_cast<float>( sin(static_cast<double>(radz)) );
 
     elements[0] = (ch*cb)+(sh*sp*sb);
     elements[1] = sb*cp;
@@ -111,12 +122,43 @@ void Matrix44::setRotationRad(float radx, float rady, float radz)
 
 }
 
+void Matrix44::setPerspective(float fovy, float aspectratio, float znear, float zfar)
+{
+    setIdentity();
+    float f = static_cast<float>( 1.0/tan(static_cast<double>(fovy * DEGTORAD * 0.5f)) );
+
+    elements[0]  =  f / aspectratio;
+    elements[5]  = f;
+    elements[10] = (znear + zfar) / (znear - zfar);
+    elements[11] = -1.f;
+    elements[14] = (2.f * zfar * znear) / (znear - zfar);
+    elements[15] = 0.f;
+}
+
 void Matrix44::setTranslation(float x, float y, float z)
 {
     elements[12] += x;
     elements[13] += y;
     elements[14] += z;
 
+
+}
+
+void Matrix44::setScaling(float x, float y, float z)
+{
+#ifndef NDEBUG
+    //this is a silly check no one wants to make on a release build
+    if(x < 0)
+    {
+        Err::report("WARNING::MATRIX:: Scaling by a negative value. Probably an error");
+        return;
+    }
+#endif
+
+    setIdentity();
+    elements[0]  = x;
+    elements[5]  = y < 0 ? x:y;
+    elements[10] = z < 0 ? x:z;
 
 }
 
@@ -129,4 +171,19 @@ void Matrix44::getModelview()
 void Matrix44::getProjection()
 {
     glGetFloatv(GL_MODELVIEW_MATRIX, elements.data());
+}
+
+Matrix44& Matrix44::operator *=(const Matrix44 &rhs)
+{
+    multiply(rhs);
+    return *this;
+}
+
+Matrix44& Matrix44::operator =(const Matrix44& rhs)
+{
+    for(size_t i = 0; i < 16; i++)
+    {
+        elements[i] = rhs.elements[i];
+    }
+    return *this;
 }

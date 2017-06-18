@@ -26,6 +26,7 @@ public:
     Matrix44();
     explicit Matrix44(float16& mat);
     explicit Matrix44(GLdouble* mat);
+    explicit Matrix44(GLfloat* mat);
 
 
     void setIdentity();
@@ -33,18 +34,25 @@ public:
     void multiply(const Matrix44& rhs);
 
     void setTranslation(float x, float y, float z);
-    void setScaling(float x, float y, float z);
+    void setScaling(float x, float y = -1.f, float z = -1.f);
     void setRotation(float degx, float degy, float degz);
     void setRotationRad( float radx, float rady, float radz);
+    void setPerspective(float fovy, float aspectratio, float znear, float zfar);
     //void Print();
 
     const float16& Elements() const {return elements;}
 
+    [[deprecated("This relates to immediate mode OpenGL")]]
     void applyMatrix() const;   //Apply this to the current Display Matrix
+    [[deprecated("This relates to immediate mode OpenGL")]]
     void setMatrix() const;     //SET the current Display Matrix to be THIS
 
     void getModelview();
     void getProjection();
+
+    Matrix44& operator *=(const Matrix44& rhs);
+
+    Matrix44& operator =(const Matrix44& rhs);
 
 
     static Vec4f multiply( const Matrix44& mat, const Vec4f& vec)
