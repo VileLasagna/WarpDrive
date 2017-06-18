@@ -38,6 +38,7 @@ Game::~Game()
 
 void Game::Run()
 {
+    timeZero = now();
 #ifdef WIN32
 
     while(currentState != -1)
@@ -406,6 +407,11 @@ Game::time_t Game::now() const
 float Game::millisSince(Game::time_t t) const
 {
     return ((std::chrono::duration_cast<std::chrono::nanoseconds>(now() - t)).count())/1000000.f;
+}
+
+float Game::secsSinceStart() const
+{
+    return ((std::chrono::duration_cast<std::chrono::nanoseconds>(now() - timeZero)).count())/1000000000.f;
 }
 
 void Game::seedRNG(unsigned int newSeed)

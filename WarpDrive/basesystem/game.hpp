@@ -61,6 +61,7 @@ public:
 
     Game::time_t now() const;
     float millisSince(Game::time_t t) const;
+    float secsSinceStart() const;
 
     void seedRNG(unsigned int newSeed);
     /**
@@ -140,6 +141,7 @@ private:
     unsigned int minFPS;
     size_t objindex;
     std::string errorLogFile;
+    Game::time_t timeZero;
 
 };
 
