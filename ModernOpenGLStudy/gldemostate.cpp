@@ -21,7 +21,7 @@ GLDemoState::GLDemoState()
     verts.push_back(Vertex(Vec3f( 0.5f,  0.5f,  0.0f),          //pos
                            Vec3f( 0.0f,  0.0f, -1.0f),          //normal
                            Vec2f( 1.0f,  1.0f),                 //UVs
-                           Colour(1.0f,  0.0f,  0.0f, 1.0f)    //amb
+                           Colour(1.0f,  1.0f,  1.0f, 1.0f)    //amb
                            //Colour(1.0f,  1.0f,  1.0f, 1.0f)     //diff
                            //Colour(1.0f, 1.0f, 1.0f, 1.0f),      //spec
                            //1.0f                                 //shinyness
@@ -29,8 +29,8 @@ GLDemoState::GLDemoState()
     // 1 - BOTTOM RIGHT
     verts.push_back(Vertex(Vec3f( 0.5f, -0.5f,  0.0f),          //pos
                            Vec3f( 0.0f,  0.0f, -1.0f),          //normal
-                           Vec2f( 1.0f,  0.0f),                 //UVs
-                           Colour(0.0f,  1.0f,  0.0f,  1.0f)    //amb
+                           Vec2f( 1.0f,  0.0f)                 //UVs
+                           //Colour(0.0f,  1.0f,  0.0f,  1.0f)    //amb
                            //Colour(1.0f,  1.0f,  1.0f,  1.0f)      //diff
                            //Colour(1.0f, 1.0f, 1.0f, 1.0f),      //spec
                            //1.0f                                 //shinyness
@@ -38,8 +38,8 @@ GLDemoState::GLDemoState()
     // 2 - BOTTOM LEFT
     verts.push_back(Vertex(Vec3f(-0.5f, -0.5f,  0.0f),          //pos
                            Vec3f( 0.0f,  0.0f, -1.0f),          //normal
-                           Vec2f( 0.0f,  0.0f),                 //UVs
-                           Colour(0.0f,  0.0f,  1.0f, 1.0f)    //amb
+                           Vec2f( 0.0f,  0.0f)                 //UVs
+                           //Colour(0.0f,  0.0f,  1.0f, 1.0f)    //amb
                            //Colour(1.0f,  1.0f,  1.0f, 1.0f)     //diff
                            //Colour(1.0f, 1.0f, 1.0f, 1.0f),      //spec
                            //1.0f                                 //shinyness
@@ -47,8 +47,8 @@ GLDemoState::GLDemoState()
     // 3 - TOP LEFT
     verts.push_back(Vertex(Vec3f(-0.5f,  0.5f,  0.0f),          //pos
                            Vec3f( 0.0f,  0.0f, -1.0f),          //normal
-                           Vec2f( 0.0f,  1.0f),                 //UVs
-                           Colour(1.0f,  1.0f,  0.0f, 1.0f)    //amb
+                           Vec2f( 0.0f,  1.0f)                 //UVs
+                           //Colour(1.0f,  1.0f,  0.0f, 1.0f)    //amb
                            //Colour(1.0f,  1.0f,  0.0f, 1.0f)     //diff
                            //Colour(1.0f, 1.0f, 1.0f, 1.0f),      //spec
                            //1.0f                                 //shinyness
@@ -68,18 +68,30 @@ GLDemoState::GLDemoState()
 
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
+    //transform.setRotation(0,0,90);
+
+    model.setRotation(-55,0,0);
+    view.setTranslation(0,-0.2f,-3.f);
+    projection.setPerspective(45,800/600,0.1f,100.f);
+
 }
 
 
 
 void GLDemoState::draw() const
 {
+    static Matrix44 scaling;
+    scaling.setScaling(0.5f);
+
+
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-
+    auto t = Game::instance()->secsSinceStart();
     Game::instance()->drawObjects();
-    static float t = 0;
-    t+= DisplayManager::instance()->Dt();
 
+    transform.setRotation(0,0,t*15);
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wsign-conversion"
 
     shaderProgram.use();
     glActiveTexture(GL_TEXTURE0);
@@ -91,6 +103,20 @@ void GLDemoState::draw() const
     glUniform1i(glGetUniformLocation(shaderProgram.Program(), "otherTex"), 1);
 
     glUniform1f(glGetUniformLocation(shaderProgram.Program(), "factor"), sin(t/7));
+
+    int transfLoc = glGetUniformLocation(shaderProgram.Program(), "transf");
+
+    glUniformMatrix4fv(transfLoc, 1, GL_FALSE, transform.Elements().data() );
+
+    int modelLoc = glGetUniformLocation(shaderProgram.Program(), "model");
+    int viewLoc = glGetUniformLocation(shaderProgram.Program(), "view");
+    int projLoc = glGetUniformLocation(shaderProgram.Program(), "projection");
+
+    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, model.Elements().data() );
+    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, view.Elements().data() );
+    glUniformMatrix4fv(projLoc, 1, GL_FALSE, projection.Elements().data() );
+
+#pragma clang diagnostic pop
 
     VAO.draw();
 
@@ -107,6 +133,9 @@ int GLDemoState::update()
     SDLEventHandler::update();
 
     Game::instance()->updateObjects();
+
+
+//    transform.setRotation(0,0,5*(Game::instance()->secsSinceStart()/4));
 
     return ret;
 }

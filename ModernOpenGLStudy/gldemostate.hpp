@@ -9,6 +9,7 @@
 #include "WarpDrive/display/glshader.hpp"
 #include "WarpDrive/display/texture.hpp"
 #include "WarpDrive/display/vertexarray.hpp"
+#include "WarpDrive/basemaths/matrix44.hpp"
 
 class GLDemoState : public GameState
 {
@@ -37,7 +38,8 @@ private:
 //    GLuint VBO;
 //    GLuint EBO;
     WDTexture tex, tex2;
-
+    mutable Matrix44 transform;
+    Matrix44 model, view, projection;
 };
 
 #endif //WD_TEAPOTLOADERSTATE_HPP_DEFINED
