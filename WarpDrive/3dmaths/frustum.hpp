@@ -5,11 +5,11 @@
 #include "WarpDrive/basemaths/matrix44.hpp"
 #include "WarpDrive/physics/alignedboundingbox.hpp"
 
-class Frustrum
+class Frustum
 {
 public:
 
-    Frustrum() = default;
+    Frustum() = default;
     void update() noexcept;
     bool isInside(const Vec4f& v) const noexcept;
     bool intersects(const AABBox& Box) const;
@@ -18,7 +18,6 @@ private:
 
 
     Matrix44 clipMatrix;
-
 
 
 };

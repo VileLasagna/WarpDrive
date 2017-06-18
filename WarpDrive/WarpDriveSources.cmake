@@ -17,6 +17,7 @@ headers using that name scheme and ultimately make the deployment more finicky
 
 set(WARPDRIVE_HEADERS_3DMATHS   ${WARPDRIVE_HEADERS_3DMATHS}
                                 3dmaths/billboard.hpp
+                                3dmaths/frustum.hpp
                                 3dmaths/glmesh.hpp
                                 3dmaths/material.hpp
                                 3dmaths/model.hpp
@@ -28,7 +29,6 @@ set(WARPDRIVE_HEADERS_BASEMATHS ${WARPDRIVE_HEADERS_BASEMATHS}
 
                                 basemaths/capsule.hpp
                                 basemaths/cliplinesegbox.hpp
-                                basemaths/frustrum.hpp
                                 basemaths/lineseg.hpp
                                 basemaths/matrix44.hpp
                                 basemaths/plane.hpp
@@ -129,6 +129,7 @@ set(WARPDRIVE_HEADERS_PRIVATE   ${WARPDRIVE_HEADERS_PRIVATE}
 
 set(WARPDRIVE_SOURCES   ${WARPDRIVE_SOURCES}
                         3dmaths/billboard.cpp
+                        3dmaths/frustum.cpp
                         3dmaths/glmesh.cpp
                         3dmaths/material.cpp
                         3dmaths/model.cpp
@@ -139,7 +140,6 @@ set(WARPDRIVE_SOURCES   ${WARPDRIVE_SOURCES}
 
                         basemaths/capsule.cpp
                         basemaths/cliplinesegbox.cpp
-                        basemaths/frustrum.cpp
                         basemaths/lineseg.cpp
                         basemaths/matrix44.cpp
                         basemaths/plane.cpp

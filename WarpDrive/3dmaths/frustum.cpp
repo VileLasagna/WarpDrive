@@ -1,8 +1,8 @@
-#include "WarpDrive/basemaths/frustrum.hpp"
+#include "WarpDrive/3dmaths/frustum.hpp"
 
 
 
-void Frustrum::update() noexcept
+void Frustum::update() noexcept
 {
     Matrix44 MV;
     Matrix44 Proj;
@@ -16,7 +16,7 @@ void Frustrum::update() noexcept
 
 }
 
-bool Frustrum::isInside(const Vec4f& v) const noexcept
+bool Frustum::isInside(const Vec4f& v) const noexcept
 {
     Vec4f V = Matrix44::multiply(clipMatrix,v);
 
@@ -29,7 +29,7 @@ bool Frustrum::isInside(const Vec4f& v) const noexcept
             (V.Z() <= w);
 }
 
-bool Frustrum::intersects(const AABBox& ) const
+bool Frustum::intersects(const AABBox& ) const
 {
 
 #pragma message "TODO - Missing implementation"
