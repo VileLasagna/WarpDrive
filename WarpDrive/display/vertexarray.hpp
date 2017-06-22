@@ -30,8 +30,9 @@ public:
 
     void ElementBuffer(std::vector<unsigned int> &&EBO);
     void Verts(VertexBuffer&& VBO);
+    void setPrimitives(DrawType type) noexcept;
 
-    void draw() const;
+    void draw() const noexcept;
     void bind();
 
 private:

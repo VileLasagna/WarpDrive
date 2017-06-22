@@ -23,7 +23,12 @@ void VertexArray::Verts(VertexBuffer &&VBO)
     buffer = VBO;
 }
 
-void VertexArray::draw() const
+void VertexArray::setPrimitives(VertexArray::DrawType type) noexcept
+{
+    primitives = type;
+}
+
+void VertexArray::draw() const noexcept
 {
 
     glBindVertexArray(id);
