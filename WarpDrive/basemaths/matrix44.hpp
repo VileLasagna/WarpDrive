@@ -35,6 +35,15 @@ public:
 
     void setTranslation(float x, float y, float z);
     void setScaling(float x, float y = -1.f, float z = -1.f);
+    /**
+     * @brief setRotation
+     *  Calculates a simple rotation matrix. Rotation happens first around X
+     *  then around Y and finalkly around Z]
+     *
+     * @param degx Rotation around the X axis
+     * @param degy Rotation around the Y axis
+     * @param degz Rotation around the Z axis
+     */
     void setRotation(float degx, float degy, float degz);
     void setRotationRad( float radx, float rady, float radz);
     void setPerspective(float fovy, float aspectratio, float znear, float zfar);
