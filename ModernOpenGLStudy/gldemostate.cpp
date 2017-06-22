@@ -16,52 +16,168 @@
 
 GLDemoState::GLDemoState()
 {
+    /////////////////FRONT FACE///////////////////////////////////////
     VertexBuffer verts;
-    // 0 - TOP RIGHT
-    verts.push_back(Vertex(Vec3f( 0.5f,  0.5f,  0.0f),          //pos
+    //  0 - TOP RIGHT FRONT
+    verts.push_back(Vertex(Vec3f( 0.5f,  0.5f, -0.5f),          //pos
                            Vec3f( 0.0f,  0.0f, -1.0f),          //normal
-                           Vec2f( 1.0f,  1.0f),                 //UVs
+                           Vec2f( 0.5f,  0.665f),                 //UVs
                            Colour(1.0f,  1.0f,  1.0f, 1.0f)    //amb
-                           //Colour(1.0f,  1.0f,  1.0f, 1.0f)     //diff
-                           //Colour(1.0f, 1.0f, 1.0f, 1.0f),      //spec
-                           //1.0f                                 //shinyness
                            ) );
-    // 1 - BOTTOM RIGHT
-    verts.push_back(Vertex(Vec3f( 0.5f, -0.5f,  0.0f),          //pos
+    //  1 - BOTTOM RIGHT FRONT
+    verts.push_back(Vertex(Vec3f( 0.5f, -0.5f, -0.5f),          //pos
                            Vec3f( 0.0f,  0.0f, -1.0f),          //normal
-                           Vec2f( 1.0f,  0.0f)                 //UVs
-                           //Colour(0.0f,  1.0f,  0.0f,  1.0f)    //amb
-                           //Colour(1.0f,  1.0f,  1.0f,  1.0f)      //diff
-                           //Colour(1.0f, 1.0f, 1.0f, 1.0f),      //spec
-                           //1.0f                                 //shinyness
+                           Vec2f( 0.5f,  0.332f)                 //UVs
                            ) );
-    // 2 - BOTTOM LEFT
-    verts.push_back(Vertex(Vec3f(-0.5f, -0.5f,  0.0f),          //pos
+    //  2 - BOTTOM LEFT FRONT
+    verts.push_back(Vertex(Vec3f(-0.5f, -0.5f, -0.5f),          //pos
                            Vec3f( 0.0f,  0.0f, -1.0f),          //normal
-                           Vec2f( 0.0f,  0.0f)                 //UVs
-                           //Colour(0.0f,  0.0f,  1.0f, 1.0f)    //amb
-                           //Colour(1.0f,  1.0f,  1.0f, 1.0f)     //diff
-                           //Colour(1.0f, 1.0f, 1.0f, 1.0f),      //spec
-                           //1.0f                                 //shinyness
+                           Vec2f( 0.25f,  0.332f)                 //UVs
                            ) );
-    // 3 - TOP LEFT
-    verts.push_back(Vertex(Vec3f(-0.5f,  0.5f,  0.0f),          //pos
+    //  3 - TOP LEFT FRONT
+    verts.push_back(Vertex(Vec3f(-0.5f,  0.5f, -0.5f),          //pos
                            Vec3f( 0.0f,  0.0f, -1.0f),          //normal
-                           Vec2f( 0.0f,  1.0f)                 //UVs
-                           //Colour(1.0f,  1.0f,  0.0f, 1.0f)    //amb
-                           //Colour(1.0f,  1.0f,  0.0f, 1.0f)     //diff
-                           //Colour(1.0f, 1.0f, 1.0f, 1.0f),      //spec
-                           //1.0f                                 //shinyness
+                           Vec2f( 0.25f,  0.665f)                 //UVs
                            ) );
+    /////////////////BACK FACE///////////////////////////////////////
+    //  4 - TOP RIGHT BACK
+    verts.push_back(Vertex(Vec3f( 0.5f,  0.5f,  0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 1.0f,  0.665f),                 //UVs
+                           Colour(1.0f,  1.0f,  1.0f, 1.0f)    //amb
+                           ) );
+    //  5 - BOTTOM RIGHT BACK
+    verts.push_back(Vertex(Vec3f( 0.5f, -0.5f,  0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 1.0f,  0.332f)                 //UVs
+                           ) );
+    //  6 - BOTTOM LEFT BACK
+    verts.push_back(Vertex(Vec3f(-0.5f, -0.5f,  0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 0.75f,  0.332f)                 //UVs
+                           ) );
+    //  7 - TOP LEFT BACK
+    verts.push_back(Vertex(Vec3f(-0.5f,  0.5f,  0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 0.75f,  0.665f)                 //UVs
+                           ) );
+    /////////////////TOP FACE///////////////////////////////////////
+
+
+    //  8 - TOP RIGHT FRONT
+    verts.push_back(Vertex(Vec3f( 0.5f,  0.5f, -0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 0.5f,  0.665f)                 //UVs
+                           ) );
+    //  9 - TOP RIGHT BACK
+    verts.push_back(Vertex(Vec3f( 0.5f,  0.5f,  0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 0.5f,  1.0f)                 //UVs
+                           ) );
+
+    // 10 - TOP LEFT BACK
+    verts.push_back(Vertex(Vec3f(-0.5f,  0.5f,  0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 0.25f,  1.0f)                 //UVs
+                           ) );
+
+    // 11 - TOP LEFT FRONT
+    verts.push_back(Vertex(Vec3f(-0.5f,  0.5f, -0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 0.25f,  0.665f)                 //UVs
+                           ) );
+    /////////////////BOTTOM FACE///////////////////////////////////////
+
+
+    // 12 - BOTTOM RIGHT FRONT
+    verts.push_back(Vertex(Vec3f( 0.5f, -0.5f, -0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 0.5f,  0.332f)                 //UVs
+                           ) );
+
+    // 13 - BOTTOM RIGHT BACK
+    verts.push_back(Vertex(Vec3f( 0.5f, -0.5f,  0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 0.5f,  0.0f)                 //UVs
+                           ) );
+    // 14 - BOTTOM LEFT BACK
+    verts.push_back(Vertex(Vec3f(-0.5f, -0.5f,  0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 0.25f,  0.0f)                 //UVs
+                           ) );
+
+    // 15 - BOTTOM LEFT FRONT
+    verts.push_back(Vertex(Vec3f(-0.5f, -0.5f, -0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 0.25f,  0.332f)                 //UVs
+                           ) );
+    /////////////////RIGHT FACE///////////////////////////////////////
+
+    //  16 - TOP RIGHT FRONT
+    verts.push_back(Vertex(Vec3f( 0.5f,  0.5f, -0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 0.50f,  0.665f)                 //UVs
+                           ) );
+    //  17 - TOP RIGHT BACK
+    verts.push_back(Vertex(Vec3f( 0.5f,  0.5f,  0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 0.75f,  0.665f)                 //UVs
+                           ) );
+
+    // 18 - BOTTOM RIGHT BACK
+    verts.push_back(Vertex(Vec3f( 0.5f, -0.5f,  0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 0.75f,  0.332f)                 //UVs
+                           ) );
+
+    // 19 - BOTTOM RIGHT FRONT
+    verts.push_back(Vertex(Vec3f( 0.5f, -0.5f, -0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 0.5f,  0.332f)                 //UVs
+                           ) );
+    /////////////////LEFT FACE///////////////////////////////////////
+
+    // 20 - TOP LEFT FRONT
+    verts.push_back(Vertex(Vec3f(-0.5f,  0.5f, -0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 0.25f,  0.665f)                 //UVs
+                           ) );
+
+    // 21 - TOP LEFT BACK
+    verts.push_back(Vertex(Vec3f(-0.5f,  0.5f,  0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 0.0f,  0.665f)                 //UVs
+                           ) );
+    // 22 - BOTTOM LEFT BACK
+    verts.push_back(Vertex(Vec3f(-0.5f, -0.5f,  0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 0.0f,  0.332f)                 //UVs
+                           ) );
+
+    // 23 - BOTTOM LEFT FRONT
+    verts.push_back(Vertex(Vec3f(-0.5f, -0.5f, -0.5f),          //pos
+                           Vec3f( 0.0f,  0.0f, -1.0f),          //normal
+                           Vec2f( 0.25f,  0.332f)                 //UVs
+                           ) );
+
+
+
     VAO.Verts(std::move(verts));
-    VAO.ElementBuffer({0,1,2,2,3,0});
+    VAO.setPrimitives(VertexArray::DrawType::TRIS);
+    VAO.ElementBuffer({ 0, 1, 2, 2, 3, 0,
+                        4, 5, 6, 6, 7, 4,
+                        8, 9,10,10,11, 8,
+                       12,13,14,14,15,12,
+                       16,17,18,18,19,16,
+                       20,21,22,22,23,20 });
     VAO.bind();
 
     self = 0;
     ret = self;
     reset();
 
-    tex.loadTexture("assets/yaranaika.jpeg");
+//    tex.loadTexture("assets/yaranaika.jpeg");
+    tex.loadTexture("assets/diemap.png");
     tex2.loadTexture("assets/konodio.jpeg");
     shaderProgram.loadVertex("shaders/verttest1.vert");
     shaderProgram.loadFragment("shaders/fragtest1.frag");
@@ -70,9 +186,15 @@ GLDemoState::GLDemoState()
 
     //transform.setRotation(0,0,90);
 
-    model.setRotation(-55,0,0);
-    view.setTranslation(0,-0.2f,-3.f);
+    //model.setRotation(-45,0,-45);
+    view.setTranslation(0,0,-5.f);
     projection.setPerspective(45,800/600,0.1f,100.f);
+
+    shaderProgram.use();
+    int projLoc = glGetUniformLocation(static_cast<GLuint>(shaderProgram.Program()), "projection");
+    glUniformMatrix4fv(projLoc, 1, GL_FALSE, projection.Elements().data() );
+    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    glEnable(GL_DEPTH_TEST);
 
 }
 
@@ -80,15 +202,17 @@ GLDemoState::GLDemoState()
 
 void GLDemoState::draw() const
 {
-    static Matrix44 scaling;
-    scaling.setScaling(0.5f);
-
+//    static Matrix44 scaling;
+//    scaling.setScaling(0.5f);
 
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    DisplayManager::instance()->clearDisplay();
+
     auto t = Game::instance()->secsSinceStart();
     Game::instance()->drawObjects();
 
-    transform.setRotation(0,0,t*15);
+    transform.setRotation(0,45*t,0);
+    model.setRotation(-45,0,45);
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wsign-conversion"
@@ -110,11 +234,9 @@ void GLDemoState::draw() const
 
     int modelLoc = glGetUniformLocation(shaderProgram.Program(), "model");
     int viewLoc = glGetUniformLocation(shaderProgram.Program(), "view");
-    int projLoc = glGetUniformLocation(shaderProgram.Program(), "projection");
 
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, model.Elements().data() );
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, view.Elements().data() );
-    glUniformMatrix4fv(projLoc, 1, GL_FALSE, projection.Elements().data() );
 
 #pragma clang diagnostic pop
 
@@ -133,9 +255,6 @@ int GLDemoState::update()
     SDLEventHandler::update();
 
     Game::instance()->updateObjects();
-
-
-//    transform.setRotation(0,0,5*(Game::instance()->secsSinceStart()/4));
 
     return ret;
 }

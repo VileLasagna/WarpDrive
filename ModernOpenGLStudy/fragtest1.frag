@@ -13,6 +13,6 @@ void main()
 {
     //color = ourColor;
     //color = texture(ourTex, TexCoord) * ourColor;
-    color = mix(texture(ourTex, TexCoord), texture(otherTex, TexCoord), factor ) * ourColor;
-    //color = texture(ourTex, TexCoord);
+    //color = mix(texture(ourTex, TexCoord), texture(otherTex, TexCoord), factor ) * ourColor;
+    color = texture(ourTex, TexCoord);
 }

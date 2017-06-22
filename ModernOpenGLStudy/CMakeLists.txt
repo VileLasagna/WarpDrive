@@ -16,7 +16,8 @@ add_custom_target(Shaders SOURCES ${GLSTUDY_SHADERS})
 
 set(GLSTUDY_ASSETS ${GLSTUDY_ASSETS}
                     yaranaika.jpeg
-                    konodio.jpeg    )
+                    konodio.jpeg
+                    diemap.png      )
 
 add_custom_target(Assets SOURCES ${GLSTUDY_ASSETS})
 

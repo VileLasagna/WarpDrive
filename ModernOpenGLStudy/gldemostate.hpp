@@ -39,7 +39,7 @@ private:
 //    GLuint EBO;
     WDTexture tex, tex2;
     mutable Matrix44 transform;
-    Matrix44 model, view, projection;
+    mutable Matrix44 model, view, projection;
 };
 
 #endif //WD_TEAPOTLOADERSTATE_HPP_DEFINED
