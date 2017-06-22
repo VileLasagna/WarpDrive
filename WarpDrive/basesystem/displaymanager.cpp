@@ -207,6 +207,7 @@ void DisplayManager::useOpengGL(bool b) noexcept
     {
         openGL = true;
         videoFlags = SDL_WINDOW_OPENGL | fullscreen;
+        glEnable(GL_DEPTH_TEST);
     }
     else
     {
@@ -241,6 +242,7 @@ void DisplayManager::init(bool Fullscreen, bool UsingOpenGL) noexcept
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+        SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
         gl_context = SDL_GL_CreateContext(mainWindow);
         SDL_GL_MakeCurrent(mainWindow, gl_context);
         applyVsync();
