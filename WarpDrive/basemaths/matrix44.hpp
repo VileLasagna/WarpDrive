@@ -44,8 +44,6 @@ public:
      * @param degy Rotation around the Y axis
      * @param degz Rotation around the Z axis
      */
-    void setRotation(float degx, float degy, float degz);
-    void setRotationRad( float radx, float rady, float radz);
     void setRotation(float degx, float degy, float degz, bool clear = false);
     void setRotationRad( float radx, float rady, float radz, bool clear = false);
     void setPerspective(float fovy, float aspectratio, float znear, float zfar);
