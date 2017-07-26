@@ -16,7 +16,7 @@ uniform mat4 projection;
 
 void main()
 {
-    mat4 modelmat = transf * model ;
+    mat4 modelmat = model * transf ;
     //gl_Position = transf * vec4(position, 1.0f);
     //gl_Position = projection * view * model * vec4(position, 1.0f);
     gl_Position =  projection * view * modelmat * vec4(position, 1.0f);
