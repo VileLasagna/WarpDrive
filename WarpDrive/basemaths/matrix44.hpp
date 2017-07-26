@@ -46,6 +46,8 @@ public:
      */
     void setRotation(float degx, float degy, float degz, bool clear = false);
     void setRotationRad( float radx, float rady, float radz, bool clear = false);
+    void setRotation(float deg, Vec3f vector, bool clear = false);
+    void setRotationRad(float rads, Vec3f vector, bool clear = false);
     void setPerspective(float fovy, float aspectratio, float znear, float zfar);
     //void Print();
 

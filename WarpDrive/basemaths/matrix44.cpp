@@ -128,6 +128,59 @@ void Matrix44::setRotationRad(float radx, float rady, float radz, bool clear)
 
 }
 
+void Matrix44::setRotation(float deg, Vec3f vector, bool clear)
+{
+    if(WrpDrv::flZero(deg))
+    {
+        if(clear)
+        {
+            setIdentity();
+        }
+        return;
+    }
+    setRotationRad(deg* DEGTORAD, vector, clear);
+}
+
+void Matrix44::setRotationRad(float rads, Vec3f vector, bool clear)
+{
+    if(clear)
+    {
+        setIdentity();
+    }
+
+    vector.normalise();
+    float16 el =
+    {
+     { 0,
+      -vector.Z(),
+       vector.Y(),
+       0,
+
+       vector.Z(),
+       0,
+      -vector.X(),
+       0,
+
+      -vector.Y(),
+       vector.X(),
+       0,
+       0,
+
+       0,
+       0,
+       0,
+       1}
+    };
+
+    Matrix44 W(el);
+    Matrix44 result;
+    result += (W * static_cast<float>( sin(static_cast<double>(rads)) ));
+    float s = static_cast<float>( sin(static_cast<double>(rads/2)) );
+    //result += ((W*W) * (2 * s * s) );
+    //result += ((W*W) * (1 - sin(rads)) );
+    *this = result;
+}
+
 void Matrix44::setPerspective(float fovy, float aspectratio, float znear, float zfar)
 {
     setIdentity();
