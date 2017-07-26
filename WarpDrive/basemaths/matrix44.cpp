@@ -77,14 +77,15 @@ void Matrix44::multiply(const Matrix44 &rhs)
 
 }
 
-void Matrix44::setRotation(float degx, float degy, float degz)
+void Matrix44::setRotation(float degx, float degy, float degz, bool clear)
 {
+
 
     float radx = degx* DEGTORAD;
     float rady = degy* DEGTORAD;
     float radz = degz* DEGTORAD;
 
-    setRotationRad(radx,rady,radz);
+    setRotationRad(radx,rady,radz, clear);
 }
 
 void Matrix44::applyMatrix() const
@@ -99,9 +100,13 @@ void Matrix44::setMatrix() const
 }
 
 
-void Matrix44::setRotationRad(float radx, float rady, float radz)
+void Matrix44::setRotationRad(float radx, float rady, float radz, bool clear)
 {
-    setIdentity();
+    if(clear)
+    {
+        setIdentity();
+    }
+
     float cy = static_cast<float>( cos(static_cast<double>(rady)) );
     float cx = static_cast<float>( cos(static_cast<double>(radx)) );
     float cz = static_cast<float>( cos(static_cast<double>(radz)) );
@@ -137,8 +142,13 @@ void Matrix44::setPerspective(float fovy, float aspectratio, float znear, float 
 
 }
 
-void Matrix44::setTranslation(float x, float y, float z)
+void Matrix44::setTranslation(float x, float y, float z, bool clear)
 {
+    if(clear)
+    {
+        setIdentity();
+    }
+
     elements[12] += x;
     elements[13] += y;
     elements[14] += z;

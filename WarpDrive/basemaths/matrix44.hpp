@@ -33,7 +33,7 @@ public:
 
     void multiply(const Matrix44& rhs);
 
-    void setTranslation(float x, float y, float z);
+    void setTranslation(float x, float y, float z, bool clear = false);
     void setScaling(float x, float y = -1.f, float z = -1.f);
     /**
      * @brief setRotation
@@ -46,6 +46,8 @@ public:
      */
     void setRotation(float degx, float degy, float degz);
     void setRotationRad( float radx, float rady, float radz);
+    void setRotation(float degx, float degy, float degz, bool clear = false);
+    void setRotationRad( float radx, float rady, float radz, bool clear = false);
     void setPerspective(float fovy, float aspectratio, float znear, float zfar);
     //void Print();
 
