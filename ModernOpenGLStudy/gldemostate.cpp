@@ -262,9 +262,25 @@ void GLDemoState::draw() const
     for(unsigned int i = 0; i < positions.size(); i++)
     {
 
+
         model.setTranslation(positions[i].X(), positions[i].Y(), positions[i].Z(), true);
-        //model.setRotation(20.f * i, 0.f, 0.f, false);
         transform.setRotation(20.f * i, Vec3f(1.f, 0.3f, 0.5f), true);
+        if(i%3 == 0)
+        {
+            rotation.setRotation(20.f * t * (i+1)/2, 0.f, 0.f, false);
+            transform *= rotation;
+        }
+        if(i%3 == 1)
+        {
+            rotation.setRotation(0.f, 20.f * t * (i+1)/2, 0.f, false);
+            transform *= rotation;
+        }
+        if(i%3 == 2)
+        {
+            rotation.setRotation(0.f, 0.f, 20.f * t * (i+1)/2, false);
+            transform *= rotation;
+        }
+
         //transform.setRotation(20.f * i, 0.f, 0.f, true);
 
 
