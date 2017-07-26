@@ -59,7 +59,24 @@ public:
     void getModelview();
     void getProjection();
 
+    Matrix44 operator *(const Matrix44& rhs);
     Matrix44& operator *=(const Matrix44& rhs);
+    Matrix44 operator +(const Matrix44& rhs);
+    Matrix44& operator +=(const Matrix44& rhs);
+
+    Matrix44 operator *(float scalar);
+    Matrix44& operator *=(float scalar);
+    Matrix44 operator +(float scalar);
+    Matrix44& operator +=(float scalar);
+
+    Matrix44 operator /(float scalar);
+    Matrix44& operator /=(float scalar);
+    Matrix44 operator -(float scalar);
+    Matrix44& operator -=(float scalar);
+
+
+
+
 
     Matrix44& operator =(const Matrix44& rhs);
 

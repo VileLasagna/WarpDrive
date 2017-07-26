@@ -185,9 +185,113 @@ void Matrix44::getProjection()
     glGetFloatv(GL_MODELVIEW_MATRIX, elements.data());
 }
 
+Matrix44 Matrix44::operator *(const Matrix44& rhs)
+{
+    Matrix44 result(*this);
+    result.multiply(rhs);
+    return result;
+}
+
 Matrix44& Matrix44::operator *=(const Matrix44 &rhs)
 {
     multiply(rhs);
+    return *this;
+}
+
+Matrix44 Matrix44::operator +(const Matrix44& rhs)
+{
+    float16 res;
+    for(size_t i = 0; i < 16; i++)
+    {
+        res[i] = elements[i] + rhs.elements[i];
+    }
+    return Matrix44(res);
+}
+
+Matrix44&Matrix44::operator +=(const Matrix44& rhs)
+{
+    for(size_t i = 0; i < 16; i++)
+    {
+        elements[i] += rhs.elements[i];
+    }
+    return *this;
+}
+
+Matrix44 Matrix44::operator *(float scalar)
+{
+    float16 res;
+    for(size_t i = 0; i < 16; i++)
+    {
+        res[i] = elements[i] * scalar;
+    }
+    return Matrix44(res);
+}
+
+
+Matrix44&Matrix44::operator *=(float scalar)
+{
+    for(size_t i = 0; i < 16; i++)
+    {
+        elements[i] *= scalar;
+    }
+    return *this;
+}
+
+Matrix44 Matrix44::operator +(float scalar)
+{
+    float16 res;
+    for(size_t i = 0; i < 16; i++)
+    {
+        res[i] = elements[i] + scalar;
+    }
+    return Matrix44(res);
+}
+
+Matrix44&Matrix44::operator +=(float scalar)
+{
+    for(size_t i = 0; i < 16; i++)
+    {
+        elements[i] += scalar;
+    }
+    return *this;
+}
+
+Matrix44 Matrix44::operator /(float scalar)
+{
+    float16 res;
+    for(size_t i = 0; i < 16; i++)
+    {
+        res[i] = elements[i] / scalar;
+    }
+    return Matrix44(res);
+}
+
+
+Matrix44&Matrix44::operator /=(float scalar)
+{
+    for(size_t i = 0; i < 16; i++)
+    {
+        elements[i] /= scalar;
+    }
+    return *this;
+}
+
+Matrix44 Matrix44::operator -(float scalar)
+{
+    float16 res;
+    for(size_t i = 0; i < 16; i++)
+    {
+        res[i] = elements[i] - scalar;
+    }
+    return Matrix44(res);
+}
+
+Matrix44&Matrix44::operator -=(float scalar)
+{
+    for(size_t i = 0; i < 16; i++)
+    {
+        elements[i] -= scalar;
+    }
     return *this;
 }
 
