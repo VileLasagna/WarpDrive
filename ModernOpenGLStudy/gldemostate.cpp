@@ -16,6 +16,10 @@
 
 GLDemoState::GLDemoState()
 {
+    self = 0;
+    ret = self;
+    reset();
+
     /////////////////FRONT FACE///////////////////////////////////////
     VertexBuffer verts;
     //  0 - TOP RIGHT FRONT
@@ -172,9 +176,8 @@ GLDemoState::GLDemoState()
                        20,21,22,22,23,20 });
     VAO.bind();
 
-    self = 0;
-    ret = self;
-    reset();
+
+
 
 //    tex.loadTexture("assets/yaranaika.jpeg");
     tex.loadTexture("assets/diemap.png");
@@ -187,7 +190,7 @@ GLDemoState::GLDemoState()
     //transform.setRotation(0,0,90);
 
     //model.setRotation(-45,0,-45);
-    view.setTranslation(0,0,-5.f);
+    view.setTranslation(0,0,-3.f);
     projection.setPerspective(45,800/600,0.1f,100.f);
 
     shaderProgram.use();
@@ -205,14 +208,29 @@ void GLDemoState::draw() const
 //    static Matrix44 scaling;
 //    scaling.setScaling(0.5f);
 
+    static std::vector<Vec3f> positions{
+      Vec3f( 0.0f,  0.0f,  0.0f),
+      Vec3f( 2.0f,  5.0f, -15.0f),
+      Vec3f(-1.5f, -2.2f, -2.5f),
+      Vec3f(-3.8f, -2.0f, -12.3f),
+      Vec3f( 2.4f, -0.4f, -3.5f),
+      Vec3f(-1.7f,  3.0f, -7.5f),
+      Vec3f( 1.3f, -2.0f, -2.5f),
+      Vec3f( 1.5f,  2.0f, -2.5f),
+      Vec3f( 1.5f,  0.2f, -1.5f),
+      Vec3f(-1.3f,  1.0f, -1.5f)
+    };
+
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     DisplayManager::instance()->clearDisplay();
 
     auto t = Game::instance()->secsSinceStart();
     Game::instance()->drawObjects();
 
-    transform.setRotation(0,45*t,0);
-    model.setRotation(-45,0,45);
+    //transform.setRotation(0,45*t,0);
+    //transform.setIdentity();
+    //model.setRotation(-45,0,45);
+    //model.setIdentity();
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wsign-conversion"
@@ -230,7 +248,7 @@ void GLDemoState::draw() const
 
     int transfLoc = glGetUniformLocation(shaderProgram.Program(), "transf");
 
-    glUniformMatrix4fv(transfLoc, 1, GL_FALSE, transform.Elements().data() );
+
 
     int modelLoc = glGetUniformLocation(shaderProgram.Program(), "model");
     int viewLoc = glGetUniformLocation(shaderProgram.Program(), "view");
@@ -240,7 +258,22 @@ void GLDemoState::draw() const
 
 #pragma clang diagnostic pop
 
-    VAO.draw();
+    Matrix44 rotation;
+    for(unsigned int i = 0; i < positions.size(); i++)
+    {
+
+        model.setTranslation(positions[i].X(), positions[i].Y(), positions[i].Z(), true);
+        //model.setRotation(20.f * i, 0.f, 0.f, false);
+        transform.setRotation(20.f * i, Vec3f(1.f, 0.3f, 0.5f), true);
+        //transform.setRotation(20.f * i, 0.f, 0.f, true);
+
+
+        glUniformMatrix4fv(transfLoc, 1, GL_FALSE, transform.Elements().data() );
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, model.Elements().data() );
+        VAO.draw();
+    }
+
+
 
 }
 
