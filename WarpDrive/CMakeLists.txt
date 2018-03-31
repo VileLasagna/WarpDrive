@@ -51,7 +51,7 @@ target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_14 )
 
 find_package(SDL2)
 
-target_link_libraries(${PROJECT_NAME} INTERFACE ${SDL2_LIBRARIES} SDL2_ttf SDL2_image)
+target_link_libraries(${PROJECT_NAME} INTERFACE SDL2::SDL2 SDL2_ttf SDL2_image)
 target_include_directories(${PROJECT_NAME} PUBLIC   $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/..>
                                                     $<INSTALL_INTERFACE:include>)
 
