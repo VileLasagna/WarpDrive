@@ -32,13 +32,13 @@ private:
     static void LastSpecular(Colour* v, bool set = false)  noexcept;
     static void LastShiny(float* f, bool set = false)  noexcept;
 
-    Vec3f pos;
-    Vec3f normal;
-    Vec2f uv;
-    Colour ambient;
-    Colour diffuse;
-    Colour specular;
-    float shiny;
+    Vec3f   pos;
+    Vec3f   normal;
+    Vec2f   uv;
+    Colour  ambient;
+    Colour  diffuse;
+    Colour  specular;
+    float   shiny;
 
 };
 
