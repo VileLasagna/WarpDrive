@@ -7,6 +7,7 @@
 #endif //WIN32
 
 #include <GL/gl.h>
+#include <algorithm>
 
 //   PI/180
 
@@ -159,40 +160,42 @@ void Matrix44::setRotationRad(float rads, Vec3f vector, bool clear)
 {
     if(clear)
     {
-        setIdentity();
+        Identity(Back());
+    }
+    else
+    {
+        Shadow();
     }
 
     vector.normalise();
     float16 el =
     {
      { 0,
-      -vector.Z(),
-       vector.Y(),
+      -vector.Z() * static_cast<float>( sin(static_cast<double>(rads))),
+       vector.Y() * static_cast<float>( sin(static_cast<double>(rads))),
        0,
 
-       vector.Z(),
+       vector.Z() * static_cast<float>( sin(static_cast<double>(rads))),
        0,
-      -vector.X(),
-       0,
-
-      -vector.Y(),
-       vector.X(),
-       0,
+      -vector.X() * static_cast<float>( sin(static_cast<double>(rads))),
        0,
 
+      -vector.Y() * static_cast<float>( sin(static_cast<double>(rads))),
+       vector.X() * static_cast<float>( sin(static_cast<double>(rads))),
+       0,
+       0,
+
        0,
        0,
        0,
-       1}
+       1 * static_cast<float>( sin(static_cast<double>(rads)) )
+     }
     };
-
-    Matrix44 W(el);
-    Matrix44 result;
-    result += (W * static_cast<float>( sin(static_cast<double>(rads)) ));
-    float s = static_cast<float>( sin(static_cast<double>(rads/2)) );
-    //result += ((W*W) * (2 * s * s) );
-    //result += ((W*W) * (1 - sin(rads)) );
-    *this = result;
+    //Add the values to Back()
+    std::transform( Back().begin(), Back().end(),
+                    el.begin(), Back().begin(),
+                    std::plus<float>());
+    Flip();
 }
 
 void Matrix44::setPerspective(float fovy, float aspectratio, float znear, float zfar)
