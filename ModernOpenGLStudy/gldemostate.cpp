@@ -3,7 +3,7 @@
     #include <windows.h>
 #endif //WIN32
 
-#include<string>
+#include <string>
 #include <GL/glew.h>
 #include <GL/glu.h>
 
@@ -177,11 +177,32 @@ GLDemoState::GLDemoState()
     VAO.bind();
 
 
+    positions = {
+      Vec3f( 0.0f,  0.0f,  0.0f),
+      Vec3f( 2.0f,  5.0f, -15.0f),
+      Vec3f(-1.5f, -2.2f, -2.5f),
+      Vec3f(-3.8f, -2.0f, -12.3f),
+      Vec3f( 2.4f, -0.4f, -3.5f),
+      Vec3f(-1.7f,  3.0f, -7.5f),
+      Vec3f( 1.3f, -2.0f, -2.5f),
+      Vec3f( 1.5f,  2.0f, -2.5f),
+      Vec3f( 1.5f,  0.2f, -1.5f),
+      Vec3f(-1.3f,  1.0f, -1.5f)
+    };
+
+    transform.resize(positions.size());
+    model.resize(positions.size());
+    for(size_t i = 0; i < positions.size(); i++)
+    {
+        model[i].setTranslation(positions[i].X(), positions[i].Y(), positions[i].Z(), true);
+        transform[i].setRotation(20.f * i, Vec3f(1.f, 0.3f, 0.5f), true);
+
+    }
 
 
 //    tex.loadTexture("assets/yaranaika.jpeg");
     tex.loadTexture("assets/diemap.png");
-    tex2.loadTexture("assets/konodio.jpeg");
+    //tex2.loadTexture("assets/konodio.jpeg");
     shaderProgram.loadVertex("shaders/verttest1.vert");
     shaderProgram.loadFragment("shaders/fragtest1.frag");
 
@@ -208,18 +229,7 @@ void GLDemoState::draw() const
 //    static Matrix44 scaling;
 //    scaling.setScaling(0.5f);
 
-    static std::vector<Vec3f> positions{
-      Vec3f( 0.0f,  0.0f,  0.0f),
-      Vec3f( 2.0f,  5.0f, -15.0f),
-      Vec3f(-1.5f, -2.2f, -2.5f),
-      Vec3f(-3.8f, -2.0f, -12.3f),
-      Vec3f( 2.4f, -0.4f, -3.5f),
-      Vec3f(-1.7f,  3.0f, -7.5f),
-      Vec3f( 1.3f, -2.0f, -2.5f),
-      Vec3f( 1.5f,  2.0f, -2.5f),
-      Vec3f( 1.5f,  0.2f, -1.5f),
-      Vec3f(-1.3f,  1.0f, -1.5f)
-    };
+
 
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     DisplayManager::instance()->clearDisplay();
@@ -253,42 +263,16 @@ void GLDemoState::draw() const
     int modelLoc = glGetUniformLocation(shaderProgram.Program(), "model");
     int viewLoc = glGetUniformLocation(shaderProgram.Program(), "view");
 
-    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, model.Elements().data() );
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, view.Elements().data() );
 
 #pragma clang diagnostic pop
 
-    Matrix44 rotation;
     for(unsigned int i = 0; i < positions.size(); i++)
     {
-
-
-        model.setTranslation(positions[i].X(), positions[i].Y(), positions[i].Z(), true);
-        transform.setRotation(20.f * i, Vec3f(1.f, 0.3f, 0.5f), true);
-        if(i%3 == 0)
-        {
-            rotation.setRotation(20.f * t * (i+1)/2, 0.f, 0.f, false);
-            transform *= rotation;
-        }
-        if(i%3 == 1)
-        {
-            rotation.setRotation(0.f, 20.f * t * (i+1)/2, 0.f, false);
-            transform *= rotation;
-        }
-        if(i%3 == 2)
-        {
-            rotation.setRotation(0.f, 0.f, 20.f * t * (i+1)/2, false);
-            transform *= rotation;
-        }
-
-        //transform.setRotation(20.f * i, 0.f, 0.f, true);
-
-
-        glUniformMatrix4fv(transfLoc, 1, GL_FALSE, transform.Elements().data() );
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, model.Elements().data() );
+        glUniformMatrix4fv(transfLoc, 1, GL_FALSE, transform[i].Elements().data() );
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, model[i].Elements().data() );
         VAO.draw();
     }
-
 
 
 }
@@ -304,6 +288,36 @@ int GLDemoState::update()
     SDLEventHandler::update();
 
     Game::instance()->updateObjects();
+
+    static std::vector<Matrix44> rotations(positions.size());
+
+    auto t = Game::instance()->secsSinceStart();
+
+    static float factor = 20.f;
+
+    for(unsigned int i = 0; i < positions.size(); i++)
+    {
+
+        static Matrix44 rot;
+        rot.setRotation(20.f * i, Vec3f(1.f, 0.3f, 0.5f), true);
+        if(i%3 == 0)
+        {
+            rotations[i].setRotation(factor * t * (i+1)/2, 0.f, 0.f, false);
+        }
+        if(i%3 == 1)
+        {
+            rotations[i].setRotation(0.f, factor * t * (i+1)/2, 0.f, false);
+        }
+        if(i%3 == 2)
+        {
+            rotations[i].setRotation(0.f, 0.f, factor * t * (i+1)/2, false);
+        }
+        rot*=rotations[i];
+        transform[i] = rot;
+
+        //transform.setRotation(20.f * i, 0.f, 0.f, true);
+    }
+
 
     return ret;
 }

@@ -38,8 +38,9 @@ private:
 //    GLuint VBO;
 //    GLuint EBO;
     WDTexture tex, tex2;
-    mutable Matrix44 transform;
-    mutable Matrix44 model, view, projection;
+    mutable std::vector<Matrix44> transform, model;
+    mutable Matrix44 view, projection;
+    std::vector<Vec3f> positions;
 };
 
 #endif //WD_TEAPOTLOADERSTATE_HPP_DEFINED
