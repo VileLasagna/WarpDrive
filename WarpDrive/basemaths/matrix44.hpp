@@ -2,6 +2,7 @@
 #define WD_MATRIX_4X4_HPP_DEFINED
 
 #include <array>
+#include <atomic>
 
 #include "WarpDrive/basemaths/vec4.hpp"
 
@@ -24,9 +25,12 @@ class Matrix44
 public:
 
     Matrix44();
+    Matrix44(const Matrix44& other);
+    Matrix44(const Matrix44&& other);
     explicit Matrix44(float16& mat);
     explicit Matrix44(GLdouble* mat);
     explicit Matrix44(GLfloat* mat);
+    ~Matrix44() = default;
 
 
     void setIdentity();
@@ -51,7 +55,7 @@ public:
     void setPerspective(float fovy, float aspectratio, float znear, float zfar);
     //void Print();
 
-    const float16& Elements() const {return elements;}
+    const float16& Elements() const;
 
     [[deprecated("This relates to immediate mode OpenGL")]]
     void applyMatrix() const;   //Apply this to the current Display Matrix
@@ -81,7 +85,7 @@ public:
 
 
     Matrix44& operator =(const Matrix44& rhs);
-
+    Matrix44& operator =(const Matrix44&& rhs);
 
     static Vec4f multiply( const Matrix44& mat, const Vec4f& vec)
         {
@@ -96,7 +100,16 @@ public:
 
 private:
 
-    float16 elements;
+    float16& Front();
+    float16& Back();
+    const float16& cFront() const;
+    const float16& cBack() const;
+    void Flip();
+    void Identity(float16& f);
+    void Shadow();
+
+    float16 front, back;
+    std::atomic<bool> spin;
 
 };
 

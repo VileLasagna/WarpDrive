@@ -14,66 +14,74 @@ constexpr float DEGTORAD = 0.017453292519943295769f;
 
 void Matrix44::setIdentity()
 {
-    elements.fill(0);
-
-    elements[0] = 1;
-    elements[5] = 1;
-    elements[10] = 1;
-    elements[15] = 1;
-
+    Identity(Front());
 }
 
 Matrix44::Matrix44()
 {
-    setIdentity();
+    Identity(Front());
+    Identity(Back());
+}
+
+Matrix44::Matrix44(const Matrix44& other)
+{
+    std::copy(other.cFront().begin(), other.cFront().end(), Front().begin());
+    Identity(Back());
+}
+
+Matrix44::Matrix44(const Matrix44&& other)
+{
+    std::copy(other.cFront().begin(), other.cFront().end(), Front().begin());
+    Identity(Back());
 }
 
 Matrix44::Matrix44(float16& mat)
 {
-
-    elements = mat;
+    Front() = mat;
+    Identity(Back());
 }
 
 Matrix44::Matrix44(GLdouble* mat)
 {
     for(size_t i = 0; i < 16; i++)
     {
-        elements[i] = static_cast<float>(mat[i]);
+        front[i] = static_cast<float>(mat[i]);
     }
+    back.fill(0);
 }
 
 Matrix44::Matrix44(GLfloat *mat)
 {
     for(size_t i = 0; i < 16; i++)
     {
-        elements[i] = static_cast<float>(mat[i]);
+        front[i] = static_cast<float>(mat[i]);
     }
+    back.fill(0);
 }
 
 void Matrix44::multiply(const Matrix44 &rhs)
 {
 
-    //Brace for long maths!
-    float16 result;
 
-    result[0]  = elements[0]*rhs.elements[0]  + elements[4]*rhs.elements[1]  + elements[8] *rhs.elements[2]  + elements[12]*rhs.elements[3];
-    result[1]  = elements[1]*rhs.elements[0]  + elements[5]*rhs.elements[1]  + elements[9] *rhs.elements[2]  + elements[13]*rhs.elements[3];
-    result[2]  = elements[2]*rhs.elements[0]  + elements[6]*rhs.elements[1]  + elements[10]*rhs.elements[2]  + elements[14]*rhs.elements[3];
-    result[3]  = elements[3]*rhs.elements[0]  + elements[7]*rhs.elements[1]  + elements[11]*rhs.elements[2]  + elements[15]*rhs.elements[3];
-    result[4]  = elements[0]*rhs.elements[4]  + elements[4]*rhs.elements[5]  + elements[8] *rhs.elements[6]  + elements[12]*rhs.elements[7];
-    result[5]  = elements[1]*rhs.elements[4]  + elements[5]*rhs.elements[5]  + elements[9] *rhs.elements[6]  + elements[13]*rhs.elements[7];
-    result[6]  = elements[2]*rhs.elements[4]  + elements[6]*rhs.elements[5]  + elements[10]*rhs.elements[6]  + elements[14]*rhs.elements[7];
-    result[7]  = elements[3]*rhs.elements[4]  + elements[7]*rhs.elements[5]  + elements[11]*rhs.elements[6]  + elements[15]*rhs.elements[7];
-    result[8]  = elements[0]*rhs.elements[8]  + elements[4]*rhs.elements[9]  + elements[8] *rhs.elements[10] + elements[12]*rhs.elements[11];
-    result[9]  = elements[1]*rhs.elements[8]  + elements[5]*rhs.elements[9]  + elements[9] *rhs.elements[10] + elements[13]*rhs.elements[11];
-    result[10] = elements[2]*rhs.elements[8]  + elements[6]*rhs.elements[9]  + elements[10]*rhs.elements[10] + elements[14]*rhs.elements[11];
-    result[11] = elements[3]*rhs.elements[8]  + elements[7]*rhs.elements[9]  + elements[11]*rhs.elements[10] + elements[15]*rhs.elements[11];
-    result[12] = elements[0]*rhs.elements[12] + elements[4]*rhs.elements[13] + elements[8] *rhs.elements[14] + elements[12]*rhs.elements[15];
-    result[13] = elements[1]*rhs.elements[12] + elements[5]*rhs.elements[13] + elements[9] *rhs.elements[14] + elements[13]*rhs.elements[15];
-    result[14] = elements[2]*rhs.elements[12] + elements[6]*rhs.elements[13] + elements[10]*rhs.elements[14] + elements[14]*rhs.elements[15];
-    result[15] = elements[3]*rhs.elements[12] + elements[7]*rhs.elements[13] + elements[11]*rhs.elements[14] + elements[15]*rhs.elements[15];
 
-    elements = result;
+    Back()[0]  = Front()[0]*rhs.cFront()[0]  + Front()[4]*rhs.cFront()[1]  + Front()[8] *rhs.cFront()[2]  + Front()[12]*rhs.cFront()[3];
+    Back()[1]  = Front()[1]*rhs.cFront()[0]  + Front()[5]*rhs.cFront()[1]  + Front()[9] *rhs.cFront()[2]  + Front()[13]*rhs.cFront()[3];
+    Back()[2]  = Front()[2]*rhs.cFront()[0]  + Front()[6]*rhs.cFront()[1]  + Front()[10]*rhs.cFront()[2]  + Front()[14]*rhs.cFront()[3];
+    Back()[3]  = Front()[3]*rhs.cFront()[0]  + Front()[7]*rhs.cFront()[1]  + Front()[11]*rhs.cFront()[2]  + Front()[15]*rhs.cFront()[3];
+    Back()[4]  = Front()[0]*rhs.cFront()[4]  + Front()[4]*rhs.cFront()[5]  + Front()[8] *rhs.cFront()[6]  + Front()[12]*rhs.cFront()[7];
+    Back()[5]  = Front()[1]*rhs.cFront()[4]  + Front()[5]*rhs.cFront()[5]  + Front()[9] *rhs.cFront()[6]  + Front()[13]*rhs.cFront()[7];
+    Back()[6]  = Front()[2]*rhs.cFront()[4]  + Front()[6]*rhs.cFront()[5]  + Front()[10]*rhs.cFront()[6]  + Front()[14]*rhs.cFront()[7];
+    Back()[7]  = Front()[3]*rhs.cFront()[4]  + Front()[7]*rhs.cFront()[5]  + Front()[11]*rhs.cFront()[6]  + Front()[15]*rhs.cFront()[7];
+    Back()[8]  = Front()[0]*rhs.cFront()[8]  + Front()[4]*rhs.cFront()[9]  + Front()[8] *rhs.cFront()[10] + Front()[12]*rhs.cFront()[11];
+    Back()[9]  = Front()[1]*rhs.cFront()[8]  + Front()[5]*rhs.cFront()[9]  + Front()[9] *rhs.cFront()[10] + Front()[13]*rhs.cFront()[11];
+    Back()[10] = Front()[2]*rhs.cFront()[8]  + Front()[6]*rhs.cFront()[9]  + Front()[10]*rhs.cFront()[10] + Front()[14]*rhs.cFront()[11];
+    Back()[11] = Front()[3]*rhs.cFront()[8]  + Front()[7]*rhs.cFront()[9]  + Front()[11]*rhs.cFront()[10] + Front()[15]*rhs.cFront()[11];
+    Back()[12] = Front()[0]*rhs.cFront()[12] + Front()[4]*rhs.cFront()[13] + Front()[8] *rhs.cFront()[14] + Front()[12]*rhs.cFront()[15];
+    Back()[13] = Front()[1]*rhs.cFront()[12] + Front()[5]*rhs.cFront()[13] + Front()[9] *rhs.cFront()[14] + Front()[13]*rhs.cFront()[15];
+    Back()[14] = Front()[2]*rhs.cFront()[12] + Front()[6]*rhs.cFront()[13] + Front()[10]*rhs.cFront()[14] + Front()[14]*rhs.cFront()[15];
+    Back()[15] = Front()[3]*rhs.cFront()[12] + Front()[7]*rhs.cFront()[13] + Front()[11]*rhs.cFront()[14] + Front()[15]*rhs.cFront()[15];
+
+    Flip();
 
 }
 
@@ -90,7 +98,7 @@ void Matrix44::setRotation(float degx, float degy, float degz, bool clear)
 
 void Matrix44::applyMatrix() const
 {
-    glMultMatrixf(elements.data());
+    glMultMatrixf(cFront().data());
 }
 
 void Matrix44::setMatrix() const
@@ -104,7 +112,11 @@ void Matrix44::setRotationRad(float radx, float rady, float radz, bool clear)
 {
     if(clear)
     {
-        setIdentity();
+        Identity(Back());
+    }
+    else
+    {
+        Shadow();
     }
 
     float cy = static_cast<float>( cos(static_cast<double>(rady)) );
@@ -114,17 +126,19 @@ void Matrix44::setRotationRad(float radx, float rady, float radz, bool clear)
     float sx = static_cast<float>( sin(static_cast<double>(radx)) );
     float sz = static_cast<float>( sin(static_cast<double>(radz)) );
 
-    elements[0] = (cy*cz);
-    elements[1] = (cz*sx*sy) - (cx*sz);
-    elements[2] = (cx*cz*sy) + (sx*sz);
+    Back()[0] = (cy*cz);
+    Back()[1] = (cz*sx*sy) - (cx*sz);
+    Back()[2] = (cx*cz*sy) + (sx*sz);
 
-    elements[4] = (cy*sz);
-    elements[5] = (cx*cz) + (sx*sy*sz);
-    elements[6] = (cx*sy*sz) - (cz*sx);
+    Back()[4] = (cy*sz);
+    Back()[5] = (cx*cz) + (sx*sy*sz);
+    Back()[6] = (cx*sy*sz) - (cz*sx);
 
-    elements[8] = -sy;
-    elements[9] = (cy*sx);
-    elements[10] = (cx*cy);
+    Back()[8] = -sy;
+    Back()[9] = (cy*sx);
+    Back()[10] = (cx*cy);
+
+    Flip();
 
 }
 
@@ -183,30 +197,40 @@ void Matrix44::setRotationRad(float rads, Vec3f vector, bool clear)
 
 void Matrix44::setPerspective(float fovy, float aspectratio, float znear, float zfar)
 {
-    setIdentity();
+    Identity(Back());
     float f = static_cast<float>( 1.0/tan(static_cast<double>(fovy * DEGTORAD * 0.5f)) );
 
-    elements[0]  =  f / aspectratio;
-    elements[5]  = f;
-    elements[10] = (znear + zfar) / (znear - zfar);
-    elements[11] = -1.f;
-    elements[14] = (2.f * zfar * znear) / (znear - zfar);
-    elements[15] = 0.f;
+    Back()[0]  =  f / aspectratio;
+    Back()[5]  = f;
+    Back()[10] = (znear + zfar) / (znear - zfar);
+    Back()[11] = -1.f;
+    Back()[14] = (2.f * zfar * znear) / (znear - zfar);
+    Back()[15] = 0.f;
 
+    Flip();
+}
+
+const float16 &Matrix44::Elements() const
+{
+    return spin?back:front;
 }
 
 void Matrix44::setTranslation(float x, float y, float z, bool clear)
 {
     if(clear)
     {
-        setIdentity();
+        Identity(Back());
+    }
+    else
+    {
+        Shadow();
     }
 
-    elements[12] += x;
-    elements[13] += y;
-    elements[14] += z;
+    Back()[12] += x;
+    Back()[13] += y;
+    Back()[14] += z;
 
-
+    Flip();
 }
 
 void Matrix44::setScaling(float x, float y, float z)
@@ -220,22 +244,25 @@ void Matrix44::setScaling(float x, float y, float z)
     }
 #endif
 
-    setIdentity();
-    elements[0]  = x;
-    elements[5]  = y < 0 ? x:y;
-    elements[10] = z < 0 ? x:z;
+    Identity(Back());
+    Back()[0]  = x;
+    Back()[5]  = y < 0 ? x:y;
+    Back()[10] = z < 0 ? x:z;
 
+    Flip();
 }
 
 void Matrix44::getModelview()
 {
-    glGetFloatv(GL_MODELVIEW_MATRIX, elements.data());
+    glGetFloatv(GL_MODELVIEW_MATRIX, Back().data());
+    Flip();
 }
 
 
 void Matrix44::getProjection()
 {
-    glGetFloatv(GL_MODELVIEW_MATRIX, elements.data());
+    glGetFloatv(GL_MODELVIEW_MATRIX, Back().data());
+    Flip();
 }
 
 Matrix44 Matrix44::operator *(const Matrix44& rhs)
@@ -256,17 +283,19 @@ Matrix44 Matrix44::operator +(const Matrix44& rhs)
     float16 res;
     for(size_t i = 0; i < 16; i++)
     {
-        res[i] = elements[i] + rhs.elements[i];
+        res[i] = Front()[i] + rhs.cFront()[i];
     }
     return Matrix44(res);
 }
 
-Matrix44&Matrix44::operator +=(const Matrix44& rhs)
+Matrix44& Matrix44::operator +=(const Matrix44& rhs)
 {
+    Shadow();
     for(size_t i = 0; i < 16; i++)
     {
-        elements[i] += rhs.elements[i];
+        Back()[i] += rhs.cFront()[i];
     }
+    Flip();
     return *this;
 }
 
@@ -275,18 +304,20 @@ Matrix44 Matrix44::operator *(float scalar)
     float16 res;
     for(size_t i = 0; i < 16; i++)
     {
-        res[i] = elements[i] * scalar;
+        res[i] = Front()[i] * scalar;
     }
     return Matrix44(res);
 }
 
 
-Matrix44&Matrix44::operator *=(float scalar)
+Matrix44& Matrix44::operator *=(float scalar)
 {
+    Shadow();
     for(size_t i = 0; i < 16; i++)
     {
-        elements[i] *= scalar;
+        Back()[i] *= scalar;
     }
+    Flip();
     return *this;
 }
 
@@ -295,17 +326,19 @@ Matrix44 Matrix44::operator +(float scalar)
     float16 res;
     for(size_t i = 0; i < 16; i++)
     {
-        res[i] = elements[i] + scalar;
+        res[i] = Front()[i] + scalar;
     }
     return Matrix44(res);
 }
 
-Matrix44&Matrix44::operator +=(float scalar)
+Matrix44& Matrix44::operator +=(float scalar)
 {
+    Shadow();
     for(size_t i = 0; i < 16; i++)
     {
-        elements[i] += scalar;
+        Back()[i] += scalar;
     }
+    Flip();
     return *this;
 }
 
@@ -314,18 +347,20 @@ Matrix44 Matrix44::operator /(float scalar)
     float16 res;
     for(size_t i = 0; i < 16; i++)
     {
-        res[i] = elements[i] / scalar;
+        res[i] = Front()[i] / scalar;
     }
     return Matrix44(res);
 }
 
 
-Matrix44&Matrix44::operator /=(float scalar)
+Matrix44& Matrix44::operator /=(float scalar)
 {
+    Shadow();
     for(size_t i = 0; i < 16; i++)
     {
-        elements[i] /= scalar;
+        Back()[i] /= scalar;
     }
+    Flip();
     return *this;
 }
 
@@ -334,17 +369,19 @@ Matrix44 Matrix44::operator -(float scalar)
     float16 res;
     for(size_t i = 0; i < 16; i++)
     {
-        res[i] = elements[i] - scalar;
+        res[i] = Front()[i] - scalar;
     }
     return Matrix44(res);
 }
 
-Matrix44&Matrix44::operator -=(float scalar)
+Matrix44& Matrix44::operator -=(float scalar)
 {
+    Shadow();
     for(size_t i = 0; i < 16; i++)
     {
-        elements[i] -= scalar;
+        Back()[i] -= scalar;
     }
+    Flip();
     return *this;
 }
 
@@ -352,7 +389,59 @@ Matrix44& Matrix44::operator =(const Matrix44& rhs)
 {
     for(size_t i = 0; i < 16; i++)
     {
-        elements[i] = rhs.elements[i];
+        Back()[i] = rhs.cFront()[i];
     }
+    Flip();
     return *this;
+}
+
+Matrix44& Matrix44::operator =(const Matrix44&& rhs)
+{
+    for(size_t i = 0; i < 16; i++)
+    {
+        Back()[i] = rhs.cFront()[i];
+    }
+    Flip();
+    return *this;
+}
+
+float16 &Matrix44::Front()
+{
+    return spin?back:front;
+}
+
+float16 &Matrix44::Back()
+{
+    return spin?front:back;
+}
+
+const float16 &Matrix44::cFront() const
+{
+    return spin?back:front;
+}
+
+const float16 &Matrix44::cBack() const
+{
+    return spin?front:back;
+}
+
+void Matrix44::Flip()
+{
+    spin.store(spin?false:true);
+}
+
+void Matrix44::Identity(float16 &f)
+{
+    f.fill(0);
+
+    f[0] = 1;
+    f[5] = 1;
+    f[10] = 1;
+    f[15] = 1;
+
+}
+
+void Matrix44::Shadow()
+{
+    std::copy(Front().begin(), Front().end(), Back().begin());
 }
