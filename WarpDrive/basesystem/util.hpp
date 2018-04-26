@@ -5,6 +5,7 @@
 namespace WrpDrv
 {
     constexpr double flEpsilon = 0.00001;
+    constexpr double Pi = 3.14159265359;
 
     bool flEquals(float f1, float f2);
     bool dbEquals(double f1, double f2);

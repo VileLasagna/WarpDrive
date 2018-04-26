@@ -46,9 +46,9 @@ void Camera::update()
     {
         time += DisplayManager::instance()->Dt();
         //relativePos = Vec3f(orbitFactors.X()*orbitRadius*sin(time*(orbitPeriod*0.5f)),orbitFactors.Y()*orbitRadius*sin(time*(orbitPeriod*0.5f)),orbitFactors.Z()*orbitRadius*sin(time*(orbitPeriod*0.5f)));
-        Vec3f direction = Vec3f(static_cast<float>( orbitFactors.X()*sin(time*(orbitPeriod*0.5f)*0.001f) ),
-                                static_cast<float>( orbitFactors.Y()*sin(time*(orbitPeriod*0.5f)*0.001f) ),
-                                static_cast<float>( orbitFactors.Z()*cos(time*(orbitPeriod*0.5f)*0.001f) ) );
+        Vec3f direction = Vec3f(static_cast<float>( orbitFactors.X()*sin(WrpDrv::Pi*time/(orbitPeriod*500.f)) ),
+                                static_cast<float>( orbitFactors.Y()*sin(WrpDrv::Pi*time/(orbitPeriod*500.f)) ),
+                                static_cast<float>( orbitFactors.Z()*cos(WrpDrv::Pi*time/(orbitPeriod*500.f)) ) );
         direction.normalise();
         relativePos = direction * orbitRadius;
         pos = target+relativePos;

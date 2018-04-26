@@ -211,9 +211,9 @@ GLDemoState::GLDemoState()
     //transform.setRotation(0,0,90);
 
     //model.setRotation(-45,0,-45);
-    //view.setTranslation(0,0,-3.f);
 
     cam.setPos(Vec3f(0,0,3));
+    cam.orbit(1,0,1,5,10);
     projection.setPerspective(45,800/600,0.1f,100.f);
 
     shaderProgram.use();
@@ -290,6 +290,8 @@ int GLDemoState::update()
     SDLEventHandler::update();
 
     Game::instance()->updateObjects();
+
+    cam.update();
 
     static std::vector<Matrix44> rotations(positions.size());
 
