@@ -93,13 +93,12 @@ void Camera::draw() const
     //TODO: A wireframe camera like those in Maya would be awesome
 }
 
-void Camera::use() const
+Matrix44 Camera::View() const
 {
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    gluLookAt(pos.X(),pos.Y(),pos.Z(),target.X(),target.Y(),target.Z(),up.X(),up.Y(),up.Z());
-    //DisplayManager::instance()->updateMatrices();
-    //TODO: Auto turning around, Needs rotation member in GameObject;
+    Matrix44 view;
+    view.lookAt(pos, target, up);
+    return view;
+    //gluLookAt(pos.X(),pos.Y(),pos.Z(),target.X(),target.Y(),target.Z(),up.X(),up.Y(),up.Z());
 }
 
 std::pair<bool, Vec3f> Camera::Target() const

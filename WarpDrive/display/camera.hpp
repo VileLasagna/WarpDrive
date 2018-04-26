@@ -18,7 +18,7 @@ public:
     Camera();
     void update() override;
     void draw() const override;
-    void use() const;
+    Matrix44 View() const;
 
     void setTarget(const Vec3f& targetPos);
     void setTarget(const GameObject* targetObject);

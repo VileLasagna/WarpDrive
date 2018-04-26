@@ -178,16 +178,16 @@ GLDemoState::GLDemoState()
 
 
     positions = {
-      Vec3f( 0.0f,  0.0f,  0.0f),
+      Vec3f( 0.0f,  0.0f,  0.0f ),
       Vec3f( 2.0f,  5.0f, -15.0f),
-      Vec3f(-1.5f, -2.2f, -2.5f),
+      Vec3f(-1.5f, -2.2f, -2.5f ),
       Vec3f(-3.8f, -2.0f, -12.3f),
-      Vec3f( 2.4f, -0.4f, -3.5f),
-      Vec3f(-1.7f,  3.0f, -7.5f),
-      Vec3f( 1.3f, -2.0f, -2.5f),
-      Vec3f( 1.5f,  2.0f, -2.5f),
-      Vec3f( 1.5f,  0.2f, -1.5f),
-      Vec3f(-1.3f,  1.0f, -1.5f)
+      Vec3f( 2.4f, -0.4f, -3.5f ),
+      Vec3f(-1.7f,  3.0f, -7.5f ),
+      Vec3f( 1.3f, -2.0f, -2.5f ),
+      Vec3f( 1.5f,  2.0f, -2.5f ),
+      Vec3f( 1.5f,  0.2f, -1.5f ),
+      Vec3f(-1.3f,  1.0f, -1.5f )
     };
 
     transform.resize(positions.size());
@@ -211,7 +211,9 @@ GLDemoState::GLDemoState()
     //transform.setRotation(0,0,90);
 
     //model.setRotation(-45,0,-45);
-    view.setTranslation(0,0,-3.f);
+    //view.setTranslation(0,0,-3.f);
+
+    cam.setPos(Vec3f(0,0,3));
     projection.setPerspective(45,800/600,0.1f,100.f);
 
     shaderProgram.use();
@@ -263,7 +265,7 @@ void GLDemoState::draw() const
     int modelLoc = glGetUniformLocation(shaderProgram.Program(), "model");
     int viewLoc = glGetUniformLocation(shaderProgram.Program(), "view");
 
-    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, view.Elements().data() );
+    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, cam.View().Elements().data() );
 
 #pragma clang diagnostic pop
 

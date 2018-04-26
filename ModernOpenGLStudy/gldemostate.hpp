@@ -39,7 +39,7 @@ private:
 //    GLuint EBO;
     WDTexture tex, tex2;
     mutable std::vector<Matrix44> transform, model;
-    mutable Matrix44 view, projection;
+    mutable Matrix44 projection;
     std::vector<Vec3f> positions;
 };
 
