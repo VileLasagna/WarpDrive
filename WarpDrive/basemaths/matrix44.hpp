@@ -53,6 +53,7 @@ public:
     void setRotation(float deg, Vec3f vector, bool clear = false);
     void setRotationRad(float rads, Vec3f vector, bool clear = false);
     void setPerspective(float fovy, float aspectratio, float znear, float zfar);
+    void lookAt(const Vec3f eye, const Vec3f target, const Vec3f up);
     //void Print();
 
     const float16& Elements() const;

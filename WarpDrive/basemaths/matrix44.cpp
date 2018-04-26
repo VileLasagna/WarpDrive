@@ -213,6 +213,38 @@ void Matrix44::setPerspective(float fovy, float aspectratio, float znear, float 
     Flip();
 }
 
+void Matrix44::lookAt(const Vec3f eye, const Vec3f target, const Vec3f up)
+{
+    Identity(Back());
+    Vec3f Z = eye - target;
+    Z.normalise();
+    Vec3f Y = up;
+    Y.normalise();
+    Vec3f X = crossProd(Y, Z);
+    Y = crossProd(Z,X);
+    X.normalise();
+    Y.normalise();
+
+    Back()[0]  = X.X();
+    Back()[1]  = Y.X();
+    Back()[3] = 0;
+    Back()[2]  = Z.X();
+    Back()[4]  = X.Y();
+    Back()[5]  = Y.Y();
+    Back()[6]  = Z.Y();
+    Back()[7] = 0;
+    Back()[8]  = X.Z();
+    Back()[9]  = Y.Z();
+    Back()[10] = Z.Z();
+    Back()[11] = 0;
+    Back()[12]  = -dotProd(X,eye);
+    Back()[13]  = -dotProd(Y,eye);
+    Back()[14] = -dotProd(Z,eye);
+    Back()[15] = 1.f;
+
+    Flip();
+}
+
 const float16 &Matrix44::Elements() const
 {
     return spin?back:front;
