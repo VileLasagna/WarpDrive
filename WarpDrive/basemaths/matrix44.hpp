@@ -62,7 +62,9 @@ public:
     [[deprecated("This relates to immediate mode OpenGL")]]
     void setMatrix() const;     //SET the current Display Matrix to be THIS
 
+    [[deprecated("This relates to immediate mode OpenGL")]]
     void getModelview();
+    [[deprecated("This relates to immediate mode OpenGL")]]
     void getProjection();
 
     Matrix44 operator *(const Matrix44& rhs);
