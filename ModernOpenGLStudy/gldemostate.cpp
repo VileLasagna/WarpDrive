@@ -179,9 +179,9 @@ GLDemoState::GLDemoState()
 
     positions = {
       Vec3f( 0.0f,  0.0f,  0.0f ),
-      Vec3f( 2.0f,  5.0f, -15.0f),
+      Vec3f( 2.0f,  5.0f, -5.0f),
       Vec3f(-1.5f, -2.2f, -2.5f ),
-      Vec3f(-3.8f, -2.0f, -12.3f),
+      Vec3f(-3.8f, -2.0f, -7.3f),
       Vec3f( 2.4f, -0.4f, -3.5f ),
       Vec3f(-1.7f,  3.0f, -7.5f ),
       Vec3f( 1.3f, -2.0f, -2.5f ),
@@ -189,6 +189,9 @@ GLDemoState::GLDemoState()
       Vec3f( 1.5f,  0.2f, -1.5f ),
       Vec3f(-1.3f,  1.0f, -1.5f )
     };
+
+    Vec3f centre = std::accumulate(positions.begin(), positions.end(), Vec3f(0,0,0), [](Vec3f f, Vec3f v){return f + v;});
+    centre/= positions.size();
 
     transform.resize(positions.size());
     model.resize(positions.size());
@@ -211,9 +214,9 @@ GLDemoState::GLDemoState()
     //transform.setRotation(0,0,90);
 
     //model.setRotation(-45,0,-45);
-
+    cam.setTarget(centre);
     cam.setPos(Vec3f(0,0,3));
-    cam.orbit(1,0,1,5,10);
+    cam.orbit(1,0.5,1,15,10);
     projection.setPerspective(45,800/600,0.1f,100.f);
 
     shaderProgram.use();
