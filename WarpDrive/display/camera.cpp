@@ -15,8 +15,7 @@ Camera::Camera():
     up(Vec3f(0,1,0)),
     targetObj(0),
     relativePos(),
-    orbitFactors(1,0,1),
-    orbitRadius(0),
+    orbitAxis(0,1,0),
     orbitPeriod(1),
     time(0)
 {
@@ -31,28 +30,49 @@ void Camera::update()
     if(targetObj != nullptr)
     {
         target = targetObj->Position();
-        if(WrpDrv::flEquals(orbitRadius,0))
-        {
-            pos = target + relativePos;
-        }
-
     }
     else
     {
         /*vel += accel*DisplayManager::instance()->getDtSecs();
         pos += vel*DisplayManager::instance()->getDtSecs();*/
     }
-    if(!WrpDrv::flEquals(orbitRadius, 0))
+    if(orbitZero.sqMod() > WrpDrv::flEpsilon)
     {
+        /// Taken from https://sites.google.com/site/glennmurray/Home/rotation-matrices-and-formulas
         time += DisplayManager::instance()->Dt();
-        //relativePos = Vec3f(orbitFactors.X()*orbitRadius*sin(time*(orbitPeriod*0.5f)),orbitFactors.Y()*orbitRadius*sin(time*(orbitPeriod*0.5f)),orbitFactors.Z()*orbitRadius*sin(time*(orbitPeriod*0.5f)));
-        Vec3f direction = Vec3f(static_cast<float>( orbitFactors.X()*sin(WrpDrv::Pi*time/(orbitPeriod*500.f)) ),
-                                static_cast<float>( orbitFactors.Y()*sin(WrpDrv::Pi*time/(orbitPeriod*500.f)) ),
-                                static_cast<float>( orbitFactors.Z()*cos(WrpDrv::Pi*time/(orbitPeriod*500.f)) ) );
-        direction.normalise();
-        relativePos = direction * orbitRadius;
-        pos = target+relativePos;
+        float angle = WrpDrv::Pi*time/(orbitPeriod*500.f);
+
+        float a = target.X();
+        float b = target.Y();
+        float c = target.Z();
+
+        float u = orbitAxis.X();
+        float v = orbitAxis.Y();
+        float w = orbitAxis.Z();
+
+        float x = orbitZero.X();
+        float y = orbitZero.Y();
+        float z = orbitZero.Z();
+
+        float s = std::sin(angle);
+        float cs = std::cos(angle);
+
+        relativePos.setX(   (  a*((v*v)+(w*w)) - ( u*((b*v)+(c*w)-(u*x)-(v*y)-(w*z)) )  )*(1-cs)
+                    + (x*cs)
+                    + ( s*( (b*w)-(c*v)-(w*y)+(v*z) ))     );
+
+        relativePos.setY(   (  b*((u*u)+(w*w)) - ( v*((a*u)+(c*w)-(u*x)-(v*y)-(w*z)) )  )*(1-cs)
+                    + (y*cs)
+                    + ( s*( (c*u)-(a*w)+(w*x)-(u*z) ))     );
+
+        relativePos.setZ(   (  c*((u*u)+(v*v)) - ( w*((a*u)+(b*v)-(u*x)-(v*y)-(w*z)) )  )*(1-cs)
+                    + (z*cs)
+                    + ( s*( (a*v)-(b*u)-(v*x)+(u*y) ) )    );
+
     }
+
+    pos = relativePos + target;
+
 }
 
 void Camera::setTarget(const Vec3f& targetPos)
@@ -68,6 +88,7 @@ void Camera::setTarget(const GameObject *targetObject)
 void Camera::setRelativePos(const Vec3f &Relative)
 {
     relativePos = Relative;
+    orbitZero = Relative;
 }
 
 Ray Camera::traceRay(int x, int y) const noexcept
@@ -117,9 +138,40 @@ std::pair<bool, Vec3f> Camera::Target() const
     return ret;
 }
 
-void Camera::orbit(float X, float Y, float Z, float radius, float periodSecs)
+void Camera::orbit(float X, float Y, float Z, float periodSecs, Vec3f relativeStart)
 {
-    orbitFactors = Vec3f(X,Y,Z);
-    orbitRadius = radius;
+    orbitAxis = Vec3f(X,Y,Z);
+    orbitAxis.normalise();
     orbitPeriod = periodSecs;
+    if(relativeStart.sqMod() > WrpDrv::flEpsilon)
+    {
+        orbitZero = target + relativeStart;
+    }
+    else
+    {
+        if(relativePos.sqMod() <= WrpDrv::flEpsilon)
+        {
+            relativePos = pos - target;
+        }
+        orbitZero = target + relativePos;
+    }
+}
+
+void Camera::orbit(Vec3f axis, float periodSecs, Vec3f relativeStart)
+{
+    orbitAxis = axis;
+    orbitAxis.normalise();
+    orbitPeriod = periodSecs;
+    if(relativeStart.sqMod() > WrpDrv::flEpsilon)
+    {
+        orbitZero = target + relativeStart;
+    }
+    else
+    {
+        if(relativePos.sqMod() <= WrpDrv::flEpsilon)
+        {
+            relativePos = pos - target;
+        }
+        orbitZero = target + relativePos;
+    }
 }

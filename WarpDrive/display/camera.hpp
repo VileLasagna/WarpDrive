@@ -28,8 +28,10 @@ public:
 
     Ray traceRay(int x, int y) const noexcept;
 
-    //orbits around a target object (if any). X, Y and Z are the factors by which the camera moves in each axis
-    void orbit(float X, float Y, float Z, float radius, float periodSecs = 1);
+    //orbits around a given axis centered arround its target
+    void orbit(float X, float Y, float Z, float periodSecs = 1, Vec3f relativeStart = Vec3f(0,0,0));
+    void orbit(Vec3f axis, float periodSecs = 1, Vec3f relativeStart = Vec3f(0,0,0));
+
 
     //TODO: Function currently broken in some situations. Must be fixed and given new signature where XYZ represent an axis
 
@@ -39,8 +41,8 @@ private:
     const GameObject* targetObj;
     Vec3f target;
     Vec3f relativePos;
-    Vec3f orbitFactors;
-    float orbitRadius;
+    Vec3f orbitAxis;
+    Vec3f orbitZero;
     float orbitPeriod;
     float time;
 

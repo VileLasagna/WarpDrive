@@ -215,8 +215,8 @@ GLDemoState::GLDemoState()
 
     //model.setRotation(-45,0,-45);
     cam.setTarget(centre);
-    cam.setPos(Vec3f(0,0,3));
-    cam.orbit(1,0.5,1,15,10);
+    cam.setPos(Vec3f(0,0,10));
+    cam.orbit(0,1,-1,10);
     projection.setPerspective(45,800/600,0.1f,100.f);
 
     shaderProgram.use();
