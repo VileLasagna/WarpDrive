@@ -58,7 +58,7 @@ void VertexArray::bind()
             return;
         }
 #endif
-        for(unsigned int i = 2; i < buffer.size(); i++)
+        for(unsigned int i = 2; i < buffer.size(); i+=3)
         {
             indices.push_back(i-2);
             indices.push_back(i-1);
