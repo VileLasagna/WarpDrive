@@ -148,6 +148,11 @@ bool GLShader::use() const
     }
 }
 
+GLint GLShader::operator[](std::string uniform) const
+{
+    return glGetUniformLocation(program, uniform.c_str());
+}
+
 int GLShader::Program() const noexcept
 {
     return initialised ? static_cast<int>(program) : -1;

@@ -19,8 +19,10 @@ public:
     bool load(std::string vertex, std::string fragment);
     bool loadVertex(std::string path);
     bool loadFragment(std::string path);
-
     bool use() const;
+
+    //Use operator [] to get uniforms from the shader
+    GLint operator[](std::string uniform) const;
 
     int Program() const noexcept;
 
