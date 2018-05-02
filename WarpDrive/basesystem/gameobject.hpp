@@ -24,10 +24,12 @@ public:
     virtual bool load(ManagedFile* ) {return true;}
     virtual const char* Type() const {return type.c_str();}
 
-    virtual void setVel (const Vec3f& v) { vel = v;}
-    virtual void setPos (const Vec3f& p) { pos = p;}
-    virtual void setAcc (const Vec3f& a) { accel = a;}
-    virtual void setMass(const float m)  { mass = m;}
+    virtual void setVel (const Vec3f& v)        { vel = v;}
+    virtual void setPos (const Vec3f& p)        { pos = p;}
+    virtual void setAcc (const Vec3f& a)        { accel = a;}
+    virtual void setMass(float m)               { mass = m;}
+    virtual void setModelUniform(GLint i)       { modelUniform = i;}
+    virtual void setTransformUniform(GLint i)   { transformUniform = i;}
 
     virtual void setName(const std::string& s) { name = s;}
     virtual void setName(std::string&& s) { name = s;}
@@ -75,6 +77,9 @@ protected:
     std::string type;
     std::vector<GOEvent*> events;
     bool removeMe;
+
+    GLint modelUniform;
+    GLint transformUniform;
 
 };
 

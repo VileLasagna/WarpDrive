@@ -28,7 +28,9 @@ GameObject::GameObject()
     name{""},
     type{"Object"},
     events{},
-    removeMe{false}
+    removeMe{false},
+    modelUniform{-1},
+    transformUniform{-1}
 {}
 
 AABBox GameObject::BoundingBox() const noexcept
