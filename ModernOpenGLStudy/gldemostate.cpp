@@ -203,25 +203,19 @@ GLDemoState::GLDemoState()
     }
 
 
-//    tex.loadTexture("assets/yaranaika.jpeg");
     tex.loadTexture("assets/diemap.png");
-    //tex2.loadTexture("assets/konodio.jpeg");
-    shaderProgram.loadVertex("shaders/verttest1.vert");
-    shaderProgram.loadFragment("shaders/fragtest1.frag");
+    shaderProgram.loadVertex("shaders/basic.vert");
+    shaderProgram.loadFragment("shaders/basic.frag");
 
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-    //transform.setRotation(0,0,90);
-
-    //model.setRotation(-45,0,-45);
     cam.setTarget(centre);
     cam.setPos(Vec3f(0,0,10));
     cam.orbit(0,1,-1,10);
     projection.setPerspective(45,800/600,0.1f,100.f);
 
     shaderProgram.use();
-    int projLoc = glGetUniformLocation(static_cast<GLuint>(shaderProgram.Program()), "projection");
-    glUniformMatrix4fv(projLoc, 1, GL_FALSE, projection.Elements().data() );
+    glUniformMatrix4fv(shaderProgram["projection"], 1, GL_FALSE, projection.Elements().data() );
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glEnable(GL_DEPTH_TEST);
 
@@ -231,10 +225,6 @@ GLDemoState::GLDemoState()
 
 void GLDemoState::draw() const
 {
-//    static Matrix44 scaling;
-//    scaling.setScaling(0.5f);
-
-
 
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     DisplayManager::instance()->clearDisplay();
@@ -242,40 +232,20 @@ void GLDemoState::draw() const
     auto t = Game::instance()->secsSinceStart();
     Game::instance()->drawObjects();
 
-    //transform.setRotation(0,45*t,0);
-    //transform.setIdentity();
-    //model.setRotation(-45,0,45);
-    //model.setIdentity();
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wsign-conversion"
-
     shaderProgram.use();
     glActiveTexture(GL_TEXTURE0);
     tex.useThisTexture();
-    glUniform1i(glGetUniformLocation(shaderProgram.Program(), "ourTex"), 0);
+    glUniform1i(shaderProgram["tex"], 0);
 
-    glActiveTexture(GL_TEXTURE1);
-    tex2.useThisTexture();
-    glUniform1i(glGetUniformLocation(shaderProgram.Program(), "otherTex"), 1);
+    //glUniform1i(shaderProgram["untextured"], 1);
 
-    glUniform1f(glGetUniformLocation(shaderProgram.Program(), "factor"), sin(t/7));
+    glUniformMatrix4fv(shaderProgram["view"], 1, GL_FALSE, cam.View().Elements().data() );
 
-    int transfLoc = glGetUniformLocation(shaderProgram.Program(), "transf");
-
-
-
-    int modelLoc = glGetUniformLocation(shaderProgram.Program(), "model");
-    int viewLoc = glGetUniformLocation(shaderProgram.Program(), "view");
-
-    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, cam.View().Elements().data() );
-
-#pragma clang diagnostic pop
 
     for(unsigned int i = 0; i < positions.size(); i++)
     {
-        glUniformMatrix4fv(transfLoc, 1, GL_FALSE, transform[i].Elements().data() );
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, model[i].Elements().data() );
+        glUniformMatrix4fv(shaderProgram["transf"], 1, GL_FALSE, transform[i].Elements().data() );
+        glUniformMatrix4fv(shaderProgram["model"], 1, GL_FALSE, model[i].Elements().data() );
         VAO.draw();
     }
 
