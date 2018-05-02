@@ -49,6 +49,8 @@ include("WarpDriveSources.cmake")
 add_library(${PROJECT_NAME} ${WARPDRIVE_SOURCES} ${WARPDRIVE_HEADERS_PUBLIC} ${WARPDRIVE_HEADERS_PRIVATE})
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_14 )
 
+add_custom_target(${PROJECT_NAME}Shaders SOURCES ${WARPDRIVE_SHADERS})
+
 find_package(SDL2)
 
 target_link_libraries(${PROJECT_NAME} INTERFACE SDL2::SDL2 SDL2_ttf SDL2_image)
@@ -81,6 +83,11 @@ install(FILES   ${WARPDRIVE_HEADERS_PHYSICS}
                 DESTINATION include/WarpDrive/physics       )
 install(FILES   ${WARPDRIVE_HEADERS_SOUND}
                 DESTINATION include/WarpDrive/sound         )
+
+
+install(FILES   ${WARPDRIVE_SHADERS}
+                DESTINATION bin/shaders
+                COMPONENT shaders                           )
 
 install(    TARGETS WarpDrive
             EXPORT  WarpDrive-targets

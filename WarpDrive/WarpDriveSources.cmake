@@ -127,6 +127,11 @@ set(WARPDRIVE_HEADERS_PRIVATE   ${WARPDRIVE_HEADERS_PRIVATE}
                                 3dmaths/glmint.h
 )
 
+set(WARPDRIVE_SHADERS   ${WARPDRIVE_SHADERS}
+                        shaders/basic.vert
+                        shaders/basic.frag
+)
+
 set(WARPDRIVE_SOURCES   ${WARPDRIVE_SOURCES}
                         3dmaths/billboard.cpp
                         3dmaths/frustum.cpp
