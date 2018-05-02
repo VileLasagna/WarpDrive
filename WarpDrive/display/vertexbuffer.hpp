@@ -26,6 +26,7 @@ public:
 
     void push_back(Vertex& v);
     void push_back(Vertex&& v);
+    void clear();
 
     size_t size() const noexcept {return data.size();}
 

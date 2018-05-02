@@ -31,6 +31,11 @@ void VertexBuffer::push_back(Vertex&& v)
     data.push_back(v);
 }
 
+void VertexBuffer::clear()
+{
+    data.clear();
+}
+
 void VertexBuffer::bindBuffer()
 {
     if(!Registered())
