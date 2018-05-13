@@ -5,10 +5,8 @@
 #endif //WIN32
 
 #include <GL/glew.h>
-#include <SDL2/SDL_opengl.h>
 #include "WarpDrive/basemaths/matrix44.hpp"
 #include "WarpDrive/basemaths/quaternion.hpp"
-#include <GL/glu.h>
 
 Plane::Plane()
 {
@@ -130,20 +128,121 @@ void Plane::drawAsWireframe(bool b) noexcept
 
 void Plane::setDrawn(int X, int Y, float size)
 {
+    VertexBuffer vertices;
+
+    size = std::abs(size);
     drawnCells.first = X;
     drawnCells.second = Y;
     cellSize = size;
+
+    ElementBuffer::Data faceIndexes;
+    ElementBuffer::Data wireIndexes;
+
+    Vec2f mins(size*X, size*Y);
+    mins *= -0.5f;
+
+
+    vertices.push_back(Vertex(Vec3f(0, 0, 0),
+                              Vec3f(0,1,0),
+                              Vec2f(0, 0),
+                              colour,
+                              Colour(1,1,1),
+                              Colour(1,1,1),
+                              -1.f ) );
+
+    vertices.push_back(Vertex(Vec3f(0, size, 0),
+                              Vec3f(0,1,0),
+                              Vec2f(0,0),
+                              colour,
+                              Colour(1,1,1),
+                              Colour(1,1,1),
+                              -1.f ) );
+
+    ElementBuffer::Data normalIndexes{0,1};
+
+    //(Row+1) * (column+1) total vertices
+    for(size_t row = 0; row <= X; row ++)
+    {
+        for(size_t col = 0; col <= Y; col ++)
+        {
+            vertices.push_back(Vertex(Vec3f(mins.X() + size*row, 0, mins.Y() + size*col),
+                                      Vec3f(0,1,0),
+                                      Vec2f(row*(1/X), col*(1/Y)),
+                                      colour,
+                                      Colour(1,1,1),
+                                      Colour(1,1,1),
+                                      -1.f ) );
+
+        }
+    }
+
+    for(size_t row = 0; row <= X; row ++)
+    {
+
+            wireIndexes.push_back((row*(X+1))+2);
+            wireIndexes.push_back(((row*(X+1)) + Y)+2);
+
+    }
+
+    for(size_t col = 0; col <= Y; col ++)
+    {
+        wireIndexes.push_back( (col)+2);
+        wireIndexes.push_back( ( (Y*(X+1)) + col) + 2 );
+    }
+
+    for(size_t row = 0; row < X; row++)
+    {
+        for(size_t col = 0; col < Y; col++)
+        {
+            unsigned int idx = ((row*(X+1)) + col) +2;
+            unsigned int stride = (X+1);
+            faceIndexes.push_back(idx);
+            faceIndexes.push_back(idx+1);
+            faceIndexes.push_back(idx+1+stride);
+
+            faceIndexes.push_back(idx);
+            faceIndexes.push_back(idx+1+stride);
+            faceIndexes.push_back(idx+stride);
+
+        }
+    }
+
+
+    ElementBuffer normalBuffer(ElementBuffer::DrawType::LINES, normalIndexes, "Normal");
+    ElementBuffer wireframe(ElementBuffer::DrawType::LINES, wireIndexes, "Wireframe");
+    ElementBuffer Faces(ElementBuffer::DrawType::TRIS, faceIndexes, "Faces");
+    VAO.pushElementBuffer(std::move(normalBuffer));
+    VAO.pushElementBuffer(std::move(wireframe));
+    VAO.pushElementBuffer(std::move(Faces));
+//    VAO.setPrimitives(VertexArray::DrawType::POINTS);
+    VAO.Verts(std::move(vertices));
+    VAO.Load();
 }
 
-void Plane::setColour(const Vec3f &rgb) noexcept
+void Plane::setColour(const Vec3f& rgb) noexcept
 {
     colour = rgb;
 }
 
 void Plane::setColour(float r, float g, float b) noexcept
 {
-    colour = Vec3f(r,g,b);
+    colour = Vec4f(r,g,b,1);
 }
+
+void Plane::setColour(const Vec4f& rgba) noexcept
+{
+    colour = rgba;
+}
+
+void Plane::setColour(float r, float g, float b, float a) noexcept
+{
+    colour = Vec4f(r,g,b,a);
+}
+void Plane::setColour(const Colour& c) noexcept
+{
+    colour = c;
+}
+
 
 void Plane::drawNormal(bool b) noexcept
 {
@@ -152,150 +251,30 @@ void Plane::drawNormal(bool b) noexcept
 }
 void Plane::draw() const noexcept
 {
+    Matrix44 model;
+    model.setTranslation(origin.X(),origin.Y(),origin.Z());
+    Matrix44 transform;
+//    Vec3f vec = crossProd(Vec3f{nX,nY,nZ}, Vec3f(0,1,0));
+//    float angle = dotProd(Vec3f{nX,nY,nZ}, Vec3f(0,1,0));
+//    transform.setRotationRad(angle,vec,false);
 
-    //glMatrixMode(GL_MODELVIEW);
-    float thetaZ = static_cast<float>(asin( dotProd(Vec3f(0,nY,nZ), Vec3f(0,0,1)) ) );
-    float thetaX = static_cast<float>(asin( dotProd(Vec3f(nX,nY,0), Vec3f(1,0,0)) ) );
-
-    Matrix44 rot;
-
-    rot.setRotationRad(0,thetaZ,-thetaX);
-
-    glPushMatrix();
-
-        glTranslatef(origin.X(),origin.Y(),origin.Z()); //Drawing by Local
-        glMultMatrixf(rot.Elements().data());
-
-        if (showNormal)
-        {
-            glDisable(GL_LIGHTING);
-            glEnable(GL_COLOR);
-            glColor3f(1,1,1);
-            glBegin(GL_LINES);
-
-                glVertex3f(0,0,0);
-                glVertex3f(nX*60,nY*60,nZ*60);
-
-            glEnd();
-            glDisable(GL_COLOR);
-            glEnable(GL_LIGHTING);
-        }
-
-        glTranslatef(-cellSize*drawnCells.first/2,0,-cellSize*drawnCells.second/2);
-        glMaterialf(GL_FRONT_AND_BACK,GL_SHININESS,128);
-        GLfloat cl[3] = {colour.R(),colour.G(),colour.B()};
-        glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, cl);
-        float texStepX = 1.0f/drawnCells.first;
-        float texStepY = 1.0f/drawnCells.second;
-
-        if(drawWire)
-        {
-
-            glDisable(GL_LIGHTING);
-            glEnable(GL_COLOR);
-            glColor3f(1,1,1);
-            glBegin(GL_LINES);
-
-            for(int x = 0; x < drawnCells.first; x++)
-            {
-                for(int z = 0; z<drawnCells.second; z++)
-                {
-
-                        glNormal3f(0,1,0);
-                        glVertex3f(x*cellSize,0,z*cellSize);
-                        //glNormal3f(Nx,Ny,Nz);
-                        glVertex3f((x+1)*cellSize,0,z*cellSize);
-
-                        glVertex3f((x+1)*cellSize,0,z*cellSize);
-                        //glNormal3f(Nx,Ny,Nz);
-                        glVertex3f((x+1)*cellSize,0,(z+1)*cellSize);
-
-                        glVertex3f((x+1)*cellSize,0,(z+1)*cellSize);
-                        //glNormal3f(Nx,Ny,Nz);
-                        glVertex3f(x*cellSize,0,(z+1)*cellSize);
+    glUniformMatrix4fv(transformUniform, 1, GL_FALSE, transform.Elements().data() );
+    glUniformMatrix4fv(modelUniform, 1, GL_FALSE, model.Elements().data() );
 
 
-                }
-            }
+    if(drawWire)
+    {
+        VAO.draw("Wireframe");
+    }
+    else
+    {
+        VAO.draw("Faces");
+    }
 
-            glEnd();
-            glDisable(GL_COLOR);
-            glEnable(GL_LIGHTING);
-        }
-        else
-        {
-            if (tex != nullptr)
-            {
-                tex->useThisTexture();
-                glBegin(GL_QUADS);
-                if(!tile)
-                {
-                    for(int x = 0; x < drawnCells.first; x++)
-                    {
-                        for(int z = 0; z<drawnCells.second; z++)
-                        {
-                            glTexCoord2f(1- texStepX*x, 1-texStepY*z);
-                            glNormal3f(0,1,0);
-                            glVertex3f(x*cellSize,0,z*cellSize);
-                            glTexCoord2f(1-texStepX*(x+1),1- texStepY*z);
-                            glNormal3f(0,1,0);
-                            glVertex3f((x+1)*cellSize,0,z*cellSize);
-                            glNormal3f(0,1,0);
-                            glTexCoord2f(1-texStepX*(x+1),1-texStepY*(z+1));
-                            glVertex3f((x+1)*cellSize,0,(z+1)*cellSize);
-                            glNormal3f(0,1,0);
-                            glTexCoord2f(1-texStepX*x,1-texStepY*(z+1));
-                            glVertex3f(x*cellSize,0,(z+1)*cellSize);
-                        }
-                    }
-                }
-                else
-                {
-                    for(int x = 0; x < drawnCells.first; x++)
-                    {
-                        for(int z = 0; z<drawnCells.second; z++)
-                        {
-                            glTexCoord2f(1, 1);
-                            glNormal3f(0,1,0);
-                            glVertex3f(x*cellSize,0,z*cellSize);
-                            glTexCoord2f(0,1);
-                            glNormal3f(0,1,0);
-                            glVertex3f((x+1)*cellSize,0,z*cellSize);
-                            glNormal3f(0,1,0);
-                            glTexCoord2f(0,0);
-                            glVertex3f((x+1)*cellSize,0,(z+1)*cellSize);
-                            glNormal3f(0,1,0);
-                            glTexCoord2f(1,0);
-                            glVertex3f(x*cellSize,0,(z+1)*cellSize);
-                        }
-                    }
-                }
-            glEnd();
-            }
-            else
-            {
-            glBegin(GL_QUADS);
+    if(showNormal)
+    {
+        VAO.draw("Normal");
+    }
 
-            for(int x = 0; x < drawnCells.first; x++)
-            {
-                for(int z = 0; z<drawnCells.second; z++)
-                {
-                    glNormal3f(0,-1,0);
-                    glVertex3f(x*cellSize,0,z*cellSize);
-                    glNormal3f(0,-1,0);
-                    glVertex3f((x+1)*cellSize,0,z*cellSize);
-                    glNormal3f(0,-1,0);
-                    glVertex3f((x+1)*cellSize,0,(z+1)*cellSize);
-                    glNormal3f(0,-1,0);
-                    glVertex3f(x*cellSize,0,(z+1)*cellSize);
-                }
-            }
-
-            glEnd();
-            }
-        }
-
-        glColor3f(1,1,1);
-    glPopMatrix();
 
 }

@@ -5,6 +5,7 @@
 
 #include "WarpDrive/basemaths/vec3.hpp"
 #include "WarpDrive/display/texture.hpp"
+#include "WarpDrive/display/vertexarray.hpp"
 
 class Plane
 {
@@ -24,12 +25,18 @@ public:
     void useTexture(WDTexture* tex, bool Tile = false); //0 Disables (DOES NOT FREE TEXTURE IN USE!)
 
     void setNormal(const Vec3f& N);
+    void setColour(const Colour& c) noexcept;
     void setColour(const Vec3f& rgb) noexcept;
     void setColour(float r, float g, float b) noexcept;
+    void setColour(const Vec4f& rgba) noexcept;
+    void setColour(float r, float g, float b, float a) noexcept;
 
     void draw() const noexcept;
     void drawAsWireframe(bool b = true) noexcept;
     void drawNormal(bool b = true) noexcept;
+
+    void setModelUniform(GLint i) noexcept { modelUniform = i;}
+    void setTransformUniform(GLint i) noexcept { transformUniform = i;}
 
 
 
@@ -43,13 +50,17 @@ protected:
     float d0;
     std::pair<int,int> drawnCells;
     float cellSize;
-    Vec3f colour;
+    Colour colour;
     Vec3f origin;
     bool drawWire;
     bool showNormal;
     WDTexture* tex;
     bool tile;
 
+
+    GLint modelUniform;
+    GLint transformUniform;
+    VertexArray  VAO;
 };
 
 #endif //WD_PLANE_HPP_DEFINED
