@@ -12,3 +12,7 @@ set(RIGIDCOLDEMO_SOURCES    ${RIGIDCOLDEMO_SOURCES}
 add_executable(${PROJECT_NAME} ${RIGIDCOLDEMO_SOURCES} ${RIGIDCOLDEMO_HEADERS})
 add_dependencies(${PROJECT_NAME} WarpDrive)
 target_link_libraries(RigidCollisionDemo WarpDrive)
+
+install(TARGETS ${PROJECT_NAME}
+        DESTINATION bin
+        COMPONENT PhysicsDemos )

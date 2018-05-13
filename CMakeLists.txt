@@ -37,7 +37,7 @@ endif()
 
 
 add_subdirectory("WarpDrive")
-#add_subdirectory("RigidCollisionDemo")
+add_subdirectory("RigidCollisionDemo")
 add_subdirectory("ModernOpenGLStudy")
 
 set(CPACK_PACKAGE_NAME "WarpDrive_Installer")

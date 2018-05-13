@@ -3,6 +3,7 @@
 
 #include "WarpDrive/basesystem/gamestate.hpp"
 #include "WarpDrive/display/camera.hpp"
+#include "WarpDrive/display/glshader.hpp"
 #include "WarpDrive/basemaths/plane.hpp"
 #include "WarpDrive/basemaths/lineseg.hpp"
 #include "WarpDrive/physics/bruteforcecollisioncheck.hpp"
@@ -40,6 +41,10 @@ private:
     Plane floor;
     BruteForceCheck brute;
     RDCcheck rdc;
+    GLShader shaderProgram;
+    Matrix44 projection;
+    bool wireframe;
+
 
 };
 

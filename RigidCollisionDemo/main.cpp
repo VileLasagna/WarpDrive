@@ -14,6 +14,7 @@ int main(int argc, char* argv[])
     DisplayManager::instance()->init(false,true);
     Game::instance()->addState(new LauncherState());
 
+    Game::instance()->setLogFileName("PhysicsDemo.err");
     Game::instance()->showFPS(true);
     Game::instance()->Run();
 
