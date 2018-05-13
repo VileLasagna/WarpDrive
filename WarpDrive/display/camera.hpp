@@ -8,6 +8,7 @@
 #include <utility>
 
 #include "WarpDrive/basemaths/vec3.hpp"
+#include "WarpDrive/basemaths/matrix44.hpp"
 #include "WarpDrive/basemaths/ray.hpp"
 #include "WarpDrive/basesystem/gameobject.hpp"
 
@@ -19,12 +20,14 @@ public:
     void update() override;
     void draw() const override;
     Matrix44 View() const;
+    const Matrix44& Projection() const;
 
     void setTarget(const Vec3f& targetPos);
     void setTarget(const GameObject* targetObject);
     std::pair<bool, Vec3f> Target() const;
     void setRelativePos(const Vec3f& Relative); //Relative Position to a targeted Object
     Vec3f RelativePos() const {return relativePos;}
+    void setPerspective(float fovY, float ratio, float zNear, float zFar);
 
     Ray traceRay(int x, int y) const noexcept;
 
@@ -45,6 +48,7 @@ private:
     Vec3f orbitZero;
     float orbitPeriod;
     float time;
+    Matrix44 projection;
 
 };
 

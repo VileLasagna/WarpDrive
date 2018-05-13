@@ -210,12 +210,12 @@ GLDemoState::GLDemoState()
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     cam.setTarget(centre);
-    cam.setPos(Vec3f(0,0,10));
-    cam.orbit(0,1,-1,10);
-    projection.setPerspective(45,800/600,0.1f,100.f);
+    cam.setPos(Vec3f(-5,7,5));
+    cam.orbit(0,1,0,5);
+    cam.setPerspective(45,800/600,0.1f,100.f);
 
     shaderProgram.use();
-    glUniformMatrix4fv(shaderProgram["projection"], 1, GL_FALSE, projection.Elements().data() );
+    glUniformMatrix4fv(shaderProgram["projection"], 1, GL_FALSE, cam.Projection().Elements().data() );
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glEnable(GL_DEPTH_TEST);
 

@@ -5,7 +5,7 @@
 #endif //WIN32
 
 #include <math.h>
-#include <GL/glu.h>
+#include <GL/glew.h>
 
 #include "WarpDrive/basesystem/util.hpp"
 
@@ -14,8 +14,9 @@
 Camera::Camera():
     up(Vec3f(0,1,0)),
     targetObj(0),
-    relativePos(),
+    relativePos(0,0,0),
     orbitAxis(0,1,0),
+    orbitZero(0,0,0),
     orbitPeriod(1),
     time(0)
 {
@@ -69,9 +70,10 @@ void Camera::update()
                     + (z*cs)
                     + ( s*( (a*v)-(b*u)-(v*x)+(u*y) ) )    );
 
+        pos = relativePos + target;
+
     }
 
-    pos = relativePos + target;
 
 }
 
@@ -89,6 +91,11 @@ void Camera::setRelativePos(const Vec3f &Relative)
 {
     relativePos = Relative;
     orbitZero = Relative;
+}
+
+void Camera::setPerspective(float fovY, float ratio, float zNear, float zFar)
+{
+    projection.setPerspective(fovY, ratio, zNear, zFar);
 }
 
 Ray Camera::traceRay(int x, int y) const noexcept
@@ -120,6 +127,11 @@ Matrix44 Camera::View() const
     view.lookAt(pos, target, up);
     return view;
     //gluLookAt(pos.X(),pos.Y(),pos.Z(),target.X(),target.Y(),target.Z(),up.X(),up.Y(),up.Z());
+}
+
+const Matrix44& Camera::Projection() const
+{
+    return projection;
 }
 
 std::pair<bool, Vec3f> Camera::Target() const

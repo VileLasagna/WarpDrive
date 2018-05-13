@@ -10,7 +10,7 @@
     #include <Windows.h>
 #endif //WIN32
 
-#include <GL/gl.h>
+#include <GL/glew.h>
 
 
 using float16 = std::array<float,16>;
