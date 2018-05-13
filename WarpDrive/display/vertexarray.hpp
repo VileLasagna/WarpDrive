@@ -17,9 +17,7 @@ public:
     void pushElementBuffer(ElementBuffer::Data &&EBO);
     void pushElementBuffer(ElementBuffer &&EBO);
     void Verts(VertexBuffer&& VBO);
-
-    void draw(bool autobind = true) const noexcept;
-    void draw(std::string buffer, bool autobind = true) const noexcept;
+    void draw(std::string buffer = "", bool autobind = true) const noexcept;
     void Load();
     void Bind() const noexcept;
     static void Unbind();

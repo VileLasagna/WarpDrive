@@ -34,28 +34,6 @@ void VertexArray::Verts(VertexBuffer &&VBO)
     buffer = VBO;
 }
 
-void VertexArray::draw(bool autobind) const noexcept
-{
-
-    if(autobind)
-    {
-        glBindVertexArray(id);
-            for(ElementBuffer::Header h: EBOData)
-            {
-                glDrawElements(static_cast<GLenum>(h.Primitive()), static_cast<GLsizei>(h.Length()), GL_UNSIGNED_INT, reinterpret_cast<void*>(h.Offset()));
-            }
-        glBindVertexArray(0);
-    }
-    else
-    {
-        for(ElementBuffer::Header h: EBOData)
-        {
-            glDrawElements(static_cast<GLenum>(h.Primitive()), static_cast<GLsizei>(h.Length()), GL_UNSIGNED_INT, reinterpret_cast<void*>(h.Offset()));
-        }
-    }
-
-}
-
 void VertexArray::draw(std::string buffer, bool autobind) const noexcept
 {
     if(autobind)
@@ -63,7 +41,7 @@ void VertexArray::draw(std::string buffer, bool autobind) const noexcept
         glBindVertexArray(id);
         for(ElementBuffer::Header h: EBOData)
         {
-            if(h.Name() == buffer)
+            if((buffer == "") || h.Name() == buffer )
             {
                 glDrawElements(static_cast<GLenum>(h.Primitive()), static_cast<GLsizei>(h.Length()), GL_UNSIGNED_INT, reinterpret_cast<void*>(h.Offset()));
             }
@@ -74,7 +52,7 @@ void VertexArray::draw(std::string buffer, bool autobind) const noexcept
     {
         for(ElementBuffer::Header h: EBOData)
         {
-            if(h.Name() == buffer)
+            if((buffer == "") || h.Name() == buffer )
             {
                 glDrawElements(static_cast<GLenum>(h.Primitive()), static_cast<GLsizei>(h.Length()), GL_UNSIGNED_INT, reinterpret_cast<void*>(h.Offset()));
             }
