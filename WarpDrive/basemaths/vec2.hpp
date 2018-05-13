@@ -46,6 +46,20 @@ public:
         return *this;
     }
 
+    constexpr Vec2& operator/=(T f)
+    {
+        x /= f;
+        y /= f;
+        return *this;
+    }
+
+    constexpr Vec2& operator/=(const Vec2<T>& f)
+    {
+        x /= f.X();
+        y /= f.Y();
+        return *this;
+    }
+
     constexpr T sqMod()
     {
         return (x*x)+(y*y);
