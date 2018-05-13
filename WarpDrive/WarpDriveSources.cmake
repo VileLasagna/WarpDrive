@@ -67,6 +67,7 @@ set(WARPDRIVE_HEADERS_DISPLAY   ${WARPDRIVE_HEADERS_DISPLAY}
                                 display/animsheet.hpp
                                 display/camera.hpp
                                 display/colour.hpp
+                                display/elementbuffer.hpp
                                 display/glshader.hpp
                                 display/sdlimage.hpp
                                 display/rgbacolour.hpp
@@ -170,6 +171,7 @@ set(WARPDRIVE_SOURCES   ${WARPDRIVE_SOURCES}
 
                         display/animsheet.cpp
                         display/camera.cpp
+                        display/elementbuffer.cpp
                         display/glshader.cpp
                         display/sdlimage.cpp
                         display/sdlttf.cpp

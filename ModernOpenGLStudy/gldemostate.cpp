@@ -19,6 +19,7 @@ GLDemoState::GLDemoState()
     self = 0;
     ret = self;
     reset();
+    drawWire = false;
 
     /////////////////FRONT FACE///////////////////////////////////////
     VertexBuffer verts;
@@ -167,14 +168,24 @@ GLDemoState::GLDemoState()
 
 
     VAO.Verts(std::move(verts));
-    VAO.setPrimitives(VertexArray::DrawType::TRIS);
-    VAO.ElementBuffer({ 0, 1, 2, 2, 3, 0,
-                        4, 5, 6, 6, 7, 4,
-                        8, 9,10,10,11, 8,
-                       12,13,14,14,15,12,
-                       16,17,18,18,19,16,
-                       20,21,22,22,23,20 });
-    VAO.bind();
+    VAO.pushElementBuffer({ 0, 1, 2, 2, 3, 0,
+                            4, 5, 6, 6, 7, 4,
+                            8, 9,10,10,11, 8,
+                           12,13,14,14,15,12,
+                           16,17,18,18,19,16,
+                           20,21,22,22,23,20 });
+
+    ElementBuffer wire(ElementBuffer::DrawType::LINES,
+                       {  0,1,   1,2,   2,3,   3,0,
+                          4,5,   5,6,   6,7,   7,4,
+                          8,9,   9,10, 10,11, 11,8,
+                         12,13, 13,14, 14,15, 15,12,
+                         16,17, 17,18, 18,19, 19,16,
+                         20,21, 21,22, 22,23, 23,20
+                       },
+                       "Wireframe");
+    VAO.pushElementBuffer(std::move(wire));
+    VAO.Load();
 
 
     positions = {
@@ -237,17 +248,38 @@ void GLDemoState::draw() const
     tex.useThisTexture();
     glUniform1i(shaderProgram["tex"], 0);
 
-    //glUniform1i(shaderProgram["untextured"], 1);
+    if(drawWire)
+    {
+        glUniform1i(shaderProgram["untextured"], 1);
+    }
+    else
+    {
+        glUniform1i(shaderProgram["untextured"], 0);
+    }
 
     glUniformMatrix4fv(shaderProgram["view"], 1, GL_FALSE, cam.View().Elements().data() );
 
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+    VAO.Bind();
 
     for(unsigned int i = 0; i < positions.size(); i++)
     {
         glUniformMatrix4fv(shaderProgram["transf"], 1, GL_FALSE, transform[i].Elements().data() );
         glUniformMatrix4fv(shaderProgram["model"], 1, GL_FALSE, model[i].Elements().data() );
-        VAO.draw();
+        //VAO.draw();
+
+        if(!drawWire)
+        {
+            VAO.draw("Elements", false);
+        }
+        else
+        {
+            VAO.draw("Wireframe", false);
+        }
     }
+    VAO.Unbind();
+
 
 
 }
@@ -314,6 +346,10 @@ void GLDemoState::onKeyboardEvent(const SDL_KeyboardEvent &e)
     if (e.keysym.sym == SDLK_ESCAPE && e.type == SDL_KEYDOWN)
     {
         ret = -1;
+    }
+    if (e.keysym.sym == SDLK_SPACE && e.type == SDL_KEYDOWN)
+    {
+        drawWire = !drawWire;
     }
     else
     {

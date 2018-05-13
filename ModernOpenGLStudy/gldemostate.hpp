@@ -40,6 +40,7 @@ private:
     WDTexture tex, tex2;
     mutable std::vector<Matrix44> transform, model;
     std::vector<Vec3f> positions;
+    bool drawWire;
 };
 
 #endif //WD_TEAPOTLOADERSTATE_HPP_DEFINED

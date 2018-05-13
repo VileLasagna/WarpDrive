@@ -9,13 +9,24 @@ VertexArray::VertexArray()
      ebid{0},
      buffer{},
      indices{},
-     type{VertexBuffer::DataType::STATIC},
-     primitives{DrawType::TRIS}
+     type{VertexBuffer::DataType::STATIC}
 {}
 
-void VertexArray::ElementBuffer(std::vector<unsigned int> &&EBO)
+void VertexArray::pushElementBuffer(ElementBuffer::Data&& EBO)
 {
-    indices = EBO;
+    size_t offset = indices.size()*sizeof(unsigned int);
+    EBOData.emplace_back(offset);
+    EBOData.back().setLength(EBO.size());
+    appendIndices(EBO);
+
+}
+
+void VertexArray::pushElementBuffer(ElementBuffer &&EBO)
+{
+    EBOData.push_back(EBO.Info());
+    EBOData.back().setOffset(indices.size()*sizeof(unsigned int));
+    EBOData.back().setLength(EBO.Indices().size());
+    appendIndices(EBO.Indices());
 }
 
 void VertexArray::Verts(VertexBuffer &&VBO)
@@ -23,20 +34,55 @@ void VertexArray::Verts(VertexBuffer &&VBO)
     buffer = VBO;
 }
 
-void VertexArray::setPrimitives(VertexArray::DrawType type) noexcept
-{
-    primitives = type;
-}
-
-void VertexArray::draw() const noexcept
+void VertexArray::draw(bool autobind) const noexcept
 {
 
-    glBindVertexArray(id);
-        glDrawElements(static_cast<GLenum>(primitives), static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, 0);
-    glBindVertexArray(0);
+    if(autobind)
+    {
+        glBindVertexArray(id);
+            for(ElementBuffer::Header h: EBOData)
+            {
+                glDrawElements(static_cast<GLenum>(h.Primitive()), static_cast<GLsizei>(h.Length()), GL_UNSIGNED_INT, reinterpret_cast<void*>(h.Offset()));
+            }
+        glBindVertexArray(0);
+    }
+    else
+    {
+        for(ElementBuffer::Header h: EBOData)
+        {
+            glDrawElements(static_cast<GLenum>(h.Primitive()), static_cast<GLsizei>(h.Length()), GL_UNSIGNED_INT, reinterpret_cast<void*>(h.Offset()));
+        }
+    }
+
 }
 
-void VertexArray::bind()
+void VertexArray::draw(std::string buffer, bool autobind) const noexcept
+{
+    if(autobind)
+    {
+        glBindVertexArray(id);
+        for(ElementBuffer::Header h: EBOData)
+        {
+            if(h.Name() == buffer)
+            {
+                glDrawElements(static_cast<GLenum>(h.Primitive()), static_cast<GLsizei>(h.Length()), GL_UNSIGNED_INT, reinterpret_cast<void*>(h.Offset()));
+            }
+        }
+        glBindVertexArray(0);
+    }
+    else
+    {
+        for(ElementBuffer::Header h: EBOData)
+        {
+            if(h.Name() == buffer)
+            {
+                glDrawElements(static_cast<GLenum>(h.Primitive()), static_cast<GLsizei>(h.Length()), GL_UNSIGNED_INT, reinterpret_cast<void*>(h.Offset()));
+            }
+        }
+    }
+}
+
+void VertexArray::Load()
 {
     if(id != 0)
     {
@@ -122,4 +168,38 @@ void VertexArray::bind()
 
     glBindVertexArray(0);
 
+}
+
+void VertexArray::Bind() const noexcept
+{
+    glBindVertexArray(id);
+}
+
+void VertexArray::Unbind()
+{
+    glBindVertexArray(0);
+}
+
+void VertexArray::appendIndices(ElementBuffer::Data& d)
+{
+    if(indices.empty())
+    {
+        indices = d;
+    }
+    else
+    {
+        indices.insert(indices.end(),d.begin(), d.end());
+    }
+}
+
+void VertexArray::appendIndices(ElementBuffer::Data&& d)
+{
+    if(indices.empty())
+    {
+        indices = d;
+    }
+    else
+    {
+        indices.insert(indices.end(),d.begin(), d.end());
+    }
 }
