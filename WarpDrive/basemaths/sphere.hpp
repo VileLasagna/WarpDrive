@@ -7,20 +7,13 @@
 
 #include <memory>
 #include <functional>
-#include <GL/glu.h>
-
 
 #include "WarpDrive/basemaths/vec3.hpp"
-#include "WarpDrive/display/rgbcolour.hpp"
-
-//Forward Declarations
-class GLUquadric;
-static std::function<void(GLUquadric*)> gluQuadDeleter = [](GLUquadric* p){gluDeleteQuadric(p);};
-using ptr_GLUquad = std::unique_ptr<GLUquadric,decltype(gluQuadDeleter)>;
+#include "WarpDrive/display/colour.hpp"
+#include "WarpDrive/display/vertexarray.hpp"
 
 class Sphere
 {
-    static constexpr const unsigned int roundness = 24;
 
 public:
 
@@ -39,31 +32,42 @@ public:
     void setPos(float X, float Y, float Z) noexcept;
     void setRadius(float R) noexcept;
     void setColour(const Vec3f& c) noexcept;
-    void setColour(const GLRGBColour& c) noexcept;
+    void setColour(const Colour& c) noexcept;
     void setColour(float X, float Y, float Z) noexcept;
     void setWireframe(bool b) noexcept;
+    void setSlices(size_t s) noexcept {slices = s;}
+    void setStacks(size_t s) noexcept {stacks = s;}
+    void setModelUniform(GLint i) noexcept { modelUniform = i;}
+    void setTransformUniform(GLint i) noexcept { transformUniform = i;}
+    void setAmbientUniform(GLint i) noexcept { ambientUniform = i;}
+
 
     bool collides(const Sphere& other) const noexcept;
 
-    Vec3f Centre()       const noexcept {return centre;}
-    float Radius()       const noexcept {return radius;}
-    GLRGBColour Colour() const noexcept {return colour;}
-    bool Wireframe()     const noexcept {return wireframe;}
+    Vec3f Centre()      const noexcept {return centre;}
+    float Radius()      const noexcept {return radius;}
+    Colour getColour()  const noexcept {return colour;}
+    bool Wireframe()    const noexcept {return wireframe;}
+    size_t Stacks()     const noexcept {return stacks;}
+    size_t Slices()     const noexcept {return slices;}
     ~Sphere() = default;
 
 
 private:
 
+    void initVAO();
 
     Vec3f centre;
     float radius;
-    GLRGBColour colour;
+    Colour colour;
     bool wireframe;
+    size_t slices;
+    size_t stacks;
+    GLint modelUniform;
+    GLint transformUniform;
+    GLint ambientUniform;
+    std::shared_ptr<VertexArray> VAO;
 
-    ptr_GLUquad quadric;
-
-
-    ptr_GLUquad initQuadric() noexcept;
 
 };
 

@@ -56,7 +56,7 @@ void Ball::draw() const
     body.draw();
 }
 
-void Ball::setColour(GLRGBColour colour) noexcept
+void Ball::setColour(Colour colour) noexcept
 {
     body.setColour(colour);
 }

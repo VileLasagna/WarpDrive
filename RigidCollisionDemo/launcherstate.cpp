@@ -17,35 +17,14 @@ LauncherState::LauncherState()
     reset();
 
     cam.setTarget(Vec3f(0,0,0));
-    cam.setPos(Vec3f(0,400,-700));
-    wireframe = true;
+    cam.setPos(Vec3f(0,100,-700));
+    wireframe = false;
 
     float minX = -3000;
     float minZ = -3000;
     float X = 6000;
     float Z = 6000;
-    Game::instance()->quickSeedRNG();
-    size_t numRows = 20;
-//    for(size_t row = 0; row < numRows; row++)
-//    {
-//        for(size_t column = 0; column < numRows; column++)
-//        {
-//            Ball* b0 = new Ball();
-//            b0->setRadius(10+(Game::instance()->RNGrange(50)));
-//            b0->setPos(Vec3f(minX+( (X/numRows)*row),1500+static_cast<float>(( (Game::instance()->RNGrange(200)-100) *10)),minZ+( (Z/numRows)*column)));
-//            b0->setVel(Vec3f(0,0,0));
-//            Game::instance()->addObject(b0);
-//        }
-//    }
 
-    //Game::instance()->addDrawnType("Ball");
-    //Game::instance()->addActiveType("Ball");
-//    brute.load("Ball", "Ball", &LauncherState::ballsTouchedSoGay);
-//    rdc.load("Ball", "Ball", &LauncherState::ballsTouchedSoGay);
-//    brute.load("Ball", "Ball", [](GameObject* a, GameObject* b){ dynamic_cast<Ball*>(a)->setColour(GLRGBColour(0.8f,0.2f,0.7f));
-//                                                                 dynamic_cast<Ball*>(b)->setColour(GLRGBColour(0.8f,0.2f,0.7f));});
-//    rdc.load("Ball", "Ball", [](GameObject* a, GameObject* b){ dynamic_cast<Ball*>(a)->setColour(GLRGBColour(0.8f,0.2f,0.7f));
-//                                                               dynamic_cast<Ball*>(b)->setColour(GLRGBColour(0.8f,0.2f,0.7f));});
     brute.load("Ball", "Ball", RBPcollision());
     rdc.load("Ball", "Ball", RBPcollision());
     shaderProgram.loadVertex("shaders/basic.vert");
@@ -53,7 +32,9 @@ LauncherState::LauncherState()
     floor.setModelUniform(shaderProgram["model"]);
     floor.setTransformUniform(shaderProgram["transf"]);
 
-    cam.setPerspective(45,800/600,0.1f,10000.f);
+
+
+    cam.setPerspective(60,800/600,0.1f,10000.f);
 
     shaderProgram.use();
     glUniformMatrix4fv(shaderProgram["projection"], 1, GL_FALSE, cam.Projection().Elements().data() );
@@ -65,6 +46,38 @@ LauncherState::LauncherState()
     floor.drawNormal(false);
     glEnable(GL_DEPTH_TEST);
 
+    Game::instance()->quickSeedRNG();
+    size_t numRows = 20;
+//    Ball* b = new Ball();
+//    b->setRadius(40);
+//    b->setPos(Vec3f(0,30,0));
+//    Game::instance()->addObject(b);
+    for(size_t row = 0; row < numRows; row++)
+    {
+        for(size_t column = 0; column < numRows; column++)
+        {
+            Ball* b0 = new Ball();
+            b0->setRadius(10+(Game::instance()->RNGrange(50)));
+            b0->setPos(Vec3f(minX+( (X/numRows)*row),1500+static_cast<float>(( (Game::instance()->RNGrange(200)-100) *10)),minZ+( (Z/numRows)*column)));
+            b0->setVel(Vec3f(0,0,0));
+            b0->setModelUniform(shaderProgram["model"]);
+            b0->setTransformUniform(shaderProgram["transf"]);
+            b0->setAmbientUniform(shaderProgram["ambientOverride"]);
+            b0->setColour(Colour(Game::instance()->RNGrange(100)/100.f,Game::instance()->RNGrange(100)/100.f,Game::instance()->RNGrange(100)/100.f,1));
+            Game::instance()->addObject(b0);
+        }
+    }
+
+    Game::instance()->addDrawnType("Ball");
+    Game::instance()->addActiveType("Ball");
+//    brute.load("Ball", "Ball", &LauncherState::ballsTouchedSoGay);
+//    rdc.load("Ball", "Ball", &LauncherState::ballsTouchedSoGay);
+//    brute.load("Ball", "Ball", [](GameObject* a, GameObject* b){ dynamic_cast<Ball*>(a)->setColour(GLRGBColour(0.8f,0.2f,0.7f));
+//                                                                 dynamic_cast<Ball*>(b)->setColour(GLRGBColour(0.8f,0.2f,0.7f));});
+//    rdc.load("Ball", "Ball", [](GameObject* a, GameObject* b){ dynamic_cast<Ball*>(a)->setColour(GLRGBColour(0.8f,0.2f,0.7f));
+//                                                               dynamic_cast<Ball*>(b)->setColour(GLRGBColour(0.8f,0.2f,0.7f));});
+
+
 
 }
 
@@ -74,13 +87,16 @@ void LauncherState::draw() const
     glClearColor(0.1f, 0.f, 0.1f, 1.0f);
 
     DisplayManager::instance()->clearDisplay();
-    Game::instance()->drawObjects();
 
 
     shaderProgram.use();
     glUniform1i(shaderProgram["untextured"], 1);
 
     glUniformMatrix4fv(shaderProgram["view"], 1, GL_FALSE, cam.View().Elements().data() );
+
+    Game::instance()->drawObjects();
+
+    glUniform4f(shaderProgram["ambientOverride"], 0,0,0,0 );
 
     floor.draw();
 
@@ -126,8 +142,8 @@ int LauncherState::update()
 
     Game::instance()->updateObjects();
 
-//    //brute.update(Game::iterator(/*"Ball",ObjIterator::ALL*/));
-    rdc.update(Game::iterator(/*"Ball",ObjIterator::ALL*/));
+    //brute.update(Game::iterator(/*"Ball",ObjIterator::ALL*/));
+    //rdc.update(Game::iterator(/*"Ball",ObjIterator::ALL*/));
     cam.update();
 
     return ret;
@@ -328,6 +344,6 @@ void LauncherState::onMouseButtonEvent(const SDL_MouseButtonEvent &e)
 
 void LauncherState::ballsTouchedSoGay(GameObject* a, GameObject* b) noexcept
 {
-    dynamic_cast<Ball*>(a)->setColour(GLRGBColour(0.8f,0.2f,0.7f));
-    dynamic_cast<Ball*>(b)->setColour(GLRGBColour(0.8f,0.2f,0.7f));
+    dynamic_cast<Ball*>(a)->setColour(Colour(0.8f,0.2f,0.7f));
+    dynamic_cast<Ball*>(b)->setColour(Colour(0.8f,0.2f,0.7f));
 }

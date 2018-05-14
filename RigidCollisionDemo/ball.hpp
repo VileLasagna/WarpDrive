@@ -14,8 +14,13 @@ public:
     void update() override;
     void draw() const override;
 
+    void setModelUniform(GLint i) noexcept { body.setModelUniform(i);}
+    void setTransformUniform(GLint i) noexcept { body.setTransformUniform(i);}
+    void setAmbientUniform(GLint i) noexcept { body.setAmbientUniform(i);}
+
+
     void setRadius(float f) { body.setRadius(f); radius = f; dimensions = Vec3f{f*2,f*2,f*2}; mass = f*density;}
-    void setColour(GLRGBColour colour) noexcept;
+    void setColour(Colour colour) noexcept;
 
     ~Ball() = default;
 
