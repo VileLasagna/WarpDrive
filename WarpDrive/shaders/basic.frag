@@ -11,15 +11,31 @@ out vec4 color;
 
 uniform sampler2D tex;
 uniform int untextured;
+uniform vec4 ambientOverride;
 
 void main()
 {
-    if(untextured > 0)
+    if(ambientOverride.a > 0)
     {
-        color = ambientColour;
+
+        if(untextured > 0)
+        {
+            color = ambientOverride;
+        }
+        else
+        {
+            color = texture(tex, UV) * ambientOverride;
+        }
     }
     else
     {
-        color = texture(tex, UV) * ambientColour;
+        if(untextured > 0)
+        {
+            color = ambientColour;
+        }
+        else
+        {
+            color = texture(tex, UV) * ambientOverride;
+        }
     }
 }
